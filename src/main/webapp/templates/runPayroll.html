@@ -1,0 +1,221 @@
+<div class="loader_backdrop" ng-if="payrollControllerScope.spinner">
+	<div class="loader loader_position"></div>
+</div>
+
+<div class="rightContainer">
+	<div class="pageTitleParent">
+		<div class="pageTitletextContainer paddLft15">Run Payroll</div>
+		<div class="innerdivContainer red-icon create-employee responsive_padding0 employee_placeholder" ng-if="!payrollControllerScope.isPayrollDetail">
+			<p class="reqStar text-center" ng-if="payrollControllerScope.msg && payrollControllerScope.msg != ''">{{payrollControllerScope.msg}}</p>
+			
+			<form class="form-horizontal formContainer employee_selectBox" name="payrollControllerScope.employeeForm">
+				<div class="form-group row mob-pos-rel">
+					<label class="control-label col-sm-12 col-md-4  lineheight2pt6">Pay Period</label>
+					<div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15"  >
+						<div moment-picker="payrollControllerScope.runPayroll.payPeriod" change="payrollControllerScope.hidePayroll()" data-max-date="payrollControllerScope.minDate" format="MMM YYYY" >
+							<input name="payPeriod" ng-model="payrollControllerScope.runPayroll.payPeriod" keyboard="true" class="cursor_pointer inputClass selectWidth"
+							 placeholder="Pay Period" set-on-select="true" required readonly>
+							<span class="mob-pos-abs calen mob-right-18 right215">
+								<button type="button" class="btn btn-default mrgTop5 addIcon">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+					<div class="form-group row mob-pos-rel">
+					<label class="control-label col-sm-12 col-md-4  lineheight2pt6">Payroll Batch</label>
+					 <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                                  <div class="customDropDown">
+                                                <select class="select1 dropdown inputClass stateoptions" name="empId" ng-model="employeeControllerScope.compensation.empId" required>
+                                                    <option value="" ng-if="!employeeControllerScope.compensation.empId || employeeControllerScope.compensation.empId == ''">Payroll Batch*</option>
+                                                    <option value="{{employees.id}}" ng-repeat="employees in employeeControllerScope.employeeActiveList  | orderBy:'firstName'">{{employees.firstName}} {{employees.middleName}} {{employees.lastName}}</option>
+                                                </select>
+                                            </div>
+                                               </div>
+                                               </div>
+				</div>
+				<div class="form-group row mob-pos-rel text-center margin_top10 margin_bottom10">
+					<button class="activeBtn btn" type="button" ng-click="payrollControllerScope.getRunPayroll()" ng-disabled="!payrollControllerScope.runPayroll.payPeriod || payrollControllerScope.runPayroll.payPeriod == ''">Continue</button>
+				</div>
+
+
+				<div class="table_data" ng-show="payrollControllerScope.isRunPayroll">
+					<table wt-responsive-table class="custom-responsive-table">
+						<thead>
+							<tr>
+								<th>Employee Id</th>
+								<th>Employee Name</th>
+								<th>Gross</th>
+								<th>Earnings</th>
+								<th>Deduction</th>
+								<th>Net</th>
+								<th>Action</th>
+							</tr>
+							<tr>
+								<th>
+									<input type="search" placeholder="Search Here" class="inputClass width90" ng-model="payrollControllerScope.search.empId"
+									 ng-keyup="payrollControllerScope.searchMe('emp')" />
+								</th>
+								<th>
+									<input type="search" placeholder="Search Here" class="inputClass width90" ng-model="payrollControllerScope.search.name" ng-keyup="payrollControllerScope.searchMe('emp')"
+									/>
+								</th>
+								<th>
+									<input type="search" placeholder="Search Here" class="inputClass width90" ng-model="payrollControllerScope.search.basicGrossPay"
+									 ng-keyup="payrollControllerScope.searchMe('emp')" />
+								</th>
+								<th>
+									<input type="search" placeholder="Search Here" class="inputClass width90" ng-model="payrollControllerScope.search.earningMonth"
+									 ng-keyup="payrollControllerScope.searchMe('emp')" />
+								</th>
+								<th>
+									<input type="search" placeholder="Search Here" class="inputClass width90" ng-model="payrollControllerScope.search.deductionMonth"
+									 ng-keyup="payrollControllerScope.searchMe('emp')" />
+								</th>
+								<th>
+									<input type="search" placeholder="Search Here" class="inputClass width90" ng-model="payrollControllerScope.search.netMonth"
+									 ng-keyup="payrollControllerScope.searchMe('emp')" />
+								</th>
+								<th>
+									<input type="search" placeholder="Search Here" hidden class="inputClass width90" ng-model="payrollControllerScope.search.netMonth"
+									 ng-keyup="payrollControllerScope.searchMe('emp')" />
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr ng-repeat="employee in payrollControllerScope.employeeListlogEventFilter = (payrollControllerScope.runPayrollList | orderBy : '-id' |
+									                                 filter: { 
+									                                 	empId : payrollControllerScope.search.empId, 
+									                                 	name : payrollControllerScope.search.name,
+									                                 	deductionMonth : payrollControllerScope.search.deductionMonth, 
+									                                 	netMonth : payrollControllerScope.search.netMonth, 
+									                                    status : payrollControllerScope.search.status, 
+									                                 	earningMonth : payrollControllerScope.search.earningMonth,                          basicGrossPay : payrollControllerScope.search.basicGrossPay
+									                                 }|  
+									                                limitTo : limitToShow : beginFrom) track by $index" class="backGreyColor">
+								<!--  <td class="text-center padd_left0"><span class="table_mobile table_borderNone">
+									                	<input type="checkbox" ng-model="employee.isSelect"/><label></label></span>
+									                </td>  -->
+								<td ng-click="payrollControllerScope.viewPayrollDetail(employee.empId)" class="cursor_pointer">{{employee.empId}}</td>
+								<td class="cursor_pointer">{{employee.name}}</td>
+								<td class="text-right">{{employee.basicGrossPay | number:0}}.00</td>
+								<td class="text-right">{{employee.earningMonth | number:0}}.00</td>
+								<td class="text-right">{{employee.deductionMonth | number:0}}.00</td>
+								<td class="text-right">{{employee.netMonth | number:0}}.00</td>
+								<td>
+									<span ng-if="employee.status =='a'" class="label_success">Active</span>
+									<span ng-if="employee.status =='i'" class="label_danger">In-Active</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<p ng-if="(payrollControllerScope.runPayrollList |
+									                                 filter: { 
+									                                 	empId : payrollControllerScope.search.empId, 
+									                                 	name : payrollControllerScope.search.name,
+									                                 	deductionMonth : payrollControllerScope.search.deductionMonth, 
+									                                 	netMonth : payrollControllerScope.search.netMonth, 
+									                                    status : payrollControllerScope.search.status, 
+									                                 	earningMonth : payrollControllerScope.search.earningMonth,                          basicGrossPay : payrollControllerScope.search.basicGrossPay
+									                                 }).length == 0" class="text-center grey_text margin0">Payroll Details Not Available</p>
+				</div>
+
+				<div class="table_btn">
+					<!-- <spheresuitenavigation list-item="payrollControllerScope.employeeList" restrict-to="{{limitToShow}}"></spheresuitenavigation> -->
+					<button ng-click="payrollControllerScope.showPrevNav()" ng-if="payrollControllerScope.isDataAvailable && payrollControllerScope.employeeList.length > 0"
+					 ng-disabled="payrollControllerScope.buttonBeginFrom == 0" ng-class="{'cursor_notAllowed':payrollControllerScope.buttonBeginFrom == 0}"
+					 class="">Prev</button>
+
+					<span ng-repeat="i in payrollControllerScope.employeeList | limitTo : payrollControllerScope.buttonLimitToShow : payrollControllerScope.buttonBeginFrom">
+
+						<button ng-class="{ 'active' : i.isActiveClass }" ng-if="payrollControllerScope.buttonBeginFrom + $index < payrollControllerScope.employeeList.length / payrollControllerScope.buttonLimitToShow"
+						 ng-click="payrollControllerScope.gotoPage('emp',$index * payrollControllerScope.buttonLimitToShow + payrollControllerScope.buttonBeginFrom * payrollControllerScope.buttonLimitToShow, payrollControllerScope.buttonBeginFrom + $index)">
+							{{payrollControllerScope.buttonBeginFrom + $index + 1}}
+						</button>
+					</span>
+					<button ng-click="payrollControllerScope.showNextNav('emp')" ng-if="payrollControllerScope.isDataAvailable && payrollControllerScope.employeeList.length > 0"
+					 ng-disabled="payrollControllerScope.isNextDisabled" ng-class="{'cursor_notAllowed':payrollControllerScope.isNextDisabled}">Next</button>
+				</div>
+				<div class="form-group row mob-pos-rel text-center margin_top10" ng-if="payrollControllerScope.isRunPayroll && (payrollControllerScope.runPayrollList |
+									                                 filter: { 
+									                                 	empId : payrollControllerScope.search.empId, 
+									                                 	name : payrollControllerScope.search.name,
+									                                 	deductionMonth : payrollControllerScope.search.deductionMonth, 
+									                                 	netMonth : payrollControllerScope.search.netMonth, 
+									                                    status : payrollControllerScope.search.status, 
+									                                 	earningMonth : payrollControllerScope.search.earningMonth,                          basicGrossPay : payrollControllerScope.search.basicGrossPay
+									                                 }).length>0">
+					<button class="activeBtn btn" type="button" ng-click="payrollControllerScope.processPayroll()">Proceed</button>
+				</div>
+			</form>
+			
+			</div>
+			<div class="clearfix"></div>
+			
+			<div class="col-lg-12 col-sm-12 col-xs-12 padd0">
+			<div class="innerdivContainer red-icon create-employee responsive_padding0 employee_placeholder back_white"  ng-if="payrollControllerScope.isPayrollDetail">
+				<div class="row">
+					<span class="cursor_pointer back_iconPosition"  ng-click="payrollControllerScope.gotoRunPayroll()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+				</div>
+				<div class="row padd0">
+					<div class="col-lg-6 col-xs-12 padd0">
+						<table class="table table-bordered">
+							<caption class="text-center">
+								<span class="text-center font_weight600">Earnings(Rs.)</span>
+							</caption>
+							<thead>
+								<tr>
+									<th>Description</th>
+									<th>Monthly</th>
+									<th>YTD</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="earning in payrollControllerScope.leadListByEmp.employeeCompensationEarningList">
+									<td>{{earning.earningName}}</td>
+									<td class="text-right">{{earning.monthly}}</td>
+									<td class="text-right">{{earning.ytd}}</td>
+								</tr>
+								<tr>
+									<td class="font_weight600">Total Earnings</td>
+									<td class="font_weight600 text-right">{{payrollControllerScope.leadListByEmp.earningMonth}}</td>
+									<td class="font_weight600 text-right">{{payrollControllerScope.leadListByEmp.earningYear}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="col-lg-6 col-xs-12 padd0">
+						<table class="table table-bordered">
+							<caption class="text-center">
+								<span class="text-center font_weight600">Deduction(Rs.)</span>
+							</caption>
+							<thead>
+								<tr>
+									<th>Description</th>
+									<th>Monthly</th>
+									<th>YTD</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="deduction in payrollControllerScope.leadListByEmp.employeeCompensationDeductionList">
+									<td>{{deduction.deductionName}}</td>
+									<td class="text-right">{{deduction.monthly}}</td>
+									<td class="text-right">{{deduction.ytd}}</td>
+								</tr>
+								<tr>
+									<td class="font_weight600">Total Deduction</td>
+									<td class="font_weight600 text-right">{{payrollControllerScope.leadListByEmp.deductionMonth}}</td>
+									<td class="font_weight600 text-right">{{payrollControllerScope.leadListByEmp.deductionYear}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+			
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

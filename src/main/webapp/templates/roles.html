@@ -1,0 +1,96 @@
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Roles</div>
+                        <div class="innerdivContainer responsive_padding0">
+                            <div class="row configmenurow mobpaddingTopBtm10px">
+                                <div class="roles-page">
+                                    <div class="form-horizontal">
+                                        <div class="detailoperationSection">
+                                            <span class="operationRightDiv width100p">
+												<button class="defaultBtn btn mob-width-48" ng-click="rolesControllerScope.declineEdit()" ng-if="!rolesControllerScope.isUpdate">Decline</button>
+												<button class="defaultBtn btn mob-width-48" ng-click="rolesControllerScope.isUpdateClicked()" ng-if="rolesControllerScope.isUpdate">Edit</button>
+												<button class="activeBtn btn mob-width-48" ng-click="rolesControllerScope.editRole()" ng-if="!rolesControllerScope.isUpdate" ng-disabled="rolesControllerScope.isEditRole">Update</button>
+												<button data-toggle="modal" data-target="#employeeRoles" class="activeBtn btn mob-width-48" ng-if="rolesControllerScope.isUpdate">Add Role</button>
+											</span>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <form>
+                                                    <div class="form-group col-sm-12 mob-pad-0 marginTB10 padd0">
+                                                        <label class="control-label col-sm-3 text-right lineheight31" for="sel1">Select Role </label>
+                                                        <div class="col-sm-9">
+                                                            <select id="select1" class="dropdown inputClass" ng-change="rolesControllerScope.selectedRoleFun(rolesControllerScope.role.name)" ng-model="rolesControllerScope.role.name">
+                                                                <option value="{{role.id}}" ng-repeat="role in rolesControllerScope.roleList">{{role.name}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-sm-12 mob-pad-0 marginTB10 padd0">
+                                                        <label class="control-label col-sm-3 text-right lineheight31" for="roledesc">Role Name</label>
+                                                        <div class="col-sm-9 pad-top-7 respadd11 role-name">{{rolesControllerScope.roleData.name}}</div>
+                                                    </div>
+                                                    <div class="form-group col-sm-12 mob-pad-0 marginTB10 padd0">
+                                                        <label class="control-label col-sm-3 text-right lineheight31" for="roledesc">Description</label>
+                                                        <div class="col-sm-9 pad-top-7 respadd11 role-name">{{rolesControllerScope.roleData.description}}</div>
+                                                    </div>
+                                                    <div class="form-group col-sm-12 mob-pad-0">
+                                                        <label class="control-label col-sm-12 text-middle" for="roledesc">User With This Role</label>
+                                                        <div class="col-sm-9"></div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="loader" ng-show="rolesControllerScope.spinner"></div>
+                                        <div class="row">
+                                            <div class="col-sm-12 mob-pad-0 flex-parent">
+                                                <div class="flex-child" ng-repeat="menus in rolesControllerScope.menuItems" ng-class="menus.submenu.length > 0 ? '' : 'borderNone'">
+                                                    <div class="role-dash-div" ng-class="menus.submenu.length > 0 ? '' : 'border1'">
+                                                        <input type="checkbox" class="parentCheckBox" ng-model="menus.isChecked" ng-checked="menus.isChecked" ng-change="rolesControllerScope.changeParentCheckbox(menus.submenu, $index, menus.isChecked, 'main')" ng-disabled="rolesControllerScope.isEditRole">
+                                                        <label class="cursor_default"> {{menus.name}}</label>
+                                                    </div>
+                                                    <div class="subMenu" ng-repeat="submenu in menus.submenu">
+                                                        <ul class="role-dash-ul sub-nav childCheckbox">
+                                                            <li class="role-dash-li">
+                                                                <input class="role-input-check" type="checkbox" ng-model="submenu.isChecked" ng-checked="submenu.isChecked" ng-change="rolesControllerScope.changeChildCheckbox(submenu.isChecked, $parent.$index);rolesControllerScope.changeParentCheckbox(submenu.subSubMenu, $index, submenu.isChecked, 'submenu')" ng-disabled="rolesControllerScope.isEditRole" />
+                                                                <label class="cursor_default">{{submenu.name}}</label>
+                                                            </li>
+                                                        </ul>
+	                                                    <div class="subSubMenu" ng-repeat="subSubMenu in submenu.subSubMenu">
+	                                                        <ul class="role-dash-ul sub-nav childCheckbox">
+	                                                            <li class="role-dash-li">
+	                                                                <input class="role-input-check" type="checkbox" ng-model="subSubMenu.isChecked" ng-checked="subSubMenu.isChecked" ng-change="rolesControllerScope.changeChildCheckbox(subSubMenu.isChecked, $parent.$index, $parent.$parent.$index )" ng-disabled="rolesControllerScope.isEditRole" />
+	                                                                <label class="cursor_default">{{subSubMenu.name}}</label>
+	                                                            </li>
+	                                                        </ul>
+	                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="employeeRoles" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Employee Role</h4>
+                                        </div>
+                                        <form name="rolesControllerScope.employeeRoleForm">
+                                            <div class="modal-body">
+                                                <input type="text" name="employeerole" class="inputClass width100" ng-model="rolesControllerScope.newRole.name" placeholder="Employee Role*" required/>
+                                                <p ng-if="rolesControllerScope.employeeRoleForm.employeerole.$invalid && rolesControllerScope.employeeRoleForm.employeerole.$touched" class="reqStar">Kindly Enter Employee Role</p>
+                                                <input type="text" name="description" class="inputClass width100" ng-model="rolesControllerScope.newRole.description" placeholder="Description" />
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="defaultBtn" data-dismiss="modal" ng-click="rolesControllerScope.declineModal()">Decline</button>
+                                                <button type="button" class="activeBtn btn" ng-click="rolesControllerScope.addRole()" ng-disabled="rolesControllerScope.employeeRoleForm.$invalid">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

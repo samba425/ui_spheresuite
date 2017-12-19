@@ -1,0 +1,205 @@
+<div class="loader_backdrop" ng-show="requirementControllerScope.spinner || requirementControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+<div class="rightContainer">
+	<div class="pageTitleParent">
+		<div class="row pageTitletextContainer">
+			<span class="col-lg-6 col-md-6 col-sm-6 col-xs-7 padd0">
+		   		<div class="line_height30">Requirements List</div>
+		   	</span>
+   			<span class="col-lg-6 col-md-6 col-sm-6 col-xs-5 text-right padd0">
+                   <button class="glyphicon glyphicon-export action_btn" ng-click="requirementControllerScope.exportData()"></button>
+                   <button class="glyphicon glyphicon-import action_btn margin_left0 margin_right0" ng-click="requirementControllerScope.openImportPage()"></button>
+			</span>
+   		</div>
+   		<div class="innerdivContainer red-icon create-employee">
+       		<div class="row margin_minus10">
+           		<div class="input_section">
+               		<div class="width100 mobile_viewShow">
+                   		<div class="customDropDown col-lg-6 col-md-6 col-sm-6 col-xs-12 padd0 responsive_select margin_top5">
+	                       	<select name="customer" class="dropdown selectClass col-lg-4 col-md-4 col-sm-4 col-xs-12 text-left select1" ng-model="requirementControllerScope.customer">
+                                <option value="" selected="selected">Select Status</option>
+                                <option value="" >All</option>
+                                <option value="O">Open</option>
+                                <option value="C">Closed</option>
+                           </select>
+	                   	</div>
+               		</div>
+	               	<div class="width100 mobile_viewShow">
+	                   	<input type="text" ng-model="requirementControllerScope.searchName" ng-keyup="requirementControllerScope.searchMe(true)" placeholder="Search Here" class="margin_top20 width100 resp_fontSize">
+	               	</div> 
+			      	<div ng-if="!requirementControllerScope.isDataAvailable">
+			          	<p class="text-center grey_text margin0">{{requirementControllerScope.msg}}</p>
+			      	</div>
+               		<div class="table_data" ng-if="requirementControllerScope.isDataAvailable">
+			      		<table wt-responsive-table class="custom-responsive-table">
+			       			<thead>
+					           	<tr>
+						           	<!-- <th class="">
+											<i class="fa fa-trash-o cursor_pointer" aria-hidden="true"></i> ng-click="requirementControllerScope.deleteRe()"
+			           				</th> -->
+					               	<th>Customer Name</th>
+					               	<th>Project Name</th>
+					               	<th>Name</th>
+					               	<th>Min Exp</th>
+					                <th>Max Exp</th> 
+					               	<th>No Of Position</th>
+					               	<th>Joining Date</th>
+				           		</tr>
+				           		<tr>
+						           	<!-- <th class="width5Percent">
+						           		<span class="table_mobile table_borderNone">
+						           			<input type="checkbox" ng-model="requirementControllerScope.isSelect" ng-change="requirementControllerScope.toggleSelect(requirementControllerScope.isSelect)"/><label></label>
+						           		</span>
+						           	</th> -->
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="requirementControllerScope.search.cutomerName" ng-keyup="requirementControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="requirementControllerScope.search.projectName" ng-keyup="requirementControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="requirementControllerScope.search.name" ng-keyup="requirementControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="requirementControllerScope.search.minExp" ng-keyup="requirementControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="requirementControllerScope.search.maxExp" ng-keyup="requirementControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="requirementControllerScope.search.noofPosititon" ng-keyup="requirementControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="requirementControllerScope.search.joiningDate" ng-keyup="requirementControllerScope.searchMe()" /></th>
+					           	</tr>
+					       	</thead>
+					       	<tbody >
+					           	<tr ng-repeat="requirement in requirementControllerScope.requirementListlogEventFilter = (requirementControllerScope.requirementList | orderBy : '-id' |  
+					                                filter : requirementControllerScope.searchName | 
+					                                filter: { cutomerName : requirementControllerScope.search.cutomerName, 
+					                                projectName : requirementControllerScope.search.projectName, 
+					                                name : requirementControllerScope.search.name, 
+					                                minExp : requirementControllerScope.search.minExp, 
+					                                maxExp : requirementControllerScope.search.maxExp, 
+					                                noofPosititon : requirementControllerScope.search.noofPosititon,
+					                                joiningDate : requirementControllerScope.search.joiningDate }|  
+					                               limitTo : limitToShow : beginFrom)" class="backGreyColor">
+					               	<!-- <td class="text-center padd_left0"><span class="table_mobile table_borderNone">
+					               		<input type="checkbox" ng-model="requirement.isSelect"/><label></label></span>
+					               	</td> -->              
+					               	<td ng-click="requirementControllerScope.gotoView(requirement.id)" class="cursor_pointer">{{requirement.cutomerName}}</td>
+					               	<td>{{requirement.projectName}}</td>
+					               	<td>{{requirement.name}}</td>
+					               	<td class="text-center">{{requirement.minExp}}</td>
+					               	<td class="text-center">{{requirement.maxExp}}</td>
+					               	<td class="text-center">{{requirement.noofPosititon}}</td>
+					               	<td class="text-center">{{requirement.joiningDate}}</td>
+					           	</tr>
+					       	</tbody>
+						</table>
+        				<p ng-if="requirementControllerScope.requirementList.length == 0" class="text-center grey_text margin0">Requirement Details Not Available</p>
+                	</div>
+                	<div class="table_btn">
+			             <button ng-click="requirementControllerScope.showPrevNav()" 
+			             	ng-if="requirementControllerScope.isDataAvailable && requirementControllerScope.requirementList.length > 0" 
+			             	ng-disabled="requirementControllerScope.buttonBeginFrom == 0"
+			             	ng-class="{'cursor_notAllowed':requirementControllerScope.buttonBeginFrom == 0}" class="">Prev</button>
+             	
+             			<span ng-repeat="i in requirementControllerScope.requirementList | limitTo : requirementControllerScope.buttonLimitToShow : requirementControllerScope.buttonBeginFrom">
+             	 
+			             	<button ng-class="{ 'active' : i.isActiveClass }" 
+			             		ng-if="requirementControllerScope.buttonBeginFrom + $index < requirementControllerScope.requirementList.length / requirementControllerScope.buttonLimitToShow" 
+			             		ng-click="requirementControllerScope.gotoPage($index * requirementControllerScope.buttonLimitToShow + requirementControllerScope.buttonBeginFrom * requirementControllerScope.buttonLimitToShow, requirementControllerScope.buttonBeginFrom + $index)">
+			             		{{requirementControllerScope.buttonBeginFrom + $index + 1}}
+			             	</button>
+			            </span>
+			            <button ng-click="requirementControllerScope.showNextNav()" 
+			             	ng-if="requirementControllerScope.isDataAvailable && requirementControllerScope.requirementList.length > 0" 
+			             	ng-disabled="requirementControllerScope.isNextDisabled"
+			             	ng-class="{'cursor_notAllowed':requirementControllerScope.isNextDisabled}">Next</button>
+             		</div>
+             	</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Requirements</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <div class="customDropDown col-lg-6 col-md-6 col-sm-6 col-xs-8 padd0 responsive_select">
+                                            <select name="customer" class="select1 dropdown selectClass col-lg-4 col-md-4 col-sm-4 col-xs-12 text-left" ng-model="requirementControllerScope.customer">
+                                                <option value="" selected="selected">Select Status</option>
+                                                <option value="" >All</option>
+                                                <option value="O">Open</option>
+                                                <option value="C">Closed</option>
+                                           </select>
+                                        </div>
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-4 padd0 text-right">
+                                        <button class="glyphicon glyphicon-export action_btn" ng-click="requirementControllerScope.exportData()"></button>
+                                        <button class="glyphicon glyphicon-import action_btn margin_left0 margin_right0" ng-click="requirementControllerScope.openImportPage()"></button></span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="requirementControllerScope.searchName" placeholder="Search Here" class="margin_top20 width100 resp_fontSize">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="requirementControllerScope.msg != ''">
+                            <p class="text-center grey_text padding15 padding_top0">{{requirementControllerScope.msg}}</p>
+                        </div>
+                        <div id="list-wrapper">
+                            <div infinite-scroll="requirementControllerScope.addMoreItems()" infinite-scroll-container="'#list-wrapper'" infinite-scroll-parent="true">
+                                <div class="innerdivContainer red-icon create-employee border_bottom1" ng-repeat="requirement in logEventFilter = (requirementControllerScope.requirementList | orderBy : '-id' |  
+                                 filter : requirementControllerScope.searchName | filter: { status : requirementControllerScope.customer} |  
+                                limitTo : requirementControllerScope.limitToShow)">
+                                    <div class="row">
+                                        <div class="input_section">
+                                            <div class="col-lg-1 padd0 responsive_textCenter  responsive_textCenter responsivemargin_top10">
+                                                <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="responsive_textCenter display_webkit">
+                                                <span ng-click="requirementControllerScope.gotoView(requirement.id)" class="anchor_text break-word capitalizeText">{{requirement.cutomerName}}</span>
+                                                <span class="pipe_text" ng-if="requirement.projectName!=''">|</span>
+                                                <span class="span_text capitalizeText">{{requirement.projectName}}</span> 
+                                                <span class="pipe_text"   >|</span>  
+                                                <span ng-if="requirement.status =='O'" class="label_success">Open</span>
+                                                <span ng-if="requirement.status =='C'" class="label_danger">Closed</span>
+                                                <span class="pipe_text15">|</span>
+                                                <span class="cursorPointer" ng-click="requirementControllerScope.editRequirement(requirement)">Make
+													<span ng-if="requirement.status=='C'">Open</span>
+                                                   	<span ng-if="requirement.status=='O'">Close</span>
+                                               	</span>  
+                                            </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                           	<li class="row">
+                                                                <label class="col-xs-6 padd0">Name</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{requirement.name}}</span></li>
+                                                           	<li class="row">
+                                                                <label class="col-xs-6 padd0">Minimum Experience</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{requirement.minExp}}</span></li>
+                                                           	<li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">No Of Position</label> <span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{requirement.noofPosititon}}</span></li>
+                                                        	<li class="row">
+                                                                <label class="col-xs-6 padd0">Job Description</label><span class="font_weight600 col-xs-6 wordBreak_all">{{requirement.jobDesc}}</span></li>
+                                                         </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                        	<li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">Maximum Experience</label> <span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{requirement.maxExp}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Joining Date</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{requirement.joiningDate}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Notice Period</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{requirement.noticePeriod}}<span ng-if="requirement.noticePeriod != ''"> / Days</span></span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Cost</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{requirement.cost}}</span></li>
+                                                           </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+           

@@ -1,0 +1,157 @@
+<div class="loader_backdrop" ng-show="employeeControllerScope.viewempspinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Resource deployement Invoice Details</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="text-right col-lg-12 col-xs-12 col-md-12 col-sm-12 padd10">
+                                        <button class="defaultBtn pull-left" type="button" ng-click="employeeControllerScope.goBackToEmpoyee()">Back To Invoices</button>
+                                    </div>
+                                    <div>
+                                       
+                                        
+                                        <div class="col-lg-12 col-xs-12 padd0 BORDBOTTOM">
+                                        	<h4 class="text-center">Assignment Detail</h4>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                           <li class="row">
+                                                            <label class="col-xs-6 padd0">Employee Id</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">35154</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Employee Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">sapta</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Assign Id</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.firstName}}</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Middle Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.middleName}}</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Last Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.lastName}}</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Employee Type</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.emptypeName}}</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Job Description</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.jobDesc}}</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Department</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.deptName}}</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Reporting Employee Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.reportToName}}</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Gender</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all"><span ng-if="employeeControllerScope.employee.gender == 'F'">Female</span><span ng-if="employeeControllerScope.employee.gender == 'M'">Male</span></li>
+                                                       
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                            <li class="row">
+                                                            	<label class="col-xs-6 padd0">Personal Contact</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.personalContact}}</span></li>
+	                                                        <li class="row">
+	                                                            <label class="col-xs-6 padd0">Primary Contact</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.primaryContact}}</span></li>
+	                                                        <li class="row">
+	                                                            <label class="col-xs-6 padd0">Company Email</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.companyEmail}}</span></li>
+	                                                        <li class="row">
+	                                                            <label class="col-xs-6 padd0">Personal Email</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.personalEmail}}</span></li>
+	                                                        <li class="row">
+	                                                            <label class="col-xs-6 padd0">PAN No</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.panno}}</span></li>
+	                                                        <li class="row">
+	                                                            <label class="col-xs-6 padd0">Aadhar Id</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.aadhar}}</span></li>
+	                                                        <li class="row">
+	                                                            <label class="col-xs-6 padd0">Birth Date</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.dateOfBirth }}</span></li>
+	                                                        <li class="row">
+	                                                            <label class="col-xs-6 padd0">Start Date</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.startDate }}</span></li>
+	                                                        <li class="row">
+	                                                            <label class="col-xs-6 padd0">Updated By</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.updatedBy}}</li>
+	                                                    	<li class="row">
+	                                                    		<label class="col-xs-6 padd0">Updated On</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.updatedon }}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-xs-12 padd0">
+                                        	<h4 class="text-center">Invoice Details</h4>
+                                        	<form class="form-horizontal formContainer employee_selectBox" name="">
+                                        	<div class="form-group row">
+		                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Invoice Number</label>
+		                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+		                                            <input type="text" name="empId" class="inputClass" ng-model="employeeControllerScope.employee.empId" placeholder="Invoice Number" />
+		                                        </div>
+		                                    </div>
+		                                     <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Invoice Month</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="startDate" class="inputClass" datepicker-popup="{{format}}" ng-click="resourceDeployementInvoiceControllerScope.openInvoiceMonthCalender($event)" ng-model="resourceDeployementInvoiceControllerScope.assignment.invoiceMonth" is-open="resourceDeployementInvoiceControllerScope.invoiceMonthCalender" placeholder="Invoice Month" show-button-bar="false" />
+                                            <p ng-if="resourceDeployementInvoiceControllerScope.employeeForm.dateOfBirth.$invalid && resourceDeployementInvoiceControllerScope.employeeForm.dateOfBirth.$touched" class="reqStar">Kindly Enter Valid Date</p>
+                                        </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18">
+											<button type="button" class="btn btn-default mrgTop14 addIcon"
+												ng-click="resourceDeployementInvoiceControllerScope.openInvoiceMonthCalender($event)">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Invoice Date</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="startDate" class="inputClass" datepicker-popup="{{format}}" ng-click="resourceDeployementInvoiceControllerScope.openInvoiceCalender($event)" ng-model="resourceDeployementInvoiceControllerScope.assignment.invoiceDate" is-open="resourceDeployementInvoiceControllerScope.invoiceCalender" placeholder="Invoice Date" show-button-bar="false" />
+                                            <p ng-if="resourceDeployementInvoiceControllerScope.employeeForm.dateOfBirth.$invalid && resourceDeployementInvoiceControllerScope.employeeForm.dateOfBirth.$touched" class="reqStar">Kindly Enter Valid Date</p>
+                                        </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18">
+											<button type="button" class="btn btn-default mrgTop14 addIcon"
+												ng-click="resourceDeployementInvoiceControllerScope.openInvoiceCalender($event)">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Due Date</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="startDate" class="inputClass" datepicker-popup="{{format}}" ng-click="resourceDeployementInvoiceControllerScope.openInvoiceDueCalender($event)" ng-model="resourceDeployementInvoiceControllerScope.assignment.dueDate" is-open="resourceDeployementInvoiceControllerScope.dueDateCalender" placeholder="Due Date" show-button-bar="false" />
+                                            <p ng-if="resourceDeployementInvoiceControllerScope.employeeForm.dateOfBirth.$invalid && resourceDeployementInvoiceControllerScope.employeeForm.dateOfBirth.$touched" class="reqStar">Kindly Enter Valid Date</p>
+                                        </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18">
+											<button type="button" class="btn btn-default mrgTop14 addIcon"
+												ng-click="resourceDeployementInvoiceControllerScope.openInvoiceDueCalender($event)">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+                                    </div>
+                                    <div class="form-group row">
+		                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Total Working Days</label>
+		                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+		                                            <input type="text" name="empId" class="inputClass" ng-model="employeeControllerScope.employee.empId" placeholder="Total Working Days" />
+		                                        </div>
+		                                    </div>
+		                                     <div class="form-group row">
+		                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Total Working Hours</label>
+		                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+		                                            <input type="text" name="empId" class="inputClass" ng-model="employeeControllerScope.employee.empId" placeholder="Total Working Hours" />
+		                                        </div>
+		                                    </div>
+		                                     <div class="form-group row">
+		                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Rate Per Hours</label>
+		                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+		                                            <input type="text" name="empId" class="inputClass" ng-model="employeeControllerScope.employee.empId" placeholder="Rate Per Hours" />
+		                                        </div>
+		                                    </div>
+		                                    <div class="form-group row">
+		                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Net</label>
+		                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+		                                            <input type="text" name="empId" class="inputClass" ng-model="employeeControllerScope.employee.empId" placeholder="Net" />
+		                                        </div>
+		                                    </div>
+                                    </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            

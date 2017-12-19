@@ -1,0 +1,123 @@
+<div class="loader_backdrop" ng-if="billControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Import Bill</div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0">
+                         <div ng-show="billControllerScope.chooseFileSection">
+                                <input type="file" ng-model="testfile" onchange="angular.element(this).scope().loadFile(this.files)" />
+                                <input type="button" value="Import Data" class="btn btn-default" ng-click="handleFile()" />
+                            </div>
+                            <div ng-show="!billControllerScope.chooseFileSection">
+                            
+                            <form class="form-horizontal formContainer" name="billControllerScope.billImportForm">
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Vendor<span class="reqStar">*</span>
+                                    </label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" ng-model="billControllerScope.bill.customerId" name="customerId" required>
+                                                <option value="" >Select Vendor</option>
+                                                	<option value="{{field}}" ng-repeat="field in billControllerScope.fileInputFields">{{field}}</option>
+                                            </select>                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create-employee-inner">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Bill Number<span class="reqStar">*</span>
+                                             </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                        <select class="select1 dropdown inputClass" ng-model="billControllerScope.bill.billNumber" name="billNumber" required>
+                                         <option value="" >Select Bill Number</option>
+                                                	<option value="{{field}}" ng-repeat="field in billControllerScope.fileInputFields">{{field}}</option>
+                                        </select>
+                                          </div>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Bill Date<span class="reqStar">*</span></label>
+                                                 
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <select class="select1 dropdown inputClass" ng-model="billControllerScope.bill.billDate" name="billDate" required>
+                                                <option value="" >Select Bill Date</option>
+                                                	<option value="{{field}}" ng-repeat="field in billControllerScope.fileInputFields">{{field}}</option>
+                                            </select>
+                                            </div>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Due Date<span class="reqStar">*</span></label>
+                                                 
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                       <select class="select1 dropdown inputClass" ng-model="billControllerScope.bill.dueDate" name="dueDate" required>
+                                           <option value="" >Select Due Date</option>
+                                                	<option value="{{field}}" ng-repeat="field in billControllerScope.fileInputFields">{{field}}</option>
+                                       </select>
+                                       </div>
+                                    </div>
+                                   <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4 lineheight31">Amount Type<span class="reqStar">*</span>
+                                    </label>
+                                    
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                        <div class="customDropDown">
+                                         <select class="select1 dropdown inputClass" ng-model="billControllerScope.bill.currencyType" name="currencyType" required>
+                                                <option value="" >Select Amount Type</option>
+                                                	<option value="{{field}}" ng-repeat="field in billControllerScope.fileInputFields">{{field}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4 lineheight31">Status<span class="reqStar">*</span>
+                                    </label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top10">
+                                        <div class="customDropDown">
+                                        <select class="select1 dropdown inputClass" ng-model="billControllerScope.bill.status" name="status" required>
+                                                <option value="" >Select Status</option>
+                                                	<option value="{{field}}" ng-repeat="field in billControllerScope.fileInputFields">{{field}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                        <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Paid Date<span class="reqStar">*</span></label>
+                                                 
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <select class="select1 dropdown inputClass" ng-model="billControllerScope.bill.paidDate" name="paidDate" required>
+                                                <option value="" >Select Paid Date</option>
+                                                	<option value="{{field}}" ng-repeat="field in billControllerScope.fileInputFields">{{field}}</option>
+                                            </select>
+                                            </div>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Amount<span class="reqStar">*</span></label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                             <select class="select1 dropdown inputClass" ng-model="billControllerScope.bill.rate" name="rate" required>
+                                                <option value="" >Select Amount</option>
+                                                	<option value="{{field}}" ng-repeat="field in billControllerScope.fileInputFields">{{field}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Comments</label> 
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                           <select class="select1 dropdown inputClass" ng-model="billControllerScope.bill.desc" name="dec">
+                                                <option value="" >Select Comments</option>
+                                                	<option value="{{field}}" ng-repeat="field in billControllerScope.fileInputFields">{{field}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns"> 
+                                      <button class="defaultBtn btn" type="button" ng-click="billControllerScope.declineImport()">Decline</button>
+                                        <button class="activeBtn btn" ng-click="billControllerScope.importBill()" ng-disabled="billControllerScope.billImportForm.$invalid">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       

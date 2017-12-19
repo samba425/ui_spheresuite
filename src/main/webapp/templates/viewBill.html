@@ -1,0 +1,65 @@
+<div class="loader_backdrop" ng-if="billControllerScope.viewBillspinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="row pageTitletextContainer">
+                    	<div class="col-xs-12 padd0">
+                        	<span class="cursor_pointer back_iconPosition" ng-click="billControllerScope.goToBills()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+                        	<span class="page_titlePosition">Bill Details</span>
+                        </div>
+                    	
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="text-right row padd10">
+                                        <button class="activeBtn btn" type="button" ng-if="billControllerScope.bill.status == 'Pending'" ng-click="billControllerScope.goToEditBills(billControllerScope.bill.id)">Edit</button>
+                                    </div>
+                                    <div class="col-lg-1 padd0 responsive_textCenter ">
+                                        <i class="fa fa-user-circle-o img-60x60 img-views responsivemargin_top10" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="responsive_textCenter">
+                                        <a class="anchor_text cursor_default">{{billControllerScope.bill.currencyType}} {{billControllerScope.bill.rate}}</a><span class="pipe_text">|</span><span class="span_text"><span ng-if = "billControllerScope.bill.status == 'Paid'" class="label_success">Paid</span><span ng-if="billControllerScope.bill.status == 'Pending'" class="label_danger">Pending</span></span>
+                                    </div>
+                                    <div class="col-lg-11 padd0">
+                                        <div class="row">
+                                            <div class="">
+                                                <ul class="padd0 left_text">
+                                                    <li class="row" ng-if="billControllerScope.bill.name !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Vendor</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{billControllerScope.bill.name}}</span></li>
+                                                    <li class="row" ng-if="billControllerScope.bill.billNumber !== ''" >
+                                                        <label class="col-xs-6 col-sm-4 padd0">Bill Number</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{billControllerScope.bill.billNumber}}</span></li>
+                                                    <li class="row" ng-if="billControllerScope.bill.billDate !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Bill Date</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{billControllerScope.bill.billDate  | date:"MMM d, y"}}</span></li>
+                                                    <li class="row" ng-if="billControllerScope.bill.dueDate !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Due Date</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{billControllerScope.bill.dueDate  | date:"MMM d, y"}}</span></li>
+                                                    <li class="row" ng-if="billControllerScope.bill.currencyType !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Amount Type</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{billControllerScope.bill.currencyType}}</span></li>
+                                                    <li class="row" ng-if="billControllerScope.bill.rate !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Amount</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{billControllerScope.bill.rate}}</span></li>
+                                                    <li class="row" ng-if="billControllerScope.bill.status !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Status</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{billControllerScope.bill.status}}</span></li>
+                                                    <li class="row">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Cheque Number</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all"><span ng-repeat="cheque in billControllerScope.bill.chequenumbers">{{ cheque }}<span ng-if="billControllerScope.bill.chequenumbers.length -1 != $index">,</span></span> </span></li>
+                                                     <li class="row" ng-if="billControllerScope.bill.status == 'Paid'">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Paid Date</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{billControllerScope.bill.paidDate | date:"MMM d, y"}}</span></li>
+                                                    <li class="row" ng-if="billControllerScope.bill.desc !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Comments</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{billControllerScope.bill.desc}}</span></li>
+                                                    <li class="row" ng-if="billControllerScope.bill.updatedBy !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Update By</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all capitalizeText">{{billControllerScope.bill.updatedBy}}</span></li>
+                                                    <li class="row" ng-if="billControllerScope.bill.updatedon !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Update On</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{billControllerScope.bill.updatedon}}</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

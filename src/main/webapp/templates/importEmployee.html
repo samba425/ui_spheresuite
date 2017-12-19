@@ -1,0 +1,233 @@
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer paddLft15">Import Employee</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                        
+                         <div ng-show="employeeControllerScope.chooseFileSection">
+                                <input type="file" ng-model="testfile" onchange="angular.element(this).scope().loadFile(this.files)" />
+                                <input type="button" value="Import Data" class="btn btn-default" ng-click="handleFile()" />
+                            </div>
+                            <div ng-show="!employeeControllerScope.chooseFileSection">
+                                <form class="form-horizontal formContainer" name="employeeControllerScope.employeeImportForm">
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight31">Work Location<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select class="select1 dropdown inputClass" ng-model="employeeControllerScope.feilds.workLocation" name="worklocation" required>
+                                                    <option value="" selected>Select Work Location</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="create-employee-inner">
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Employee Id</label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" ng-model="employeeControllerScope.feilds.empId" name="employeeId">
+                                                        <option value="">Select Employee Id</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight2pt6">First Name<span class="reqStar">*</span></label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="firstName" ng-model="employeeControllerScope.feilds.firstName" required>
+                                                        <option value="">Select First Name</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Middle Name</label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="middleName" ng-model="employeeControllerScope.feilds.middleName">
+                                                        <option value="">Select Middle Name</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Last Name<span class="reqStar">*</span></label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="lastName" ng-model="employeeControllerScope.feilds.lastName" required>
+                                                        <option value="">Select Last Name</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Personal Contact</label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="personalContact" ng-model="employeeControllerScope.feilds.personalContact">
+                                                        <option value="">Select Personal Contact</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Primary Contact</label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="primaryContact" ng-model="employeeControllerScope.feilds.primaryContact">
+                                                        <option value="">Select Primary Contact</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Company Email<span class="reqStar">*</span></label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="companyEmail" ng-model="employeeControllerScope.feilds.companyEmail" required>
+                                                        <option value="">Select Company Email</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Personal Email</label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="personalEmail" ng-model="employeeControllerScope.feilds.personalEmail">
+                                                        <option value="">Select Personal Email</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Aadhar Id</label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="adharId" ng-model="employeeControllerScope.feilds.aadhar">
+                                                        <option value="">Select Aadhar Id</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight2pt6">PAN No</label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="panNo" ng-model="employeeControllerScope.feilds.panno">
+                                                        <option value="">Select PAN No</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mob-pos-rel">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Date Of Birth</label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="panNo" ng-model="employeeControllerScope.feilds.dateOfBirth">
+                                                        <option value="">Select Date Of Birth</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mob-pos-rel">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight31">Employee Type</label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 emp_margin5">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="empType" ng-model="employeeControllerScope.feilds.empType">
+                                                        <option value="">Select Employee Type</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mob-pos-rel">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight31">Reporting To</label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 emp_margin5">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="reportTo" ng-model="employeeControllerScope.feilds.reportTo">
+                                                        <option value="">Select Reporting To</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mob-pos-rel">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight31">Department</label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 emp_margin5">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="department" ng-model="employeeControllerScope.feilds.dept">
+                                                        <option value="">Select Department</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Title</label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 emp_margin5">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="title" ng-model="employeeControllerScope.feilds.title">
+                                                        <option value="">Select Title</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Job Description</label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 emp_margin5">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="jobDescription" ng-model="employeeControllerScope.feilds.jobDesc">
+                                                        <option value="">Select Job Description</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mob-pos-rel">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Start Date</label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 emp_margin5">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="startDate" ng-model="employeeControllerScope.feilds.startDate">
+                                                        <option value="">Select Start Date</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Gender<span class="reqStar">*</span></label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 emp_margin5">
+                                                <div class="customDropDown">
+                                                    <select class="select1 dropdown inputClass" name="gender" ng-model="employeeControllerScope.feilds.gender" required>
+                                                        <option value="">Select Gender</option>
+                                                        <option value="{{feild}}" ng-repeat="feild in employeeControllerScope.fileInputFeilds">{{feild}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="formfooterbtns">
+                                            <button class="defaultBtn" type="button" ng-click="employeeControllerScope.declineImport()">Decline</button>
+                                            <button class="activeBtn btn" type="button" ng-click="employeeControllerScope.importEmployee()" ng-disabled="employeeControllerScope.employeeForm.$invalid" ng-if="!employeeControllerScope.isUpdate">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          

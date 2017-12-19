@@ -1,0 +1,58 @@
+<div class="loader_backdrop" ng-if="warehouseControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+  
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="row pageTitletextContainer">
+                    	<div class="col-xs-12 padd0">
+                        	<span class="cursor_pointer back_iconPosition" ng-click="warehouseControllerScope.gotoView()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+                        	<span class="page_titlePosition">Warehouse Details</span>
+                        </div>
+                    	
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row" class="">
+                                <div class="input_section">
+                                    <div class="text-right col-lg-12 col-xs-12 col-md-12 col-sm-12 padd0">
+                                        <button class="activeBtn" type="button" ng-click="warehouseControllerScope.gotoEdit()">Edit</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                      <div class="padding_top10">
+                                        <div class="col-lg-1 col-xs-12 col-md-12 col-sm-12 padd0 responsive_textCenter ">
+                                        	<i class="fa fa-building-o img-60x60 img-views" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="responsive_textCenter">
+                                            <span class="anchor_text cursor_default">{{warehouseControllerScope.warehouse.name}}<span>
+                                            <span class="pipe_text" ng-if="warehouseControllerScope.warehouse.wareHouseId !=''">|</span>
+                                            <span class="span_text">{{warehouseControllerScope.warehouse.wareHouseId}}</span>
+                                        </div>
+                                       
+                                        <div class="col-lg-11 col-xs-12 padd0">
+                                        <div class="row">
+                                            <div class="">
+                                                <ul class="padd0 left_text">
+                                                    <li ng-if="warehouseControllerScope.warehouse.propertyTypeName !== ''" class="row"><label class="col-xs-6 col-sm-4 padd0">Property Type</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{warehouseControllerScope.warehouse.propertyTypeName}}</span></li>
+                                                    <li ng-if="warehouseControllerScope.warehouse.storageTypeName !== ''" class="row"><label class="col-xs-6 col-sm-4 padd0">Storage Type</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{warehouseControllerScope.warehouse.storageTypeName}}</span></li>
+                                                    <li ng-if="warehouseControllerScope.warehouse.countryName !== ''" class="row"><label class="col-xs-6 col-sm-4 padd0">Country</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{warehouseControllerScope.warehouse.countryName}}</span></li>
+                                                   	<li ng-if="warehouseControllerScope.warehouse.stateName !== ''" class="row"><label class="col-xs-6 col-sm-4 padd0">State</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{warehouseControllerScope.warehouse.stateName}}</span></li>
+                                                    <li ng-if="warehouseControllerScope.warehouse.city !== ''" class="row"><label class="col-xs-6 col-sm-4 padd0">City</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{warehouseControllerScope.warehouse.city}}</span></li>
+                                                    <li ng-if="warehouseControllerScope.warehouse.zip !== ''" class="row"><label class="col-xs-6 col-sm-4 padd0">Pincode</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{warehouseControllerScope.warehouse.zip}}</span></li>
+                                                    <li ng-if="warehouseControllerScope.warehouse.address !== ''" class="row"><label class="col-xs-6 col-sm-4 padd0">Address</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{warehouseControllerScope.warehouse.address}}</span></li>
+                                                    <li ng-if="warehouseControllerScope.warehouse.updatedBy !== ''" class="row"><label class="col-xs-6 col-sm-4 padd0">Updated By</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{warehouseControllerScope.warehouse.updatedBy}}</span></li>
+                                                   	<li ng-if="warehouseControllerScope.warehouse.updatedon !== ''" class="row"><label class="col-xs-6 col-sm-4 padd0">Updated On</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{warehouseControllerScope.warehouse.updatedon}}</span></li>
+                                                    
+                                                </ul>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

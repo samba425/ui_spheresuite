@@ -1,0 +1,112 @@
+<div class="loader_backdrop" ng-if="requirementControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer paddLft15"><span ng-if="!requirementControllerScope.isUpdate">New</span><span ng-if="requirementControllerScope.isUpdate">Update</span> Requirement</div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0 employee_placeholder">
+                    		<p class="reqStar text-center" ng-if="requirementControllerScope.msg != ''">{{requirementControllerScope.msg}}</p>
+                            <form class="form-horizontal formContainer employee_selectBox" name="requirementControllerScope.requirementForm">
+                                <div class="form-group row mob-pos-rel" >
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Choose Customer<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="customerId" ng-model="requirementControllerScope.requirement.customerId" ng-change="requirementControllerScope.getOpportunity(requirementControllerScope.requirement.customerId)" required>
+                                                <option value="" ng-if="!requirementControllerScope.requirement.customerId || requirementControllerScope.requirement.customerId == ''">Select Customer</option>
+                                                <option value="{{customer.id}}" ng-repeat="customer in requirementControllerScope.customerList | orderBy:'name'">{{customer.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mob-pos-rel"    style = " margin: 7px 0px !important;"">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Choose Project<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="project" ng-model="requirementControllerScope.requirement.projectId" required>
+                                                <option value="" ng-if="!requirementControllerScope.requirement.projectId || requirementControllerScope.requirement.projectId == ''">Select Project</option>
+                                                <option value="{{project.id}}" ng-repeat="project in requirementControllerScope.projectList | orderBy:'city'">{{project.projectName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Name<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input name="name" class="inputClass" ng-model="requirementControllerScope.requirement.name" ng-pattern="/^[a-zA-Z\ ]*$/" placeholder="Name" required/>
+                                           <p ng-if="requirementControllerScope.requirementForm.name.$error.pattern && requirementControllerScope.requirementForm.name.$invalid && requirementControllerScope.requirementForm.name.$touched" class="reqStar">Kindly Enter Correct Name</p>
+                                      </div>
+                                    </div>
+                                <div class="create-employee-inner">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Minimum Experience<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="minExp" class="inputClass" ng-model="requirementControllerScope.requirement.minExp" ng-pattern="/^[0-9]*$/" placeholder="Minimum Experience" required />
+                                            <p ng-if="(requirementControllerScope.requirementForm.minExp.$error.pattern || requirementControllerScope.requirementForm.minExp.$invalid) && requirementControllerScope.requirementForm.minExp.$touched" class="reqStar">Kindly Enter Valid Minimum Experience</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Maximum Experience<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="maxExp" class="inputClass" ng-model="requirementControllerScope.requirement.maxExp" ng-pattern="/^[0-9]*$/" placeholder="Maximum Experience" required/>
+                                            <p ng-show="(requirementControllerScope.requirementForm.maxExp.$error.pattern || requirementControllerScope.requirementForm.maxExp.$invalid) && requirementControllerScope.requirementForm.maxExp.$touched" class="reqStar">Kindly Enter Valid Maximum Experience</p>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Cost</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="cost" class="inputClass" ng-model="requirementControllerScope.requirement.cost" ng-pattern="/^[0-9]*$/" placeholder="Cost" />
+                                            <p ng-if="(requirementControllerScope.requirementForm.cost.$error.pattern || requirementControllerScope.requirementForm.cost.$invalid) && requirementControllerScope.requirementForm.cost.$touched" class="reqStar">Kindly Enter Valid Cost</p>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Notice Period</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="noticePeriod" class="inputClass" ng-model="requirementControllerScope.requirement.noticePeriod" ng-pattern="/^[0-9]*$/" placeholder="Notice Period / Days" />
+                                            <p ng-if="(requirementControllerScope.requirementForm.noticePeriod.$error.pattern || requirementControllerScope.requirementForm.noticePeriod.$invalid) && requirementControllerScope.requirementForm.noticePeriod.$touched" class="reqStar">Kindly Enter Valid Notice Period</p>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">No Of Position<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="noofPosititon" class="inputClass" ng-model="requirementControllerScope.requirement.noofPosititon" ng-pattern="/^[0-9]*$/" placeholder="No Of Position" required/>
+                                            <p ng-if="(requirementControllerScope.requirementForm.noofPosititon.$error.pattern || requirementControllerScope.requirementForm.noofPosititon.$invalid) && requirementControllerScope.requirementForm.noofPosititon.$touched" class="reqStar">Kindly Enter Valid No Of Position</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Date Of Joining</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="joiningDate" class="inputClass cursor_pointer" datepicker-popup="{{format}}" ng-click="requirementControllerScope.opendateCalender($event)" ng-model="requirementControllerScope.requirement.joiningDate" is-open="requirementControllerScope.isCalenderOpen" placeholder="Date Of Joining" show-button-bar="false" />
+                                            <p ng-if="requirementControllerScope.requirementForm.joiningDate.$invalid && requirementControllerScope.requirementForm.joiningDate.$touched" class="reqStar">Kindly Enter Valid Date</p>
+                                        </div> 
+                                        <span class="mob-pos-abs select-button calen mob-right-18 cursor_pointer">
+											<button type="button" class="btn btn-default mrgTop5 addIcon"
+												ng-click="requirementControllerScope.opendateCalender($event)">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Job Description</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <textarea name="jobDesc" class="inputClass" ng-model="requirementControllerScope.requirement.jobDesc" placeholder="Job Description"></textarea>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Comments</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <textarea name="comment" class="inputClass" ng-model="requirementControllerScope.requirement.comment" placeholder="Comments"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns">
+                                        <button class="defaultBtn btn" type="button" ng-click="requirementControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn btn" type="button" ng-click="requirementControllerScope.addRequirement()" ng-disabled="requirementControllerScope.requirementForm.$invalid" ng-if="!requirementControllerScope.isUpdate">Save</button>
+                                        <button class="activeBtn btn" type="button" ng-click="requirementControllerScope.editRequirement()" ng-disabled="requirementControllerScope.requirementForm.$invalid" ng-if="requirementControllerScope.isUpdate">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           

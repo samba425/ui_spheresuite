@@ -1,0 +1,603 @@
+<div class="loader_backdrop" ng-if="configurationControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer background_white">
+                    <div class="card-heading">
+                        <div class="row">
+                            <div class="text-muted">Configuration</div>
+                        </div>
+                    </div>
+                    <div class="row configmenurow card height490px">
+                        <div class="col-sm-2 col-xs-4 configmenu1 border_right">
+                            
+                            <li ng-class="{'active':configurationControllerScope.divValue === 'hrRequestType'}" ng-click="configurationControllerScope.changeDiv('hrRequestType')">Hr Request Type</li>
+                          <li ng-class="{'active':configurationControllerScope.divValue === 'manageLeaves'}" ng-click="configurationControllerScope.changeDiv('manageLeaves')">Manage Leaves</li>
+                      <li ng-class="{'active':configurationControllerScope.divValue === 'allowanceType'}" ng-click="configurationControllerScope.changeDiv('allowanceType')">Earning Type </li>
+                       <li ng-class="{'active':configurationControllerScope.divValue === 'deductionType'}" ng-click="configurationControllerScope.changeDiv('deductionType')">Deduction Type</li>
+                     <li ng-class="{'active':configurationControllerScope.divValue === 'timeSheet'}" ng-click="configurationControllerScope.changeDiv('timeSheet')">TimeSheets Type</li>
+                     <li ng-class="{'active':configurationControllerScope.divValue === 'batchType'}" ng-click="configurationControllerScope.changeDiv('batchType')">Payroll Batch</li>
+                        </div>
+                        <div class="col-sm-10 col-xs-8 configdatasectionparent overflow_yScroll">
+                             <!-- Hr request type -->
+                                <div class="row" ng-if="configurationControllerScope.divValue  == 'hrRequestType'">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0">
+											<span  class="outline0"
+											data-toggle="modal" data-target="#hrRequestType" 
+											data-backdrop="static" data-keyboard="false">
+												<button type="button" class="add_btn"
+													ng-click="configurationControllerScope.addNew()">
+													<i class="fa fa-plus" aria-hidden="true"></i> <span
+														class="paddLeft5">Add New</span>
+                                        </button>
+                                        </span>
+                                        </span> <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 text-right">
+											<button class="glyphicon glyphicon-export action_btn"></button>
+											<!-- <button
+												class="glyphicon glyphicon-import action_btn margin_left0"></button> -->
+										</span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="hrRequestType" name="" placeholder="Search Here" class="margin_top20 width100">
+                                    </div>
+                                </div>
+                                <div ng-if="configurationControllerScope.hrRequestTypeList.length == 0">
+                                    <p class="text-center grey_text padding15">hrRequestType Types Not Available</p>
+                                </div>
+                                <div class="col-lg-12 padd0 margin_top20 background_white">
+                                    <div class="row backGreyColor" ng-repeat="hrRequestType in configurationControllerScope.hrRequestTypeList | filter : hrRequestType">
+                                        <div class="input_section">
+                                            <div class="responsive_textCenter col-lg-6 padd0">
+                                                <span class="useranchor_text padd0 lineHeight24" ng-click="configurationControllerScope.edithrRequestType(hrRequestType)" data-toggle="modal" data-target="#hrRequestType" data-backdrop="static" data-keyboard="false">{{hrRequestType.requestType}}</span>
+                                            </div>
+                                            <div class="col-lg-6 padd0 responsive_textCenter">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-7 col-xs-6 padd0  width100">
+                                                        <ul class="padd0 margin0">
+                                                            <span ng-if="hrRequestType.status=='a'" class="label_success">Active</span>
+                                                            <span ng-if="hrRequestType.status=='i'" class="label_danger">In-Active</span>
+                                                            <span class="pipe_text15">|</span>
+                                                            <span class="cursorPointer" ng-click="configurationControllerScope.changeStatus(hrRequestType,'hrRequestType')">Make
+																<span ng-if="hrRequestType.status=='i'">Active</span> <span ng-if="hrRequestType.status=='a'">In-Active</span>
+                                                            </span>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="hrRequestType" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close white opacity1px" data-dismiss="modal" ng-click="configurationControllerScope.decline()"><i class="fa fa-times close_button" aria-hidden="true" ></i></button>
+                                            <h4 class="modal-title">Hr Request Type</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form name="configurationControllerScope.hrRequestTypeForm">
+                                                <div class="modal-body">
+                                                    <input type="text" name="name" class="inputClass width100" placeholder="Hr Request Type&#42;" ng-pattern="/^[a-zA-Z\ ]*$/" ng-model="configurationControllerScope.hrRequestType.requestType" required/>
+                                                    <p ng-show="configurationControllerScope.hrRequestTypeForm.name.$error.pattern || configurationControllerScope.hrRequestTypeForm.name.$invalid && configurationControllerScope.hrRequestTypeForm.name.$touched" class="reqStar">Kindly Enter Hr Request Type</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="defaultBtn btn" data-dismiss="modal" ng-click="configurationControllerScope.decline()">Decline</button>
+                                                    <button type="button" class="activeBtn btn" ng-show="configurationControllerScope.saveupdate" ng-disabled="configurationControllerScope.hrRequestTypeForm.$invalid" ng-click="configurationControllerScope.updatehrRequestType(configurationControllerScope.hrRequestType)">Update</button>
+                                                    <button type="button" class="activeBtn btn" ng-show="configurationControllerScope.saveShow" ng-disabled="configurationControllerScope.hrRequestTypeForm.$invalid" ng-click="configurationControllerScope.addhrRequestType()">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Dedication -->
+                         
+                              <div class="row" ng-if="configurationControllerScope.divValue  == 'deductionType'">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0">
+											<span class="outline0"
+											data-toggle="modal" data-target="#deductionType"
+											data-backdrop="static" data-keyboard="false">
+												<button type="button" class="add_btn"
+													ng-click="configurationControllerScope.addNew()">
+													<i class="fa fa-plus" aria-hidden="true"></i> <span
+														class="paddLeft5">Add New</span>
+                                        </button>
+                                        </span>
+                                        </span> <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 text-right">
+											<button class="glyphicon glyphicon-export action_btn"></button>
+											<!-- <button
+												class="glyphicon glyphicon-import action_btn margin_left0"></button> -->
+										</span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="searchDeductionType" name="" placeholder="Search Here" class="margin_top20 width100">
+                                    </div>
+                                </div>
+                                <div ng-if="configurationControllerScope.deductionTypeList == 0">
+                                    <p class="text-center grey_text padding15">Deduction Type Not Available</p>
+                                </div>
+                                <div class="col-lg-12 padd0 margin_top20 background_white">
+                                    <div class="row backGreyColor" ng-repeat="deductionType in configurationControllerScope.deductionTypeList | filter : searchDeductionType">
+                                        <div class="input_section">
+                                            <div class="responsive_textCenter col-lg-6 padd0">
+                                                <span class="useranchor_text padd0 lineHeight24" ng-click="configurationControllerScope.editDeductionType(deductionType)" data-toggle="modal" data-target="#deductionType" data-backdrop="static" data-keyboard="false">{{deductionType.name}}</span>
+                                            </div>
+                                            <div class="col-lg-6 padd0 responsive_textCenter">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-7 col-xs-6 padd0  width100">
+                                                        <ul class="padd0 margin0">
+                                                            <span ng-if="deductionType.status=='a'" class="label_success">Active</span>
+                                                            <span ng-if="deductionType.status=='i'" class="label_danger">In-Active</span>
+                                                            <span class="pipe_text15">|</span>
+                                                            <span class="cursorPointer" ng-click="configurationControllerScope.changeStatus(deductionType,'deductionType')">Make
+																<span ng-if="deductionType.status=='i'">Active</span> <span ng-if="deductionType.status=='a'">In-Active</span>
+                                                            </span>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="deductionType" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close white opacity1px" data-dismiss="modal" ng-click="configurationControllerScope.decline()"><i class="fa fa-times close_button" aria-hidden="true" ></i></button>
+                                            <h4 class="modal-title">Deduction Type</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form name="configurationControllerScope.deductionTypeForm">
+                                                <div class="modal-body pos-rel">
+                                                    <input type="text" name="name" class="inputClass width100" placeholder="Name&#42;" ng-model="configurationControllerScope.deductionType.name" required />
+                                                    <p ng-show="configurationControllerScope.deductionTypeForm.name.$invalid && configurationControllerScope.deductionTypeForm.name.$touched" class="reqStar">Kindly Enter Deduction Name</p>
+                                                 <input type="text" name="displayName" class="inputClass width100" placeholder="DisplayName" ng-model="configurationControllerScope.deductionType.displayName" /> 
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="defaultBtn btn" data-dismiss="modal" ng-click="configurationControllerScope.decline()">Decline</button>
+                                                    <button type="button" class="activeBtn btn" ng-show="configurationControllerScope.saveupdate" ng-disabled="configurationControllerScope.deductionTypeForm.$invalid" ng-click="configurationControllerScope.updateDeductionType(configurationControllerScope.deductionType)">Update</button>
+                                                    <button type="button" class="activeBtn btn" ng-show="configurationControllerScope.saveShow" ng-disabled="configurationControllerScope.deductionTypeForm.$invalid" ng-click="configurationControllerScope.addDeductionType()">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- timesheets -->
+                            
+                                  <div class="row" ng-if="configurationControllerScope.divValue == 'timeSheet'">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd0 responsive_textRight">
+											<span  class="outline0"
+											data-toggle="modal" data-target="#timeSheet" 
+											data-backdrop="static" data-keyboard="false">
+												<button type="button" class="add_btn"
+													ng-click="configurationControllerScope.addNew()">
+													<i class="fa fa-plus" aria-hidden="true"></i> <span
+														class="paddLeft5">Add New</span>
+                                        </button>
+                                        </span>
+                                        </span> <span class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd0 text-right responsivemargin_top10">
+											<button class="glyphicon glyphicon-export action_btn"></button>
+											<!-- <button
+												class="glyphicon glyphicon-import action_btn margin_left0"></button> -->
+										</span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="timeSheet" name="" placeholder="Search Here" class="margin_top20 width100">
+                                    </div>
+                                </div>
+                                <div ng-if="configurationControllerScope.timeSheetList.length == 0">
+                                    <p class="text-center grey_text padding15">TimeSheet Types Not Available</p>
+                                </div>
+                                <div class="col-lg-12 padd0 margin_top20 background_white">
+                                    <div class="row backGreyColor" ng-repeat="timeSheet in configurationControllerScope.timeSheetList | filter : timeSheet">
+                                        <div class="input_section">
+                                            <div class="responsive_textCenter col-lg-6 padd0">
+                                                <span class="useranchor_text padd0 lineHeight24" ng-click="configurationControllerScope.edittimeSheet(timeSheet)" data-toggle="modal" data-target="#timeSheet" data-backdrop="static" data-keyboard="false">{{timeSheet.name}}</span>
+                                            </div>
+                                            <div class="col-lg-6 padd0 responsive_textCenter">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-7 col-xs-6 padd0  width100">
+                                                        <ul class="padd0 margin0">
+                                                            <span ng-if="timeSheet.status=='a'" class="label_success">Active</span>
+                                                            <span ng-if="timeSheet.status=='i'" class="label_danger">In-Active</span>
+                                                            <span class="pipe_text15">|</span>
+                                                            <span class="cursorPointer" ng-click="configurationControllerScope.changeStatus(timeSheet,'timeSheet')">Make
+																<span ng-if="timeSheet.status=='i'">Active</span> <span ng-if="timeSheet.status=='a'">In-Active</span>
+                                                            </span>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="timeSheet" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close white opacity1px" data-dismiss="modal" ng-click="configurationControllerScope.decline()"><i class="fa fa-times close_button" aria-hidden="true" ></i></button>
+                                            <h4 class="modal-title">TimeSheet Type</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form name="configurationControllerScope.timeSheetForm">
+                                                <div class="modal-body">
+                                                    <input type="text" name="name" class="inputClass width100" placeholder="TimeSheet Type&#42;" ng-pattern="/^[a-zA-Z\ ]*$/" ng-model="configurationControllerScope.timeSheet.name" required/>
+                                                    <p ng-show="configurationControllerScope.timeSheetForm.name.$error.pattern || configurationControllerScope.timeSheetForm.name.$invalid && configurationControllerScope.timeSheetForm.name.$touched" class="reqStar">Kindly Enter TimeSheet Type</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="defaultBtn btn" data-dismiss="modal" ng-click="configurationControllerScope.decline()">Decline</button>
+                                                    <button type="button" class="activeBtn btn"  ng-disabled="configurationControllerScope.timeSheetForm.$invalid" ng-show="configurationControllerScope.saveupdate" ng-click="configurationControllerScope.updatetimeSheet(configurationControllerScope.timeSheet)">Update</button>
+                                                    <button type="button" class="activeBtn btn" ng-show="configurationControllerScope.saveShow" ng-disabled="configurationControllerScope.timeSheetForm.$invalid" ng-click="configurationControllerScope.addtimeSheet()">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                              <!--  Allowance -->
+                                 <div class="row" ng-if="configurationControllerScope.divValue  == 'allowanceType'">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0">
+											<span class="outline0"
+											data-toggle="modal" data-target="#allowanceType"
+											data-backdrop="static" data-keyboard="false">
+												<button type="button" class="add_btn"
+													ng-click="configurationControllerScope.addNew()">
+													<i class="fa fa-plus" aria-hidden="true"></i> <span
+														class="paddLeft5">Add New</span>
+                                        </button>
+                                        </span>
+                                        </span> <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 text-right">
+											<button class="glyphicon glyphicon-export action_btn"></button>
+											<!-- <button
+												class="glyphicon glyphicon-import action_btn margin_left0"></button> -->
+										</span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="searchAllowanceType" name="" placeholder="Search Here" class="margin_top20 width100">
+                                    </div>
+                                </div>
+                                <div ng-if="configurationControllerScope.allowanceTypeList == 0">
+                                    <p class="text-center grey_text padding15">Earning Type Not Available</p>
+                                </div>
+                                <div class="col-lg-12 padd0 margin_top20 background_white">
+                                    <div class="row backGreyColor" ng-repeat="allowanceType in configurationControllerScope.allowanceTypeList | filter : searchAllowanceType">
+                                        <div class="input_section">
+                                            <div class="responsive_textCenter col-lg-6 padd0">
+                                                <span class="useranchor_text padd0 lineHeight24" ng-click="configurationControllerScope.editAllowanceType(allowanceType)" data-toggle="modal" data-target="#allowanceType" data-backdrop="static" data-keyboard="false">{{allowanceType.name}}</span>
+                                            </div>
+                                            <div class="col-lg-6 padd0 responsive_textCenter">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-7 col-xs-6 padd0  width100">
+                                                        <ul class="padd0 margin0">
+                                                            <span ng-if="allowanceType.status=='a'" class="label_success">Active</span>
+                                                            <span ng-if="allowanceType.status=='i'" class="label_danger">In-Active</span>
+                                                            <span class="pipe_text15">|</span>
+                                                            <span class="cursorPointer" ng-click="configurationControllerScope.changeStatus(allowanceType,'allowanceType')">Make
+																<span ng-if="allowanceType.status=='i'">Active</span> <span ng-if="allowanceType.status=='a'">In-Active</span>
+                                                            </span>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="allowanceType" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close white opacity1px" data-dismiss="modal" ng-click="configurationControllerScope.decline()"><i class="fa fa-times close_button" aria-hidden="true" ></i></button>
+                                            <h4 class="modal-title">Allowance Type</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form name="configurationControllerScope.allowanceTypeForm">
+                                                <div  class="modal-body pos-rel">
+                                                    <input type="text" name="name" class="inputClass width100" placeholder="Name&#42;" ng-model="configurationControllerScope.allowanceType.name" required />
+                                                    <p ng-show="configurationControllerScope.allowanceTypeForm.name.$invalid && configurationControllerScope.allowanceTypeForm.name.$touched" class="reqStar">Kindly Enter Allowance Name</p>
+                                                   <input type="text" name="displayName" class="inputClass width100" placeholder="DisplayName" ng-model="configurationControllerScope.allowanceType.displayName"/>
+                                                  </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="defaultBtn btn" data-dismiss="modal" ng-click="configurationControllerScope.decline()">Decline</button>
+                                                    <button type="button" class="activeBtn btn" ng-show="configurationControllerScope.saveupdate" ng-disabled="configurationControllerScope.allowanceTypeForm.$invalid" ng-click="configurationControllerScope.updateAllowanceType(configurationControllerScope.allowanceType)">Update</button>
+                                                    <button type="button" class="activeBtn btn" ng-show="configurationControllerScope.saveShow" ng-disabled="configurationControllerScope.allowanceTypeForm.$invalid" ng-click="configurationControllerScope.addAllowanceType()">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                         <!-- Batch -->
+                            <div class="row" ng-if="configurationControllerScope.divValue  == 'batchType'">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0">
+											<span class="outline0"
+											data-toggle="modal" data-target="#batchType"
+											data-backdrop="static" data-keyboard="false">
+												<button type="button" class="add_btn"
+													ng-click="configurationControllerScope.addNew()">
+													<i class="fa fa-plus" aria-hidden="true"></i> <span
+														class="paddLeft5">Add New</span>
+                                        </button>
+                                        </span>
+                                        </span> <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 text-right">
+											<button class="glyphicon glyphicon-export action_btn"></button>
+											<!-- <button
+												class="glyphicon glyphicon-import action_btn margin_left0"></button> -->
+										</span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="searchPayrollBatch" name="" placeholder="Search Here" class="margin_top20 width100">
+                                    </div>
+                                </div>
+                                <div ng-if="configurationControllerScope.payrollBatchList == 0">
+                                    <p class="text-center grey_text padding15">Payroll Batch Not Available</p>
+                                </div>
+                                <div class="col-lg-12 padd0 margin_top20 background_white">
+                                    <div class="row backGreyColor" ng-repeat="payrollBatch in configurationControllerScope.payrollBatchList | filter : searchPayrollBatch">
+                                        <div class="input_section">
+                                            <div class="responsive_textCenter col-lg-6 padd0">
+                                                <span class="useranchor_text padd0 lineHeight24" ng-click="configurationControllerScope.editPayrollBatch(payrollBatch)" data-toggle="modal" data-target="#batchType" data-backdrop="static" data-keyboard="false">{{payrollBatch.name}}</span>
+                                            </div>
+                                            <div class="col-lg-6 padd0 responsive_textCenter">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-7 col-xs-6 padd0  width100">
+                                                        <ul class="padd0 margin0">
+                                                            <span ng-if="payrollBatch.status=='a'" class="label_success">Active</span>
+                                                            <span ng-if="payrollBatch.status=='i'" class="label_danger">In-Active</span>
+                                                            <span class="pipe_text15">|</span>
+                                                            <span class="cursorPointer" ng-click="configurationControllerScope.changeStatus(payrollBatch,'payrollBatch')">Make
+																<span ng-if="payrollBatch.status=='i'">Active</span> <span ng-if="payrollBatch.status=='a'">In-Active</span>
+                                                            </span>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="batchType" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close white opacity1px" data-dismiss="modal" ng-click="configurationControllerScope.decline()"><i class="fa fa-times close_button" aria-hidden="true" ></i></button>
+                                            <h4 class="modal-title">Batch</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form name="configurationControllerScope.payrollBatchForm">
+                                                <div  class="modal-body pos-rel">
+                                                    <input type="text" name="name" class="inputClass width100" placeholder="Name&#42;" ng-model="configurationControllerScope.payrollBatch.name" required />
+                                                    <p ng-show="configurationControllerScope.payrollBatchForm.name.$invalid && configurationControllerScope.payrollBatchForm.name.$touched" class="reqStar">Kindly Enter Payroll Batch Name</p>
+                                                   <input type="text" name="displayName" class="inputClass width100" placeholder="DisplayName" ng-model="configurationControllerScope.payrollBatch.displayName"/>
+                                                  </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="defaultBtn btn" data-dismiss="modal" ng-click="configurationControllerScope.decline()">Decline</button>
+                                                    <button type="button" class="activeBtn btn" ng-show="configurationControllerScope.saveupdate" ng-disabled="configurationControllerScope.payrollBatchForm.$invalid" ng-click="configurationControllerScope.updatePayrollBatch(configurationControllerScope.payrollBatch)">Update</button>
+                                                    <button type="button" class="activeBtn btn" ng-show="configurationControllerScope.saveShow" ng-disabled="configurationControllerScope.payrollBatchForm.$invalid" ng-click="configurationControllerScope.addPayrollBatch()">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                             
+                            
+                              <div class="row" ng-if="configurationControllerScope.divValue  == 'manageLeaves'">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 responsive_textRight">
+											<span  class="outline0"
+											data-toggle="modal" data-target="#manageLeaves" 
+											data-backdrop="static" data-keyboard="false">
+												<button type="button" class="add_btn"
+													ng-click="configurationControllerScope.addNew()">
+													<i class="fa fa-plus" aria-hidden="true"></i> <span
+														class="paddLeft5">Add Leave Type</span>
+                                        </button>
+                                        </span>
+                                        </span> <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 text-right responsivemargin_top10">
+											<button class="glyphicon glyphicon-export action_btn"></button>
+											<!-- <button
+												class="glyphicon glyphicon-import action_btn margin_left0"></button> -->
+										</span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="manageLeaves" name="" placeholder="Search Here" class="margin_top20 width100">
+                                    </div>
+                                </div>
+                                <div ng-if="configurationControllerScope.manageLeavesList.length == 0">
+                                    <p class="text-center grey_text padding15">Manage Leaves Not Available</p>
+                                </div> 
+                                <div class="col-lg-12 padd0 margin_top20 background_white">
+                                    <div class="row backGreyColor" ng-repeat="manageLeaves in configurationControllerScope.manageLeavesList | filter :manageLeaves">
+                                        <div class="input_section">
+                                            <div class="responsive_textCenter col-lg-6 padd0">
+                                                <span class="useranchor_text padd0 lineHeight24" ng-click="configurationControllerScope.editmanageLeaves(manageLeaves)" data-toggle="modal" data-target="#manageLeaves" data-backdrop="static" data-keyboard="false">{{manageLeaves.type}}</span>
+                                            </div>
+                                            <div class="col-lg-6 padd0 responsive_textCenter">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-7 col-xs-6 padd0  width100">
+                                                        <ul class="padd0 margin0">
+                                                            <span ng-if="manageLeaves.status=='a'" class="label_success">Active</span>
+                                                            <span ng-if="manageLeaves.status=='i'" class="label_danger">In-Active</span>
+                                                            <span class="pipe_text15">|</span>
+                                                            <span class="cursorPointer" ng-click="configurationControllerScope.changeStatus(manageLeaves,'manageLeaves')">Make
+																<span ng-if="manageLeaves.status=='i'">Active</span> <span ng-if="manageLeaves.status=='a'">In-Active</span>
+                                                            </span>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  <div class="row" ng-if="configurationControllerScope.manageLeavesList.length > 0">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 margin_top10">
+											<span  class="outline0"
+											data-toggle="modal" data-target="#leaveType" 
+											data-backdrop="static" data-keyboard="false">
+												<button type="button" class="add_btn"
+													ng-click="configurationControllerScope.addNew()">
+													<i class="fa fa-plus" aria-hidden="true"></i> <span
+														class="paddLeft5">Add Leaves</span>
+                                        </button>
+                                        </span>
+                                        </span> <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 text-right margin_top10">
+											<button class="glyphicon glyphicon-export action_btn"></button>
+											<!-- <button
+												class="glyphicon glyphicon-import action_btn margin_left0"></button> -->
+										</span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="leaveType" name="" placeholder="Search Here" class="margin_top20 width100">
+                                    </div>
+                                </div>
+                                <div ng-if="configurationControllerScope.leaveTypeList.length == 0">
+                                    <p class="text-center grey_text padding15">Leave Types Not Available</p>
+                                </div> 
+                                <div class="col-lg-12 padd0 margin_top20 background_white">
+                                    <div class="row backGreyColor" ng-repeat="leaveType in  configurationControllerScope.leaveTypeList | filter :leaveType">
+                                        <div class="input_section">
+                                            <div class="responsive_textCenter col-lg-6 padd0">
+                                                <span class="useranchor_text padd0 lineHeight24" ng-click="configurationControllerScope.editleaveType(leaveType)" data-toggle="modal" data-target="#leaveType" data-backdrop="static" data-keyboard="false">{{leaveType.typeName}} | {{leaveType.days}} </span>
+                                           
+                                            </div>
+                                            <div class="col-lg-6 padd0 responsive_textCenter">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-7 col-xs-6 padd0  width100">
+                                                        <ul class="padd0 margin0">
+                                                            <span ng-if="leaveType.status=='a'" class="label_success">Active</span>
+                                                            <span ng-if="leaveType.status=='i'" class="label_danger">In-Active</span>
+                                                            <span class="pipe_text15">|</span>
+                                                            <span class="cursorPointer" ng-click="configurationControllerScope.changeStatus(leaveType,'leaveType')">Make
+																<span ng-if="leaveType.status=='i'">Active</span> <span ng-if="leaveType.status=='a'">In-Active</span>
+                                                            </span>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                         
+                            </div>
+                               <div id="leaveType" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close white opacity1px" data-dismiss="modal" ng-click="configurationControllerScope.decline()"><i class="fa fa-times close_button" aria-hidden="true" ></i></button>
+                                            <h4 class="modal-title">Leaves</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                        <div class="red-icon create-employee">
+                                            <form class="form-horizontal formContainer" name="configurationControllerScope.leaveTypeForm">
+                                              <div class="form-group row mob-pos-rel">
+                                                <div class="col-sm-12 col-md-12 col-lg-12 pad-right-0 mob-pad-right-15">
+                                                            <div class="customDropDown">
+                                                                <select id="select13" class="dropdown inputClass width100 stateoptions" ng-model="configurationControllerScope.leaveType.type" required>
+                                                                   <option value="" ng-if="!configurationControllerScope.leaveType.type || configurationControllerScope.leaveType.type == ''" ng-if="!configurationControllerScope.isUpdate">Select Leave Type*</option>
+                                                                    <option value="{{leaves.id}}" ng-repeat="leaves in configurationControllerScope.manageLeavesList" ng-if="leaves.status == 'a'">{{leaves.type}}</option>
+                                                             </select>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                <div class="form-group row mob-pos-rel">
+                                                <div class="col-sm-12 col-md-12 pad-right-0 mob-pad-right-15">
+                                                    <input type="text" name="name" class="inputClass width100" placeholder="No of Leaves&#42;" ng-pattern="/^[0-9\ ]*$/" ng-model="configurationControllerScope.leaveType.days" required/>
+                                                    <p ng-show="configurationControllerScope.leaveTypeForm.name.$error.pattern || configurationControllerScope.leaveTypeForm.name.$invalid && configurationControllerScope.leaveTypeForm.name.$touched" class="reqStar">Kindly Enter Leave Type</p>
+                                                </div>
+                                                </div>
+                                                <div class="form-group row mob-pos-rel" >
+                                                <div class="col-sm-12 col-md-12 pad-right-0 mob-pad-right-15 position_relative">
+                                                	<div class="col-xs-12 col-sm-6 responsive_paddingLft0 pos-rel">
+								<div moment-picker="configurationControllerScope.leaveType.fromDate"
+									format="{{configurationControllerScope.format}}" start-view="day"
+									class=" margin_leftMinus9">
+									 <input name="text"
+										ng-model="configurationControllerScope.leaveType.fromDate"
+										autoclose="true" keyboard="true" set-on-select="true"
+										class="inputClass cursor_pointer width100 shadow"
+										placeholder="From*" required>
+										<i
+										class="fa fa-calendar from_calender sales-calen cursor_pointer leave_iconAlign responsive_dashboardRight6"
+										aria-hidden="true"></i>
+								</div>
+							</div> 
+								<div class="col-xs-12 col-sm-6 padd0 pos-rel responsive_marginTop5">
+								<div moment-picker="configurationControllerScope.leaveType.toDate"
+									format="{{configurationControllerScope.format}}" start-view="day"
+									class=" margin_leftMinus9">
+									 <input name="text"
+										ng-model="configurationControllerScope.leaveType.toDate"
+										autoclose="true" keyboard="true" set-on-select="true"
+										class="inputClass cursor_pointer width100 shadow"
+										placeholder="To*" required>
+										<i
+										class="fa fa-calendar from_calender sales-calen cursor_pointer leave_iconAlign responsive_right0"
+										aria-hidden="true"></i>
+								</div>
+							</div> 
+							</div>
+							</div>   <div class="modal-footer">
+                                                    <button type="button" class="defaultBtn btn" data-dismiss="modal" ng-click="configurationControllerScope.decline()">Decline</button>
+                                                    <button type="button" class="activeBtn btn" ng-show="configurationControllerScope.saveupdate" ng-disabled="configurationControllerScope.leaveTypeForm.$invalid" ng-click="configurationControllerScope.updateleaveType(configurationControllerScope.leaveType)">Update</button>
+                                                    <button type="button" class="activeBtn btn" ng-show="configurationControllerScope.saveShow" ng-disabled="configurationControllerScope.leaveTypeForm.$invalid" ng-click="configurationControllerScope.addleaveType()">Save</button>
+                                                </div>
+                                            </form>
+                                            </div>
+                                        </div>
+                                         
+                                    </div>
+                                </div>
+                            </div> 
+                            <div id="manageLeaves" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close white opacity1px" data-dismiss="modal"  ng-click="configurationControllerScope.decline()"><i class="fa fa-times close_button" aria-hidden="true"></i></button>
+                                            <h4 class="modal-title">Leave Type</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form name="configurationControllerScope.manageLeavesForm">
+                                             <div class="form-group row mob-pos-rel">
+                                                    
+                                                <div class="modal-body">
+                                                    <input type="text" name="name" class="inputClass width100" placeholder="Leave Type&#42;" ng-pattern="/^[a-zA-Z\ ]*$/" ng-model="configurationControllerScope.manageLeaves.type" required/>
+                                                    <p ng-show="configurationControllerScope.manageLeavesForm.name.$error.pattern || configurationControllerScope.manageLeavesForm.name.$invalid && configurationControllerScope.manageLeavesForm.name.$touched" class="reqStar">Kindly Enter Leave Type</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="defaultBtn btn" data-dismiss="modal" ng-click="configurationControllerScope.decline()">Decline</button>
+                                                    <button type="button" class="activeBtn btn" ng-disabled="configurationControllerScope.manageLeavesForm.$invalid" ng-show="configurationControllerScope.saveupdate" ng-click="configurationControllerScope.updatemanageLeaves(configurationControllerScope.manageLeaves)">Update</button>
+                                                    <button type="button" class="activeBtn btn" ng-show="configurationControllerScope.saveShow" ng-disabled="configurationControllerScope.manageLeavesForm.$invalid" ng-click="configurationControllerScope.addmanageLeaves()">Save</button>
+                                                </div>
+                                            </form>
+                                    </div>  </div>
+                                </div>
+                            </div> 
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+            

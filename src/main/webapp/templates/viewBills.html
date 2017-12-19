@@ -1,0 +1,210 @@
+<!-- <div class="loader_backdrop" ng-if="billControllerScope.spinner || billControllerScope.viewBillspinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Bills List</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <div class="customDropDown col-lg-6 col-md-6 col-sm-6 col-xs-8 padd0 responsive_select">
+                                            <select name="billType" ng-model="billControllerScope.vendor" class="select1 dropdown selectClass col-lg-4 col-md-4 col-sm-4 col-xs-12 text-left">
+                                                <option value="" selected="selected">Select Vendor</option>
+                                                <option value="" >All</option>
+                                                <option value="{{vendor.name}}" ng-repeat="vendor in billControllerScope.vendorLists | orderBy : 'name'">{{vendor.name}}</option>
+                                            </select>
+                                        </div>
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-4 padd0 text-right">
+                                        <button class="glyphicon glyphicon-export action_btn" ng-click="billControllerScope.exportData()"></button>
+                                        <button class="glyphicon glyphicon-import action_btn margin_left0 margin_right0" ng-click="billControllerScope.goImportPage()"></button></span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="billControllerScope.searchName" placeholder="Search Here" class="margin_top20 width100 resp_fontSize">
+                                    </div>
+                                    <div class="loader_backdrop" ng-show="billControllerScope.spinner">
+                                        <div class="loader loader_position"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="billControllerScope.dataMsg && billControllerScope.dataMsg != ''">
+                            <p class="grey_text text-center padding15 padding_top0">{{billControllerScope.dataMsg}}</p>
+                        </div>
+                        <div id="list-wrapper">
+                            <div infinite-scroll="billControllerScope.addMoreItems()" infinite-scroll-container="'#list-wrapper'" infinite-scroll-parent="true">
+                                <div class="innerdivContainer red-icon create-employee border_bottom1" ng-repeat="bill in logEventFilter = (billControllerScope.billList | orderBy : '-id' |  
+                                 filter : billControllerScope.searchName | filter: { name : billControllerScope.vendor} |  
+                                limitTo : billControllerScope.limitToShow)" on-finish-render>
+                                    <div class="row">
+                                        <div class="input_section">
+                                            <div class="col-lg-1 padd0 responsive_textCenter  responsive_textCenter responsivemargin_top10">
+                                                <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="responsive_textCenter">
+                                                <span ng-click="billControllerScope.viewBill(bill.id)" class="anchor_text">{{bill.currencyType}} {{bill.rate}}</span><span class="pipe_text"> | </span><span class="span_text"><span ng-if ="bill.status == 'Paid'"  class="label_success">Paid</span><span ng-if="bill.status == 'Pending'" class="label_danger">Pending</span></span>
+                                            </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Bill Id</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{bill.id}}</span></li>
+                                                            <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">Bill No</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{bill.billNumber}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Due Date</label><span class="font_weight600 col-xs-6  wordBreak_all">{{bill.dueDate  | date:"MMM d, y"}}</span></li>
+                                                            <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">Comments</label><span class="font_weight600 col-xs-6  wordBreak_all">{{bill.desc}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            -->
+           
+           <div class="loader_backdrop" ng-if="billControllerScope.spinner || billControllerScope.viewSpinner">
+    <div class="loader loader_position"></div>
+</div>
+<div class="rightContainer">
+	<div class="pageTitleParent">
+		<div class="row pageTitletextContainer">
+			<span class="col-lg-6 col-md-6 col-sm-6 col-xs-7 padd0">
+		   		<div class="line_height30">Bills List</div>
+		   	</span>
+   			<span class="col-lg-6 col-md-6 col-sm-6 col-xs-5 text-right padd0">
+                   <button class="glyphicon glyphicon-export action_btn" ng-click="billControllerScope.exportData()"></button>
+                   <button class="glyphicon glyphicon-import action_btn margin_left0 margin_right0" ng-click="billControllerScope.goToImportPage()"></button>
+			</span>
+   		</div>
+   		<div class="innerdivContainer red-icon create-employee">
+       		<div class="row margin_minus10">
+           		<div class="input_section">
+               		<div class="width100 mobile_viewShow">
+                   		<div class="customDropDown col-lg-6 col-md-6 col-sm-6 col-xs-12 padd0 responsive_select margin_top5">
+                       	 <select name="billType" ng-model="billControllerScope.vendor" class="select1 dropdown selectClass col-lg-4 col-md-4 col-sm-4 col-xs-12 text-left">
+                                                <option value="" selected="selected">Select Vendor</option>
+                                                <option value="" >All</option>
+                                                <option value="{{vendor.name}}" ng-repeat="vendor in billControllerScope.vendorLists | orderBy : 'name'">{{vendor.name}}</option>
+                                            </select>
+	                   	</div>
+               		</div>
+	               	<div class="width100 mobile_viewShow">
+	                   	<input type="text" ng-model="billControllerScope.searchName" ng-keyup="billControllerScope.searchMe(true)" placeholder="Search Here" class="margin_top20 width100 resp_fontSize">
+	               	</div> 
+			      	<div ng-if="!leadControllerScope.isDataAvailable">
+			          	<p class="text-center grey_text margin0">{{billControllerScope.dataMsg}}</p>
+			      	</div>
+               		<div class="table_data" ng-if="billControllerScope.isDataAvailable">
+			      		<table wt-responsive-table class="custom-responsive-table">
+			       			<thead>
+					           	<tr>
+						          <!-- <th class="">
+						           		<span  class="outline0"
+											data-toggle="modal"
+											data-backdrop="static" 
+											data-keyboard="false" ng-click="leadControllerScope.showDelete()">
+											<i class="fa fa-trash-o cursor_pointer" aria-hidden="true"></i>  ng-click="leadControllerScope.deleteLead()" 
+										</span>
+			           				</th> --> 	
+			           				<th>Name</th>
+					               	<th>Bill Id</th>
+					               	<th>Bill No</th>
+					               	<th>Due Date</th> 
+					                <th>Currency Type</th>   
+				           		</tr>
+				           		<tr>
+						            <!--  	<th class="width5Percent">
+						           		<span class="table_mobile table_borderNone">
+						           			<input type="checkbox" ng-model="billControllerScope.isSelect" ng-change="billControllerScope.toggleSelect(billControllerScope.isSelect)"/><label></label>
+						           		</span>
+						           	</th> -->
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="billControllerScope.search.name" ng-keyup="billControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="billControllerScope.search.id" ng-keyup="billControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="billControllerScope.search.billNumber" ng-keyup="billControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="billControllerScope.search.dueDate" ng-keyup="leadControllerScope.searchMe()" /></th>
+					               	 <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="billControllerScope.search.currencyType" ng-keyup="billControllerScope.searchMe()" /></th>
+					            	</tr>
+					       	</thead>
+					       	<tbody >
+					           	<tr ng-repeat="bill in logEventFilter = (billControllerScope.billList | orderBy : '-id' |  
+					                                filter : billControllerScope.searchName | 
+					                                filter: { name : billControllerScope.search.name, id : billControllerScope.search.id, billNumber : billControllerScope.search.billNumber , dueDate : leadControllerScope.search.dueDate, chequenumber : leadControllerScope.search.chequenumber, currencyType : leadControllerScope.search.currencyType  }|  
+					                               limitTo : limitToShow : beginFrom)" class="backGreyColor">
+					               <!--  	<td class="text-center padd_left0"><span class="table_mobile table_borderNone">
+					               		<input type="checkbox" ng-model="lead.isSelect"/><label></label></span>
+					               	</td>   -->           
+					               	<td ng-click="billControllerScope.viewBill(bill.id)" class="cursor_pointer">{{bill.name}}</td> 
+					               	<td class="text-center">{{bill.id}}</td>
+					               	<td class="text-center">{{bill.billNumber}}</td>
+					               	<td class="text-center">{{bill.dueDate | date: 'MMM dd, yyyy'}}</td>  
+					               	<td>{{bill.currencyType}}</td>
+					           	</tr>
+					       	</tbody>
+						</table>
+        				<p ng-if="billControllerScope.billList.length == 0" class="text-center grey_text margin0">Bill Details Not Available</p>
+                	</div>
+                	<div class="table_btn">
+			             <button ng-click="billControllerScope.showPrevNav()" 
+			             	ng-if="billControllerScope.isDataAvailable && billControllerScope.billList.length > 0" 
+			             	ng-disabled="billControllerScope.buttonBeginFrom == 0"
+			             	ng-class="{'cursor_notAllowed':billControllerScope.buttonBeginFrom == 0}" class="">Prev</button>
+             	
+             			<span ng-repeat="i in billControllerScope.billList | limitTo : billControllerScope.buttonLimitToShow :billControllerScope.buttonBeginFrom">
+             	 
+			             	<button ng-class="{ 'active' : i.isActiveClass }" 
+			             		ng-if="billControllerScope.buttonBeginFrom + $index < billControllerScope.billList.length / billControllerScope.buttonLimitToShow" 
+			             		ng-click="billControllerScope.gotoPage($index * billControllerScope.buttonLimitToShow + billControllerScope.buttonBeginFrom * billControllerScope.buttonLimitToShow, billControllerScope.buttonBeginFrom + $index)">
+			             		{{billControllerScope.buttonBeginFrom + $index + 1}}
+			             	</button>
+			            </span>
+			            <button ng-click="billControllerScope.showNextNav()" 
+			             	ng-if="billControllerScope.isDataAvailable && billControllerScope.billList.length > 0" 
+			             	ng-disabled="billControllerScope.isNextDisabled"
+			             	ng-class="{'cursor_notAllowed':billControllerScope.isNextDisabled}">Next</button>
+             		</div>
+             	</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div id="confirmation" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close white opacity1px" data-dismiss="modal" ng-if="!billControllerScope.isCannotDelete"><i class="fa fa-times close_button" aria-hidden="true"></i></button>
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+               <div class="modal-body">
+                   <p ng-if="!billControllerScope.isSingleRecordToDelete && !billControllerScope.isCannotDelete">Billcan not be deleted, If Bill is associated with any other modules</p>
+                   <p ng-if="billControllerScope.isSingleRecordToDelete && !billControllerScope.isCannotDelete">Are you sure, you want to delete?</p>
+                   <p ng-if="billControllerScope.isCannotDelete">Bill can not be deleted, It is associated with other module</p>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="defaultBtn btn" data-dismiss="modal" data-dismiss="modal" ng-if="!billControllerScope.isCannotDelete">Decline</button>
+                   <button type="button" class="activeBtn btn" ng-click="billControllerScope.deleteLead()" ng-if="!billControllerScope.isCannotDelete">Continue</button>
+                   <button type="button" class="activeBtn btn"  ng-click="billControllerScope.closeModal()" ng-if="billControllerScope.isCannotDelete">Ok</button>
+               </div>
+        	</div>
+        </div>
+    </div>
+</div> 
+           

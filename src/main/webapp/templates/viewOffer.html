@@ -1,0 +1,79 @@
+<div class="loader_backdrop" ng-show="offerControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Offer Details</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="text-right col-lg-12 col-xs-12 col-md-12 col-sm-12 padd10">
+                                        <button class="defaultBtn pull-left" type="button" ng-click="offerControllerScope.gotoView()">Back To Offers</button>
+                                        <button class="activeBtn" type="button" ng-click="offerControllerScope.gotoEdit()">Edit</button>
+                                    </div>
+                                    <div>
+                                        <div class="col-lg-1 col-xs-12 col-md-12 col-sm-12 padd0 responsive_textCenter resMargin12 ">
+                                            <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true"></i>
+                                        </div>
+                                        
+                                        <div class="col-lg-11 col-xs-12 padd0">
+                                        <div class="responsive_textCenter ">
+                                            <span class="anchor_text cursor_default break-word capitalizeText">{{offerControllerScope.offer.name}}<span>
+                                            <span class="pipe_text" ng-if="offerControllerScope.offer.status != ''">|</span>
+                                            <span class="span_text capitalizeText">
+                                            	<span ng-if="offerControllerScope.offer.status == 'P'" class="label_warning">Pending Approval</span>
+                                            	<span ng-if="offerControllerScope.offer.status == 'A'" class="label_success">Approved</span>
+                                            	<span ng-if="offerControllerScope.offer.status == 'R'" class="label_danger">Rejected</span>
+                                            </span>
+                                        </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                           <li class="row" ng-if="employeeControllerScope.employee.requirement !== ''">
+                                                            <label class="col-xs-6 padd0">Requirement</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{offerControllerScope.offer.requirement}}</span></li>
+                                                        <li class="row" ng-if="employeeControllerScope.employee.projectName !== ''">
+                                                            <label class="col-xs-6 padd0">Project</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{offerControllerScope.offer.projectName}}</span></li>
+                                                        <li class="row" ng-if="employeeControllerScope.employee.joiningDate !== ''">
+                                                            <label class="col-xs-6 padd0">Expected Joining Date</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{offerControllerScope.offer.joiningDate}}</span></li>
+                                                        <li class="row" ng-if="employeeControllerScope.employee.designation !== ''">
+                                                            <label class="col-xs-6 padd0">Designation</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{offerControllerScope.offer.designation}}</span></li>
+                                                        <li class="row" ng-if="employeeControllerScope.employee.phone !== ''">
+                                                            <label class="col-xs-6 padd0">Contact Number</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{offerControllerScope.offer.phone}}</span></li>
+                                                       <li class="row" ng-if="employeeControllerScope.employee.comment !== ''">
+                                                            <label class="col-xs-6 padd0">Comments</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{offerControllerScope.offer.comment}}</span></li>
+                                                       
+                                                       
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                             <li class="row" ng-if="employeeControllerScope.employee.cutomerName !== ''">
+                                                            	<label class="col-xs-6 padd0">Customer</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{offerControllerScope.offer.cutomerName}}</span></li>
+	                                                        <li class="row" ng-if="employeeControllerScope.employee.approver !== ''">
+	                                                            <label class="col-xs-6 padd0">Approver</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{offerControllerScope.offer.approver}}</span></li>
+	                                                        <li class="row" ng-if="employeeControllerScope.employee.joiningDate !== ''">
+                                                            	<label class="col-xs-6 padd0">Offer Date</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{offerControllerScope.offer.joiningDate}}</span></li>
+                                                        	<li class="row" ng-if="employeeControllerScope.employee.cost !== ''">
+                                                            	<label class="col-xs-6 padd0">CTC</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{offerControllerScope.offer.cost}}</span></li>
+                                                        	<li class="row" ng-if="employeeControllerScope.employee.updatedBy !== ''">
+	                                                            <label class="col-xs-6 padd0">Updated By</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{offerControllerScope.offer.updatedBy}}</li>
+	                                                    	<li class="row" ng-if="employeeControllerScope.employee.updatedon !== ''">
+	                                                    		<label class="col-xs-6 padd0">Updated On</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{offerControllerScope.offer.updatedon }}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

@@ -1,0 +1,53 @@
+<div class="loader_backdrop" ng-if="chequeControllerScope.viewBillspinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="row pageTitletextContainer">
+                    	<div class="col-xs-12 padd0">
+                        	<span class="cursor_pointer back_iconPosition" ng-click="chequeControllerScope.goToCheques()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+                        	<span class="page_titlePosition">Cheque Details</span>
+                        </div>
+                    	
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="text-right row padd10">
+                                        <button class="activeBtn btn" type="button" ng-if = "chequeControllerScope.cheque.status == 'noclear'" ng-click="chequeControllerScope.goToEditCheques(chequeControllerScope.cheque.id)">Edit</button>
+                                    </div>
+                                    <div class="col-lg-1 padd0 responsive_textCenter ">
+                                        <i class="fa fa-user-circle-o img-60x60 img-views responsivemargin_top10" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="responsive_textCenter">
+                                        <a class="anchor_text cursor_default">{{chequeControllerScope.cheque.number}}</a><span class="pipe_text">|</span><span class="span_text"><span ng-if = "chequeControllerScope.cheque.status == 'clear'" class="label_success">Cleared</span><span ng-if="chequeControllerScope.cheque.status == 'noclear'" class="label_danger">NotCleared</span></span>
+                                    </div>
+                                    <div class="col-lg-11 padd0">
+                                        <div class="row">
+                                            <div class="">
+                                                <ul class="padd0 left_text">
+                                                    <li class="row">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Cheque date</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{chequeControllerScope.cheque.date | date:"MMM d, y"}}</span></li>
+                                                    <li class="row">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Cheque Amount</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{chequeControllerScope.cheque.amount}}</span></li>
+                                                    <li class="row">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Bank Name</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{chequeControllerScope.cheque.name }}</span></li>
+                                                    <li class="row">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Payabale Name</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{chequeControllerScope.cheque.payto | date:"MMM d, y"}}</span></li>
+                                                      <li class="row">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Update By</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all capitalizeText">{{chequeControllerScope.cheque.updatedBy}}</span></li>
+                                                    <li class="row">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Update On</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{chequeControllerScope.cheque.updatedon}}</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

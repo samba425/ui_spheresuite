@@ -1,0 +1,195 @@
+<div class="loader_backdrop" ng-if="billControllerScope.spinner || billControllerScope.viewBillspinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer"><span ng-if="!billControllerScope.isUpdate">New</span><span ng-if="billControllerScope.isUpdate">Update</span> Bill</div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0">
+                            <form class="form-horizontal formContainer bill_selectBox" name="billControllerScope.billForm"> 
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Vendor<span class="reqStar">*</span>
+                                    </label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown">
+                                            <select name="customerId" id="select3" class="select1 dropdown inputClass" ng-model="billControllerScope.bill.customerId" required>
+                                                <option value="" ng-if="!billControllerScope.bill.customerId || billControllerScope.bill.customerId == ''">Select Vendor</option>
+                                                <option value="{{type.id}}" ng-repeat="type in billControllerScope.vendorLists | orderBy:'leadTypeName'"">{{type.name}}</option>
+                                            </select>                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create-employee-inner">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Bill Number<span class="reqStar">*</span>
+                                             </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="billNumber"  
+                                            ng-model="billControllerScope.bill.billNumber" 
+                                            ng-pattern="/^.*[0-9]{4}$/"
+                                            class="inputClass"
+                                            placeholder="Bill Number" required>
+                                        <p ng-show="billControllerScope.billForm.billNumber.$error.pattern || billControllerScope.billForm.billNumber.$invalid && billControllerScope.billForm.billNumber.$touched" class="reqStar">Kindly Enter Valid Last 4 should be a Number</p>
+                                          </div>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Bill Date<span class="reqStar">*</span></label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <input type="text" name="billDate" class="inputClass cursor_pointer"
+                                                datepicker-popup="{{format}}"
+                                                ng-click="billControllerScope.openstartCalender($event)"
+                                                ng-model="billControllerScope.bill.billDate"
+                                                is-open="billControllerScope.startCalender"
+                                                placeholder="Bill Date" show-button-bar="false" required/>
+                                            </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18">
+                                         <button type="button" ng-click="billControllerScope.openstartCalender($event)" class="btn btn-default mrgTop5 addIcon"><i class="glyphicon glyphicon-calendar"></i></button>
+                                     </span>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Due Date<span class="reqStar">*</span></label>
+                                                 
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <input type="text" name="dueDate" class="inputClass cursor_pointer"
+                                                datepicker-popup="{{format}}"
+                                                ng-click="billControllerScope.openendCalender($event)"
+                                                ng-model="billControllerScope.bill.dueDate"
+                                                is-open="billControllerScope.endCalender"
+                                                placeholder="Due Date" show-button-bar="false" required/>
+                                            </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18">
+                                         <button type="button" ng-click="billControllerScope.openendCalender($event)" class="btn btn-default mrgTop5 addIcon"><i class="glyphicon glyphicon-calendar"></i></button>
+                                     </span>
+                                    </div>
+                                            <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4 lineheight31">Payment Mode<span class="reqStar">*</span>
+                                    </label>
+                                    
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                        <div class="customDropDown">
+                                         <select name="paymentmode" id="select3"  ng-change="billControllerScope.changeCheque(billControllerScope.bill.paymentmode)"
+                                         class="select1 dropdown inputClass" 
+                                         ng-model="billControllerScope.bill.paymentmode" required>
+                                        <option value="" ng-if="!billControllerScope.bill.paymentmode || billControllerScope.bill.paymentmode == ''" selected>Select Payment Mode</option>
+                                        <option value="{{type.id}}" ng-repeat="type in billControllerScope.paymentModeList | orderBy: '-id'"  ng-if="type.status=='a'">{{type.name}}</option>
+                                                </select>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                     <div class="form-group row mob-pos-rel" ng-show="billControllerScope.newdata">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Select Cheque<span class="reqStar">*</span></label>
+                                             <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                        <div class="customDropDown"> 
+                                         <select name="chequenumber" id="select1" 
+                                         	class="dropdown inputClass" 
+                                         	ng-model="billControllerScope.bill.chequenumber" multiple="multiple"  required>
+	                                        <option value="" ng-if="!billControllerScope.bill.chequenumber || billControllerScope.bill.chequenumber ==''">Select Cheque</option>
+	                                        
+	                                        <option value="{{type.id}}" ng-repeat="type in billControllerScope.ChequeList"     ng-if="type.status== 'noclear' && !billControllerScope.isUpdate" >{{type.number}}</option>
+	                                        <option value="{{type.id}}" ng-repeat="type in billControllerScope.ChequeList"  ng-if="billControllerScope.isUpdate" >{{type.number}}</option>
+                                         </select>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    
+                                   <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4 lineheight31">Payment Type<span class="reqStar">*</span>
+                                    </label>
+                                    
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                        <div class="customDropDown">
+                                         <select name="currencyType" id="select3" 
+                                         class="select1 dropdown inputClass" 
+                                         ng-model="billControllerScope.bill.currencyType" required>
+                                        <option value="" ng-if="!billControllerScope.bill.currencyType || billControllerScope.bill.currencyType==''">Select Payment Type</option>
+                                        <option value="{{type.currencyType}}" ng-repeat="type in billControllerScope.countryList | orderBy: 'currencyType'" ng-if="type.status=='a'">{{type.currencyType}}</option>
+                                                </select>
+                                        
+                                        </div>
+                                    </div>
+                                </div> 
+                                       <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4 lineheight31">Status<span class="reqStar">*</span>
+                                    </label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top10">
+                                        <div class="customDropDown">
+                                         <select name="status" id="select3" ng-change="billControllerScope.checkStatus(billControllerScope.bill.status, billControllerScope.bill.chequenumber)"
+                                         class="select1 dropdown inputClass" 
+                                         ng-model="billControllerScope.bill.status" required>
+                                        <option value="" ng-if="!billControllerScope.bill.status || billControllerScope.bill.status ==''">Select Status</option>
+                                         <option value="Pending">Pending</option>
+                                        <option value="Paid">Paid</option>
+                                        
+                                                </select>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                        <div class="form-group row mob-pos-rel" ng-if="billControllerScope.bill.status=='Paid'">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Paid Date<span class="reqStar">*</span></label>
+                                                 
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <input type="text" name="paidDate" class="inputClass"
+                                                datepicker-popup="{{format}}"
+                                                ng-click="billControllerScope.openpaidCalender($event)"
+                                                ng-model="billControllerScope.bill.paidDate"
+                                                is-open="billControllerScope.paidCalender"
+                                                placeholder="Paid Date" show-button-bar="false" required/>
+                                            </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18">
+                                         <button type="button" ng-click="billControllerScope.openpaidCalender($event)" class="btn btn-default mrgTop5 addIcon"><i class="glyphicon glyphicon-calendar"></i></button>
+                                     </span>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Amount<span class="reqStar">*</span> </label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="rate" class="inputClass" 
+                                            ng-pattern="/^[0-9]+([,.][0-9]+)?$/"
+                                            ng-model="billControllerScope.bill.rate" placeholder="Amount" required/>
+                                 <p ng-show="billControllerScope.billForm.rate.$error.pattern || billControllerScope.billForm.rate.$invalid && billControllerScope.billForm.rate.$touched" class="reqStar">Kindly Enter Valid Amount</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Comments</label> 
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <textarea type="text" name="desc" 
+                                            class="inputClass" 
+                                            ng-model="billControllerScope.bill.desc"
+                                            placeholder="Comments"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns"> 
+                                      <button class="defaultBtn btn" type="button" ng-click="billControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn btn" type="button" ng-click="billControllerScope.addBill()" ng-disabled="billControllerScope.billForm.$invalid" ng-if="!billControllerScope.isUpdate">Save</button>
+                                        <button class="activeBtn btn" ng-click="billControllerScope.editBill()" ng-disabled="billControllerScope.billForm.$invalid" ng-if="billControllerScope.isUpdate">Update</button>
+                                    
+                                    </div>
+                                </div>
+                            </form>
+                              <div id="confirmation" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close white opacity1px" data-dismiss="modal" ng-click="billControllerScope.close()"><i class="fa fa-times close_button" aria-hidden="true"></i></button>
+                                            <h4 class="modal-title">Cheques</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form name="billControllerScope.gstTaxForm">
+                                                <div class="modal-body">
+                                                <P>Cheque Not Yet Cleared</P>
+                                                  </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="defaultBtn btn" data-dismiss="modal" ng-click="billControllerScope.close()">Decline</button> 
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+           

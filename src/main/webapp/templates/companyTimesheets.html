@@ -1,0 +1,89 @@
+<div class="loader_backdrop" ng-show="timeSheetControllerScope.spinner || timeSheetControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Timesheets</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <div class="customDropDown col-lg-6 col-md-6 col-sm-6 col-xs-8 padd0 responsive_select">
+                                            <select name="status" class="select1 dropdown selectClass col-lg-4 col-md-4 col-sm-4 col-xs-12 text-left" ng-model="timeSheetControllerScope.status">
+                                                <option value="" selected="selected">Select Request Type</option>
+                                                <option value="">All</option>
+                                                <option value="a">Approved</option>
+                                                <option value="d">Draft</option>
+                                                <option value="r">Rejected</option>
+                                                <option value="s">Submitted</option>
+                                            </select>
+                                        </div>
+                                        <!-- <span class="col-lg-6 col-md-6 col-sm-6 col-xs-4 padd0 text-right">
+                                        	<button class="glyphicon glyphicon-export action_btn" ng-click="timeSheetControllerScope.exportData()"></button>
+                                        	<button class="glyphicon glyphicon-import action_btn margin_left0 margin_right0" ng-click="timeSheetControllerScope.openImportPage()"></button><
+                                        /span> -->
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="timeSheetControllerScope.search" ng-keyup="timeSheetControllerScope.checkEmptyList()" placeholder="Search Here" class="margin_top20 width100 resp_fontSize">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="timeSheetControllerScope.msg && timeSheetControllerScope.msg != ''">
+                            <p class="text-center grey_text padding15 padding_top0">{{timeSheetControllerScope.msg}}</p>
+                        </div>
+                        <div id="list-wrapper">
+                            <div infinite-scroll="timeSheetControllerScope.addMoreItems()" infinite-scroll-container="'#list-wrapper'" infinite-scroll-parent="true">
+                                <div class="innerdivContainer red-icon create-employee border_bottom1"  ng-repeat="timesheet in timeSheetControllerScope.timeSheetGetList | orderBy:'-id' | filter :  timeSheetControllerScope.search | filter: {status : timeSheetControllerScope.status} | limitTo : timeSheetControllerScope.limitToShow">
+                                    <div class="row">
+                                        <div class="input_section">
+                                            <div class="col-lg-1 padd0 responsive_textCenter margin_bottom15  responsive_textCenter responsivemargin_top10">
+                                                <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="responsive_textCenter display_webkit">
+                                                <span class="anchor_text break-word capitalizeText" 
+                                                	ng-click="timeSheetControllerScope.gotoView(timesheet.weekenddate, timesheet.empId, timesheet.name, timesheet.status, timesheet.total)">{{timesheet.createdBy}}</span>
+                                                <span class="pipe_text" ng-if="timesheet.weekenddate != ''">|</span>
+                                                <span class="anchor_text cursor_default break-word capitalizeText">{{timesheet.weekenddate}}</span>
+                                                <span class="pipe_text" ng-if="timesheet.status != ''">|</span>
+                                                <span class="span_text capitalizeText" ng-if="timesheet.status != ''">
+                                                	<span ng-if="timesheet.status == 'd'" class="label_warning">Draft</span>
+                                                	<span ng-if="timesheet.status == 's'" class="label_gray">Submitted</span>
+                                                	<span ng-if="timesheet.status == 'a'" class="label_success">Approved</span>
+                                                	<span ng-if="timesheet.status == 'o'" class="label_blue">Re-Open</span>
+                                                	<span ng-if="timesheet.status == 'r'" class="label_danger">Rejected</span>
+                                                </span>
+                                            </div>
+                                            <div class="col-lg-10 padd0">
+                                            <div class="row">
+                                            <div class="col-lg-6 padd0">
+                                                <!-- <div class="row"> -->
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Total Hours</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{timesheet.total}}</span></li>
+                                                            </ul>
+                                                    </div>
+                                                <!-- </div> -->
+                                            </div>
+                                            <div class="col-lg-6 padd0" ng-repeat="timesheetList in timesheet.timeSheetList">
+                                                <!-- <div class="row"> -->
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">{{timesheetList.typeName}}</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{timesheetList.hours}}</span></li>
+                                                            </ul>
+                                                    </div>
+                                                <!-- </div> -->
+                                            </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          

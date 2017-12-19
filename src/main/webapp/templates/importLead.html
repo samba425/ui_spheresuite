@@ -1,0 +1,141 @@
+<div class="loader_backdrop" ng-if="leadControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Import {{leadControllerScope.subMenu}}</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <form class="form-horizontal formContainer" name="leadControllerScope.importForm" ng-show="!leadControllerScope.chooseFileSection">
+                                <div class="create-employee-inner">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Name<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="name" class="select1 dropdown inputClass" ng-model="leadControllerScope.lead.name" required>
+                                                    <option value="">Select Name</option>
+                                                	<option value="{{field}}" ng-repeat="field in leadControllerScope.fileInputFields">{{field}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">{{leadControllerScope.subMenu}} Type</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="leadType" class="select1 dropdown inputClass" ng-model="leadControllerScope.lead.leadType">
+                                                <option value="" ng-if="leadControllerScope.subMenu == 'Lead'">Select Lead Type</option>
+                                                <option value="" ng-if="leadControllerScope.subMenu == 'Vendor'">Select Vendor Type</option>
+                                                <option value="" ng-if="leadControllerScope.subMenu == 'Customer'">Select Customer Type</option>
+                                                	<option value="{{field}}" ng-repeat="field in leadControllerScope.fileInputFields">{{field}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">{{leadControllerScope.subMenu}} Status</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="status" class="select1 dropdown inputClass" ng-model="leadControllerScope.lead.status">
+                                                <option value="" ng-if="leadControllerScope.subMenu == 'Lead'">Select Lead Status</option>
+                                                <option value="" ng-if="leadControllerScope.subMenu == 'Vendor'">Select Vendor Status</option>
+                                                <option value="" ng-if="leadControllerScope.subMenu == 'Customer'">Select Customer Status</option>
+                                                	<option value="{{field}}" ng-repeat="field in leadControllerScope.fileInputFields">{{field}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">{{leadControllerScope.subMenu}} Source</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="leadSource">
+                                                <select name="source" class="select1 dropdown inputClass" ng-model="leadControllerScope.lead.source">
+                                                <option value="" ng-if="leadControllerScope.subMenu == 'Lead'">Select Lead Source</option>
+                                                <option value="" ng-if="leadControllerScope.subMenu == 'Vendor'">Select Vendor Source</option>
+                                                <option value="" ng-if="leadControllerScope.subMenu == 'Customer'">Select Customer Source</option>
+                                                	<option value="{{field}}" ng-repeat="field in leadControllerScope.fileInputFields">{{field}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Industry</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="industry" class="select1 dropdown inputClass" ng-model="leadControllerScope.lead.industry">
+                                                	<option value="">Select Industry</option>
+                                                	<option value="{{field}}" ng-repeat="field in leadControllerScope.fileInputFields">{{field}}</option>
+                                               </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Mobile</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="mobileNumber">
+                                                <select name="mobile" class="select1 dropdown inputClass" ng-model="leadControllerScope.lead.mobile">
+                                                	<option value="">Select Mobile</option>
+                                                	<option value="{{field}}" ng-repeat="field in leadControllerScope.fileInputFields">{{field}}</option>
+                                               </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Phone</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="phone" class="select1 dropdown inputClass" ng-model="leadControllerScope.lead.phone">
+                                                    <option value="">Select Phone</option>
+                                                	<option value="{{field}}" ng-repeat="field in leadControllerScope.fileInputFields">{{field}}</option>
+                                               </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Email</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="email">
+                                                <select name="industry" class="select1 dropdown inputClass" ng-model="leadControllerScope.lead.email">
+                                                    <option value="">Select Email</option>
+                                                	<option value="{{field}}" ng-repeat="field in leadControllerScope.fileInputFields">{{field}}</option>
+                                               </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Address</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="address" class="select1 dropdown inputClass" ng-model="leadControllerScope.lead.address">
+                                                    <option value="">Select Address</option>
+                                                	<option value="{{field}}" ng-repeat="field in leadControllerScope.fileInputFields">{{field}}</option>
+                                               </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Comment</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="comment">
+                                                <select name="industry" class="select1 dropdown inputClass" ng-model="leadControllerScope.lead.comment">
+                                                    <option value="">Select Comment</option>
+                                                	<option value="{{field}}" ng-repeat="field in leadControllerScope.fileInputFields">{{field}}</option>
+                                               </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns">
+                                        <button class="defaultBtn" type="button" ng-click="leadControllerScope.declineImport()">Decline</button>
+                                        <button class="activeBtn btn" type="button" ng-click="leadControllerScope.importLead()" ng-disabled="leadControllerScope.importForm.$invalid">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                     
+                            <div ng-if="leadControllerScope.chooseFileSection" class="ng-scope">
+                                <input type="file" ng-model="testfile" onchange="angular.element(this).scope().loadFile(this.files)" class="ng-pristine ng-untouched ng-valid ng-empty">
+                                <input type="button" value="Import Data" class="btn btn-default" ng-click="handleFile()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

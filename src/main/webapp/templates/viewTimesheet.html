@@ -1,0 +1,94 @@
+<div class="loader_backdrop" ng-show="timeSheetControllerScope.spinner || timeSheetControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                         <div class="row pageTitletextContainer">
+                    	<div class="col-xs-12 padd0">
+                        	<span class="cursor_pointer back_iconPosition" ng-click="timeSheetControllerScope.goBack()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+                        	<span class="page_titlePosition">Timesheet</span>
+                        </div>
+                    	
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row" class="">
+                                <div class="input_section">
+                                    <div class="text-right col-lg-12 col-xs-12 col-md-12 col-sm-12 padd10">
+                                        <button class="activeBtn" type="button" 
+                                        	ng-click="timeSheetControllerScope.gotoEdit(timeSheetControllerScope.timeSheet.weekenddate, timeSheetControllerScope.timeSheet.empId, timeSheetControllerScope.timeSheet.status)"
+                                        	ng-if="timeSheetControllerScope.isShowEditButton">Edit</button>
+                                    </div>
+                                    <div>
+                                        <div class="col-lg-1 col-xs-12 col-md-12 col-sm-12 padd0 responsive_textCenter resMargin12 ">
+                                            <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true"></i>
+                                        </div>
+                                        
+                                        <div class="col-lg-11 col-xs-12 padd0">
+                                        <div class="responsive_textCenter ">
+                                            <span class="anchor_text cursor_default break-word capitalizeText">{{timeSheetControllerScope.timeSheet.weekenddate}}<span>
+                                            <span class="pipe_text" ng-if="timesheet.status != ''">|</span>
+                                                <span class="span_text capitalizeText" ng-if="timeSheetControllerScope.timeSheet.status != ''">
+                                                	<span ng-if="timeSheetControllerScope.timeSheet.status == 'd'" class="label_warning">Draft</span>
+                                                	<span ng-if="timeSheetControllerScope.timeSheet.status == 's'" class="label_gray">Submitted</span>
+                                                	<span ng-if="timeSheetControllerScope.timeSheet.status == 'a'" class="label_success">Approved</span>
+                                                	<span ng-if="timeSheetControllerScope.timeSheet.status == 'o'" class="label_blue">Re-Open</span>
+                                                	<span ng-if="timeSheetControllerScope.timeSheet.status == 'r'" class="label_danger">Rejected</span>
+                                                </span>
+                                        </div>
+                                             <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Total Hours</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{timeSheetControllerScope.timeSheet.total}}</span></li>
+                                                           </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                             <div class="col-lg-12 padd0" ng-if="timeSheetControllerScope.timeSheet.timeSheetList.length > 0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="col-xs-3">
+                                                                <label class="padd0 wordBreak_all"><span class="font_weight600">Date</span></label></li>
+                                                            <li class="col-xs-3">
+                                                                <label class="padd0 wordBreak_all"><span class="font_weight600">Type</span></label></li>
+                                                            <li class="col-xs-3">
+                                                                <label class="padd0 wordBreak_all"><span class="font_weight600">Hours</span></label></li>
+                                                            <li class="col-xs-3">
+                                                                <label class="padd0 wordBreak_all"><span class="font_weight600">Description</span></label></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="row">
+                                             <div class="col-lg-12 padd0" ng-repeat="days in timeSheetControllerScope.timeSheet.timeSheetList">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="col-xs-3">
+                                                                <label class=" padd0">{{days.date}}</label></li>
+                                                            <li class="col-xs-3">
+                                                                <label class="padd0">{{days.typeName}}</label></li>
+                                                            <li class="col-xs-3">
+                                                                <label class="padd0">{{days.hours}}</label></li>
+                                                            <li class="col-xs-3">
+                                                                <label class="padd0">{{days.description}}</label></li>
+                                                         </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

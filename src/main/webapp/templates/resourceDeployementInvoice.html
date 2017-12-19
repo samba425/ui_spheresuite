@@ -1,0 +1,123 @@
+<div class="loader_backdrop" ng-if="assignmentControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer paddLft15"><span>Reource Deployement Invoice</div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0 employee_placeholder">
+                    		<p class="reqStar text-center" ng-if="assignmentControllerScope.msg && assignmentControllerScope.msg != ''">{{assignmentControllerScope.msg}}</p>
+                            <form class="form-horizontal formContainer employee_selectBox" name="assignmentControllerScope.employeeForm">
+                               
+                                <div class="create-employee-inner">
+                                    
+                                     <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Customer<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="workLocation" ng-model="assignmentControllerScope.employee.workLocation" required>
+                                                <option value="" selected>Select Customer</option>
+                                                <option value="internal" >Internal</option>
+                                                <option value="external" >External</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Opportunity<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top10">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="workLocation" ng-model="assignmentControllerScope.employee.workLocation" required>
+                                                <option value="" selected>Select Opportunity</option>
+                                                <option value="internal" >Internal</option>
+                                                <option value="external" >External</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Project<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top10">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="workLocation" ng-model="assignmentControllerScope.employee.workLocation" required>
+                                                <option value="" selected>Select Project</option>
+                                                <option value="internal" >Internal</option>
+                                                <option value="external" >External</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" table_data" >
+			                        	<table wt-responsive-table class="custom-responsive-table resource_table">
+									        <thead>
+									            <tr>
+									            	
+									                <th>Employee Id</th>
+									                <th>Project Type</th>
+									                <th>Customers</th>
+									                <th>Opportunities</th>
+									                 <th>Project Name</th> 
+									                <th>Start Date</th>
+									                <th>End Date</th>
+									                <th>Po / Wo</th>
+									                <th>Amount Type</th>
+									                <th>Amount</th>
+									                <th>Payment Terms</th>
+									                <th>Status</th>
+									                <th>Comments</th>
+									            </tr>
+									            
+									        </thead>
+									        <tbody >
+									        	
+									            <tr  class="backGreyColor">
+									                         
+									                <td ng-click="employeeControllerScope.viewEmployee(employee.id)" class="cursor_pointer">1234</td>
+									                <td>Internal</td>
+									                <td>sapta</td>
+									                <td>sapta</td>
+									                <td>sapta</td>
+									                <td>12/07/2017</td>
+									                <td>12/07/2017</td>
+									                <td>sapta</td>
+									                <td>sapta</td>
+									                <td>sapta</td>
+									                <td>sapta</td>
+									                <td>sapta</td>
+									                <td>sapta</td>
+									            </tr>
+									        </tbody>
+										</table>
+						            	<p ng-if="employeeControllerScope.employeeList.length == 0" class="text-center grey_text margin0">Employee Details Not Available</p>
+		                        </div>
+		                        <div class="table_btn">
+		                        <!-- <spheresuitenavigation list-item="employeeControllerScope.employeeList" restrict-to="{{limitToShow}}"></spheresuitenavigation> -->
+		                        <button ng-click="employeeControllerScope.showPrevNav()" 
+		                        	ng-if="employeeControllerScope.isDataAvailable && employeeControllerScope.employeeList.length > 0" 
+		                        	ng-disabled="employeeControllerScope.buttonBeginFrom == 0"
+		                        	ng-class="{'cursor_notAllowed':employeeControllerScope.buttonBeginFrom == 0}" class="">Prev</button>
+		                        	
+		                        <span ng-repeat="i in employeeControllerScope.employeeList | limitTo : employeeControllerScope.buttonLimitToShow : employeeControllerScope.buttonBeginFrom">
+		                        	 
+		                        	<button ng-class="{ 'active' : i.isActiveClass }" 
+		                        		ng-if="employeeControllerScope.buttonBeginFrom + $index < employeeControllerScope.employeeList.length / employeeControllerScope.buttonLimitToShow" 
+		                        		ng-click="employeeControllerScope.gotoPage($index * employeeControllerScope.buttonLimitToShow + employeeControllerScope.buttonBeginFrom * employeeControllerScope.buttonLimitToShow, employeeControllerScope.buttonBeginFrom + $index)">
+		                        		{{employeeControllerScope.buttonBeginFrom + $index + 1}}
+		                        	</button>
+		                        </span>
+		                        <button ng-click="employeeControllerScope.showNextNav()" 
+		                        	ng-if="employeeControllerScope.isDataAvailable && employeeControllerScope.employeeList.length > 0" 
+		                        	ng-disabled="employeeControllerScope.isNextDisabled"
+		                        	ng-class="{'cursor_notAllowed':employeeControllerScope.isNextDisabled}">Next</button>
+		                        	</div>
+                                    <div class="formfooterbtns">
+                                        <button class="defaultBtn btn" type="button" ng-click="assignmentControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn btn" type="button" ng-click="assignmentControllerScope.addEmployee()" ng-disabled="assignmentControllerScope.employeeForm.$invalid" ng-if="!assignmentControllerScope.isUpdate">Save</button>
+                                        <button class="activeBtn btn" type="button" ng-click="assignmentControllerScope.editEmployee()" ng-disabled="assignmentControllerScope.employeeForm.$invalid" ng-if="assignmentControllerScope.isUpdate">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           

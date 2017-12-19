@@ -1,0 +1,161 @@
+<div class="loader_backdrop" ng-if="opportunityControllerScope.spinner || opportunityControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer"><span ng-if="!opportunityControllerScope.isUpdate">New</span><span ng-if="opportunityControllerScope.isUpdate">Update</span> Opportunity</div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0">
+                            <form class="form-horizontal formContainer opportunoty_selectBox" name="opportunityControllerScope.opportunityForm">
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Lead / Vendor / Customer<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown">
+                                            <select name="customerId" id="select1" class="dropdown inputClass" ng-model="opportunityControllerScope.opportunity.customerId" ng-change="opportunityControllerScope.getContact(opportunityControllerScope.opportunity.customerId)" required>
+                                                <option value="" ng-if="!opportunityControllerScope.opportunity.customerId || opportunityControllerScope.opportunity.customerId == ''">Select Type</option>
+                                                <option value="{{customer.id}}" ng-repeat="customer in opportunityControllerScope.customerList | orderBy:'name'">{{customer.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Contact<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                        <div class="customDropDown">
+                                            <select name="contactId" id="select2" class="dropdown inputClass" ng-model="opportunityControllerScope.opportunity.contactId" required>
+                                                <option value="" ng-if="!opportunityControllerScope.opportunity.contactId || opportunityControllerScope.opportunity.contactId == ''">Select Contact</option>
+                                                <option value="{{contact.id}}" ng-repeat="contact in opportunityControllerScope.contactList | orderBy:'name'">{{contact.firstName}} {{contact.middleName}} {{contact.lastName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Opportunity Type<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top10">
+                                        <div class="customDropDown">
+                                            <select name="projectType" id="select3" class="dropdown inputClass" ng-model="opportunityControllerScope.opportunity.projectType" required>
+                                                <option value="" ng-if="!opportunityControllerScope.opportunity.projectType || opportunityControllerScope.opportunity.projectType == ''">Select Opportunity Type</option>
+                                                <option value="{{projectype.id}}" ng-repeat="projectype in opportunityControllerScope.opportunityTypeList | orderBy:'name'" ng-if="projectype.status == 'a'">{{projectype.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Assigned To<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top10">
+                                        <div class="customDropDown">
+                                            <select name="updatedBy" id="select4" class="dropdown inputClass" ng-model="opportunityControllerScope.opportunity.updatedBy" required>
+                                                <option value="" ng-if="!opportunityControllerScope.opportunity.updatedBy || opportunityControllerScope.opportunity.updatedBy == ''">Select Assigned To</option>
+                                                <option value="{{employee.id}}" ng-repeat="employee in opportunityControllerScope.employeeList | orderBy:'firstName'"> {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Sales Stage</label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top10">
+                                        <div class="customDropDown">
+                                            <select name="salesStage" id="select5" class="dropdown inputClass" ng-model="opportunityControllerScope.opportunity.salesStage">
+                                                <option value="" ng-if="!opportunityControllerScope.opportunity.salesStage || opportunityControllerScope.opportunity.salesStage == ''">Select Sales Stage</option>
+                                                <option value="{{salesStage.id}}" ng-repeat="salesStage in opportunityControllerScope.salesStageList | orderBy:'name'" ng-if="salesStage.status == 'a'"> {{salesStage.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Amount</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="cost" class="inputClass" ng-model="opportunityControllerScope.opportunity.cost" ng-pattern="/^[0-9]*$/" placeholder="Amount" />
+                                            <p ng-show="opportunityControllerScope.opportunityForm.cost.$error.pattern && opportunityControllerScope.opportunityForm.cost.$touched" class="reqStar">Enter Amount</p>
+                                        </div>
+                                    </div>
+                                <div class="create-employee-inner">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Opportunity Name<span class="reqStar">*</span>
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="projectName" class="inputClass" ng-model="opportunityControllerScope.opportunity.projectName" placeholder="Opportunity Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Display Name
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="displayName" class="inputClass" ng-model="opportunityControllerScope.opportunity.displayName" placeholder="Display Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Opportunity Code
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="projectCode" class="inputClass" ng-model="opportunityControllerScope.opportunity.projectCode" placeholder="Opportunity Code">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel last-child-button">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Start Date<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="startDate" class="inputClass cursor_pointer" datepicker-popup="{{format}}" ng-click="opportunityControllerScope.openstartCalender($event)" ng-model="opportunityControllerScope.opportunity.startDate" ng-change="opportunityControllerScope.calculateDuration(opportunityControllerScope.opportunity.startDate, opportunityControllerScope.opportunity.enddate)" is-open="opportunityControllerScope.startCalender" placeholder="Start Date" show-button-bar="false" required />
+                                        </div>
+                                        <span class="calen mob-right-18 mob-pos-abs select-button">
+                                         <button type="button" ng-click="opportunityControllerScope.openstartCalender($event)" class="btn btn-default mrgTop5 addIcon"><i class="glyphicon glyphicon-calendar"></i></button>
+                                     </span>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel last-child-button">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">End Date<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="enddate" class="inputClass cursor_pointer" datepicker-popup="{{format}}" ng-click="opportunityControllerScope.openendCalender($event)" ng-model="opportunityControllerScope.opportunity.enddate" ng-change="opportunityControllerScope.calculateDuration(opportunityControllerScope.opportunity.startDate, opportunityControllerScope.opportunity.enddate)" is-open="opportunityControllerScope.endCalender" placeholder="End Date" show-button-bar="false" required />
+                                        </div>
+                                        <span class="calen mob-right-18 mob-pos-abs select-button">
+                                         <button type="button" ng-click="opportunityControllerScope.openendCalender($event)" class="btn btn-default mrgTop5 addIcon"><i class="glyphicon glyphicon-calendar"></i></button>
+                                     </span>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Opportunity Duration</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="projectDuration" class="inputClass" ng-model="opportunityControllerScope.opportunity.projectDuration" placeholder="Opportunity Duration in Days" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Opportunity Probability</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="probability" class="inputClass" ng-model="opportunityControllerScope.opportunity.probability" ng-pattern="/^[0-9]*$/" placeholder="Opportunity Probability" />
+                                            <p ng-show="opportunityControllerScope.opportunityForm.probability.$error.pattern && opportunityControllerScope.opportunityForm.probability.$touched" class="reqStar">Enter Opportunity Probability</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Comments</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <textarea type="text" name="comment" class="inputClass" ng-model="opportunityControllerScope.opportunity.comment" placeholder="Comments"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Upload Files</label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15  inputClass borderNone">
+                                        <button class="activeBtn btn" type="button" ngf-select ng-model="opportunityControllerScope.opportunity.file" multiple>Upload Files</button>
+                                        <ul ng-if="opportunityControllerScope.opportunity.file && opportunityControllerScope.opportunity.file.length > 0">
+                                            <li ng-repeat="f in opportunityControllerScope.opportunity.file" style="font: smaller">{{f.name}} {{f.$errorParam}} <span class="reqStar cursor_pointer" ng-click="opportunityControllerScope.removeItem(opportunityControllerScope.opportunity.file, $index)">X</span>
+                                            	<span class="progress" ng-show="f.progress >= 0">
+													<div style="width: {{f.progress}}" ng-bind="f.progress + '%'"></div>
+												</span>
+                                            </li>
+                                            <li ng-repeat="f in errFiles" style="font: smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+                                        </ul>
+                                        <ul ng-if="opportunityControllerScope.opportunity.fromEditFile && opportunityControllerScope.opportunity.fromEditFile.length > 0">
+                                            <li ng-repeat="f in opportunityControllerScope.opportunity.fromEditFile" style="font: smaller">
+                                            	{{f.name}}
+                                            	<!-- <span class="reqStar cursor_pointer" ng-click="opportunityControllerScope.removeItem(opportunityControllerScope.opportunity.fromEditFile, $index)">X</span> -->
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                    <div class="formfooterbtns">
+                                        <button class="defaultBtn btn" type="button" ng-click="opportunityControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn btn" type="button" ng-click="opportunityControllerScope.addOpportunity()" ng-disabled="opportunityControllerScope.opportunityForm.$invalid || opportunityControllerScope.isFormInValid" ng-if="!opportunityControllerScope.isUpdate">Save</button>
+                                        <button class="activeBtn btn" ng-click="opportunityControllerScope.editOpportunity()" ng-disabled="opportunityControllerScope.opportunityForm.$invalid || opportunityControllerScope.isFormInValid" ng-if="opportunityControllerScope.isUpdate">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           

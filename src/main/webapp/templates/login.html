@@ -1,0 +1,84 @@
+<div class="login-header">
+    <img title="" alt="" src="images/logo.png">
+</div>
+   <div class="loader_backdrop" ng-if="loginControllerScope.spinner">
+     <div class="loader loader_position"></div>
+      </div>
+<div class="login-body">
+    <div class="display_table">
+        <div class="display_tableCell">
+            <div id="login-form-wrapper" class="row login-block loginbox" ng-show="loginControllerScope.loginDiv">
+                <h3 class="login-title brandColor">Login To SphereSuite</h3>
+                <div id="login-form-content" class="col-xs-12 col-md-12 login-col login_min_height">
+                    <p ng-if="loginControllerScope.isWrongCredential" class="reqStar" ng-class="loginControllerScope.isPasswordSent?'successText':''">{{loginControllerScope.msg}}</p>
+                    <form name="loginControllerScope.loginForm">
+                        <div class="">
+                            <div class="input-group col-xs-12 margin_bottom20 dsply_webkitFlex">
+                                <div id="email_icon border" class="f-icon col-xs-1 padd0 iconBorder height44">
+                                    <i class="fa fa-envelope login_padd13 font_size14" aria-hidden="true"></i>
+                                </div>
+                                <input name="email" type="email" ng-model="loginControllerScope.user.email" ng-keydown="loginControllerScope.clearErrorMsg()" ng-keypress="loginControllerScope.keyPress($event.keyCode,'login')" ng-pattern='/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i' placeholder="Email Id" class="iconized border_none col-xs-11 height44" required>
+                            </div>
+                            <p ng-if="loginControllerScope.loginForm.email.$error.pattern && loginControllerScope.loginForm.email.$invalid && loginControllerScope.loginForm.email.$touched" class="reqStar margin_topMinus10">Kindly Enter Valid Email</p>
+                        </div>
+                        <div class="">
+                            <div class="input-group col-xs-12 margin_bottom20 dsply_webkitFlex">
+                                <div id="password_icon" class="f-icon col-xs-1 padd0 iconBorder height44">
+                                    <i class="fa fa-unlock-alt login_padd13 font_size16" aria-hidden="true"></i>
+                                </div>
+                                <input name="password" type="password" ng-model="loginControllerScope.user.password" ng-keyup="loginControllerScope.clearErrorMsg()" ng-keypress="loginControllerScope.keyPress($event.keyCode,'login')" placeholder="Password" class="iconized border_none col-xs-11 height44" required>
+                            </div>
+                        </div>
+                        <p ng-if="loginControllerScope.loginForm.password.$invalid && loginControllerScope.loginForm.password.$touched" class="reqStar margin_topMinus10">Kindly Enter Password</p>
+                        <div class="form-group clearfix margin_bottom20">
+                            <p class="login-botttom-txt brandColor">Forgot Password, <span class="gotoReset resetPswBtn" ng-click="loginControllerScope.showForgotPassword()">Click Here!</span></p>
+                            <button type="button" class="btn login_btn btn-social login_width100 sign-padding" ng-click="loginControllerScope.login()">Login</button>
+                            <p class="login-botttom-txt brandColor">By signing in, you agree to our <a class="gotoReset">Terms</a> and <a class="gotoReset">Privacy Policy</a></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-xs-12">
+                    <div id="footerText" class="text-center brandColor">
+                        <div class="row-fluid brandColor">
+                            <p class="cursor_defaualt grey_text">&#169 2017 SphereSuite</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="password-remind-wrapper" class="row login-block" ng-show="loginControllerScope.resetPasswordDiv">
+                <div class="col-xs-12 login-col login_min_height marginTB15">
+                    <form role="form" name="loginControllerScope.sendPasswordForm">
+                        <div class="row">
+                            <div class="form-group clearfix margin_bottom20">
+                                <h3 class="login-title brandColor">Reset Password</h3>
+                                <p class="login-botttom-txt brandColor">Enter the email address you used to sign up for SPHERESUITE and we'll send you an email with a link to reset password.</p>
+                                <p ng-if="loginControllerScope.isWrongCredential" class="reqStar" ng-class="loginControllerScope.isPasswordSent?'successText':''">{{loginControllerScope.msg}}</p>
+                            </div>
+                            <div class="">
+                                <div class="input-group col-xs-12 margin_bottom20 dsply_webkitFlex">
+                                    <div id="email_icon" class="f-icon col-xs-1 padd0 iconBorder height44">
+                                        <i class="fa fa-envelope login_padd13 font_size14" aria-hidden="true"></i>
+                                    </div>
+                                    <input id="user_email" placeholder="Email Id" type="text" class="iconized border_none col-xs-11 height44" ng-model="loginControllerScope.email" ng-keypress="loginControllerScope.keyPress($event.keyCode,'reset')" name="sendEmail" required>
+                                </div>
+                                <span class="text-danger hidden">Please enter email</span>
+                            </div>
+                            <p ng-if="loginControllerScope.sendPasswordForm.sendEmail.$touched && loginControllerScope.sendPasswordForm.sendEmail.$invalid" class="reqStar margin_topMinus10">Kindly Enter Valid Email</p>
+                            <p class="login-botttom-txt brandColor">Go Back To <span class="gotoReset resetPswBtn"><a href="#!login.html" class="gotoReset resetPswBtn text-left">Login</a></span></p>
+                            <div class="form-group clearfix">
+                                <button type="button" class="btn login_btn btn-social col-xs-12 sign-padding" ng-click="loginControllerScope.sendPassword()">Reset Password</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-xs-12">
+                    <div id="footerText" class="text-center">
+                        <div class="row-fluid brandColor">
+                            <p class="cursor_defaualt">&#169 2017 SphereSuite</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

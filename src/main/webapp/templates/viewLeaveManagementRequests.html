@@ -1,0 +1,93 @@
+<div class="loader_backdrop" ng-show="leaveManagementControllerScope.spinner || leaveManagementControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Leave Requests</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <div class="customDropDown col-lg-6 col-md-6 col-sm-6 col-xs-8 padd0 responsive_select">
+                                            <select name="status" class="select1 dropdown selectClass col-lg-4 col-md-4 col-sm-4 col-xs-12 text-left" ng-model="leaveManagementControllerScope.status">
+                                                <option value="" selected="selected">Select Status</option>
+                                                <option value="" >All</option>
+                                                <option value="a" >Approved</option>
+                                                <option value="p" >Pending</option>
+                                                <option value="o" >Re-Open</option>
+                                                <option value="r" >Rejected</option>
+                                            </select>
+                                        </div>
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-4 padd0 text-right">
+                                        	<button class="glyphicon glyphicon-export action_btn" ng-click="leaveManagementControllerScope.exportData()"></button>
+                                        </span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="leaveManagementControllerScope.search" ng-keyup="leaveManagementControllerScope.checkEmptyList()" placeholder="Search Here" class="margin_top20 width100 resp_fontSize">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="leaveManagementControllerScope.msg && leaveManagementControllerScope.msg != ''">
+                            <p class="text-center grey_text padding15 padding_top0">{{leaveManagementControllerScope.msg}}</p>
+                        </div>
+                        <div id="list-wrapper">
+                            <div infinite-scroll="leaveManagementControllerScope.addMoreItems()" infinite-scroll-container="'#list-wrapper'" infinite-scroll-parent="true">
+                                <div class="innerdivContainer red-icon create-employee border_bottom1" ng-repeat="leave in leaveManagementControllerScope.leaveManagementList | orderBy:'-id' | filter :  leaveManagementControllerScope.search | filter: {status : leaveManagementControllerScope.status} | limitTo : leaveManagementControllerScope.limitToShow">
+                                    <div class="row">
+                                        <div class="input_section">
+                                            <div class="col-lg-1 padd0 responsive_textCenter margin_bottom15 responsive_textCenter responsivemargin_top10">
+                                                <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="responsive_textCenter display_webkit">
+                                                <span class="anchor_text break-word capitalizeText" ng-click="leaveManagementControllerScope.goToView(leave.id)">{{leave.createdBy}}</span>
+                                                <span class="pipe_text" ng-if="leave.status!=''">|</span>
+                                                <span class="span_text capitalizeText color_white" ng-if="leave.status !=''">
+                                                	<span ng-if="leave.status == 'p'" class="label_warning">Pending</span>
+                                                	<span ng-if="leave.status == 'a'" class="label_success">Approved</span>
+                                                	<span ng-if="leave.status == 'o'" class="label_blue">Re-Open</span>
+                                                	<span ng-if="leave.status == 'r'" class="label_danger">Rejected</span>
+                                                </span>
+                                            </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Type</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leave.typeName}}</span></li>
+                                                            <li class="row" ng-if="leave.fromDate != '' && leave.leaveday == 'Multiple'">
+                                                                <label class="col-xs-6 padd0">From Date</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leave.fromDate}}</span></li>
+                                                            <li class="row" ng-if="leave.date != '' && leave.leaveday == 'Single'">
+                                                                <label class="col-xs-6 padd0">Date</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leave.date}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Request Details</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leave.desc}}</span></li>
+                                                           </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Request On</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leave.createdon}}</span></li>
+                                                            <li class="row" ng-if="leave.toDate != '' && leave.leaveday == 'Multiple'">
+                                                                <label class="col-xs-6 padd0">To Date</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leave.toDate}}</span></li>
+                                                            <!-- <li class="row" ng-if="leave.hours != ''">
+                                                                <label class="col-xs-6 padd0">Hours</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leave.hours}}</span></li> -->
+                                                           	<li class="row">
+                                                                <label class="col-xs-6 padd0">Leave Day</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leave.leaveday}}</span></li>
+                                                           </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

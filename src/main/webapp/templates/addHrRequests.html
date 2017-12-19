@@ -1,0 +1,48 @@
+<div class="loader_backdrop" ng-if="hrRequestControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer paddLft15"><span ng-if="!hrRequestControllerScope.isUpdate">New</span><span ng-if="hrRequestControllerScope.isUpdate">Update</span> HR Request</div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0 employee_placeholder">
+                    		<p class="reqStar text-center" ng-if="hrRequestControllerScope.msg && hrRequestControllerScope.msg != ''">{{hrRequestControllerScope.msg}}</p>
+                            <form class="form-horizontal formContainer employee_selectBox" name="hrRequestControllerScope.hrRequestForm">
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Request Type<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="type" ng-model="hrRequestControllerScope.hrRequest.type" required>
+                                                <option value="" ng-if="!hrRequestControllerScope.hrRequest.type || hrRequestControllerScope.hrRequest.type ==''">Select Request Type</option>
+                                                <option value="{{requestType.id}}" ng-repeat="requestType in hrRequestControllerScope.hrRequestTypeList | orderBy:'requestType'" ng-if="requestType.status == 'a'">{{requestType.requestType}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create-employee-inner">                                    
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Request Details<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <textarea name="desc" class="inputClass" ng-model="hrRequestControllerScope.hrRequest.desc" placeholder="Request Details" required></textarea>
+                                            <p ng-if="hrRequestControllerScope.hrRequestForm.desc.$invalid && hrRequestControllerScope.hrRequestForm.desc.$touched" class="reqStar">Kindly Enter Request Details</p>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6"></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <label class="btn btn-default btn-file">
+                                              	<input type="file" id="fileInput" name="files" ng-model="hrRequestControllerScope.hrRequest.files"><span class="padd_right5"><i class="fa fa-paperclip" aria-hidden="true"></i></span> Add Files
+                                              </label>
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns">
+                                        <button class="defaultBtn btn" type="button" ng-click="hrRequestControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn btn" type="button" ng-click="hrRequestControllerScope.createHrRequest()" ng-disabled="hrRequestControllerScope.hrRequestForm.$invalid" ng-if="!hrRequestControllerScope.isUpdate">Save</button>
+                                        <button class="activeBtn btn" type="button" ng-click="hrRequestControllerScope.editHrRequest()" ng-disabled="hrRequestControllerScope.hrRequestForm.$invalid" ng-if="hrRequestControllerScope.isUpdate">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           

@@ -1,0 +1,577 @@
+<div class="loader_backdrop" ng-if="leadControllerScope.spinner || leadControllerScope.viewSpinner">
+    <div class="loader loader_position"></div>
+</div>
+   <div class="rightContainer">
+                    <div class="pageTitleParent">
+                       
+                        <div class="row pageTitletextContainer">
+                    	<div class="col-xs-12 padd0">
+                        	<span class="cursor_pointer back_iconPosition" ng-click="leadControllerScope.goToViewLeads()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+                        	<span class="page_titlePosition">{{leadControllerScope.subMenu}} Details</span>
+                        </div>
+                    	
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee">
+                           
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="row">
+                                        <div class="margin_bottom100 col-lg-8 col-md-8 col-sm-12 col-sm-12 padd0 res-margin-bottom15">
+                                            <ul class="nav nav-tabs borderNone border_top1">
+                                                <li class="active lineHeight37" ng-click="leadControllerScope.switchTab()"><a data-toggle="tab" ng-href="{{leadControllerScope.uri}}/view/#home"><i
+														class="fa fa-pencil-square-o padd_right5"
+														aria-hidden="true"></i>Note</a></li>
+                                                <li class="lineHeight37" ng-click="leadControllerScope.switchTab()"><a data-toggle="tab" ng-href="{{leadControllerScope.uri}}/view/#menu5"><i
+														class="fa fa-envelope padd_right5 emailIconColor"
+														aria-hidden="true"></i>Email</a></li>
+                                                <li class="lineHeight37" ng-click="leadControllerScope.switchTab()"><a data-toggle="tab" ng-href="{{leadControllerScope.uri}}/view/#menu2"> <i
+														class="fa fa-plus padd_right5" 
+														aria-hidden="true"></i>Log Activity</a></li>
+                                                <li class="lineHeight37" ng-click="leadControllerScope.switchTab()"><a data-toggle="tab" ng-href="{{leadControllerScope.uri}}/view/#menu3"> <i
+														class="fa fa-tasks padd_right5" 
+														aria-hidden="true"></i>Task</a></li>
+                                                <li class="lineHeight37" ng-click="leadControllerScope.switchTab()"><a data-toggle="tab" ng-href="{{leadControllerScope.uri}}/view/#menu4"><i
+														class="fa fa-calendar padd_right5" 
+														aria-hidden="true"></i>Calendar</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div id="home" class="tab-pane fade in active">
+                                                    <div class="width100 height300">
+                                                        <div class="lead_margin20">
+                                                            <form name="leadControllerScope.noteForm">
+                                                                <textarea name="body" class="width100 border_none heigth270" ng-model="leadControllerScope.note.body" placeholder="Content Goes Here.....*" required></textarea>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab_btns">
+                                                        <button class="defaultBtn btn" type="button" ng-click="leadControllerScope.declineNote()">Decline</button>
+                                                        <button class="activeBtn btn" type="button" ng-click="leadControllerScope.addNote()" ng-disabled="leadControllerScope.noteForm.$invalid">Save</button>
+                                                    </div>
+                                                    <div class="upcoming_section">
+                                                        <div ng-repeat="note in leadControllerScope.noteList | orderBy:'-id'" class="notes_oddEvenBackground">
+                                                            <p class="margin0">"{{note.notes}}"</p>
+                                                            <i>
+																<p class="margin0 padding_top10 created_text capitalizeText">
+																	{{note.updatedBy}} <span class="pipe_text">|</span>{{note.updatedon}}
+																</p>
+															</i>
+                                                        </div>
+                                                        <p class="modelText clearBoth" ng-if="!leadControllerScope.noteList || leadControllerScope.noteList.length == 0">Notes Not Available</p>
+                                                    </div>
+                                                </div>
+                                                <div id="menu5" class="tab-pane fade">
+                                                    <div class="width100 height300 height430">
+                                                        <div class="">
+                                                            <form name="leadControllerScope.emailForm">
+                                                                <div class="form-group row">
+                                                                    <label class="control-label col-sm-12 col-md-2 lineHeight28 margin0">From</label>
+                                                                    <div class="col-sm-12 col-md-10 pad-right-0 mob-pad-right-15">
+                                                                        <input type="text" name="from" class="col-md-9 width100 lead_borderBottom1 read_only" ng-model="leadControllerScope.email.from" placeholder="From*" ng-value="leadControllerScope.lead.email" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="control-label col-sm-12 col-md-2 lineHeight28 margin0">To</label>
+                                                                    <div class="col-sm-12 col-md-10 pad-right-0 mob-pad-right-15">
+                                                                        <input type="text" name="to" class="width100 lead_borderBottom1" email-validator ng-model="leadControllerScope.email.to" placeholder="To*">
+                                                                        <p ng-if="leadControllerScope.emailForm.to.$invalid && leadControllerScope.emailForm.to.$touched" class="reqStar">Kindly Enter Valid Email</p>
+                                                                        <span class="cc_text cursor_pointer" ng-if="!leadControllerScope.isCc" ng-click="leadControllerScope.toggleCc()">Cc</span> <span class="bcc_text cursor_pointer" ng-if="!leadControllerScope.isBcc" ng-click="leadControllerScope.toggleBcc()">Bcc</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row" ng-if="leadControllerScope.isCc">
+                                                                    <label class="control-label col-sm-12 col-md-2 lineHeight28 margin0">Cc</label>
+                                                                    <div class="col-sm-12 col-md-10 pad-right-0 mob-pad-right-15">
+                                                                        <input type="text" name="cc" class="col-md-9 width100 lead_borderBottom1" multipleEmail ng-model="leadControllerScope.email.cc" placeholder="Cc">
+                                                                        <p ng-if="leadControllerScope.emailForm.cc.$invalid && leadControllerScope.emailForm.cc.$touched" class="reqStar">Kindly Enter Valid Email</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row" ng-if="leadControllerScope.isBcc">
+                                                                    <label class="control-label col-sm-12 col-md-2 lineHeight28 margin0">Bcc</label>
+                                                                    <div class="col-sm-12 col-md-10 pad-right-0 mob-pad-right-15">
+                                                                        <input type="text" name="bcc" class="col-md-9 width100 lead_borderBottom1" multipleEmail ng-model="leadControllerScope.email.bcc" placeholder="Bcc">
+                                                                        <p ng-if="leadControllerScope.emailForm.bcc.$invalid && leadControllerScope.emailForm.bcc.$touched" class="reqStar">Kindly Enter Valid Email</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label class="control-label col-sm-12 col-md-2  lineHeight28 margin0">Subject</label>
+                                                                    <div class="col-sm-12 col-md-10 pad-right-0 mob-pad-right-15">
+                                                                        <input type="text" name="subject" class="width100 lead_borderBottom1" ng-model="leadControllerScope.email.subject" placeholder="Subject">
+                                                                    </div>
+                                                                </div>
+                                                                <textarea class="width100 border_none heigth150 padding_left15" ng-model="leadControllerScope.email.body" placeholder="Content Goes Here....."></textarea>
+                                                                <p ng-repeat="f in leadControllerScope.email.file | orderBy:'name'" style="font: smaller">{{f.name}}</p>
+                                                                <div class="attachment_icons">
+                                                                    <span><i class="fa fa-paperclip cursor_pointer"
+																		aria-hidden="true" ngf-select
+																		ng-model="leadControllerScope.email.file" multiple></i></span>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab_btns">
+                                                        <button class="defaultBtn btn" type="button" ng-click="leadControllerScope.declineEmail()">Decline</button>
+                                                        <button class="activeBtn btn" type="button" ng-click="leadControllerScope.sendEmail()">Send</button>
+                                                    </div>
+                                                    <div class="upcoming_section">
+                                                        <div ng-repeat="email in leadControllerScope.emailList |orderBy:'-id'" class="notes_oddEvenBackground">
+                                                            <label class="margin0" ng-if="email.subject!=''">Sub : </label>
+                                                            <p class="margin0 pad-tb5-lr10 break-word" ng-if="email.subject!=''">"{{email.subject}}"</p>
+                                                            <label class="margin0" ng-if="email.content!=''">Message : </label>
+                                                            <p class="margin0 pad-tb5-lr10" ng-if="email.content!=''">
+                                                                "<span ng-bind-html="email.content" class="emailTemplate  break-word"></span>"
+                                                            </p>
+                                                            <label class="margin0" ng-if="email.attachFile!=''">Attachment : </label>
+                                                            <p class="margin0 pad-tb5-lr10" ng-if="email.attachFile!=''">
+                                                                "<a ng-href='{{leadControllerScope.emailLink}}{"id":"{{email.id}}"}' target="_blank" ng-if="email.attachFile!=''">{{email.attachFile}}</a>""
+                                                            </p>
+                                                            <i><p class="margin0 padding_top10 created_text">
+																	{{email.address}}<span class="pipe_text"
+																		ng-if="email.address!=''"> | </span>{{email.updatedon}}
+																</p></i>
+                                                        </div>
+                                                        <p class="modelText clearBoth" ng-if="!leadControllerScope.emailList || leadControllerScope.emailList == 0">Emails Not Available</p>
+                                                    </div>
+                                                </div>
+                                                <div id="menu2" class="tab-pane fade">
+                                                    <div class="width100 height300">
+                                                        <div class="lead_margin20">
+                                                            <form name="leadControllerScope.logActivityForm">
+                                                                <div class="">
+                                                                    <div class="col-sm-3 col-md-3 col-lg-3 pad-right-0 mob-pad-right-15 paddingLft0 resRightPadding0">
+                                                                        <div class="customDropDown lead_dropdown">
+                                                                            <select name="type" id="logActivityLogType" class="dropdown inputClass width100 stateoptions shadow" ng-model="leadControllerScope.logActivity.type" required>
+                                                                                <option value="" selected="selected">Log Type*</option>
+                                                                                <option value="Log A Call">Log A Call</option>
+                                                                                <option value="Email">Log An Email</option>
+                                                                                <option value="Meeting">Log A Meeting</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3 col-md-3 col-lg-3 pad-right-0 mob-pad-right-15 responsive_margin10 paddingLft0 resRightPadding0">
+                                                                    <div class="customDropDown lead_dropdown">
+                                                                        <select name="status" id="logActivityLogStatus" class="dropdown inputClass width100 stateoptions shadow" ng-model="leadControllerScope.logActivity.status" required>
+                                                                            <option value="" selected="selected">Log Status*</option>
+                                                                            <option value="Busy">Busy</option>
+                                                                            <option value="No Answer">No Answer</option>
+                                                                            <option value="Connected">Connected</option>
+                                                                            <option value="Wrong Number">Wrong Number</option>
+                                                                            <option value="Left Message">Left Message</option>
+                                                                            <option value="Left Voice Message">Left Voice Message</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12 pad-right-0 mob-pad-right-15 paddingLft0  responsive_margin10 pos-rel resRightPadding0">
+                                                                    <div moment-picker="leadControllerScope.logActivity.date" format="{{leadControllerScope.format}}" start-view="day" class="display_flex margin_leftMinus9 ">
+                                                                        <i class="fa fa-calendar from_calender sales-calen cursor_pointer padding-8 respMargin leadCalAlign" aria-hidden="true"></i>
+                                                                        <input name="date" ng-model="leadControllerScope.logActivity.date" autoclose="true" keyboard="true" set-on-select="true" class="padding-8 cursor_pointer width100 shadow" placeholder="Jan 01, 2017*" required readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-3 col-md-2 col-lg-3 col-xs-12 pad-right-0 mob-pad-right-15 paddingRght0 paddingLft0 responsive_margin10 resRightPadding0 display_flex">
+                                                                	 <div class="customDropDown lead_dropdown width35p respwidth50p">
+                                                                        <select name="hour" id="logActivityHour" class="dropdown inputClass width100 stateoptions shadow" ng-model="leadControllerScope.logActivity.hour" required>
+                                                                            <option value="" selected="selected" >HH*</option>
+                                                                             <option value="{{hour}}" ng-repeat="hour in leadControllerScope.hour">{{hour}}</option>
+                                            							</select>
+                                                                    </div>
+                                                                    <div class="customDropDown lead_dropdown width35p respwidth50p">
+                                                                        <select name="min" id="logActivityMin" class="dropdown inputClass width100 stateoptions shadow" ng-model="leadControllerScope.logActivity.min" required>
+                                                                            <option value="" selected="selected" >MM*</option>
+                                                                             <option value="{{min}}" ng-repeat="min in leadControllerScope.min">{{min}}</option>
+                                            							</select>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- <div class="col-sm-1 col-md-1 col-lg-1 col-xs-12 pad-right-0 mob-pad-right-15 paddingRght0 paddingLft0  responsive_margin10 resRightPadding0">
+                                                                	 <
+                                                                </div> -->
+                                                                <!-- <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12 pad-right-0 mob-pad-right-15 paddingRght0 paddingLft0  responsive_margin10 resRightPadding0">
+                                                                    <span class="display_flex"> <i
+																		class="fa fa-clock-o small_calender leadTimeAlign"
+																		aria-hidden="true"></i> <input type="text"
+																		id="datetimepicker3"
+																		class="timepicker  cursor_pointer reswidth100 width100 shadow" name="time"
+																		ng-model="leadControllerScope.logActivity.time"
+																		placeholder="13:00*" required />
+																	</span>
+                                                                </div> -->
+                                                                <textarea class="width100 border_none heigth240 padding15" name="body" ng-model="leadControllerScope.logActivity.body" placeholder="Content Goes Here.....*" required></textarea>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab_btns">
+                                                        <button class="defaultBtn btn" type="button" ng-click="leadControllerScope.declineLogActivity()">Decline</button>
+                                                        <button class="activeBtn btn" type="button" ng-click="leadControllerScope.addLogActivity()" ng-disabled="leadControllerScope.logActivityForm.$invalid">Save</button>
+                                                    </div>
+                                                    <div class="upcoming_section">
+                                                        <div ng-repeat="log in leadControllerScope.logActivityList |orderBy:'-id'" class="notes_oddEvenBackground">
+                                                            <label class="margin0">Log Type : </label>
+                                                            <p class="margin0 log_activityText">"{{log.type}}"</p>
+                                                            <label class="margin0">Log Status : </label>
+                                                            <p class="margin0 log_activityText">"{{log.status}}"</p>
+                                                            <label class="margin0">Date : </label>
+                                                            <p class="margin0 log_activityText">"{{log.date | date:'MMM dd, yyyy'}}"</p>
+                                                            <label class="margin0">Time : </label>
+                                                            <p class="margin0 log_activityText">"{{log.time}}"</p>
+                                                            <label class="margin0">Body : </label>
+                                                            <p class="margin0 log_activityText break-word">"{{log.body}}"</p>
+                                                            <i>
+																<p class="margin0 padding_top10 created_text capitalizeText">
+																	{{log.updatedBy}} <span class="pipe_text">|</span>{{log.updatedon}}
+																</p>
+															</i>
+                                                        </div>
+                                                        <p class="modelText clearBoth" ng-if="!leadControllerScope.logActivityList || leadControllerScope.logActivityList.length == 0">Log Activity Not Available</p>
+                                                    </div>
+                                                </div>
+                                                <div id="menu3" class="tab-pane fade">
+                                                    <div class="width100 height300">
+                                                        <div class="lead_margin20">
+                                                            <form name="leadControllerScope.taskForm">
+                                                                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12 pad-right-0 mob-pad-right-15 paddingLft0 pos-rel resRightPadding0">
+                                                                    <div moment-picker="leadControllerScope.task.date" format="{{leadControllerScope.format}}" start-view="day" class="display_flex margin_leftMinus9 ">
+                                                                        <i class="fa fa-calendar from_calender sales-calen cursor_pointer padding-8 leadCalAlign respMargin" aria-hidden="true"></i>
+                                                                        <input name="date" ng-model="leadControllerScope.task.date" autoclose="true" keyboard="true" set-on-select="true" class="padding-8 cursor_pointer width100 shadow" placeholder="Jan 01, 2017*" required readonly>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                
+                                                                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12 pad-right-0 mob-pad-right-15 paddingLft0 paddingRght0  responsivemargin_top10 resRightPadding0 display_flex">
+                                                                	<div class="customDropDown lead_dropdown width35p respwidth50p">
+                                                                        <select name="hour" id="taskHour" class="select1 dropdown inputClass width100 stateoptions shadow" ng-model="leadControllerScope.task.hour" required>
+                                                                            <option value="" selected="selected" >HH*</option>
+                                                                             <option value="{{hour}}" ng-repeat="hour in leadControllerScope.hour">{{hour}}</option>
+                                            							</select>
+                                                                    </div>
+                                                                    <div class="customDropDown lead_dropdown width35p respwidth50p">
+                                                                        <select name="min" id="taskMin" class="select1 dropdown inputClass width100 stateoptions shadow" ng-model="leadControllerScope.task.min" required>
+                                                                            <option value="" selected="selected" >MM*</option>
+                                                                             <option value="{{min}}" ng-repeat="min in leadControllerScope.min">{{min}}</option>
+                                            							</select>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <!-- <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12 pad-right-0 mob-pad-right-15 paddingLft0 paddingRght0 responsivemargin_top10 resRightPadding0">
+                                                                    <span class="display_flex"> <i
+																		class="fa fa-clock-o small_calender leadTimeAlign "
+																		aria-hidden="true"></i> <input id="datetimepicker5"
+																		ng-pattern="/^[0-9][0-9]:[0-9][0-9]/" name="time"
+																		type="text" class="timepicker cursor_pointer reswidth100 width100 shadow"
+																		ng-model="leadControllerScope.task.time"
+																		placeholder="13:00*" required />
+                                                                    </span>
+                                                                </div> -->
+                                                                <textarea name="taskDetail" class="width100 border_none heigth240 padding15" ng-model="leadControllerScope.task.taskDetail" placeholder="Content Goes Here.....*" required></textarea>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab_btns">
+                                                        <button class="defaultBtn btn" type="button" ng-click="leadControllerScope.declineTask()">Decline</button>
+                                                        <button class="activeBtn btn" type="button" ng-click="leadControllerScope.addTask()" ng-disabled="leadControllerScope.taskForm.$invalid">Save</button>
+                                                    </div>
+                                                    <div class="upcoming_section">
+                                                        <div ng-repeat="task in leadControllerScope.taskList |orderBy:'-id'" class="notes_oddEvenBackground row">
+                                                        <div class="col-lg-10 col-sm-10 col-xs-9">
+                                                            <label class="margin0">Date : </label>
+                                                            <p class="margin0 log_activityText">"{{task.date | date :'MMM dd, yyyy'}}"</p>
+                                                            <label class="margin0">Time : </label>
+                                                            <p class="margin0 log_activityText">"{{task.time | date :'hh:mm a'}}"</p>
+                                                            <label class="margin0">Task : </label>
+                                                            <p class="margin0 log_activityText break-word">"{{task.taskDetail}}"</p>
+                                                            <i>
+																<p class="margin0 padding_top10 created_text capitalizeText">
+																	{{task.updatedBy}} <span class="pipe_text">|</span>{{task.updatedon}}
+																</p>
+															</i>
+														</div>
+														<div class="col-lg-2 col-sm-2 col-xs-3 margin10vh">
+                                                            <div class="lead_checkbox">
+                                                                <input
+                                                                    ng-click="leadControllerScope.updateTaskStatus(task.id, task.leadId)"
+                                                                    type="checkbox" class="parentCheckBox"
+                                                                    ng-class="{'checked':task.status=='D'}" ng-checked="task.status=='D'"
+                                                                    ng-disabled="task.status=='D'"> <label
+                                                                    class="text_indent0">Done</label>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                        <p class="modelText clearBoth" ng-if="!leadControllerScope.taskList || leadControllerScope.taskList.length == 0">Tasks Not Available</p>
+                                                    </div>
+                                                </div>
+                                                <div id="menu4" class="tab-pane fade">
+                                                    <div class="width100 height300">
+                                                        <div class="lead_margin20">
+                                                            <form name="leadControllerScope.scheduleForm">
+                                                                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12 pad-right-0 mob-pad-right-15 paddingLft0 pos-rel resRightPadding0">
+                                                                    <div class="display_flex margin_leftMinus9 " moment-picker="leadControllerScope.schedule.date" format="{{leadControllerScope.format}}" start-view="day">
+                                                                        <i class="fa fa-calendar from_calender sales-calen cursor_pointer padding-8 leadCalAlign respMargin" aria-hidden="true"></i>
+                                                                        <input  name="date" ng-model="leadControllerScope.schedule.date" autoclose="true" keyboard="true" set-on-select="true" class="padding-8 shadow cursor_pointer width100" placeholder="Jan 01, 2017*" required readonly>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12 pad-right-0 mob-pad-right-15 paddingLft0 paddingRght0  responsivemargin_top10 resRightPadding0  display_flex">
+                                                                	<div class="customDropDown lead_dropdown width35p respwidth50p">
+                                                                        <select name="hour" id="scheduleHour" class="select1 dropdown inputClass width100 stateoptions shadow" ng-model="leadControllerScope.schedule.hour" required>
+                                                                            <option value="" selected="selected" >HH*</option>
+                                                                             <option value="{{hour}}" ng-repeat="hour in leadControllerScope.hour">{{hour}}</option>
+                                            							</select>
+                                                                    </div>
+                                                                    <div class="customDropDown lead_dropdown width35p respwidth50p">
+                                                                        <select name="min" id="scheduleMin" class="select1 dropdown inputClass width100 stateoptions shadow" ng-model="leadControllerScope.schedule.min" required>
+                                                                            <option value="" selected="selected" >MM*</option>
+                                                                             <option value="{{min}}" ng-repeat="min in leadControllerScope.min">{{min}}</option>
+                                            							</select>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- <div class="col-sm-3 col-md-3 col-lg-3 col-xs-12 pad-right-0 mob-pad-right-15 paddingLft0 paddingRght0  responsivemargin_top10 resRightPadding0">
+                                                                    <div class="display_flex"> <i
+																		class="fa fa-clock-o small_calender leadTimeAlign "
+																		aria-hidden="true"></i> <input 
+																		type="text" class="timepicker shadow cursor_pointer reswidth100 width100"
+																		name="time" id="datetimepicker7"
+																		ng-model="leadControllerScope.schedule.time"
+																		placeholder="13:00*" required />
+																	</div>
+                                                                </div> -->
+                                                                <input type="text" class="width100 lead_borderBottom1 task_input" name="subject" ng-model="leadControllerScope.schedule.subject" placeholder="What Your Meeting About?*" required>
+                                                                <p ng-if="leadControllerScope.scheduleForm.subject.$touched && leadControllerScope.scheduleForm.subject.$invalid" class="reqStar padd0 margin0">Kindly Enter About Your Meeting</p>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd0">
+                                                                        <textarea class="width100 border_none heigth205 shadow" name="body" ng-model="leadControllerScope.schedule.body" placeholder="Content Goes Here....."></textarea>
+                                                                    </div>
+                                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd0">
+                                                                        <div class="padd20 calendar_email">
+                                                                            <p class="margin0 font_size13">Attendees</p>
+                                                                            <input type="email" class="padding5 border selectWidth" name="email" ng-model="leadControllerScope.email" ng-pattern='/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i' ng-keyup="leadControllerScope.isPresent=false" placeholder="Add Attendee*">
+                                                                            <button type="button" class="defaultBtn btn" ng-click="leadControllerScope.addAttendee(leadControllerScope.email)" ng-disabled="leadControllerScope.scheduleForm.email.$invalid || !leadControllerScope.email || leadControllerScope.email == ''">
+                                                                                <i class="fa fa-plus" aria-hidden="true"></i> Add
+                                                                            </button>
+                                                                            <p ng-if="leadControllerScope.scheduleForm.email.$error.pattern && leadControllerScope.scheduleForm.email.$invalid && leadControllerScope.scheduleForm.email.$touched" class="reqStar">Kindly Enter Valid Email</p>
+                                                                            <p ng-if="leadControllerScope.isPresent" class="reqStar">Attendee Already Present</p>
+                                                                            <p class="margin0 font_size13">Participants</p>
+                                                                            <h4 class="" ng-repeat="contact in leadControllerScope.schedule.contactList | orderBy:''">
+																				<span class="padding10 font_size11">{{contact}}</span>
+																			</h4>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab_btns">
+                                                        <button class="defaultBtn btn" type="button" ng-click="leadControllerScope.declineSchedule()">Decline</button>
+                                                        <button class="activeBtn btn" type="button" ng-click="leadControllerScope.addSchedule()" ng-disabled="leadControllerScope.scheduleForm.$invalid || !leadControllerScope.schedule.contactList || leadControllerScope.schedule.contactList.length==0">Save</button>
+                                                    </div>
+                                                    <div class="upcoming_section">
+                                                        <div ng-repeat="schedule in leadControllerScope.scheduleList | orderBy:'-id'" class="notes_oddEvenBackground">
+                                                            <label class="margin0">Subject : </label>
+                                                            <p class="margin0 log_activityText">"{{schedule.desc}}"</p>
+                                                            <label class="margin0">Date : </label>
+                                                            <p class="margin0 log_activityText">"{{schedule.date | date :'MMM dd,yyyy'}}"</p>
+                                                            <label class="margin0">Time : </label>
+                                                            <p class="margin0 log_activityText">"{{schedule.time | date :'hh:mm a'}}"</p>
+                                                            <label class="margin0">Body : </label>
+                                                            <p class="margin0 log_activityText break-word">"{{schedule.body}}"</p>
+                                                            <label class="margin0">Attendees : </label>
+                                                            <p class="margin0 log_activityText break-word">"{{schedule.contactList}}"</p>
+                                                            <i>
+																<p class="margin0 padding_top10 created_text capitalizeText">
+																	{{schedule.updatedBy}} <span class="pipe_text">|</span>{{schedule.updatedon}}
+																</p>
+															</i>
+                                                        </div>
+                                                        <p class="modelText clearBoth" ng-if="!leadControllerScope.scheduleList || leadControllerScope.scheduleList.length == 0">Calendars Not Available</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="margin_bottom100 col-lg-4 col-md-4 col-sm-12 col-sm-12 responsive_padding0">
+                                            <div class="lead_rightBorder">
+                                                <div class="row">
+                                                    <div class="col-xs-12 padd0 responsive_textCenter text-center">
+                                                        <img ng-src="{{leadControllerScope.lead.photo}}" class="img-60x60" ng-if="leadControllerScope.lead.photo">
+                                            <i class="fa fa-building-o img-60x60 img-views responsivemargin_top10 margin0" aria-hidden="true" ng-if="!leadControllerScope.lead.photo"></i>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="responsive_textCenter text-center lead_padd10">
+                                                        <span class="anchor_text padd0 cursor_default break-word capitalizeText">{{leadControllerScope.lead.name}}</span>
+                                                        <span class="pipe_text" ng-if="leadControllerScope.lead.leadTypeName != ''">|</span>
+                                                        <span class="span_text capitalizeText label_gray" ng-class="{'label_warning white' :leadControllerScope.lead.leadTypeName == 'Warm' || leadControllerScope.lead.leadTypeName == 'warm','label_success white' :leadControllerScope.lead.leadTypeName == 'Hot' || leadControllerScope.lead.leadTypeName == 'hot','label_blue white' :leadControllerScope.lead.leadTypeName == 'Cold' || leadControllerScope.lead.leadTypeName == 'cold'}" ng-if="leadControllerScope.lead.leadTypeName != ''">{{leadControllerScope.lead.leadTypeName}}</span>
+                                                    </div>
+                                                    <div class="col-xs-12">
+                                                        <div class="row text-left">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+                                                                <ul class="padd0 left_text">
+                                                                    <li ng-if="leadControllerScope.lead.name !== ''">Name</li>
+                                                                    <li ng-if="leadControllerScope.lead.name !== ''" class="font_weight600 PADDLEFT9 break-word capitalizeText">{{leadControllerScope.lead.name}}</li>
+                                                                    <li ng-if="leadControllerScope.lead.leadTypeName !== ''" >Type</li>
+                                                                    <li ng-if="leadControllerScope.lead.leadTypeName !== ''" class="font_weight600 PADDLEFT9 break-word capitalizeText">{{leadControllerScope.lead.leadTypeName}}</li>
+                                                                    <li ng-if="leadControllerScope.lead.statusName !== ''" >Status</li>
+                                                                    <li ng-if="leadControllerScope.lead.statusName !== ''" class="font_weight600 PADDLEFT9 break-word capitalizeText">{{leadControllerScope.lead.statusName}}</li>
+                                                                    <li ng-if="leadControllerScope.lead.source !== ''" >Source</li>
+                                                                    <li ng-if="leadControllerScope.lead.source !== ''" class="font_weight600 PADDLEFT9 break-word capitalizeText">{{leadControllerScope.lead.source}}</li>
+                                                                    <li ng-if="leadControllerScope.lead.industryName !== ''" >Industry</li>
+                                                                    <li ng-if="leadControllerScope.lead.industryName !== ''" class="font_weight600 PADDLEFT9 break-word capitalizeText">{{leadControllerScope.lead.industryName}}</li>
+                                                                    <li ng-if="leadControllerScope.lead.mobile !== ''">Mobile</li>
+                                                                    <li ng-if="leadControllerScope.lead.mobile !== ''" class="font_weight600 PADDLEFT9 break-word">{{leadControllerScope.lead.mobile}}</li>
+                                                                    <li ng-if="leadControllerScope.lead.phone !== ''">Phone</li>
+                                                                    <li ng-if="leadControllerScope.lead.phone !== ''" class="font_weight600 PADDLEFT9 break-word">{{leadControllerScope.lead.phone}}</li>
+                                                                    <li ng-if="leadControllerScope.lead.email !== ''">Email</li>
+                                                                    <li ng-if="leadControllerScope.lead.email !== ''" class="font_weight600 PADDLEFT9 break-word">{{leadControllerScope.lead.email}}</li>
+                                                                    <li ng-if="leadControllerScope.lead.address !== ''">Address</li>
+                                                                    <li ng-if="leadControllerScope.lead.address !== ''" class="font_weight600 PADDLEFT9 break-word">{{leadControllerScope.lead.address}}</li>
+                                                                    <li ng-if="leadControllerScope.lead.comment !== ''">Comments</li>
+                                                                    <li ng-if="leadControllerScope.lead.comment !== ''" class="font_weight600 PADDLEFT9 break-word">{{leadControllerScope.lead.comment}}</li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center col-lg-12 col-md-12 col-xs-12 col-sm-12 responsiveflex responsive_textCenter responsivemargin_top10 margin_bottom15">
+                                                        <button class="defaultBtn btn respmarginRight" type="button" ng-class="leadControllerScope.subMenu != 'Lead'?'activeBtn btn':''" ng-click="leadControllerScope.goToEditLead(leadControllerScope.lead.id)">Edit</button>
+                                                        <button class="activeBtn btn" type="button" data-toggle="modal" data-target="#convertAsCustomer" ng-if="leadControllerScope.subMenu == 'Lead'" ng-click="leadControllerScope.convertAsCustomer()">Convert As Customer</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                    	<div class="opportunity_rightBorder">
+                                    	<h2 class="h2_text">Contact</h2>
+                                            <div class="panel-group" id="accordion">
+                                                <div class="panel panel-default position_relative" ng-repeat="contact in leadControllerScope.leadContactList | orderBy:'-id'">
+                                                    <div class="panel-heading padd0 display_table" ng-click="leadControllerScope.arrowRotate(this)">
+                                                        <h4 class="panel-title break-word">
+															<a data-toggle="collapse" href="javascript:void(0);"
+																data-parent="#accordion" data-target="#click{{$index}}" class="capitalizeText">{{contact.salutationName}}
+																{{contact.firstName}} {{contact.middleName}}
+																{{contact.lastName}}</a>
+														</h4>
+                                                        <span class="display_tableCell leadIcon_position" data-toggle="collapse" href="javascript:void(0);" data-parent="#accordion" data-target="#click{{$index}}"><i
+															class="fa fa-angle-right ng-scope cursor_pointer lead_rightArrow"
+															aria-hidden="true"
+															ng-class="arrowPosition? 'icon-rotate': ''"></i></span>
+                                                    </div>
+                                                    <div id="click{{$index}}" class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            <div class="col-xs-12">
+                                                                <div class="row text-left">
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+                                                                        <ul class="padd0 left_text">
+                                                                            <li>Designation</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word capitalizeText">{{contact.designation}}</li>
+                                                                            <li>Contact Type</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word capitalizeText">{{contact.contactTypeName}}</li>
+                                                                            <li>Primary Email</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{contact.primaryEmail}}</li>
+                                                                            <li>Secondary Email</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{contact.secondaryEmail}}</li>
+                                                                            <li>Primary Mailing Address</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{contact.address1}}</li>
+                                                                            <li>Secondary Mailing Address</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{contact.address2}}</li>
+                                                                            <li>Mobile</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{contact.mobile}}
+                                                                                <span class="pipe_text" ng-if="contact.mobile2 !=''">|</span> {{contact.mobile2}}
+                                                                            </li>
+                                                                            <li>Phone</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{contact.phone}}
+                                                                                <span class="pipe_text" ng-if="contact.phone1 !=''">|</span> {{contact.phone1}} <span class="pipe_text" ng-if="contact.phone2 !=''">|</span> {{contact.phone2}} <span class="pipe_text" ng-if="contact.phone3 !=''">|</span> {{contact.phone3}}
+                                                                            </li>
+                                                                            <li>Fax Number</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{contact.fax}}</li>
+                                                                            <li>Website</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{contact.website}}</li>
+                                                                            <li>Requirements</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{contact.requirement}}</li>
+                                                                            <li>Notes</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{contact.note}}</li>
+                                                                            <li>Comments</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{contact.comment}}</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="text-center col-lg-12 col-md-12 col-xs-12 col-sm-12 responsiveflex responsive_textCenter responsivemargin_top10 margin_bottom15">
+                                                        <button class="defaultBtn btn respmarginRight" type="button"  ng-click="leadControllerScope.goToEditContact(contact.id)">Edit</button> 
+                                                    </div> 
+                                                    </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            </div>
+                                            <br>
+                                    	<div class="opportunity_rightBorder">
+                                    	<h2 class="h2_text">Opportunity</h2>
+                                                   <div class="panel-group" id="accordion1">
+                                                <div class="panel panel-default position_relative" ng-repeat="oppertunity in leadControllerScope.OppertunityList | orderBy:'-id'">
+                                                    <div class="panel-heading padd0 display_table" ng-click="leadControllerScope.arrowRotate(this)">
+                                                        <h4 class="panel-title break-word">
+															<a data-toggle="collapse" href="javascript:void(0);"
+																data-parent="#accordion1" data-target="#click{{$index}}o" class="capitalizeText">{{oppertunity.projectName}}</a>
+														</h4>
+                                                        <span class="display_tableCell leadIcon_position" data-toggle="collapse" href="javascript:void(0);" data-parent="#accordion1" data-target="#click{{$index}}"><i
+															class="fa fa-angle-right ng-scope cursor_pointer lead_rightArrow"
+															aria-hidden="true"
+															ng-class="arrowPosition? 'icon-rotate': ''"></i></span>
+                                                    </div>
+                                                    <div id="click{{$index}}o" class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            <div class="col-xs-12">
+                                                                <div class="row text-left">
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+                                                                        <ul class="padd0 left_text">
+                                                                            <li>Display Name</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word capitalizeText">{{oppertunity.displayName}}</li>
+                                                                            <li>Start date</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word capitalizeText">{{oppertunity.startDate}}</li>
+                                                                            <li>End Date</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{oppertunity.enddate}}</li>
+                                                                            <li>Opportunity Duration</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{oppertunity.projectDuration}}</li>
+                                                                            <li>Opportunity Type Name</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{oppertunity.projectTypeName}}</li>
+                                                                            <li>Sales Stage Name</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{oppertunity.salesStageName}}</li>
+                                                                            <li>Amount</li>
+                                                                            <li class="font_weight600 PADDLEFT9 break-word">{{oppertunity.cost}}</li>
+                                                                              </ul>
+                                                                    </div>
+                                                                </div>
+                                                                 <div class="text-center col-lg-12 col-md-12 col-xs-12 col-sm-12 responsiveflex responsive_textCenter responsivemargin_top10 margin_bottom15">
+                                                        <button class="defaultBtn btn respmarginRight" type="button"  ng-click="leadControllerScope.goToEditOpportunity(oppertunity.id)">Edit</button> 
+                                                    </div> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div> 
+                                            <div id="convertAsCustomer" class="modal fade" role="dialog">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close white opacity1px" data-dismiss="modal"></button>
+                                                            <h4 class="modal-title">Convert As Customer</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form name="leadControllerScope.convertAsCustomerForm">
+                                                                <div class="modal-body">
+                                                                    <textarea name="comment" ng-model="leadControllerScope.convertAsCustomer.comment" class="inputClass width100" placeholder="Comments &#42;" required></textarea>
+                                                                    <p ng-show="leadControllerScope.convertAsCustomerForm.comment.$invalid && leadControllerScope.convertAsCustomerForm.comment.$touched" class="reqStar">Kindly Enter Comments</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="defaultBtn btn" ng-click="leadControllerScope.declineConvertCustomer()" data-dismiss="modal">Decline</button>
+                                                                    <button type="button" class="activeBtn btn" ng-click="leadControllerScope.convertCustomer()" ng-disabled="leadControllerScope.convertAsCustomerForm.$invalid">Convert As Customer</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            

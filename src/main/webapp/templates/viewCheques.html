@@ -1,0 +1,80 @@
+<div class="loader_backdrop" ng-if="chequeControllerScope.spinner || chequeControllerScope.viewBillspinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Cheques List</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <div class="customDropDown col-lg-6 col-md-6 col-sm-6 col-xs-8 padd0 responsive_select">
+                                            <select name="billType" ng-model="chequeControllerScope.cheque" class="select1 dropdown selectClass col-lg-4 col-md-4 col-sm-4 col-xs-12 text-left">
+                                                <option value="" selected="selected">Select Cheque Status</option>
+                                                <option value="" >All</option>
+                                                <option value="clear" >Cleared</option>
+                                                <option value="noclear" >Not Cleared</option> 
+                                            </select>
+                                        </div>
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-4 padd0 text-right">
+                                        <button class="glyphicon glyphicon-export action_btn" ng-click="chequeControllerScope.exportData()"></button>
+                                        <button class="glyphicon glyphicon-import action_btn margin_left0 margin_right0" ng-click="chequeControllerScope.goImportPage()"></button></span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="chequeControllerScope.searchName" placeholder="Search Here" class="margin_top20 width100 resp_fontSize">
+                                    </div>
+                                    <div class="loader_backdrop" ng-show="chequeControllerScope.spinner">
+                                        <div class="loader loader_position"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="chequeControllerScope.dataMsg && chequeControllerScope.dataMsg != ''">
+                            <p class="grey_text text-center padding15 padding_top0">{{chequeControllerScope.dataMsg}}</p>
+                        </div>
+                        <div id="list-wrapper">
+                            <div infinite-scroll="chequeControllerScope.addMoreItems()" infinite-scroll-container="'#list-wrapper'" infinite-scroll-parent="true">
+                                <div class="innerdivContainer red-icon create-employee border_bottom1" ng-repeat="cheque in logEventFilter = (chequeControllerScope.chequeList | orderBy : '-id' |  
+                                 filter : chequeControllerScope.searchName | filter: { status :chequeControllerScope.cheque} |
+                                limitTo : chequeControllerScope.limitToShow)" >
+                                    <div class="row">
+                                        <div class="input_section">
+                                            <div class="col-lg-1 padd0 responsive_textCenter  responsive_textCenter responsivemargin_top10">
+                                                <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="responsive_textCenter">
+                                                <span ng-click="chequeControllerScope.viewCheque(cheque.id)" class="anchor_text">{{cheque.number}}</span><span class="pipe_text"> | </span><span class="span_text"><span ng-if ="cheque.status == 'clear'"  class="label_success">Cleared</span><span ng-if="cheque.status == 'noclear'" class="label_danger">NotCleared</span></span>
+                                            </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Cheque Date</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{cheque.date  | date:"MMM d, y"}}</span></li>
+                                                            <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">Cheque Amount</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{cheque.amount}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Bank Name</label><span class="font_weight600 col-xs-6  wordBreak_all">{{cheque.name}}</span></li>
+                                                            <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">Payable Name</label><span class="font_weight600 col-xs-6  wordBreak_all">{{cheque.payto}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

@@ -1,0 +1,62 @@
+<div class="loader_backdrop" ng-show="hrRequestControllerScope.getSpinner || hrRequestControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                       <div class="row pageTitletextContainer">
+                    	<div class="col-xs-12 padd0">
+                        	<span class="cursor_pointer back_iconPosition" ng-click="hrRequestControllerScope.gotoMyRequests()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+                        	<span class="page_titlePosition">HR Request</span>
+                        </div>
+                    	
+                        </div>
+                        
+                        <div class="innerdivContainer red-icon create-employee" ng-if="!hrRequestControllerScope.isShowEdit">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="text-right row padd10">
+                                        <button class="activeBtn btn" type="button" ng-click="hrRequestControllerScope.gotoEdit()" ng-if="hrRequestControllerScope.hrRequest.status == 'o'">Edit</button>
+                                        <button class="activeBtn btn" type="button" ng-click="hrRequestControllerScope.sendremainder()" ng-if="hrRequestControllerScope.hrRequest.status == 's'">Send Remainder</button>
+                                    </div>
+                                    <div class="col-lg-1 padd0 responsive_textCenter ">
+                                        <i class="fa fa-user-circle-o img-60x60 img-views responsivemargin_top10" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="responsive_textCenter">
+                                        <span class="anchor_text cursor_default">{{hrRequestControllerScope.hrRequest.typeName}}</span>
+                                        <span class="pipe_text" ng-if="hrRequestControllerScope.hrRequest.status !=''">|</span>
+                                        <span class="span_text capitalizeText color_white" ng-if="hrRequestControllerScope.hrRequest.status != ''">
+                                        	<span ng-if="hrRequestControllerScope.hrRequest.status == 's'" class="label_warning">Submitted</span>
+                                        	<span ng-if="hrRequestControllerScope.hrRequest.status == 'c'" class="label_success">Closed</span>
+                                        	<span ng-if="hrRequestControllerScope.hrRequest.status == 'o'" class="label_blue">Re-Open</span>
+                                        	<span ng-if="hrRequestControllerScope.hrRequest.status == 'r'" class="label_danger">Rejected</span>
+                                        </span>
+                                    </div>
+                                    <div class="col-lg-11 padd0">
+                                        <div class="row">
+                                            <div class="">
+                                                <ul class="padd0 left_text">
+                                                    <li class="row">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Requested By</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{hrRequestControllerScope.hrRequest.createdBy}}</span></li>
+                                                    <li class="row">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Requested On</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{hrRequestControllerScope.hrRequest.createdon}}</span></li>
+                                                    <li class="row">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Requested Details</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{hrRequestControllerScope.hrRequest.desc}}</span></li>
+                                                    <li class="row">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Comment</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{hrRequestControllerScope.hrRequest.comment}}</span></li>
+                                                    <li class="row">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Updated By</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{hrRequestControllerScope.hrRequest.updatedBy}}</span></li>
+                                                    <li class="row">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Updated On</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{hrRequestControllerScope.hrRequest.updatedon}}</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

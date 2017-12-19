@@ -1,0 +1,101 @@
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                       <div class="row pageTitletextContainer">
+                    	<div class="col-xs-12 padd0">
+                        	<span class="cursor_pointer back_iconPosition" ng-click="proposalControllerScope.goBackToPropsals()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+                        	<span class="page_titlePosition">Proposal Details</span>
+                        </div>
+                    	
+                        </div>
+                        <div class="loader_backdrop" ng-show="proposalControllerScope.viewProposalspinner">
+                            <div class="loader loader_position"></div>
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row "  >
+                                <div class="input_section ">
+                                    <div class="text-right col-lg-12 col-xs-12 col-md-12 col-sm-12 padd10">
+                                 
+                                           <button class="defaultBtn" type="button"  id="cmd">Generate PDF</button>
+                                        <button class="activeBtn" type="button" ng-click="proposalControllerScope.goToEditProposal(proposalControllerScope.proposal.id)">Edit</button>
+                                    </div>
+                                    <div>
+                                        <div class="col-lg-1 col-xs-12 col-md-12 col-sm-12 padd0 responsive_textCenter ">
+                                            <i class="fa fa-user-circle-o img-60x60 img-views responsivemargin_top10" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="responsive_textCenter">
+                                            <span class="anchor_text cursor_default capitalizeText">{{proposalControllerScope.proposal.name}}</span>
+                                            <span class="pipe_text" ng-if="proposalControllerScope.proposal.projectName !=''">|</span>
+                                            <span class="span_text cursor_default break-word capitalizeText">{{proposalControllerScope.proposal.projectName}}</span>
+                                        </div>
+                                        <div class="col-lg-11 col-xs-12 padd0">
+                                            <div class="row">
+                                                <div class="">
+                                                    <ul class="padd0 left_text">
+                                                        <li class="row">
+                                                            <label class="col-xs-6 col-sm-4 padd0">Opportunity Type</label>
+                                                            <span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default capitalizeText">{{proposalControllerScope.proposal.projectTypeName}}</span>
+                                                        </li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 col-sm-4 padd0">Rate</label>
+                                                            <span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{proposalControllerScope.proposal.currencyTypeName}} {{proposalControllerScope.proposal.rate}}</span>
+                                                        </li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 col-sm-4 padd0">Quantity</label>
+                                                            <span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{proposalControllerScope.proposal.quantity}}</span>
+                                                        </li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 col-sm-4 padd0">Payment Terms</label>
+                                                            <span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default capitalizeText">{{proposalControllerScope.proposal.PaymentTermName}}</span>
+                                                        </li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 col-sm-4 padd0">Invoice Term Type</label>
+                                                            <span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">
+                                                            <span ng-if="proposalControllerScope.proposal.invoiceTerm == 'P'">Percentage</span>
+                                                            <span ng-if="proposalControllerScope.proposal.invoiceTerm == 'F'">Fixed</span></span>
+                                                        </li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 col-sm-4 padd0">Invoicing Terms</label>
+                                                            <span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default capitalizeText">
+                                                                <p ng-repeat="invoiceTerm in proposalControllerScope.proposal.invoiceTermListGet">{{invoiceTerm.comment}} - {{invoiceTerm.percentage}}</p>
+                                                            </span>
+                                                        </li>
+                                                        <li class="row" ng-repeat="field in proposalControllerScope.proposal.fieldList">
+                                                            <label class="col-xs-6 col-sm-4 padd0 capitalizeText">{{field.key}}</label>
+                                                            <span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{field.value}}</span>
+                                                        </li>
+                                                             <li class="row" ng-repeat="field in proposalControllerScope.proposal.defaultList">
+                                                            <label class="col-xs-6 col-sm-4 padd0 capitalizeText">{{field.key}}</label>
+                                                            <span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{field.value}}</span>
+                                                        </li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 col-sm-4 padd0">Attachments</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default"><span  ng-repeat="file in proposalControllerScope.proposal.files"><a ng-href="{{file}}">File {{$index}}</a></span></span>
+                                                        </li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 col-sm-4 padd0">Updated By</label>
+                                                            <span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default capitalizeText">{{proposalControllerScope.proposal.updatedBy}}</span>
+                                                        </li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 col-sm-4 padd0">Updated On</label>
+                                                            <span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{proposalControllerScope.proposal.updatedon  | date:"medium"}}</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+

@@ -1,0 +1,148 @@
+<div class="loader_backdrop" ng-show="employeeControllerScope.viewempspinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                         <div class="row pageTitletextContainer">
+                    	<div class="col-xs-12 padd0">
+                        	<span class="cursor_pointer back_iconPosition" ng-click="employeeControllerScope.goBackToEmpoyeeCompensation()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+                        	<span class="page_titlePosition">Employee Compensation Details</span>
+                        </div>
+                    	
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row" class="">
+                                <div class="input_section">
+                                    
+                                    <div > 
+                                          <div class="col-lg-12 col-xs-12 padd0 compensation_padd15" ng-repeat="compensation in  employeeControllerScope.employeeCompensation | orderBy : '-id' ">
+                                          
+                                          <div class="responsive_textCenter display_webkit">
+                                                <span class="span_text capitalizeText">{{compensation.name}}</span>
+                                                <span class="pipe_text" ng-if="compensation.empctc!=''">|</span>
+                                                <span class="span_text capitalizeText">{{compensation.empctc | number:2}}</span>
+                                                  <span class="pipe_text" ng-if="compensation.status != ''">|</span>
+                                                <span class="span_text capitalizeText"">
+                                                	<span  ng-if="compensation.status == 'a'" class="label_success">Active</span>
+                                                	<span ng-if="compensation.status == 'i'" class="label_danger">In-Active</span>
+                                                </span>
+                                               
+                                            </div>
+                                            
+                                               <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                           <li class="row">
+                                                            <label class="col-xs-6 padd0">Start Date</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{compensation.startDate}}</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">End Date</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{compensation.enddate}}</span></li>
+                                                         </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Updated By</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{compensation.updatedBy}}</li>
+                                                             <li class="row"><label class="col-xs-6 padd0">Updated On</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{compensation.updatedon}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                              	<div class="col-lg-2 padd0">
+			                                       <span  class="col-lg-6 outline0 padd0" data-toggle="modal" data-target="#employeeComp" data-backdrop="static" data-keyboard="false">
+															<button type="button" class="defaultBtn btn" ng-if="compensation.status == 'a'" ng-click="employeeControllerScope.editEmployeeCompensation(compensation,'ctc')" >Edit CTC</button>
+			                                        </span>
+			                                       <span  class="col-lg-6 outline0 padd0" data-toggle="modal" data-target="#employeeComp" data-backdrop="static" data-keyboard="false"><!-- data-target="#employeeComp" -->
+															<button type="button" class="activeBtn btn" ng-if="compensation.status == 'a'" ng-click="employeeControllerScope.editEmployeeCompensation(compensation, 'date')" >Edit Date</button>
+			                                        </span>
+                                         		</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                              <div id="employeeComp" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close white opacity1px" data-dismiss="modal"><i class="fa fa-times close_button" aria-hidden="true" ng-click="employeeControllerScope.declineCompensation()"></i></button>
+                                            <h4 class="modal-title">Employee Compensation</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                        <div class="red-icon create-employee"> 
+                                            <form class="form-horizontal formContainer" name="employeeControllerScope.compensationForm">
+                                              <div class="form-group row mob-pos-rel add_compensation">
+                                                <div class="col-sm-12 col-md-12 col-lg-12 pad-right-0 mob-pad-right-15">
+                                                  <div class="customDropDown">
+                                                  <input type="text" name="empctc" class="inputClass width100" placeholder="CTC&#42;" ng-pattern="/^[0-9\ ]*$/" ng-model="employeeControllerScope.compensation.name"  readonly/>
+                                                 
+                                            </div>
+                                               </div>
+                                                 <div class="col-sm-12 col-md-12 pad-right-0 mob-pad-right-15">
+                                                    <input type="text" name="empctc" class="inputClass width100" placeholder="CTC&#42;" ng-pattern="/^[0-9\ ]*$/" ng-model="employeeControllerScope.compensation.empctc" ng-readonly="employeeControllerScope.isDisabled" required/>
+                                                    <p ng-show="employeeControllerScope.compensationForm.empctc.$error.pattern || employeeControllerScope.compensationTypeForm.empctc.$invalid && employeeControllerScope.compensationForm.empctc.$touched" class="reqStar">Invalid Number Formet</p>
+                                                </div>
+                                               
+                                                <div class="col-sm-12 col-md-12 pad-right-0 mob-pad-right-15 position_relative">
+                                                	<div class="col-xs-12 col-sm-12 padd0 pos-rel responsive_marginTop5">
+								<div moment-picker="employeeControllerScope.compensation.startDate"
+									format="{{employeeControllerScope.format}}" start-view="day"
+									class=" margin_leftMinus9 ">
+									 <input name="startDate"
+										ng-model="employeeControllerScope.compensation.startDate"
+										autoclose="true" keyboard="true" set-on-select="true"
+										class="inputClass cursor_pointer width100 shadow"
+										placeholder="Start Date*" required>
+										<i
+										class="fa fa-calendar from_calender sales-calen cursor_pointer leave_iconAlign responsive_right0"
+										aria-hidden="true"></i>
+								</div>
+							</div> 
+								<div class="col-xs-12 col-sm-12 padd0 pos-rel responsive_marginTop5">
+								<div moment-picker="employeeControllerScope.compensation.enddate"
+									format="{{employeeControllerScope.format}}" start-view="day"
+									class=" margin_leftMinus9">
+									 <input name="enddate"
+										ng-model="employeeControllerScope.compensation.enddate"
+										autoclose="true" keyboard="true" set-on-select="true"
+										class="inputClass cursor_pointer width100 shadow"
+										placeholder="End Date" >
+										<i
+										class="fa fa-calendar from_calender sales-calen cursor_pointer leave_iconAlign responsive_right0"
+										aria-hidden="true"></i>
+								</div>
+							</div> 
+							 <div class="col-sm-12 col-md-12 col-lg-12 pad-right-0 mob-pad-right-15 padd0 margin_top5">
+                                                  <div class="customDropDown">
+                                                <select class="select1 dropdown inputClass width100 stateoptions" name="empId" ng-model="employeeControllerScope.compensation.empId" required>
+                                                    <option value="" ng-if="!employeeControllerScope.compensation.empId || employeeControllerScope.compensation.empId == ''">Select Employee*</option>
+                                                    <option value="{{employees.id}}" ng-repeat="employees in employeeControllerScope.employeeActiveList  | orderBy:'firstName'">{{employees.firstName}} {{employees.middleName}} {{employees.lastName}}</option>
+                                                </select>
+                                            </div>
+                                               </div>
+							</div>
+							</div>   <div class="modal-footer">
+                                                    <button type="button" class="defaultBtn btn" data-dismiss="modal" ng-click="employeeControllerScope.declineCompensation()">Decline</button>
+                                                    
+                                                 <button type="button" class="activeBtn btn"  ng-click="employeeControllerScope.updateCompensationCtc(employeeControllerScope.compensation)" ng-if="!employeeControllerScope.isDisabled">Update</button>
+                                                 <button type="button" class="activeBtn btn"  ng-click="employeeControllerScope.updateCompensationDate(employeeControllerScope.compensation)" ng-if="employeeControllerScope.isDisabled">Update</button>
+                                                 
+                                                    </div>
+                                            </form>
+                                            </div>
+                                        </div>
+                                         
+                                    </div>
+                                </div>
+                            </div>  
+                    </div>
+                </div>
+           

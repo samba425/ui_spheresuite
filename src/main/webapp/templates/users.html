@@ -1,0 +1,200 @@
+<div class="loader_backdrop" ng-if="usersControllerScope.spinner || usersControllerScope.Userspinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer background_white">
+                    <div class="card-heading">
+                        <div class="row">
+                            <div class="text-muted">Users</div>
+                        </div>
+                    </div>
+                    <div class="row configmenurow card ">
+                        <div class="col-sm-2 col-xs-2 configmenu1">
+                            <li class="active" ng-class="{'active':usersControllerScope.divValue === 'users'}" ng-click="usersControllerScope.changeDiv('users')">Users</li>
+                            <li class="" ng-class="{'active':usersControllerScope.divValue === 'invitees'}" ng-click="usersControllerScope.changeDiv('invitees')">Invitees</li>
+                        </div>
+                        <div class="col-sm-10 col-xs-10 configdatasectionparent border_left">
+                            <div class="row" ng-if="usersControllerScope.divValue  == 'users'">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 outline0">
+											<span class="outline0" data-toggle="modal"
+											data-target="#inviteUserModel" data-backdrop="static"
+											data-keyboard="false">
+												<button type="button" class="add_btn outline0">
+													<i class="fa fa-plus" aria-hidden="true"></i><span
+														class="paddLeft5">Invite New User</span>
+                                        </button>
+                                        </span>
+                                        </span> <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 text-right">
+											<button class="glyphicon glyphicon-export action_btn"></button>
+											<!-- <button
+												class="glyphicon glyphicon-import action_btn margin_left0"></button> -->
+										</span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" name="" ng-model="usersControllerScope.searchByUser" placeholder="Search By User" class="margin_top20 width100">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 padd0 margin_top20 background_white">
+                                    <div>
+                                        <p class="text-center grey_text padding15 padd_mar0">{{ usersControllerScope.noUserMsg }}</p>
+                                    </div>
+                                    <div ng-if="(usersControllerScope.userList | filter : {name : usersControllerScope.searchByUser}).length == 0 && usersControllerScope.userList.length>0">
+                                            <p class="text-center grey_text padding15 padd_mar0">User Not Available</p>
+                                    </div>
+                                    <div class="row backGreyColor" ng-repeat="user in usersControllerScope.userList | orderBy :'name' | filter : {name : usersControllerScope.searchByUser}">                               
+                                        <div class="input_section">
+                                            <div class="responsive_textCenter col-lg-4 col-md-4 col-xs-12 col-sm-12 padd0">
+                                                <span class="useranchor_text padd0 cursor_default">{{user.name}}</span>
+                                                <div class="userspan_text">{{user.email}}</div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 padd0">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padd0">
+                                                        <select class="select1 dropdown selectClass col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-model="user.roleId" ng-options="role.id as role.name for role in usersControllerScope.roleList" ng-change="usersControllerScope.updateRole(user,user.roleId)">
+                                                            <option value="" selected="selected" ng-if="!user.roleId">Role</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 padd0">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+                                                        <ul class="padd0 margin0">
+                                                            <li class="padd0 lineHeight36"><span ng-if="user.status == 'i'" class="label_danger">In-Active</span>
+                                                                <span ng-if="user.status == 'a'" class="label_success">Active</span>
+                                                                <span ng-if="user.status == 'd'"><span
+																	class="label_danger">Deactivated</span> <span class="pipe_text15">|</span> {{user.updatedon}}</span> <span class="pipe_text15" ng-if="user.status == 'i' || user.status == 'a'">|</span>
+                                                                <span class="cursorPointer" ng-click="usersControllerScope.changeStatus(user,'t')" ng-if="user.status == 'i' || user.status == 'a'">Make
+																	<span ng-if="user.status == 'a'">In-Active</span> <span ng-if="user.status == 'i'">Active</span>
+                                                                </span> <span class="pipe_text15" ng-if="user.status != 'd'">|</span>
+                                                                <span class="cursorPointer" ng-click="usersControllerScope.deleteUser(user.id)" ng-if="user.status != 'd'">De-Activate</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="userhr_margin">
+                            </div>
+                            <div class="row" ng-if="usersControllerScope.divValue  == 'invitees'">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <span class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 text-right responsivemargin_top10">
+											<button class="glyphicon glyphicon-export action_btn"></button>
+											<button
+												class="glyphicon glyphicon-import action_btn margin_left0"></button>
+										</span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" name="" ng-model="usersControllerScope.searchByUser" placeholder="Search By Invitees" class="margin_top20 width100">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 padd0 margin_top20 background_white">
+                                    <!-- <div ng-if="usersControllerScope.userListPending.length == 0">
+                                        <p class="text-center grey_text padding15 padd_mar0">Invitees Not Available</p>
+                                    </div> -->
+                                    <div ng-if="(usersControllerScope.userListPending | filter : {name : usersControllerScope.searchByUser}).length == 0 && usersControllerScope.userListPending.length>0">
+                                            <p class="text-center grey_text padding15 padd_mar0">Invitees Not Available</p>
+                                    </div>
+                                    <div class="row backGreyColor" ng-repeat="userPending in usersControllerScope.userListPending | filter : {name : usersControllerScope.searchByUser}">
+                                        <div class="input_section">
+                                            <div class="responsive_textCenter col-lg-4 col-md-4 col-xs-12 col-sm-12 padd0">
+                                                <span class="useranchor_text padd0 cursor_default">{{userPending.name}}</span>
+                                                <div class="userspan_text">{{userPending.email}}</div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 padd0">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padd0">
+                                                        <select class="select1 dropdown selectClass user_select100 col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-model="userPending.roleId" ng-options="role.id as role.name for role in usersControllerScope.roleList" ng-change="usersControllerScope.updateRole(userPending,userPending.roleId)">
+                                                            <option value="" selected="selected" ng-if="!userPending.roleId">Role</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 padd0">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 text-center">
+                                                        <ul class="padd0 margin0">
+                                                            <li class="padd0 lineHeight36"><span class="label_warning">Pending</span> <span class="pipe_text15">|</span> <span class="cursorPointer" ng-click="usersControllerScope.deleteUser(userPending.id)">Cancel
+																	Invitation</span> <span class="pipe_text15">|</span> <span class="cursorPointer" ng-click="usersControllerScope.reInvite(userPending.id)">Re-Invite</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="inviteUserModel" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                     <button type="button" class="close white opacity1px" ng-click="usersControllerScope.decline()" data-dismiss="modal" >
+                                         <i class="fa fa-times close_button" aria-hidden="true"></i>
+                                           </button>
+                                        <h4 class="modal-title">Invite New User</h4>
+                                    </div>
+                                    <form name="usersControllerScope.inviteUserForm">
+                                        <div class="modal-body">
+                                            <div class="loader_backdrop" ng-show="usersControllerScope.spinner1">
+                                                <div class="loader loader_position"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div ng-if="usersControllerScope.userAlreadyInvited != ''">
+                                                    <p class="text-center reqStar padding15 padd_mar0">{{usersControllerScope.userAlreadyInvited}}</p>
+                                                </div>
+                                                <div class="customDropDown user_select100 margin_top5">
+                                                    <select id="select1" class="dropdown inputClass width100" name="id" ng-model="usersControllerScope.inviteUser.id" 
+                                                    ng-change="usersControllerScope.getInviteEmployee(usersControllerScope.inviteUser.id)" required> 
+                                                        <option value="" ng-if="!usersControllerScope.inviteUser.id || usersControllerScope.inviteUser.id == ''">Select Employee*</option>
+                                                		<option value="{{employee}}" ng-repeat="employee in usersControllerScope.employeeList">{{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" ng-show="usersControllerScope.ifNotEdit">
+                                                <div class="customDropDown user_select100 margin_top5">
+                                                    <select id="select2" class="dropdown inputClass width100" name="roleId" ng-model="usersControllerScope.inviteUser.roleId" required>
+                                                       <option value="" ng-if="!usersControllerScope.inviteUser.roleId || usersControllerScope.inviteUser.roleId == ''">Select Role*</option> 
+                                                        <option value="{{role.id}}" ng-repeat="role in usersControllerScope.roleList ">{{role.name}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="defaultBtn btn" ng-click="usersControllerScope.decline()" data-dismiss="modal">Decline</button>
+                                            <button type="button" class="activeBtn btn" ng-disabled="usersControllerScope.inviteUserForm.$invalid" ng-click="usersControllerScope.sendInvite()" ng-if="usersControllerScope.ifNotEdit">Send Invite</button>
+                                            <button type="button" class="activeBtn btn" ng-disabled="usersControllerScope.inviteUserForm.$invalid" ng-click="usersControllerScope.updateUser(usersControllerScope.inviteUser)" ng-if="!usersControllerScope.ifNotEdit">Update</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="reinviteUserModel" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                     <button type="button" class="close white opacity1px" ng-click="usersControllerScope.decline()" data-dismiss="modal" >
+                                         <i class="fa fa-times close_button" aria-hidden="true"></i>
+                                           </button>
+                                        <h4 class="modal-title">Re-Invite User</h4>
+                                    </div>
+                                    <form name="usersControllerScope.inviteUserForm">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <div ng-if="usersControllerScope.reinviteInformation != ''" class="modal-body">
+                                                    <p class="text-center grey_text padd_mar0">{{usersControllerScope.reinviteInformation}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

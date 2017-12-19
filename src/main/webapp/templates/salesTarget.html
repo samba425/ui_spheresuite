@@ -1,0 +1,176 @@
+<div class="loader_backdrop" ng-show="salesTargetControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Sales Target</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-8 padd0 outline0">
+                                            <span class="outline0" data-toggle="modal" data-target="#addSalesReport" data-backdrop="static" data-keyboard="false" ng-click="salesTargetControllerScope.openSalesTargetModal()">
+                                                <button type="button" class="add_btn outline0">
+                                                    <i class="fa fa-plus" aria-hidden="true"></i><span class="paddLeft5">Add</span>
+                                        </button>
+                                        </span>
+                                        </span>
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-4 padd0 text-right">
+                                            <!-- <button class="glyphicon glyphicon-export action_btn" ng-click="salesTargetControllerScope.exportData()"></button> -->
+                                            <button class="activeBtn btn margin_left0 margin_right0" ng-click="salesTargetControllerScope.openImportPage()">Import</button>
+                                        </span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="width100 ">
+                                        <div class="customDropDown col-lg-6 col-md-6 col-sm-12 col-xs-12 padd0 margin_top15">
+                                            <div class="form-group row mob-pos-rel ">
+                                            
+                                             <div moment-picker="salesTargetControllerScope.reportFromDate.from" format="YYYY" change="salesTargetControllerScope.getSalesBetweenDate()" class="col-md-6 col-sm-6 col-xs-12 sales-date padd0">
+                                                 <span class="salesTarget_label col-lg-2 col-md-2 col-sm-2 col-xs-2 padd0">From</span> 
+                                                    <input name="from"  ng-model="salesTargetControllerScope.reportFromDate.from" keyboard="true" class="cursor_pointer inputClass col-lg-10 col-sm-10 col-md-10 col-xs-10" placeholder="From" set-on-select="true"  required readonly>
+                                                    <i class="fa fa-calendar from_calender sales-calen padding-left cursor_pointer salesTarget_calender border_none" aria-hidden="true" ></i>
+                                                </div>
+                                            
+                                                 <div moment-picker="salesTargetControllerScope.reportFromDate.to" format="YYYY" change="salesTargetControllerScope.getSalesBetweenDate()" class="col-md-6 col-sm-6 col-xs-12 sales-date padd0 ">
+                                                    <span class="salesTarget_label col-lg-2 col-md-2 col-sm-2 col-xs-2">To</span><i class="fa fa-calendar from_calender sales-calen padding-left cursor_pointer salesTarget_calender border_none" aria-hidden="true"></i>
+                                                    <input name="to"  ng-model="salesTargetControllerScope.reportFromDate.to"  keyboard="true"    set-on-select="true" class="cursor_pointer inputClass col-lg-10 col-sm-10 col-md-10 col-xs-10" placeholder="To" required >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="span_text col-lg-6 col-md-6 col-sm-12 col-xs-12  margin_top15 text-right padd0 total-sales">Total Sales : <span ng-if="salesTargetControllerScope.salesReportList.totalSales">{{salesTargetControllerScope.salesReportList.totalSales | number :'2'}}</span><span ng-if="!salesTargetControllerScope.salesReportList.totalSales">0</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        
+                        <div ng-if="!salesTargetControllerScope.salesReportList || salesTargetControllerScope.salesReportList.length == 0">
+                            <p class="text-center grey_text padding15">{{ salesTargetControllerScope.msg }}</p>
+                        </div>
+                        <div id="list-wrapper">
+                            <div infinite-scroll="salesTargetControllerScope.addMoreItems()" infinite-scroll-container="'#list-wrapper'" infinite-scroll-parent="true">
+                                <div class="innerdivContainer red-icon create-employee border_bottom1" ng-repeat="sales in logEventFilter = (salesTargetControllerScope.salesReportList | orderBy : '-id' | limitTo : salesTargetControllerScope.limitToShow)">
+                                    <div class="row">
+                                        <div class="input_section">
+                                            <div class="col-lg-1 padd0 responsive_textCenter responsive_textCenter responsivemargin_top10">
+                                                <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="responsive_textCenter display_webkit">
+                                                <span class="outline0" data-toggle="modal" data-target="#addSalesReport" data-backdrop="static" data-keyboard="false">
+                                                    <span ng-click="salesTargetControllerScope.goToUpdateSales(sales)" class="anchor_text break-word">{{sales.name}}</span>
+                                                </span>
+                                                <span class="pipe_text" ng-if="sales.fromDate !='' && sales.toDate!=''">|</span>
+                                                <span class="span_text">{{sales.total | number:'2'}}</span>
+                                            </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Q1</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{sales.q1 | number:'2'}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Q2</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{sales.q2 | number:'2'}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Updated By</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{sales.updatedBy}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Q3</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{sales.q3 | number:'2'}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Q4</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{sales.q4 | number:'2'}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Updated On</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{sales.updatedon}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           
+<div id="addSalesReport" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close white opacity1px"
+					data-dismiss="modal">
+					<i class="fa fa-times close_button" aria-hidden="true"></i>
+				</button>
+                <h4 class="modal-title">Sales Report</h4>
+            </div>
+            <div class="modal-body">
+            <div class="loader_backdrop" ng-show="salesTargetControllerScope.spinner1">
+    <div class="loader loader_position"></div>
+</div>
+                <form name="salesTargetControllerScope.reportForm" class="sales_targetSelectBox">
+                    <div class="width100 mrgTop5">
+                        <div class="">
+                            <div class="col-xs-12 margin_top5">
+                                <div class="customDropDown sales_select">
+                                    <select class="select1 dropdown inputClass width100" name="empId" ng-model="salesTargetControllerScope.report.empId" ng-change="salesTargetControllerScope.checkQuater()" required>
+                                        <option value="" ng-if="!salesTargetControllerScope.report.empId || salesTargetControllerScope.report.empId == ''">Sales Consultant*</option>
+                                        <option value="{{employee.id}}" ng-repeat="employee in salesTargetControllerScope.employeeList  | orderBy:'firstName'">{{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</option>
+                                    </select>
+                                </div>
+                                <p ng-show="salesTargetControllerScope.reportForm.empId.$invalid && salesTargetControllerScope.reportForm.empId.$touched" class="reqStar col-xs-12 col-md-12 col-lg-12 width100">Kindly Select Sales Consultant</p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 margin_top5">
+                                <div moment-picker="salesTargetControllerScope.report.fromDate" format="YYYY" change="salesTargetControllerScope.checkDate()" class="margin_leftMinus9 display_flex">
+                                    <i class="fa fa-calendar from_calender sales-calen padding-left cursor_pointer margin10 salesTarget_calenderIcon" aria-hidden="true"></i>
+                                    <input name="fromDate" ng-model="salesTargetControllerScope.report.fromDate" autoclose="true" keyboard="true" set-on-select="true" class="padding-8 cursor_pointer width100" placeholder="From* " required readonly>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 margin_top5">
+                                <div moment-picker="salesTargetControllerScope.report.toDate" format="YYYY" change="salesTargetControllerScope.checkDate()" class="margin_leftMinus9 display_flex">
+                                    <i class="fa fa-calendar from_calender sales-calen padding-left cursor_pointer margin10 salesTarget_calenderIcon" aria-hidden="true "></i>
+                                    <input type="toDate" name="toDate" ng-model="salesTargetControllerScope.report.toDate" autoclose="true" keyboard="true" set-on-select="true" class="padding-8 cursor_pointer width100" placeholder="To*" required readonly>
+                                </div>
+                            </div>
+                            <p ng-if="salesTargetControllerScope.isInvalidDate" class="reqStar width100">Kindly Select Valid From And To Financial Year</p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 margin_top5">
+                                    <input type="text" class="width100" name="q1" ng-model="salesTargetControllerScope.report.q1" ng-keyup="salesTargetControllerScope.checkQuater()" ng-pattern="/^[0-9]*[.]?[0-9]*$/" placeholder="Q1" />
+                                </div>
+                                <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 margin_top5">
+                                    <input type="text" class="width100" name="q2" ng-model="salesTargetControllerScope.report.q2" ng-keyup="salesTargetControllerScope.checkQuater()" ng-pattern="/^[0-9]*[.]?[0-9]*$/" placeholder="Q2" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p ng-show="salesTargetControllerScope.reportForm.q1.$error.pattern || salesTargetControllerScope.reportForm.q1.$invalid && salesTargetControllerScope.reportForm.q1.$touched" class="reqStar col-xs-6 col-md-6">Kindly Enter Valid Quarter 1</p>
+                                <p ng-show="salesTargetControllerScope.reportForm.q2.$error.pattern || salesTargetControllerScope.reportForm.q2.$invalid && salesTargetControllerScope.reportForm.q2.$touched" class="reqStar col-xs-5 col-md-5">Kindly Enter Valid Quarter 2</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 margin_top5">
+                                    <input type="text" class="width100" name="q3" ng-model="salesTargetControllerScope.report.q3" ng-keyup="salesTargetControllerScope.checkQuater()" ng-pattern="/^[0-9]*[.]?[0-9]*$/" placeholder="Q3" />
+                                </div>
+                                <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 margin_top5">
+                                    <input type="text" class="width100" name="q4" ng-model="salesTargetControllerScope.report.q4" ng-keyup="salesTargetControllerScope.checkQuater()" ng-pattern="/^[0-9]*[.]?[0-9]*$/" placeholder="Q4" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p ng-show="salesTargetControllerScope.reportForm.q3.$error.pattern || salesTargetControllerScope.reportForm.q3.$invalid && salesTargetControllerScope.reportForm.q3.$touched" class="reqStar col-xs-6 col-md-6">Kindly Enter Valid Quarter 3</p>
+                                <p ng-show="salesTargetControllerScope.reportForm.q4.$error.pattern || salesTargetControllerScope.reportForm.q4.$invalid && salesTargetControllerScope.reportForm.q4.$touched" class="reqStar col-xs-5 col-md-5">Kindly Enter Valid Quarter 4</p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="modal-footer margin_top5">
+                            <button type="button" class="defaultBtn btn margin_top5" data-dismiss="modal" ng-click="salesTargetControllerScope.decline()">Decline</button>
+                            <button type="button" class="activeBtn btn margin_top5" ng-show="salesTargetControllerScope.isUpdate" ng-disabled="salesTargetControllerScope.reportForm.$invalid || salesTargetControllerScope.isInvalidDate" ng-click="salesTargetControllerScope.editSales()">Update</button>
+                            <button type="button" class="activeBtn btn margin_top5" ng-show="!salesTargetControllerScope.isUpdate" ng-disabled="salesTargetControllerScope.reportForm.$invalid || salesTargetControllerScope.isInvalidDate" ng-click="salesTargetControllerScope.addSales()">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

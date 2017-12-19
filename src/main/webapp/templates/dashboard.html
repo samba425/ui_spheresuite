@@ -1,0 +1,926 @@
+<div class="loader_backdrop" ng-if="dashboardControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+  <div class="rightContainer dashboard_selectBox">
+                    <div class="row mob-dashboard">
+                    	
+                    	 <div id="myCarousel" class="carousel slide" data-ride="carousel">
+						    
+						    <div class="carousel-inner">
+						      <div class="item active">
+						       
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  padd0">
+                                    <div class="row dashboard_margin15">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 dashboard_paddLeft0 medium_paddLeft15 lead_responsivePadd">
+                                            <div class="dashbordMenusChildDiv" ng-click="dashboardControllerScope.leadPage()"> 
+                                                <div class="row dashboardHeader orange_color">
+                                                    <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                                        <span><i class="fa fa-line-chart opacity0pnt4"
+        													aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="text-right dashboardText">
+                                                            <p class="emp_text color_white line_height34">LEADS</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="orange_color dashboard_height70 text-center">
+                                                    <p class="count_text color_white font_size70 font_size45">{{dashboardControllerScope.myLeadsChartListLength}}</p>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 dashboard_paddLeft0 medium_paddLeft15">
+                                            <div class="dashbordMenusChildDiv" ng-click="dashboardControllerScope.customerPage()">
+                                                <div class="row dashboardHeader green_color">
+                                                    <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                                        <span><i class="fa fa-line-chart opacity0pnt4"
+        													aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="text-right dashboardText">
+                                                            <p class="emp_text color_white line_height34">CUSTOMERS</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="green_color dashboard_height70 text-center">
+                                                    <p class="count_text color_white font_size70 font_size45">{{dashboardControllerScope.myCustomersChartListLength}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 dashboard_paddLeft0 medium_paddLeft15">
+                                            <div class="dashbordMenusChildDiv">
+                                                <div class="row dashboardHeader blue_color">
+                                                    <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                                        <span><i class="fa fa-line-chart opacity0pnt4"
+        													aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="text-right dashboardText">
+                                                            <p class="emp_text color_white line_height34">PROGRESS</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="blue_color dashboard_height70 text-center">
+                                                    <p class="count_text color_white font_size70 font_size45">24</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padd0">
+                                            <div class="dashbordMenusChildDiv">
+                                                <div class="row dashboardHeader red_color">
+                                                    <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                                        <span><i class="fa fa-line-chart opacity0pnt4"
+        													aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="text-right dashboardText">
+                                                            <p class="emp_text color_white line_height34">EMPLOYEES</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="red_color dashboard_height70 text-center">
+                                                    <p class="count_text color_white font_size70 font_size45">{{dashboardControllerScope.employeeLength}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+						      </div>
+						
+						      <div class="item">
+						       
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  padd0">
+                                    <div class="row dashboard_margin15">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 dashboard_paddLeft0 medium_paddLeft15 lead_responsivePadd">
+                                            <div class="dashbordMenusChildDiv" ng-click="dashboardControllerScope.leadPage()"> 
+                                                <div class="row dashboardHeader orange_color">
+                                                    <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                                        <span><i class="fa fa-line-chart opacity0pnt4"
+        													aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="text-right dashboardText">
+                                                            <p class="emp_text color_white line_height34">LEADS</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="orange_color dashboard_height70 text-center">
+                                                    <p class="count_text color_white font_size70 font_size45">{{dashboardControllerScope.myLeadsChartListLength}}</p>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 dashboard_paddLeft0 medium_paddLeft15">
+                                            <div class="dashbordMenusChildDiv" ng-click="dashboardControllerScope.customerPage()">
+                                                <div class="row dashboardHeader green_color">
+                                                    <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                                        <span><i class="fa fa-line-chart opacity0pnt4"
+        													aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="text-right dashboardText">
+                                                            <p class="emp_text color_white line_height34">CUSTOMERS</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="green_color dashboard_height70 text-center">
+                                                    <p class="count_text color_white font_size70 font_size45">{{dashboardControllerScope.myCustomersChartListLength}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 dashboard_paddLeft0 medium_paddLeft15">
+                                            <div class="dashbordMenusChildDiv">
+                                                <div class="row dashboardHeader blue_color">
+                                                    <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                                        <span><i class="fa fa-line-chart opacity0pnt4"
+        													aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="text-right dashboardText">
+                                                            <p class="emp_text color_white line_height34">PROGRESS</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="blue_color dashboard_height70 text-center">
+                                                    <p class="count_text color_white font_size70 font_size45">24</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padd0">
+                                            <div class="dashbordMenusChildDiv">
+                                                <div class="row dashboardHeader red_color">
+                                                    <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                                        <span><i class="fa fa-line-chart opacity0pnt4"
+        													aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="text-right dashboardText">
+                                                            <p class="emp_text color_white line_height34">EMPLOYEES</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="red_color dashboard_height70 text-center">
+                                                    <p class="count_text color_white font_size70 font_size45">{{dashboardControllerScope.employeeLength}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+						      </div>
+						    
+						      <div class="item">
+						       
+                               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  padd0">
+                                    <div class="row dashboard_margin15">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 dashboard_paddLeft0 medium_paddLeft15 lead_responsivePadd">
+                                            <div class="dashbordMenusChildDiv" ng-click="dashboardControllerScope.leadPage()"> 
+                                                <div class="row dashboardHeader orange_color">
+                                                    <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                                        <span><i class="fa fa-line-chart opacity0pnt4"
+        													aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="text-right dashboardText">
+                                                            <p class="emp_text color_white line_height34">LEADS</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="orange_color dashboard_height70 text-center">
+                                                    <p class="count_text color_white font_size70 font_size45">{{dashboardControllerScope.myLeadsChartListLength}}</p>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 dashboard_paddLeft0 medium_paddLeft15">
+                                            <div class="dashbordMenusChildDiv" ng-click="dashboardControllerScope.customerPage()">
+                                                <div class="row dashboardHeader green_color">
+                                                    <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                                        <span><i class="fa fa-line-chart opacity0pnt4"
+        													aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="text-right dashboardText">
+                                                            <p class="emp_text color_white line_height34">CUSTOMERS</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="green_color dashboard_height70 text-center">
+                                                    <p class="count_text color_white font_size70 font_size45">{{dashboardControllerScope.myCustomersChartListLength}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 dashboard_paddLeft0 medium_paddLeft15">
+                                            <div class="dashbordMenusChildDiv">
+                                                <div class="row dashboardHeader blue_color">
+                                                    <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                                        <span><i class="fa fa-line-chart opacity0pnt4"
+        													aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="text-right dashboardText">
+                                                            <p class="emp_text color_white line_height34">PROGRESS</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="blue_color dashboard_height70 text-center">
+                                                    <p class="count_text color_white font_size70 font_size45">24</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 padd0">
+                                            <div class="dashbordMenusChildDiv">
+                                                <div class="row dashboardHeader red_color">
+                                                    <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                                        <span><i class="fa fa-line-chart opacity0pnt4"
+        													aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="text-right dashboardText">
+                                                            <p class="emp_text color_white line_height34">EMPLOYEES</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="red_color dashboard_height70 text-center">
+                                                    <p class="count_text color_white font_size70 font_size45">{{dashboardControllerScope.employeeLength}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+						      </div>
+						    </div>
+						    <a class="dashboard_iconLeft left carousel-control" href="#myCarousel" data-slide="prev">
+						      <span class="glyphicon glyphicon-chevron-left"></span>
+						      <span class="sr-only">Previous</span>
+						    </a>
+						    <a class="dashboard_iconRight right carousel-control" href="#myCarousel" data-slide="next">
+						      <span class="glyphicon glyphicon-chevron-right"></span>
+						      <span class="sr-only">Next</span>
+						    </a>
+						</div>
+                    </div>
+                    <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12  padd0">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 dashboard_responsivePadd">
+                                <div class="dashbordMenusChildDiv">
+                                    <div class="row BORDBOTTOM dashboardHeader line_height46">
+                                        <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                            <span><i class="fa fa-line-chart" aria-hidden="true"></i></span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="text-right dashboardText">
+                                                <p class="emp_text line_height44">SALES REPORT</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dashboardData dashboard_sectionHeight220">
+                                        <!-- <div class="col-xs-6">
+												From <span><i class="fa fa-calendar"
+													aria-hidden="true"></i></span> Sep 19, 2017
+											</div>
+											<div class="col-xs-6">
+												To <span><i class="fa fa-calendar" aria-hidden="true"></i></span>
+												Sep 19, 2017
+											</div> -->
+                                        <div id="salesReportChart" style="width: 100%; height: 190px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin_top15">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 dashboard_responsivePadd">
+                                <div class="dashbordMenusChildDiv">
+                                    <div class="row BORDBOTTOM dashboardHeader">
+                                        <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                            <span><i class="fa fa-line-chart line_height44" aria-hidden="true"></i></span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="text-right dashboardText">
+                                                <p class="count_text">{{dashboardControllerScope.myLeadsChartListLength}}</p>
+                                                <p class="emp_text">MY LEADS</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form name="dashboardControllerScope.myLeadsChartForm">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-xs-6 padd0">
+                                                    <div moment-picker="dashboardControllerScope.myLeadsChart.fromDate" format="{{dashboardControllerScope.format}}" start-view="day" change="dashboardControllerScope.getMyLeadsChartDetails()" class="display_flex margin_leftMinus9">
+                                                        <span>From </span> <i class="fa fa-calendar from_calender sales-calen cursor_pointer" aria-hidden="true"></i>
+                                                        <input name="fromDate" ng-model="dashboardControllerScope.myLeadsChart.fromDate" autoclose="true" keyboard="true" set-on-select="true" class="border_none padd0 cursor_pointer" placeholder="From" required readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-xs-6 padd0 text-right">
+                                                    <div moment-picker="dashboardControllerScope.myLeadsChart.toDate" format="{{dashboardControllerScope.format}}" start-view="day" change="dashboardControllerScope.getMyLeadsChartDetails()" class=" margin_leftMinus9">
+                                                        <span>To </span> <i class="fa fa-calendar from_calender sales-calen cursor_pointer" aria-hidden="true"></i>
+                                                        <input name="toDate" ng-model="dashboardControllerScope.myLeadsChart.toDate" autoclose="true" keyboard="true" set-on-select="true" class="border_none padd0 cursor_pointer input_width58" placeholder="To" required readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="loader" style="top: 100px !important" ng-if="dashboardControllerScope.spinnerLead"></div>
+                                    <div class="dashboardData dashboard_sectionHeight220">
+                                        <div class="errorMsg">
+                                            <p class="grey_text text-center margin_minus2 margin0" ng-if="dashboardControllerScope.myLeadsChartListLength === 0">Leads Not Available</p>
+                                        </div>
+                                        <div class="PADD row dashboardData">
+                                            <div id="myLeadsChartContainer" style="width: 100%; height: 190px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 dashboard_responsivePadd responsive_margin15">
+                                <div class="dashbordMenusChildDiv">
+                                    <div class="row BORDBOTTOM dashboardHeader">
+                                        <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                            <span><i class="fa fa-line-chart line_height44" aria-hidden="true"></i></span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="text-right dashboardText">
+                                                <p class="count_text">{{dashboardControllerScope.myCustomersChartListLength}}</p>
+                                                <p class="emp_text">MY CUSTOMERS</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form name="dashboardControllerScope.myCustomersChartForm">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-xs-6 padd0">
+                                                    <div moment-picker="dashboardControllerScope.myCustomersChart.fromDate" format="{{dashboardControllerScope.format}}" start-view="day" change="dashboardControllerScope.getMyCustomersChartDetails()" class="display_flex margin_leftMinus9">
+                                                        <span>From </span> <i class="fa fa-calendar from_calender sales-calen cursor_pointer" aria-hidden="true"></i>
+                                                        <input name="fromDate" ng-model="dashboardControllerScope.myCustomersChart.fromDate" autoclose="true" keyboard="true" set-on-select="true" class="border_none padd0 cursor_pointer" placeholder="From" required readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-xs-6 padd0 text-right">
+                                                    <div moment-picker="dashboardControllerScope.myCustomersChart.toDate" format="{{dashboardControllerScope.format}}" start-view="day" change="dashboardControllerScope.getMyCustomersChartDetails()" class="margin_leftMinus9">
+                                                        <span>To </span> <i class="fa fa-calendar from_calender sales-calen cursor_pointer" aria-hidden="true"></i>
+                                                        <input name="fromDate" ng-model="dashboardControllerScope.myCustomersChart.toDate" autoclose="true" keyboard="true" set-on-select="true" class="border_none padd0 cursor_pointer input_width58" placeholder="To" required readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="loader" style="top: 100px !important" ng-if="dashboardControllerScope.spinnerCustomer"></div>
+                                    <div class="dashboardData dashboard_sectionHeight220">
+                                        <div class="errorMsg">
+                                            <p class="grey_text text-center margin_minus2 margin0" ng-if="dashboardControllerScope.myCustomersChartListLength === 0">Customers Not Available</p>
+                                        </div>
+                                        <div class="PADD row dashboardData">
+                                            <div id="myCustomersChartContainer" style="width: 100%; height: 190px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin_top15">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 dashboard_responsivePadd">
+                                <div class="dashbordMenusChildDiv">
+                                    <div class="row BORDBOTTOM dashboardHeader">
+                                        <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                            <span><i class="fa fa-line-chart line_height44" aria-hidden="true"></i></span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="text-right dashboardText">
+                                                <p class="count_text">{{dashboardControllerScope.leadsReportChartListLength}}</p>
+                                                <p class="emp_text">LEADS REPORT</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form name="dashboardControllerScope.leadsReportChartForm">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-xs-6 padd0">
+                                                    <div moment-picker="dashboardControllerScope.leadsReportChart.fromDate" format="{{dashboardControllerScope.format}}" start-view="day" change="dashboardControllerScope.getLeadsReportChartDetails()" class="display_flex margin_leftMinus9">
+                                                        <span>From </span> <i class="fa fa-calendar from_calender sales-calen cursor_pointer" aria-hidden="true"></i>
+                                                        <input name="fromDate" ng-model="dashboardControllerScope.leadsReportChart.fromDate" autoclose="true" keyboard="true" set-on-select="true" class="border_none padd0 cursor_pointer" placeholder="From" required readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-xs-6 padd0 text-right">
+                                                    <div moment-picker="dashboardControllerScope.leadsReportChart.toDate" format="{{dashboardControllerScope.format}}" start-view="day" change="dashboardControllerScope.getLeadsReportChartDetails()" class="margin_leftMinus9">
+                                                        <span>To </span> <i class="fa fa-calendar from_calender sales-calen cursor_pointer" aria-hidden="true"></i>
+                                                        <input name="toDate" ng-model="dashboardControllerScope.leadsReportChart.toDate" autoclose="true" keyboard="true" set-on-select="true" class="border_none padd0 cursor_pointer input_width58" placeholder="To" required readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="width100 margin_top30">
+                                                    <div class="customDropDown padd0 dashboard_lead margin_top5">
+                                                        <select name="employee" class="dropdown  margin_top5 select1 selectClass width100 text-left" ng-change="dashboardControllerScope.getLeadsReportChartDetails()" ng-model="dashboardControllerScope.leadsReportChart.empId">
+                                                            <option value="">Select Employee</option>
+                                                            <!-- ng-if="!dashboardControllerScope.leadsReportChart.empId || dashboardControllerScope.leadsReportChart.empId == ''" -->
+                                                            <option value="{{employee.id}}" ng-repeat="employee in dashboardControllerScope.employeeList | orderBy : 'name'">{{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="loader" style="top: 100px !important" ng-if="dashboardControllerScope.spinnerLead"></div>
+                                    <div class="dashboardData dashboard_sectionHeight220">
+                                        <div class="errorMsg">
+                                            <p class="grey_text text-center margin_minus2 margin0" ng-if="dashboardControllerScope.leadsReportChartListLength === 0">Leads Not Available</p>
+                                        </div>
+                                        <div class="PADD row dashboardData">
+                                            <div id="leadsReportChartContainer" style="width: 100%; height: 190px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 dashboard_responsivePadd responsive_margin15">
+                                <div class="dashbordMenusChildDiv">
+                                    <div class="row BORDBOTTOM dashboardHeader">
+                                        <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                            <span><i class="fa fa-line-chart line_height44" aria-hidden="true"></i></span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="text-right dashboardText">
+                                                <p class="count_text">{{dashboardControllerScope.customersReportChartListLength}}</p>
+                                                <p class="emp_text">CUSTOMERS REPORT</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form name="dashboardControllerScope.customersReportChartForm">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-xs-6 padd0">
+                                                    <div moment-picker="dashboardControllerScope.customersReportChart.fromDate" format="{{dashboardControllerScope.format}}" start-view="day" change="dashboardControllerScope.getCustomersReportChartDetails()" class="display_flex margin_leftMinus9">
+                                                        <span>From </span> <i class="fa fa-calendar from_calender sales-calen cursor_pointer" aria-hidden="true"></i>
+                                                        <input name="fromDate" ng-model="dashboardControllerScope.customersReportChart.fromDate" autoclose="true" keyboard="true" set-on-select="true" class="border_none padd0 cursor_pointer" placeholder="To" required readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-xs-6 padd0 text-right">
+                                                    <div moment-picker="dashboardControllerScope.customersReportChart.toDate" format="{{dashboardControllerScope.format}}" start-view="day" change="dashboardControllerScope.getCustomersReportChartDetails()" class="margin_leftMinus9">
+                                                        <span>To </span> <i class="fa fa-calendar from_calender sales-calen cursor_pointer" aria-hidden="true"></i>
+                                                        <input name="toDate" ng-model="dashboardControllerScope.customersReportChart.toDate" autoclose="true" keyboard="true" set-on-select="true" class="border_none padd0 cursor_pointer input_width58" placeholder="To" required readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="width100 margin_top30">
+                                                    <div class="customDropDown padd0 dashboard_lead margin_top5">
+                                                        <select name="employee" class="dropdown  margin_top5 select1 selectClass width100 text-left" ng-change="dashboardControllerScope.getCustomersReportChartDetails()" ng-model="dashboardControllerScope.customersReportChart.empId">
+                                                            <option value="">Select Employee</option>
+                                                            <!-- ng-if="!dashboardControllerScope.customersReportChart.empId || dashboardControllerScope.customersReportChart.empId == ''" -->
+                                                            <option value="{{employee.id}}" ng-repeat="employee in dashboardControllerScope.employeeList | orderBy : 'name'">{{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="loader" style="top: 100px !important" ng-if="dashboardControllerScope.spinnerCustomerReport"></div>
+                                    <div class="dashboardData dashboard_sectionHeight220">
+                                        <div class="errorMsg">
+                                            <p class="grey_text text-center margin_minus2 margin0" ng-if="dashboardControllerScope.customersReportChartListLength === 0">Customers Not Available</p>
+                                        </div>
+                                        <div class="PADD row dashboardData">
+                                            <div id="customersReportChartContainer" style="width: 100%; height: 190px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin_top15">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 dashboard_responsivePadd">
+                                <div class="dashbordMenusChildDiv">
+                                    <div class="row BORDBOTTOM dashboardHeader">
+                                        <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                            <span><i class="fa fa-line-chart line_height44" aria-hidden="true"></i></span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="text-right dashboardText">
+                                                <p class="count_text">{{dashboardControllerScope.salesTargetReportChartListLength}}</p>
+                                                <p class="emp_text">SALES TARGET REPORT</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form name="dashboardControllerScope.salesTargetReportChartForm">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-xs-6 padd0">
+                                                    <div moment-picker="dashboardControllerScope.salesTargetReportChart.fromDate" format="{{dashboardControllerScope.yearFormat}}" change="dashboardControllerScope.getSalesReportChartDetails()" class="display_flex margin_leftMinus9">
+                                                        <span>From </span> <i class="fa fa-calendar from_calender sales-calen cursor_pointer" aria-hidden="true"></i>
+                                                        <input name="fromDate" ng-model="dashboardControllerScope.salesTargetReportChart.fromDate" autoclose="true" keyboard="true" set-on-select="true" class="border_none padd0 cursor_pointer" placeholder="To" required readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-xs-6 padd0 text-right">
+                                                    <div moment-picker="dashboardControllerScope.salesTargetReportChart.toDate" format="{{dashboardControllerScope.yearFormat}}" change="dashboardControllerScope.getSalesReportChartDetails()" class="margin_leftMinus9">
+                                                        <span>To </span> <i class="fa fa-calendar from_calender sales-calen cursor_pointer" aria-hidden="true"></i>
+                                                        <input name="toDate" ng-model="dashboardControllerScope.salesTargetReportChart.toDate" autoclose="true" keyboard="true" set-on-select="true" class="border_none padd0 cursor_pointer input_width25" placeholder="To" required readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="width100 margin_top30">
+                                                    <div class="customDropDown padd0 dashboard_lead margin_top5">
+                                                        <select name="employee" class="dropdown  margin_top5 select1 selectClass width100 text-left" ng-change="dashboardControllerScope.getSalesReportChartDetails()" ng-model="dashboardControllerScope.salesTargetReportChart.empId">
+                                                            <option value="">Select Employee</option>
+                                                            <!-- ng-if="!dashboardControllerScope.salesTargetReportChart.empId || dashboardControllerScope.salesTargetReportChart.empId == ''" -->
+                                                            <option value="{{employee.id}}" ng-repeat="employee in dashboardControllerScope.employeeList | orderBy : 'name'">{{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="loader" style="top: 100px !important" ng-if="dashboardControllerScope.spinnerSalesTargetReport"></div>
+                                    <div class="dashboardData dashboard_sectionHeight220">
+                                        <div class="errorMsgSales">
+                                            <p class="grey_text text-center margin_minus2 margin0" ng-if="dashboardControllerScope.salesTargetReportChartListLength === 0">Sales Target Not Available</p>
+                                        </div>
+                                        <div class="PADD row dashboardData">
+                                            <div id="salesReportChartContainer" style="width: 100%; height: 190px;" ng-if="dashboardControllerScope.salesTargetReportChartListLength != 0"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 dashboard_responsivePadd responsive_margin15">
+                                <div class="dashbordMenusChildDiv">
+                                    <div class="row BORDBOTTOM dashboardHeader">
+                                        <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+                                            <span><i class="fa fa-line-chart line_height44" aria-hidden="true"></i></span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="text-right dashboardText">
+                                                <p class="count_text">{{dashboardControllerScope.mySalesTargetReportChartListLength}}</p>
+                                                <p class="emp_text">MY SALES TARGET</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form name="dashboardControllerScope.mySalesTargetReportChartForm">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-xs-6 padd0">
+                                                    <div moment-picker="dashboardControllerScope.mySalesTargetReportChart.fromDate" format="{{dashboardControllerScope.yearFormat}}" change="dashboardControllerScope.getMySalesReportChartDetails()" class="display_flex margin_leftMinus9">
+                                                        <span>From </span> <i class="fa fa-calendar from_calender sales-calen cursor_pointer" aria-hidden="true"></i>
+                                                        <input name="fromDate" ng-model="dashboardControllerScope.mySalesTargetReportChart.fromDate" autoclose="true" keyboard="true" set-on-select="true" class="border_none padd0 cursor_pointer" placeholder="To" required readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-xs-6 padd0 text-right">
+                                                    <div moment-picker="dashboardControllerScope.mySalesTargetReportChart.toDate" format="{{dashboardControllerScope.yearFormat}}" change="dashboardControllerScope.getMySalesReportChartDetails()" class="margin_leftMinus9">
+                                                        <span>To </span> <i class="fa fa-calendar from_calender sales-calen cursor_pointer" aria-hidden="true"></i>
+                                                        <input name="toDate" ng-model="dashboardControllerScope.mySalesTargetReportChart.toDate" autoclose="true" keyboard="true" set-on-select="true" class="border_none padd0 cursor_pointer input_width25" placeholder="To" required readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="loader" style="top: 100px !important" ng-if="dashboardControllerScope.spinnerMySalesTargetReport"></div>
+                                    <div class="dashboardData dashboard_sectionHeight269">
+                                        <div class="errorMsgSales">
+                                            <p class="grey_text text-center margin_minus2 margin" ng-if="dashboardControllerScope.mySalesTargetReportChartListLength === 0">Sales Target Not Available</p>
+                                        </div>
+                                        <div class="PADD row dashboardData">
+                                            <div id="mySalesReportChartContainer" class="salesReportChart
+													style=" width: 100%; height: 190px;"
+													ng-if="dashboardControllerScope.mySalesTargetReportChartListLength !=0"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row margin_top15">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 dashboard_responsivePadd responsive_margin15">
+                                	<div class="dashbordMenusChildDiv">
+	                                    <div class="row BORDBOTTOM dashboardHeader">
+	                                        <div class="col-sm-6  col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+	                                            <span><i class="fa fa-line-chart line_height44" aria-hidden="true"></i></span>
+	                                        </div>
+	                                        <div class="col-sm-6">
+	                                            <div class="text-right dashboardText">
+	                                                <p class="emp_text line_height44">SALES STAGE</p>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="loader" style="top: 100px !important" ng-if="dashboardControllerScope.spinnerSalesStageReport"></div>
+	                                    <div class="dashboardData dashboard_sectionHeight220">
+	                                        <div class="errorMsgSales">
+	                                            <p class="grey_text text-center margin_minus2 margin" ng-if="!dashboardControllerScope.isSalesStage">Sales Stage Not Available</p>
+	                                        </div>
+	                                        <div class="PADD row dashboardData">
+	                                            <div id="salesStageChartContainer" class="salesReportChart" 
+														style=" width: 100%; height: 190px;"
+														ng-if="dashboardControllerScope.isSalesStage">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 dashboard_responsivePadd">
+									<div class="dashbordMenusChildDiv">
+										<div class="row BORDBOTTOM dashboardHeader">
+											<div
+												class="col-sm-6 col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+												<span><i class="fa fa-users line_height44" aria-hidden="true"></i></span>
+											</div>
+											<div class="col-sm-6">
+												<div class="text-right dashboardText">
+													<p class="count_text">{{dashboardControllerScope.employeeLength}}</p>
+													<p class="emp_text">EMPLOYEES</p>
+												</div>
+											</div>
+										</div>
+										<div class="dashboardData dashboard_sectionHeight220">
+											<div class="PADD row dashboardData">
+												<div class="col-xs-6">Active</div>
+												<div class="col-xs-6 text-right">{{dashboardControllerScope.activeUser}}</div>
+											</div>
+											<div class="PADD row dashboardData">
+												<div class="col-xs-6">In-Active</div>
+												<div class="col-xs-6 text-right">{{dashboardControllerScope.inActiveUser}}</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-xs-12 col-sm-12 padd0">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padd0">
+								<div class="dashbordMenusChildDiv">
+									<div class="row BORDBOTTOM dashboardHeader">
+										<div
+											class="col-sm-6 col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+											<span><i class="fa fa-calendar line_height44" aria-hidden="true"></i></span>
+										</div>
+										<div class="col-sm-6">
+											<div class="text-right dashboardText"> 
+										           <p class="count_text">{{dashboardControllerScope.calendarList.length}}</p>
+												<p class="emp_text">MY CALENDAR</p>
+											</div>
+										</div>
+									</div>
+									<div class="dashboardData dashboard_sectionHeight220"> 
+										<div class="errorMsgSales">
+									<p class="grey_text text-center margin_minus2 margin0"
+										 ng-if="!dashboardControllerScope.calendarList || dashboardControllerScope.calendarList.length===0">Calendar  Not Available</p>
+											</div>											
+										<div class="loader" style="top: 100px !important"
+											ng-if="dashboardControllerScope.spinnerCalendar"></div>
+									
+										<div class="PADD row dashboardData"
+											ng-repeat="calendar in dashboardControllerScope.calendarList">
+											<div class="col-xs-6 break-word">{{calendar.desc}}</div>
+											<div class="col-xs-6 text-right">{{calendar.date}} |
+												{{calendar.time}}</div>
+										</div><br>
+										<div class="text-right magrin10 dashboard_calendarBtn">
+											<span data-toggle="modal" data-target="#calendar"
+												data-backdrop="static" data-keyboard="false"><button
+													type="button" class="btn activeBtn">Calendar</button></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div
+								class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mobilemargin_top15 responsive_margin15 padd0">
+								<div class="dashbordMenusChildDiv">
+									<div class="row BORDBOTTOM dashboardHeader">
+										<div
+											class="col-sm-6 col-lg-6 col-md-6 col-xs-6 dashboardIcon">
+											<span><i class="fa fa-thumb-tack line_height44" aria-hidden="true"></i></span>
+										</div>
+										<div class="col-sm-6">
+											<div class="text-right dashboardText">
+												<p class="count_text">{{dashboardControllerScope.taskPendingList.length}}</p>
+												<p class="emp_text">MY TASK</p>
+											</div>
+										</div>
+									</div>
+									<div class="dashboardData">
+										<div class="loader" style="top: 100px !important"
+											ng-if="dashboardControllerScope.spinnerTask"></div>
+										<div ng-if="!dashboardControllerScope.taskPendingList || dashboardControllerScope.taskPendingList.length===0">
+											<p class="grey_text text-center padding15">Task
+												Not Available</p>
+										</div>
+										<div class="PADD row dashboardData"
+											ng-repeat="taskPending in dashboardControllerScope.taskPendingList">
+											<div class="col-xs-6 break-word "><span class="font_weight600">{{taskPending.taskDetail}} </span><br>  <span ng-click="dashboardControllerScope.leadDetail(taskPending.leadId)" class="cursor_pointer">{{taskPending.leadName!=""?taskPending.leadName:"My Task"}}</span></div> 
+											<div class="col-xs-6 text-right">
+												{{taskPending.date}} | {{taskPending.time}} <span>
+													<div class="dashboard_checkbox">
+														<input
+															ng-click="dashboardControllerScope.updateTaskStatus(taskPending.id)"
+															type="checkbox" class="parentCheckBox"> <label
+															class="text_indent0">Done</label>
+													</div>
+												</span>
+											</div>
+										</div>
+										<div class="text-right magrin10">
+											<span data-toggle="modal" data-target="#task"
+												data-backdrop="static" data-keyboard="false"><button
+													type="button" class="btn activeBtn">Task</button></span>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				
+			
+<!-- Dialog Box For Task -->
+<div id="task" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content" id="modalTask">
+			<div class="modal-header">
+				<button type="button" class="close white opacity1px"
+					data-dismiss="modal"
+					ng-click="dashboardControllerScope.declineTask()">
+					<i class="fa fa-times close_button" aria-hidden="true"></i>
+				</button>
+				<h4 class="modal-title">Task Details</h4>
+			</div>
+			<div class="modal-body padd0 modal_height420">
+				<form name="dashboardControllerScope.taskForm">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-xs-6 paddingLft0">
+								<div moment-picker="dashboardControllerScope.task.date"
+									format="{{dashboardControllerScope.format}}" start-view="day"
+									class=" margin_leftMinus9">
+									 <input name="date"
+										ng-model="dashboardControllerScope.task.date" autoclose="true"
+										keyboard="true" set-on-select="true"
+										class="padding-8 cursor_pointer width100 shadow"
+										placeholder="YYYY-MM-DD*" required readonly>
+										<i
+										class="fa fa-calendar from_calender sales-calen respMargin cursor_pointer marginTop4 padding-8 iconAlign dashboard_right6"
+										aria-hidden="true"></i>
+								</div>
+							</div>
+							
+							<div class="col-xs-6 pad-right-0 mob-pad-right-15 padd0 display_flex">
+							      	 <div class="customDropDown lead_dropdown width100p respwidth50p">
+                                      <select name="hour" id="hour" class="select1 dropdown inputClass width100 stateoptions shadow" ng-model="dashboardControllerScope.task.hour" required>
+                                   <option value="" selected="selected" >HH*</option>
+                                   <option value="{{hour}}" ng-repeat="hour in dashboardControllerScope.hour">{{hour}}</option>
+                                 </select>
+                                   </div>
+                                   <div class="customDropDown lead_dropdown width100p respwidth50p">
+                               <select name="min" id="min" class="select1 dropdown inputClass width100 stateoptions shadow" ng-model="dashboardControllerScope.task.min" required>
+                               <option value="" selected="selected" >MM*</option>
+                             <option value="{{min}}" ng-repeat="min in dashboardControllerScope.min">{{min}}</option>
+                                  </select>
+                                 </div> 
+                                 </div>
+                                                                
+						 
+							<textarea name="taskDetail"
+								ng-model="dashboardControllerScope.task.taskDetail"
+								placeholder="Description*" class="width100 modalMargin_top15 shadow border"
+								required></textarea>
+							<p
+								ng-if="dashboardControllerScope.taskForm.taskDetail.$invalid && dashboardControllerScope.taskForm.taskDetail.$touched"
+								class="reqStar">Kindly Enter Description</p>
+						</div>
+					</div>
+					<div class="modal-footer padd_LR15">
+						<div class="">
+							<button class="defaultBtn btn" type="button"
+								ng-click="dashboardControllerScope.declineTask()"
+								data-dismiss="modal">Decline</button>
+							<button class="activeBtn btn" type="button"
+								ng-click="dashboardControllerScope.addTask()"
+								ng-disabled="dashboardControllerScope.taskForm.$invalid">Save</button>
+						</div>
+					</div>
+				</form>
+				<div class="padding15">
+					<div
+						ng-repeat="task in dashboardControllerScope.taskPendingList |orderBy: '-id'"
+						class="notes_oddEvenBackground">
+						<label class="margin0">Date : </label>
+						<p class="margin0 log_activityText">"{{task.date | date: 'MMM dd, yyyy'}} "</p>
+						<label class="margin0">Time : </label>
+						<p class="margin0 log_activityText">"{{task.time | date : 'hh:mm a'}} "</p>
+						<label class="margin0">Task : </label>
+						<p class="margin0 log_activityText break-word">"{{task.taskDetail}} "</p>
+						<i>
+							<p class="margin0 padding_top10 created_text">
+								{{task.updatedBy}} <span class="pipe_text">|</span>{{task.updatedon
+								| date:'medium'}}
+							</p>
+						</i>
+					</div>
+					<p class="grey_text text-center"
+						ng-if="!dashboardControllerScope.taskPendingList || dashboardControllerScope.taskPendingList.length==0">Tasks
+						Not Available</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+ 														
+<!-- Dialog Box For Calender -->
+<div id="calendar" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content" id="modalCalendar">
+			<div class="modal-header">
+				<button type="button" class="close white opacity1px"
+					data-dismiss="modal"
+					ng-click="dashboardControllerScope.declineTask()">
+					<i class="fa fa-times close_button" aria-hidden="true"></i>
+				</button>
+				<h4 class="modal-title">Calendar Details</h4>
+			</div>
+			<div class="modal-body modal_height420">
+				<form name="dashboardControllerScope.calendarForm" class="calendar_email">
+					<div class="width100">
+						<div class="">
+							<div class="col-xs-6 paddingLft0 pos-rel">
+								<div moment-picker="dashboardControllerScope.calendar.date"
+									format="{{dashboardControllerScope.format}}" start-view="day"
+									class=" margin_leftMinus9">
+									 <input name="date"
+										ng-model="dashboardControllerScope.calendar.date"
+										autoclose="true" keyboard="true" set-on-select="true"
+										class="padding-8 cursor_pointer width100 shadow"
+										placeholder="YYYY-MM-DD*" required>
+										<i
+										class="fa fa-calendar from_calender sales-calen respMargin cursor_pointer marginTop4 padding-8 iconAlign dashboard_right6"
+										aria-hidden="true"></i>
+								</div>
+							</div> 
+							      <div class="col-xs-6 pad-right-0 mob-pad-right-15 padd0 display_flex">
+							      	 <div class="customDropDown lead_dropdown width100p respwidth50p">
+                                      <select id="calenderHour" name="hour" class="select1 dropdown inputClass width100 stateoptions shadow" ng-model="dashboardControllerScope.calendar.hour" required>
+                                   <option value="" selected="selected" >HH*</option>
+                                   <option value="{{hour}}" ng-repeat="hour in dashboardControllerScope.hour">{{hour}}</option>
+                                 </select>
+                                   </div>
+                                   <div class="customDropDown lead_dropdown width100p respwidth50p">
+                               <select name="min" id="calenderMin" class="select1 dropdown inputClass width100 stateoptions shadow" ng-model="dashboardControllerScope.calendar.min" required>
+                               <option value="" selected="selected" >MM*</option>
+                             <option value="{{min}}" ng-repeat="min in dashboardControllerScope.min">{{min}}</option>
+                                  </select>
+                                 </div> 
+                                                                </div>
+                                                                
+						<!-- 	<div class="col-xs-6 paddingRght0 pos-rel">
+								<span class="">  
+								<input
+									type="text" id="datetimepicker5" class="timepicker width100 shadow"
+									name="time" ng-model="dashboardControllerScope.calendar.time"
+									placeholder="09:30 *" required />
+									<i
+									class="fa fa-clock-o small_calender iconAlign" ng-model="dashboardControllerScope.calendar.time" aria-hidden="true"></i>
+								</span>
+							</div> -->
+							<input type="text" class="width100 lead_borderBottom1 task_input shadow"
+								ng-model="dashboardControllerScope.calendar.subject"
+								name="subject" placeholder="What Your Meeting About?*" required>
+							<p
+								ng-if="dashboardControllerScope.calendarForm.subject.$touched && dashboardControllerScope.calendarForm.subject.$invalid"
+								class="reqStar">Kindly Enter About Your Meeting</p>
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd0">
+									<textarea class="width100 border_none heigth205" name="body"
+										ng-model="dashboardControllerScope.calendar.body"
+										placeholder="Content Goes Here....."></textarea>
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd0">
+									<div class="padd20">
+										<p class="margin0 font_size13">Attendees</p>
+										<input type="email" class="padding5 border" name="email"
+											ng-model="dashboardControllerScope.email"
+											
+											ng-pattern='/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i' placeholder="Add Attendee*">
+                                                        <button type="button" class="defaultBtn btn responsivemargin_top5" ng-disabled="dashboardControllerScope.calendarForm.email.$invalid || !dashboardControllerScope.email || dashboardControllerScope.email == ''" ng-click="dashboardControllerScope.addAttendee(dashboardControllerScope.email)">
+                                                            <i class="fa fa-plus" aria-hidden="true"></i> Add
+                                                        </button>
+                                                        <p ng-if="dashboardControllerScope.calendarForm.email.$error.pattern && dashboardControllerScope.calendarForm.email.$invalid && dashboardControllerScope.calendarForm.email.$touched" class="reqStar">Kindly Enter Valid Email</p>
+                                                        <p class="margin0 font_size13">Participants</p>
+                                                        <h4 class="" ng-repeat="contact in dashboardControllerScope.calendar.contactList | orderBy:''">
+											<span class="padding10 font_size11">{{contact}}</span>
+										</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer padd_LR15 paddRght marginRight15">
+                                    <button class="defaultBtn btn" type="button" ng-click="dashboardControllerScope.declineTask()" data-dismiss="modal" ng-click="dashboardControllerScope.declineTask()">Decline</button>
+                                    <button class="activeBtn btn" type="button" ng-click="dashboardControllerScope.addCalendar()" ng-disabled="dashboardControllerScope.calendarForm.$invalid || !dashboardControllerScope.calendar.contactList || leadControllerScope.calendar.contactList.length==0">Save</button>
+                                </div>
+                            </div>
+                            </form>
+                            <div class="padding15 resMargin12">
+                                <div ng-repeat="calendar in dashboardControllerScope.calendarList | orderBy:'-id'" class="notes_oddEvenBackground">
+                                    <label class="margin0">Subject : </label>
+                                    <p class="margin0 log_activityText">"{{calendar.desc}}"</p>
+                                    <label class="margin0">Date : </label>
+                                    <p class="margin0 log_activityText">"{{calendar.date | date:'MMM dd, yyyy' }}"</p>
+                                    <label class="margin0">Time : </label>
+                                    <p class="margin0 log_activityText">"{{calendar.time | date :'hh:mm a'}}"</p>
+                                    <label class="margin0">Body : </label>
+                                    <p class="margin0 log_activityText">"{{calendar.body}}"</p>
+                                    <label class="margin0">Attendees : </label>
+                                    <p class="margin0 log_activityText">"{{calendar.contactList}}"</p>
+                                    <i>
+							<p class="margin0 padding_top10 created_text">
+								{{calendar.updatedBy}} <span class="pipe_text">|</span>{{calendar.updatedon}}
+							</p>
+						</i>
+                                </div>
+                                <p class="grey_text text-center" ng-if="!dashboardControllerScope.calendarList || dashboardControllerScope.calendarList.length == 0">Calendar Details Not Available</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

@@ -1,0 +1,135 @@
+<div class="loader_backdrop" ng-if="timeSheetControllerScope.spinner || timeSheetControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer paddLft15"><span ng-if="!timeSheetControllerScope.isUpdate">New</span><span ng-if="timeSheetControllerScope.isUpdate">Update</span> Timesheet</div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0 employee_placeholder">
+                    		<p class="reqStar text-center" ng-if="timeSheetControllerScope.msg != ''">{{timeSheetControllerScope.msg}}</p>
+                            <form class="form-horizontal formContainer employee_selectBox" name="timeSheetControllerScope.timeSheetForm" ng-show="!timeSheetControllerScope.isCompanyUpdate">
+                                <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Date<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" 
+                                            	name="weekenddate" 
+                                            	class="inputClass cursor_pointer" 
+                                            	datepicker-popup="{{format}}" 
+                                            	ng-click="timeSheetControllerScope.openDateCalender($event)" 
+                                            	ng-model="timeSheetControllerScope.timeSheet.weekenddate" 
+                                            	is-open="timeSheetControllerScope.isDateCalenderOpen"
+                                            	ng-change="timeSheetControllerScope.dateSelected(timeSheetControllerScope.timeSheet.weekenddate)" 
+                                            	placeholder="Date" show-button-bar="false" readonly ng-disabled="timeSheetControllerScope.isUpdate"/>
+                                        </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18">
+											<button type="button" class="btn btn-default mrgTop5 addIcon"
+												ng-click="timeSheetControllerScope.openDateCalender($event)">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+                                </div>
+                               	<div class="timesheet_table margin_top15" ng-show="timeSheetControllerScope.isShowTimeSheetField || timeSheetControllerScope.isUpdate">
+                               		<!-- {{timeSheetControllerScope.timeSheet}}<br><br>
+                               		{{timeSheetControllerScope.timeSheetList}} -->
+                               		<table >
+									    <thead>
+									      <tr>
+									      	<th scope="col">Date</th>
+									       	<th scope="col">Timesheet Type</th>
+									       	<th scope="col">Hours</th>
+									        <th scope="col">Description</th>
+									      </tr>
+									    </thead>
+									    <tbody>
+									    
+									      <tr ng-repeat="timeSheet in timeSheetControllerScope.timeSheetList">
+									      	<td data-label="Date">{{timeSheet.date}}</td>
+									      	<td data-label="Date padd0">
+                                               <select 
+                                               		class="select1 dropdown inputClass col-lg-12 col-md-12 col-sm-12 col-xs-12" 
+                                               		ng-model="timeSheet.type"
+									        		ng-disabled="timeSheet.isDisabled" 
+									        		ng-options="timeSheetType.id as timeSheetType.name for timeSheetType in timeSheetControllerScope.timeSheetTypeList">
+                                                   	<option value="" selected="selected" ng-if="!timeSheet.name || timeSheet.name == ''">Select Timesheet Type</option>
+                                                    <!-- <option value="{{timeSheetType.id}}" ng-repeat="timeSheetType in timeSheetControllerScope.timeSheetTypeList | orderBy:'name'" ng-if="timeSheet.status == 'a'">{{timeSheet.name}}</option> -->
+                                               </select>
+									      	</td>
+									        <td data-label="Hours">
+									        	<input type="number" 
+									        		class="inputClass" 
+									        		ng-model="timeSheet.hours"
+									        		ng-disabled="timeSheet.isDisabled" 
+									        		placeholder="Hours" required/>
+									        </td>
+									        <td data-label="Descrption">
+									        	<input 
+									        		type="text" 
+									        		class="inputClass" 
+									        		ng-model="timeSheet.description"
+									        		ng-disabled="timeSheet.isDisabled" 
+									        		placeholder="Description" required/>
+									        </td>
+									      </tr>
+									    </tbody>
+									  </table>
+	                                <div class="formfooterbtns" ng-if="timeSheetControllerScope.timeSheetList.length > 0">
+	                                    <button class="defaultBtn btn" type="button" ng-click="timeSheetControllerScope.decline()">Decline</button>
+	                                    <button 
+	                                    	class="defaultBtn btn" 
+	                                    	type="button" 
+	                                    	ng-disabled="timeSheetControllerScope.timeSheetList[0].status =='s' ? true : false" 
+	                                    	ng-click="timeSheetControllerScope.createTimeSheet()"
+	                                    	ng-if="!timeSheetControllerScope.isUpdate">Save As Draft</button>
+	                                   
+	                                    <button 
+	                                    	class="defaultBtn btn" 
+	                                    	type="button" 
+	                                    	ng-disabled="timeSheetControllerScope.timeSheetList[0].status =='s' ? true : false" 
+	                                    	ng-click="timeSheetControllerScope.editTimeSheet('d')"
+	                                    	ng-if="timeSheetControllerScope.isUpdate">Update</button>
+	                                    <button 
+	                                    	class="activeBtn btn" 
+	                                    	type="button" 
+	                                    	ng-disabled="timeSheetControllerScope.timeSheetList[0].status =='s' ? true : false" 
+	                                    	ng-click="timeSheetControllerScope.editTimeSheet('s')"
+	                                    	ng-disabled="!timeSheetControllerScope.isSubmitAvailable">Submit</button>
+                                	</div>
+                            	</div>
+                        	</form>
+                        	<form name="timeSheetControllerScope.companyTimesheetForm" ng-show="timeSheetControllerScope.isCompanyUpdate">
+                        	
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4 lineheight31">Status<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="status" ng-model="timeSheetControllerScope.timeSheet.status" required>
+                                                <option value="a">Approve</option>
+                                                <option value="d" selected="selected" disabled>Draft</option>
+                                                <option value="o">Re-Open</option>
+                                                <option value="r">Reject</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Comment<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <textarea name="comment" class="inputClass" ng-model="timeSheetControllerScope.timeSheet.comment" placeholder="Comment" required></textarea>
+                                        <p ng-if="timeSheetControllerScope.companyTimesheetForm.comment.$invalid && timeSheetControllerScope.companyTimesheetForm.comment.$touched">Kindly Enter Valid Comment</p>
+                                    </div>
+                                </div>
+                                <div class="formfooterbtns timesheet_table">
+	                                    <button class="defaultBtn btn" type="button" ng-click="timeSheetControllerScope.decline()">Decline</button>
+	                                    <button 
+	                                    	class="activeBtn btn" 
+	                                    	type="button" 
+	                                    	ng-click="timeSheetControllerScope.editTimeSheet(timeSheetControllerScope.timeSheet.status)" 
+	                                    	ng-disabled="timeSheetControllerScope.companyTimesheetForm.$invalid">Update</button>
+                                	</div>
+                        	</form>
+                        	<div class="clearfix"></div>
+                    	</div>
+                	</div>
+            	</div>
+        	
+                            

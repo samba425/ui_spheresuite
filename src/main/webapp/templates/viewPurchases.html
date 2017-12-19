@@ -1,0 +1,72 @@
+
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Purchases List</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <div class="customDropDown customDropDown col-lg-6 col-md-6 col-sm-6 col-xs-8 padd0">
+                                            <select name="leadType" class="dropdown inputClass select1" >
+                                                  <option value="" >Select Type</option>
+                                                  
+                                            </select>
+                                        </div>
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-4 padd0 text-right">
+                                       <button class="glyphicon glyphicon-export action_btn" ng-click="leadControllerScope.exportData()"></button>
+                                        <!-- <button class="glyphicon glyphicon-import action_btn margin_left0 margin_right0"></button>-->
+                                        </span>
+                                    </div>
+                                    <div class="width100">
+                                        <input type="text" placeholder="Search Here" ng-model="leadControllerScope.search" class="margin_top20 width100">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="list-wrapper">
+                            <div >
+                                <div class="innerdivContainer red-icon create-employee border_bottom1" >
+                                    <div class="row">
+                                        <div class="input_section">
+                                            <div class="col-lg-1 padd0 responsive_textCenter responsive_textCenter responsivemargin_top10">
+                                                <img src="images/lead_icon.png">
+                                            </div>
+                                            <div class="responsive_textCenter">
+                                                <a href="#!viewPurchase"><span class="anchor_text cursor_pointer" >sapta</span></a>
+                                                <span class="pipe_text" ng-if="lead.statusName!=''">|</span>
+                                                <span class="span_text">sapta</span>
+                                            </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                             <li class="row"><label class="col-xs-6 padd0">Opportunity Type</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">sapta</span></li>
+                                                             
+                                                             <li class="row"><label class="col-xs-6 padd0">Rate</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">123</span></li>
+                                                             <li class="row"><label class="col-xs-6 padd0">Quantity</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">123</span></li>
+                                                             <li class="row"><label class="col-xs-6 padd0">Payment Terms</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all">Years</span></li>
+                                                             
+                                                        </ul>
+                                                    </div>
+                                                    <!-- <div class="col-lg-6 col-md-6 col-sm-7 col-xs-6 padd0 font_weight600">
+                                                        <ul class="padd0">
+                                                            <li>{{lead.name}}</li>
+                                                            <li>{{lead.statusName}}</li>
+                                                            <li>{{lead.source}}</li>
+                                                            <li>{{lead.industryName}}</li>
+                                                            <li>{{lead.mobile}}</li>
+                                                        </ul>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            

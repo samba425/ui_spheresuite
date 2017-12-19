@@ -1,0 +1,140 @@
+<div class="loader_backdrop" ng-if="opportunityControllerScope.spinner || opportunityControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="row pageTitletextContainer">
+                    	<div class="col-xs-12 padd0">
+                        	<span class="cursor_pointer back_iconPosition" ng-click="opportunityControllerScope.goToOpportunities()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+                        	<span class="page_titlePosition">Opportunity Details</span>
+                        </div>
+                    	
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="text-right row padd10">
+                                        <button class="activeBtn" ng-click="opportunityControllerScope.goToEditOpportunity(opportunityControllerScope.opportunity.id)">Edit</button>
+                                    </div>
+                                    <div class="col-lg-1 padd0 responsive_textCenter responsivemargin_top10">
+                                        <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="responsive_textCenter">
+                                        <span class="anchor_text cursor_default break-word capitalizeText">{{opportunityControllerScope.opportunity.projectName}}</span>
+                                    </div>
+                                    <div class="col-lg-8 col-xs-12 padd0">
+                                        <div class="row">
+                                            <div class="">
+                                                <ul class="padd0 left_text">
+                                                    <li class="row" ng-if="opportunityControllerScope.opportunity.cutomerName !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Name</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default capitalizeText">{{opportunityControllerScope.opportunity.cutomerName}}</span></li>
+                                                    <li class="row" ng-if="opportunityControllerScope.opportunity.contactName !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Contact Name</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default capitalizeText">{{opportunityControllerScope.opportunity.contactName}}</span></li>
+                                                    <li class="row" ng-if="opportunityControllerScope.opportunity.projectName !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Opportunity Name</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default capitalizeText">{{opportunityControllerScope.opportunity.projectName}}</span></li>
+                                                    <li class="row" ng-if="opportunityControllerScope.opportunity.projectTypeName !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Opportunity Type</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default capitalizeText">{{opportunityControllerScope.opportunity.projectTypeName}}</span></li>
+                                                    <li class="row" ng-if="opportunityControllerScope.opportunity.displayName !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Display Name</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default capitalizeText">{{opportunityControllerScope.opportunity.displayName}}</span></li>
+                                                    <li class="row" ng-if="opportunityControllerScope.opportunity.projectCode !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Opportunity Code</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{opportunityControllerScope.opportunity.projectCode}}</span></li>
+                                                    <li class="row" ng-if="opportunityControllerScope.opportunity.startDate !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Start Date</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{opportunityControllerScope.opportunity.startDate |  date:"MMM d, y"}}</span></li>
+                                                    <li class="row" ng-if="opportunityControllerScope.opportunity.enddate !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">End Date</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{opportunityControllerScope.opportunity.enddate  |  date:"MMM d, y"}}</span></li>
+                                                    <li class="row" ng-if="opportunityControllerScope.opportunity.projectDuration !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Opportunity Duration</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{opportunityControllerScope.opportunity.projectDuration}}</span></li>
+                                                    <li class="row" ng-if="opportunityControllerScope.opportunity.probability !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Probability</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{opportunityControllerScope.opportunity.probability}} </span></li>
+                                                    <li class="row" ng-if="opportunityControllerScope.opportunity.salesStageName !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Sales Stage </label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{opportunityControllerScope.opportunity.salesStageName}} </span></li>
+                                                     <li class="row" ng-if="opportunityControllerScope.opportunity.cost !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Amount</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{opportunityControllerScope.opportunity.cost}}</span></li>
+                                                    <li class="row" ng-if="opportunityControllerScope.opportunity.comment !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Comments</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{opportunityControllerScope.opportunity.comment}}</span></li>
+                                                    <li class="row" ng-if="opportunityControllerScope.opportunity.updatedByName !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Updated By</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default capitalizeText">{{opportunityControllerScope.opportunity.updatedByName}}</span></li>
+                                                    <li class="row" ng-if="opportunityControllerScope.opportunity.updatedon !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Updated On</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{opportunityControllerScope.opportunity.updatedon  | date:"MMM d, y"}}</span></li>
+                                                    <li class="row" ng-if="opportunityControllerScope.opportunity.fromEditFile.length > 0">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Documents</label>
+                                                       	<span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">
+                                                       		<p ng-repeat="file in opportunityControllerScope.opportunity.fromEditFile">
+                                                       			<a download="{{file.name}}" ng-href="{{file.file}}" target="_blank">
+                                                       				<i class="fa fa-paperclip font_weight600"
+																		aria-hidden="true"></i> {{file.name}}<br></a>
+                                                       		</p>
+                                                       	</span>
+                                                   	</li>
+                                                </ul>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-xs-12 padd0">
+                                    	<div class="opportunity_rightBorder">
+                                    	<h2 class="h2_text">Projects</h2>
+                                		<div class="panel-group" id="accordion">
+                                            <div class="panel panel-default position_relative" ng-repeat="project in opportunityControllerScope.projectList | orderBy:'-id'">
+                                                <div class="panel-heading padd0 display_table" ng-click="opportunityControllerScope.arrowRotate(this)">
+                                                    <h4 class="panel-title break-word">
+														<a data-toggle="collapse" href="javascript:void(0);"
+															data-parent="#accordion" data-target="#click{{$index}}" class="capitalizeText">{{project.projectName}}</a>
+													</h4>
+                                                  	<span class="display_tableCell leadIcon_position" data-toggle="collapse" href="javascript:void(0);" data-parent="#accordion" data-target="#click{{$index}}">
+                                                  	<i
+														class="fa fa-angle-right cursor_pointer lead_rightArrow"
+														aria-hidden="true"
+														ng-class="arrowPosition? 'icon-rotate': ''"></i></span>
+                                                </div>
+                                                <div id="click{{$index}}" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div class="col-xs-12">
+                                                            <div class="row text-left">
+                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+                                                                    <ul class="padd0 left_text">
+                                                                        <li>Display Name</li>
+                                                                        <li class="font_weight600 PADDLEFT9 break-word capitalizeText">{{project.displayName}}</li>
+                                                                        <li>Assigned To</li>
+                                                                        <li class="font_weight600 PADDLEFT9 break-word capitalizeText">{{project.updatedByName}}</li>
+                                                                        <li>Start Date</li>
+                                                                        <li class="font_weight600 PADDLEFT9 break-word">{{project.startDate}}</li>
+                                                                        <li>End Date</li>
+                                                                        <li class="font_weight600 PADDLEFT9 break-word">{{project.enddate}}</li>
+                                                                        <li>Project Duration</li>
+                                                                        <li class="font_weight600 PADDLEFT9 break-word">{{project.projectDuration}}</li>
+                                                                        <li>Project Probability</li>
+                                                                        <li class="font_weight600 PADDLEFT9 break-word">{{project.probability}}</li>
+                                                                        <li>Amount</li>
+                                                                        <li class="font_weight600 PADDLEFT9 break-word">{{project.amount}}</li>
+                                                                        <li>Comments</li>
+                                                                        <li class="font_weight600 PADDLEFT9 break-word">{{project.Comments}}</li>
+                                                                        <li>Fax Number</li>
+                                                                        <li class="font_weight600 PADDLEFT9 break-word">{{project.fax}}</li>
+                                                                        <li>Website</li>
+                                                                        <li class="font_weight600 PADDLEFT9 break-word">{{project.website}}</li>
+                                                                        <li>Requirements</li>
+                                                                        <li class="font_weight600 PADDLEFT9 break-word">{{project.requirement}}</li>
+                                                                        <li>Notes</li>
+                                                                        <li class="font_weight600 PADDLEFT9 break-word">{{project.note}}</li>
+                                                                        <li>Comments</li>
+                                                                        <li class="font_weight600 PADDLEFT9 break-word">{{project.comment}}</li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

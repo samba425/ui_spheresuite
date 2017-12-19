@@ -1,0 +1,56 @@
+<div class="loader_backdrop" ng-show="holidayControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Holidays</div>
+                       <div class="innerdivContainer red-icon create-employee" style="padding-bottom: 0">
+                            <div class="row">
+                                <div class="input_section" >
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="holidayControllerScope.searchName" ng-keyup="holidayControllerScope.checkEmptyList()" placeholder="Search Here" class="margin_top20 width100 resp_fontSize"> 
+                                    </div>
+                               
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input_section" ng-if="holidayControllerScope.holidayList.length === 0 || holidayControllerScope.dataMsg != ''">
+                         <p class="text-center grey_text padding15 margin0">{{holidayControllerScope.dataMsg }}</p>
+                         </div>
+                          <div class="input_section" ng-if="holidayControllerScope.holidayList.length === 0 || holidayControllerScope.msg != ''">
+                         	<p class="text-center grey_text padding15 margin0">{{ holidayControllerScope.msg }}</p>
+                         </div>
+                       <div id="list-wrapper" ng-if="holidayControllerScope.holidayList.length > 0">
+                            <div class="innerdivContainer red-icon create-employee border_bottom1"  ng-repeat="holiday in holidayControllerScope.holidayList | filter: holidayControllerScope.searchName | orderBy: '-year' ">
+                                <div class="responsive_textCenter">
+                                          <h4 ng-if="holiday.data">{{holiday.year}} </h4> 
+                                        </div>
+                                        <div class="row backGreyColor"   ng-if="data.status == 'a' " ng-repeat="data in holiday.data | filter: holidayControllerScope.searchName ">
+                                         <div class="responsive_textCenter col-lg-6 padd0">
+                                                <span class="  padd0 lineHeight24" >{{data.desc}}</span>
+                                            </div>
+                                           <div class="col-lg-6 padd0 responsive_textCenter">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-7 col-xs-6 padd0  width100">
+                                                        <span class="padd0 lineHeight24" >{{data.date}}</span>
+                                                    </div>
+                                                </div>
+                                            </div></div>
+                                            
+                                    <!--        <div class="row backGreyColor"   ng-if="data.status == 'a' " ng-repeat="data in holiday.data">
+                                        <div class="input_section" >
+                                          <div class="responsive_textCenter col-lg-6 padd0" >
+                                                <span class="  padd0 lineHeight24" >{{data.desc}} - {{data.date}}</span>
+                                            </div></div></div> -->
+                                            
+                                      <!--   <div ng-repeat="data in holiday.data">
+                                       <span class="policy_text cursor_default break-word"><span class="padd_right15">-</span> <div class="pull-left">{{data.desc}}</div><div class="pull-right">{{data.date}}</div></span>
+                                        </div> -->
+                                  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

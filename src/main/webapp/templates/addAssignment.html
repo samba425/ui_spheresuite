@@ -1,0 +1,160 @@
+<div class="loader_backdrop" ng-if="assignmentControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer paddLft15"><span ng-if="!assignmentControllerScope.isUpdate">New</span><span ng-if="assignmentControllerScope.isUpdate">Update</span> Assignment</div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0 employee_placeholder">
+                    		<p class="reqStar text-center" ng-if="assignmentControllerScope.msg && assignmentControllerScope.msg != ''">{{assignmentControllerScope.msg}}</p>
+                            <form class="form-horizontal formContainer employee_selectBox" name="assignmentControllerScope.employeeForm">
+                               
+                                <div class="create-employee-inner">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Employee Id</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="empId" class="inputClass" ng-model="assignmentControllerScope.employee.empId" placeholder="Employee Id" />
+                                        </div>
+                                    </div>
+                                     <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Project Type<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="workLocation" ng-model="assignmentControllerScope.employee.workLocation" required>
+                                                <option value="" selected>Select Project Type</option>
+                                                <option value="internal" >Internal</option>
+                                                <option value="external" >External</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Customers<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top10">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="workLocation" ng-model="assignmentControllerScope.employee.workLocation" required>
+                                                <option value="" selected>Select Customers</option>
+                                                <option value="internal" >Internal</option>
+                                                <option value="external" >External</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Opportunities<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top10">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="workLocation" ng-model="assignmentControllerScope.employee.workLocation" required>
+                                                <option value="" selected>Select Opportunities</option>
+                                                <option value="internal" >Internal</option>
+                                                <option value="external" >External</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Project Name<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top10">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="workLocation" ng-model="assignmentControllerScope.employee.workLocation" required>
+                                                <option value="" selected>Select Project Name</option>
+                                                <option value="internal" >Internal</option>
+                                                <option value="external" >External</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Start Date</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="startDate" class="inputClass" datepicker-popup="{{format}}" ng-click="assignmentControllerScope.openStartDateCalender($event)" ng-model="assignmentControllerScope.assignment.startDate" is-open="assignmentControllerScope.startDateCalender" placeholder="Start Date" show-button-bar="false" />
+                                            <p ng-if="assignmentControllerScope.employeeForm.dateOfBirth.$invalid && assignmentControllerScope.employeeForm.dateOfBirth.$touched" class="reqStar">Kindly Enter Valid Date</p>
+                                        </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18">
+											<button type="button" class="btn btn-default mrgTop14 addIcon"
+												ng-click="assignmentControllerScope.openStartDateCalender($event)">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">End Date</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="endDate" class="inputClass" datepicker-popup="{{format}}" ng-click="assignmentControllerScope.openEndDateCalender($event)" ng-model="assignmentControllerScope.assignment.endDate" is-open="assignmentControllerScope.endDateCalender" placeholder="End Date" show-button-bar="false" />
+                                            <p ng-if="assignmentControllerScope.employeeForm.dateOfBirth.$invalid && assignmentControllerScope.employeeForm.dateOfBirth.$touched" class="reqStar">Kindly Enter Valid Date</p>
+                                        </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18">
+											<button type="button" class="btn btn-default mrgTop5 addIcon"
+												ng-click="assignmentControllerScope.openEndDateCalender($event)">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Po / Wo<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="firstName" class="inputClass" ng-pattern="/^[a-zA-Z\ ]*$/" ng-model="assignmentControllerScope.employee.firstName" placeholder="Po / Wo" required />
+                                            <p ng-show="assignmentControllerScope.employeeForm.firstName.$error.pattern && assignmentControllerScope.employeeForm.firstName.$invalid && assignmentControllerScope.employeeForm.firstName.$touched" class="reqStar">Kindly Enter Correct Name</p>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Amount Type<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="workLocation" ng-model="assignmentControllerScope.employee.workLocation" required>
+                                                <option value="" selected>Select Amount Type</option>
+                                                <option value="internal" >Internal</option>
+                                                <option value="external" >External</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Amount</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="middleName" class="inputClass" ng-pattern="/^[a-zA-Z\ ]*$/" ng-model="assignmentControllerScope.employee.middleName" placeholder="Amount" />
+                                            <p ng-show="assignmentControllerScope.employeeForm.middleName.$error.pattern && assignmentControllerScope.employeeForm.middleName.$invalid && assignmentControllerScope.employeeForm.middleName.$touched" class="reqStar">Kindly Enter Correct Name</p>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Payment Terms<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="workLocation" ng-model="assignmentControllerScope.employee.workLocation" required>
+                                                <option value="" selected>Select Payment Terms</option>
+                                                <option value="internal" >Internal</option>
+                                                <option value="external" >External</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Status<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top10">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="workLocation" ng-model="assignmentControllerScope.employee.workLocation" required>
+                                                <option value="" selected>Select Status</option>
+                                                <option value="active" >Active</option>
+                                                <option value="inactive" >In-Active</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Comments</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <textarea name="jobDesc" class="inputClass" ng-model="assignmentControllerScope.employee.jobDesc" placeholder="Comments"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns">
+                                        <button class="defaultBtn btn" type="button" ng-click="assignmentControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn btn" type="button" ng-click="assignmentControllerScope.addEmployee()" ng-disabled="assignmentControllerScope.employeeForm.$invalid" ng-if="!assignmentControllerScope.isUpdate">Save</button>
+                                        <button class="activeBtn btn" type="button" ng-click="assignmentControllerScope.editEmployee()" ng-disabled="assignmentControllerScope.employeeForm.$invalid" ng-if="assignmentControllerScope.isUpdate">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           

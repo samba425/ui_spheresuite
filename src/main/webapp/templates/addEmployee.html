@@ -1,0 +1,184 @@
+<div class="loader_backdrop" ng-if="employeeControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer paddLft15"><span ng-if="!employeeControllerScope.isUpdate">New</span><span ng-if="employeeControllerScope.isUpdate">Update</span> Employee</div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0 employee_placeholder">
+                    		<p class="reqStar text-center" ng-if="employeeControllerScope.msg && employeeControllerScope.msg != ''">{{employeeControllerScope.msg}}</p>
+                            <form class="form-horizontal formContainer employee_selectBox" name="employeeControllerScope.employeeForm">
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Work Location<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="workLocation" ng-model="employeeControllerScope.employee.workLocation" required>
+                                                <option value="" ng-if="!employeeControllerScope.employee.workLocation || employeeControllerScope.employee.workLocation == ''">Select Work Location</option>
+                                                <option value="{{workLocation.id}}" ng-repeat="workLocation in employeeControllerScope.worklocationList | orderBy:'city'" ng-if="workLocation.status == 'a'">{{workLocation.city}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create-employee-inner">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Employee Id<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="empId" class="inputClass" ng-pattern="/^[0-9]*$/" ng-model="employeeControllerScope.employee.empId" placeholder="Employee Id" required/>
+                                       <p ng-show="(employeeControllerScope.employeeForm.empId.$error.pattern || employeeControllerScope.employeeForm.empId.$invalid) && employeeControllerScope.employeeForm.empId.$touched" class="reqStar">Kindly Enter Employee Id</p>
+                                       
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">First Name<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="firstName" class="inputClass" ng-pattern="/^[a-zA-Z\ ]*$/" ng-model="employeeControllerScope.employee.firstName" placeholder="First Name" required />
+                                            <p ng-show="employeeControllerScope.employeeForm.firstName.$error.pattern && employeeControllerScope.employeeForm.firstName.$invalid && employeeControllerScope.employeeForm.firstName.$touched" class="reqStar">Kindly Enter Correct Name</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Middle Name</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="middleName" class="inputClass" ng-pattern="/^[a-zA-Z\ ]*$/" ng-model="employeeControllerScope.employee.middleName" placeholder="Middle Name" />
+                                            <p ng-show="employeeControllerScope.employeeForm.middleName.$error.pattern && employeeControllerScope.employeeForm.middleName.$invalid && employeeControllerScope.employeeForm.middleName.$touched" class="reqStar">Kindly Enter Correct Name</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Last Name<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="lastName" class="inputClass" ng-pattern="/^[a-zA-Z\ ]*$/" ng-model="employeeControllerScope.employee.lastName" placeholder="Last Name" required />
+                                            <p ng-show="employeeControllerScope.employeeForm.lastName.$error.pattern && employeeControllerScope.employeeForm.lastName.$invalid && employeeControllerScope.employeeForm.lastName.$touched" class="reqStar">Kindly Enter Correct Name</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Gender<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-6 switch-field pad-right-0 emp_margin5">
+                                            <input type="radio" id="switch_left" name="gender" value="M" ng-model="employeeControllerScope.employee.gender" required/>
+                                            <label for="switch_left" class="linheight2pt7">Male</label>
+                                            <input type="radio" id="switch_right" name="gender" value="F" ng-model="employeeControllerScope.employee.gender" required/>
+                                            <label for="switch_right" class="linheight2pt7">Female</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Personal Contact</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="personalContact" class="inputClass" ng-model="employeeControllerScope.employee.personalContact" placeholder="Personal Contact" ng-pattern="/^[0-9]*$/" />
+                                            <p ng-show="employeeControllerScope.employeeForm.personalContact.$error.pattern && employeeControllerScope.employeeForm.personalContact.$touched" class="reqStar">Enter Correct Number</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Emergency Contact</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="primaryContact" class="inputClass" ng-model="employeeControllerScope.employee.primaryContact" placeholder="Emergency Contact " ng-pattern="/^[0-9]*$/" />
+                                            <p ng-show="employeeControllerScope.employeeForm.primaryContact.$error.pattern && employeeControllerScope.employeeForm.primaryContact.$touched" class="reqStar">Enter Correct Number</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Company Email<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="companyEmail" class="inputClass" ng-model="employeeControllerScope.employee.companyEmail" placeholder="Company Email" ng-pattern='/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i' required/>
+                                            <p ng-if="employeeControllerScope.employeeForm.companyEmail.$error.pattern && employeeControllerScope.employeeForm.companyEmail.$invalid && employeeControllerScope.employeeForm.companyEmail.$touched" class="reqStar">Kindly Enter Valid Email</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Personal Email</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="personalEmail" class="inputClass" ng-model="employeeControllerScope.employee.personalEmail" placeholder="Personal Email" ng-pattern='/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i' />
+                                            <p ng-if="employeeControllerScope.employeeForm.personalEmail.$error.pattern && employeeControllerScope.employeeForm.personalEmail.$invalid && employeeControllerScope.employeeForm.personalEmail.$touched" class="reqStar">Kindly Enter Valid Email</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Aadhar Id </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="aadhar" class="inputClass" ng-pattern="/^[0-9]{12,12}$/" ng-model="employeeControllerScope.employee.aadhar" placeholder="Aadhar Id" />
+                                            <p ng-show="employeeControllerScope.employeeForm.aadhar.$error.pattern && employeeControllerScope.employeeForm.aadhar.$touched" class="reqStar">Enter Correct Adhar Number. Ex XXXXXXXXXXXX</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">PAN No</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="panno" class="inputClass" ng-pattern="/^[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}$/" ng-model="employeeControllerScope.employee.panno" placeholder="PAN Number" />
+                                            <p ng-if="employeeControllerScope.employeeForm.panno.$error.pattern && employeeControllerScope.employeeForm.panno.$invalid && employeeControllerScope.employeeForm.panno.$touched" class="reqStar">Kindly Enter Valid PAN No (AAAAA9999A)</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Date Of Birth</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="dateOfBirth" class="inputClass" datepicker-popup="{{format}}" ng-click="employeeControllerScope.opendateOfBirthCalender($event)" ng-model="employeeControllerScope.employee.dateOfBirth" is-open="employeeControllerScope.dateOfBirthCalender" placeholder="Date Of Birth" show-button-bar="false" />
+                                            <p ng-if="employeeControllerScope.employeeForm.dateOfBirth.$invalid && employeeControllerScope.employeeForm.dateOfBirth.$touched" class="reqStar">Kindly Enter Valid Date</p>
+                                        </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18">
+											<button type="button" class="btn btn-default mrgTop5 addIcon"
+												ng-click="employeeControllerScope.opendateOfBirthCalender($event)">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight31">Employee Type</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 emp_margin5">
+                                            <div class="customDropDown">
+                                                <select class="select1 dropdown inputClass" name="empType" ng-model="employeeControllerScope.employee.empType">
+                                                    <option value="" ng-if="!employeeControllerScope.employee.empType || employeeControllerScope.employee.empType == ''">Select Employee Type</option>
+                                                    <option value="{{employee.id}}" ng-repeat="employee in employeeControllerScope.EmployeeTypeList  | orderBy:'name'">{{employee.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight31">Reporting To</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 emp_margin5">
+                                            <div class="customDropDown">
+                                                <select class="select1 dropdown inputClass" name="reportTo" ng-model="employeeControllerScope.employee.reportTo">
+                                                    <option value="" ng-if="!employeeControllerScope.employee.reportTo || employeeControllerScope.employee.reportTo == ''">Select Report Type</option>
+                                                    <option value="{{employees.id}}" ng-repeat="employees in employeeControllerScope.employeeList  | orderBy:'firstName'">{{employees.firstName}} {{employees.middleName}} {{employees.lastName}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight31">Department<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 emp_margin5">
+                                            <div class="customDropDown">
+                                                <select class="select1 dropdown inputClass" name="dept" ng-model="employeeControllerScope.employee.dept" required>
+                                                    <option value="" ng-if="!employeeControllerScope.employee.dept || employeeControllerScope.employee.dept == ''">Select Department</option>
+                                                    <option value="{{department.id}}" ng-repeat="department in employeeControllerScope.DepartmentList  | orderBy:'name'">{{department.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Designation</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="title" class="inputClass" ng-model="employeeControllerScope.employee.title" placeholder="Employee Title At Organization" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Start Date</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 addEmployee_calenderPosition">
+                                            <input type="text" name="startDate" class="inputClass" datepicker-popup="{{format}}" ng-click="employeeControllerScope.openstartCalender($event)" name="startDate" ng-model="employeeControllerScope.employee.startDate" is-open="employeeControllerScope.startCalender" placeholder="Start Date" show-button-bar="false" />
+                                            <p ng-if="employeeControllerScope.employeeForm.startDate.$invalid && employeeControllerScope.employeeForm.startDate.$touched" class="reqStar">Kindly Enter Valid Date</p>
+                                        </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18">
+											<button type="button" class="btn btn-default mrgTop5 addIcon"
+												ng-click="employeeControllerScope.openstartCalender($event)">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Job Description</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <textarea name="jobDesc" class="inputClass" ng-model="employeeControllerScope.employee.jobDesc" placeholder="Job Description"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns">
+                                        <button class="defaultBtn btn" type="button" ng-click="employeeControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn btn" type="button" ng-click="employeeControllerScope.addEmployee()" ng-disabled="employeeControllerScope.employeeForm.$invalid" ng-if="!employeeControllerScope.isUpdate">Save</button>
+                                        <button class="activeBtn btn" type="button" ng-click="employeeControllerScope.editEmployee()" ng-disabled="employeeControllerScope.employeeForm.$invalid" ng-if="employeeControllerScope.isUpdate">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           

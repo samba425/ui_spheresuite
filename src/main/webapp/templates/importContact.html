@@ -1,0 +1,293 @@
+<div class="loader_backdrop" ng-if="contactControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Import Contact</div>
+                        
+                        <div class="innerdivContainer red-icon create-employee">
+                         <div ng-show="contactControllerScope.chooseFileSection">
+                                <input type="file" ng-model="testfile" onchange="angular.element(this).scope().loadFile(this.files)" />
+                                <input type="button" value="Import Data" class="btn btn-default" ng-click="handleFile()" />
+                            </div>
+                            <div ng-show="!contactControllerScope.chooseFileSection">
+                            
+                            <form class="form-horizontal formContainer" name="contactControllerScope.contactImportForm">
+                                <div class="create-employee-inner">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Lead&nbsp;/&nbsp;Customer&nbsp;/&nbsp;Vendor<span class="reqStar">*</span>
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="leadType" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.leadType" required>
+                                                        <option value="">Select Value</option>
+                                                    	<option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Salutation
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="salutation" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.salutation" required>
+                                                     <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">First Name<span class="reqStar">*</span>
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select class="importSelect dropdown inputClass" name="firstName" ng-model="contactControllerScope.feilds.firstName" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Middle Name
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select class="importSelect dropdown inputClass" name="middleName" ng-model="contactControllerScope.feilds.middleName" required>
+                                                        <option value="">Select Value</option>
+                                                   <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Last Name<span class="reqStar">*</span>
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select class="importSelect dropdown inputClass" name="lastName" ng-model="contactControllerScope.feilds.lastName" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Designation
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select class="importSelect dropdown inputClass" name="designation" ng-model="contactControllerScope.feilds.designation" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Contact Type
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="contacttype" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.contacttype" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Primary Email
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="primaryEmail" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.primaryEmail" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Secondary Email
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="secondaryEmail" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.secondaryEmail" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Primary Mailing Address
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="primaryMailingAddress" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.address1" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Secondary Mailing Address
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="secondaryMailingAddress" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.address2" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Mobile 1
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="mobileNumber1" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.mobile" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Mobile 2
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="mobileNumber2" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.mobile2" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Phone 1
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="phoneNumber1" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.phone" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Phone 2
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="phoneNumber2" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.phone1" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Phone 3
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="phoneNumber3" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.phone2" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Phone 4
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="phoneNumber4" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.phone3" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Fax Number
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="faxNumber" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.fax" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Website
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="website" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.website" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Requirements
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="requirements" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.requirement" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Notes
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="notes" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.notes"  required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Comments
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="comments" class="importSelect dropdown inputClass" ng-model="contactControllerScope.feilds.comment" required>
+                                                        <option value="">Select Value</option>
+                                                    <option value="{{feild}}" ng-repeat="feild in contactControllerScope.fileInputFeilds">{{feild}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns">
+                                        <button class="defaultBtn" type="button" ng-click="contactControllerScope.declineImport()">Decline</button>
+                                        <button class="activeBtn btn" type="button" ng-click="contactControllerScope.importContact()">Save</button>
+                                       
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       

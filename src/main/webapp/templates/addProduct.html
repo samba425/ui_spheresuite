@@ -1,0 +1,89 @@
+
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer"><span>Add Product</span></div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0">
+                            <form class="form-horizontal formContainer" name="leadControllerScope.leadForm">
+                                <div class="create-employee-inner">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Name<span class="reqStar">*</span>
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="name" class="inputClass" placeholder="Name" >
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Id
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="Id" class="inputClass" placeholder="Id" >
+                                           
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Type
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select class="select1 dropdown inputClass" name="empType" ng-model="employeeControllerScope.employee.empType">
+                                                    <option value="" >Select Type</option>
+                                                   
+                                                </select>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Category
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="Category" class="inputClass" placeholder="Category" >
+                                           
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Warehouse
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="Warehouse" class="inputClass" placeholder="Warehouse" >
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Units
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="Units" class="inputClass" placeholder="Units" >
+                                           
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Quantity
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="Quantity" class="inputClass" placeholder="Quantity" >
+                                           
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Price
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="Quantity" class="inputClass" placeholder="Price" >
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns">
+                                       
+                                        <button class="defaultBtn btn" type="button" ng-click="leadControllerScope.declineContact()">Decline</button>
+                                        
+                                        <button class="activeBtn btn" type="button" ng-click="leadControllerScope.createLead()" ng-disabled="leadControllerScope.contactForm.$invalid">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           

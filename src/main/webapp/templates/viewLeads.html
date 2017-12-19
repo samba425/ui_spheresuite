@@ -1,0 +1,203 @@
+<div class="loader_backdrop" ng-if="leadControllerScope.spinner || leadControllerScope.viewSpinner">
+    <div class="loader loader_position"></div>
+</div>
+<div class="rightContainer">
+	<div class="pageTitleParent">
+		<div class="row pageTitletextContainer">
+			<span class="col-lg-6 col-md-6 col-sm-6 col-xs-7 padd0">
+		   		<div class="line_height30">{{leadControllerScope.subMenu}}s List</div>
+		   	</span>
+   			<span class="col-lg-6 col-md-6 col-sm-6 col-xs-5 text-right padd0">
+                   <!-- <button class="glyphicon glyphicon-export action_btn" ng-click="leadControllerScope.exportData()"></button> -->
+                   <button class="activeBtn btn margin_left0 margin_right0" ng-click="leadControllerScope.goToImportPage()">Import</button>
+			</span>
+   		</div>
+   		<div class="innerdivContainer red-icon create-employee">
+       		<div class="row margin_minus10">
+           		<div class="input_section">
+               		<div class="width100 mobile_viewShow">
+                   		<div class="customDropDown col-lg-6 col-md-6 col-sm-6 col-xs-12 padd0 responsive_select margin_top5">
+                       		<select name="leadType" class="dropdown selectClass col-lg-4 col-md-4 col-sm-4 col-xs-12 text-left select1" ng-model="leadControllerScope.leadType">
+	                           	<option value="" ng-if="leadControllerScope.subMenu == 'Lead'" selected="selected">Select Lead Type</option>
+	                           	<option value="" ng-if="leadControllerScope.subMenu == 'Vendor'" selected="selected">Select Vendor Type</option>
+	                           	<option value="" ng-if="leadControllerScope.subMenu == 'Customer'" selected="selected">Select Customer Type</option>
+	                           	<option value="" >All</option>
+	                           	<option value="{{leadType.id}}" ng-repeat="leadType in leadControllerScope.leadTypeList" ng-if="leadType.status == 'a'">{{leadType.name}}</option>
+	                       	</select>
+	                   	</div>
+               		</div>
+	               	<div class="width100 mobile_viewShow">
+	                   	<input type="text" ng-model="leadControllerScope.searchName" ng-keyup="leadControllerScope.searchMe(true)" placeholder="Search Here" class="margin_top20 width100 resp_fontSize">
+	               	</div> 
+			      	<div ng-if="!leadControllerScope.isDataAvailable">
+			          	<p class="text-center grey_text margin0">{{leadControllerScope.dataMsg}}</p>
+			      	</div>
+               		<div class="table_data" ng-if="leadControllerScope.isDataAvailable">
+			      		<table wt-responsive-table class="custom-responsive-table">
+			       			<thead>
+					           	<tr>
+						           	<th class="">
+						           		<span  class="outline0"
+											data-toggle="modal"
+											data-backdrop="static" 
+											data-keyboard="false" ng-click="leadControllerScope.showDelete()">
+											<i class="fa fa-trash-o cursor_pointer" aria-hidden="true"></i>
+											<!-- if you want to delete lead directly then use below line -->
+											<!--  ng-click="leadControllerScope.deleteLead()" -->
+										</span>
+			           				</th>
+					               	<th>Lead Name</th>
+					               	<th>Lead Type</th>
+					               	<th>Status</th>
+					                <!-- <th>Mobile</th> 
+					               	<th>Phone</th>
+					               	<th>Email</th> -->
+					               	<th>Notes</th>
+					               	<th></th>
+				           		</tr>
+				           		<tr>
+						           	<th class="width5Percent">
+						           		<span class="table_mobile table_borderNone">
+						           			<input type="checkbox" ng-model="leadControllerScope.isSelect" ng-change="leadControllerScope.toggleSelect(leadControllerScope.isSelect)"/><label></label>
+						           		</span>
+						           	</th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="leadControllerScope.search.name" ng-keyup="leadControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="leadControllerScope.search.leadTypeName" ng-keyup="leadControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="leadControllerScope.search.statusName" ng-keyup="leadControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="leadControllerScope.search.industryName" ng-keyup="leadControllerScope.searchMe()" /></th>
+					               	<!-- <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="leadControllerScope.search.mobile" ng-keyup="leadControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="leadControllerScope.search.phone" ng-keyup="leadControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="leadControllerScope.search.email" ng-keyup="leadControllerScope.searchMe()" /></th> -->
+					               	<th></th>
+					           	</tr>
+					       	</thead>
+					       	<tbody class="panel-group" id="accordion" ng-repeat="lead in leadControllerScope.leadListlogEventFilter = (leadControllerScope.leadList | orderBy : '-id' |  
+					                                filter : leadControllerScope.searchName | 
+					                                filter: { name : leadControllerScope.search.name, statusName : leadControllerScope.search.statusName, leadTypeName : leadControllerScope.search.leadTypeName, notes : leadControllerScope.search.notes, mobile : leadControllerScope.search.mobile, phone : leadControllerScope.search.phone, email : leadControllerScope.search.email }|  
+					                               limitTo : limitToShow : beginFrom)" >
+					           	<tr class="panel panel-default position_relative backGreyColor">
+					               	<td class="text-center padd_left0"><span class="table_mobile table_borderNone">
+					               		<input type="checkbox" ng-model="lead.isSelect"/><label></label></span>
+					               	</td>              
+					               	<td ng-click="leadControllerScope.leadDetail(lead.id)" class="cursor_pointer">{{lead.name}}</td>
+					               	<td class="text-center"><span class="span_text capitalizeText label_gray" ng-class="{'label_warning white' : lead.leadTypeName == 'Warm' ||  lead.leadTypeName == 'warm','label_success white' :lead.leadTypeName == 'Hot' || lead.leadTypeName == 'hot','label_blue white' : lead.leadTypeName == 'Cold' ||  lead.leadTypeName == 'cold'}" ng-if=" lead.leadTypeName != ''">{{ lead.leadTypeName}}</span>
+                                                 </td> 
+					               	<td>{{lead.statusName}}</td>
+					               	<!-- <td class="text-center">{{lead.mobile}}</td>
+					               	<td class="text-center">{{lead.phone}}</td>
+					               	<td>{{lead.email}}</td> -->
+					               	<td>{{lead.notes}}</td>
+					               	<td class="table_icon" data-toggle="collapse"
+																data-parent="#accordion" data-target="#click{{$index}}" ng-click="leadControllerScope.arrowRotate(this)">
+					               		<a href="javascript:void(0);" class="capitalizeText"><i class="fa fa-angle-down" aria-hidden="true" ng-class="arrowPosition? 'down-rotate': ''"></i></a>
+					               	</td>
+						           	
+					           	</tr>
+					           	<tr id="click{{$index}}" class="panel-collapse collapse">
+					           		<td colspan="9">
+                                        <div class="">Hidden by default></div>
+						           	</td>
+					           	</tr>
+					       	</tbody>
+						</table>
+        				<p ng-if="leadControllerScope.leadList.length == 0" class="text-center grey_text margin0">Lead Details Not Available</p>
+                	</div>
+                	<div class="table_btn">
+			             <button ng-click="leadControllerScope.showPrevNav()" 
+			             	ng-if="leadControllerScope.isDataAvailable && leadControllerScope.leadList.length > 0" 
+			             	ng-disabled="leadControllerScope.buttonBeginFrom == 0"
+			             	ng-class="{'cursor_notAllowed':leadControllerScope.buttonBeginFrom == 0}" class="">Prev</button>
+             	
+             			<span ng-repeat="i in leadControllerScope.leadList | limitTo : leadControllerScope.buttonLimitToShow : leadControllerScope.buttonBeginFrom">
+             	 
+			             	<button ng-class="{ 'active' : i.isActiveClass }" 
+			             		ng-if="leadControllerScope.buttonBeginFrom + $index < leadControllerScope.leadList.length / leadControllerScope.buttonLimitToShow" 
+			             		ng-click="leadControllerScope.gotoPage($index * leadControllerScope.buttonLimitToShow + leadControllerScope.buttonBeginFrom * leadControllerScope.buttonLimitToShow, leadControllerScope.buttonBeginFrom + $index)">
+			             		{{leadControllerScope.buttonBeginFrom + $index + 1}}
+			             	</button>
+			            </span>
+			            <button ng-click="leadControllerScope.showNextNav()" 
+			             	ng-if="leadControllerScope.isDataAvailable && leadControllerScope.leadList.length > 0" 
+			             	ng-disabled="leadControllerScope.isNextDisabled"
+			             	ng-class="{'cursor_notAllowed':leadControllerScope.isNextDisabled}">Next</button>
+			             	<span 
+			             	ng-if="leadControllerScope.isDataAvailable && leadControllerScope.leadList.length > 0" >{{beginFrom + 1}} - <span ng-if="(limitToShow + beginFrom + 1) < leadControllerScope.leadList.length">{{limitToShow}}</span> <span ng-if="!((limitToShow + beginFrom + 1) < leadControllerScope.leadList.length)">{{leadControllerScope.leadList.length}}</span> of {{leadControllerScope.leadList.length}}</span>
+             		</div>
+             		
+             	</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div id="confirmation" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close white opacity1px" data-dismiss="modal" ng-if="!leadControllerScope.isCannotDelete"><i class="fa fa-times close_button" aria-hidden="true"></i></button>
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+               <div class="modal-body">
+                   <p ng-if="!leadControllerScope.isSingleRecordToDelete && !leadControllerScope.isCannotDelete">Lead can not be deleted, If lead is associated with any other modules</p>
+                   <p ng-if="leadControllerScope.isSingleRecordToDelete && !leadControllerScope.isCannotDelete">Are you sure, you want to delete?</p>
+                   <p ng-if="leadControllerScope.isCannotDelete">Lead can not be deleted, It is associated with other module</p>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="defaultBtn btn" data-dismiss="modal" data-dismiss="modal" ng-if="!leadControllerScope.isCannotDelete">Decline</button>
+                   <button type="button" class="activeBtn btn" ng-click="leadControllerScope.deleteLead()" ng-if="!leadControllerScope.isCannotDelete">Continue</button>
+                   <button type="button" class="activeBtn btn"  ng-click="leadControllerScope.closeModal()" ng-if="leadControllerScope.isCannotDelete">Ok</button>
+               </div>
+        	</div>
+        </div>
+    </div>
+</div> 
+                        <!-- <div id="list-wrapper">
+                            <div infinite-scroll="leadControllerScope.addMoreItems()" infinite-scroll-container="'#list-wrapper'" infinite-scroll-parent="true">
+                                <div class="innerdivContainer red-icon create-employee border_bottom1" ng-repeat="lead in leadControllerScope.leadList | orderBy:'-id' | filter :  leadControllerScope.search| filter: {leadType : leadControllerScope.leadType} | limitTo : leadControllerScope.limitToShow ">
+                                    <div class="row">
+                                        <div class="input_section">
+                                         <div class="col-lg-1 padd0 responsive_textCenter  responsive_textCenter responsivemargin_top10">
+                                                <img ng-src="{{lead.photo}}" class="img-60x60" ng-if="lead.photo">
+                                                <i class="fa fa-building-o img-60x60 img-views" aria-hidden="true" ng-if="!lead.photo"></i>
+                                            </div> 
+                                            <div class="responsive_textCenter display_webkit">
+                                                <span class="anchor_text cursor_pointer break-word capitalizeText" ng-click="leadControllerScope.leadDetail(lead.id)">{{lead.name}}</span>
+                                                <span class="pipe_text" ng-if="lead.statusName!=''">|</span>
+                                                <span class="span_text capitalizeText label_gray" ng-class="{'label_warning white' : lead.statusName == 'Warm' || lead.statusName == 'warm','label_danger white' : lead.statusName == 'Hot' || lead.statusName == 'hot','label_blue white': lead.statusName == 'Cold' || lead.statusName == 'cold'}" ng-if="lead.statusName!=''">{{lead.statusName}}</span>
+                                            </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Source</label><span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{lead.source}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Industry</label><span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{lead.industryName}}</span></li>
+                                                            <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">Mobile</label><span class="font_weight600 col-xs-6 wordBreak_all">{{lead.mobile}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Phone</label><span class="font_weight600 col-xs-6 wordBreak_all">{{lead.phone}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Email</label><span class="font_weight600 col-xs-6 wordBreak_all">{{lead.email}}</span></li>
+                                                            <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">Address</label><span class="font_weight600 col-xs-6 wordBreak_all">{{lead.address}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+           

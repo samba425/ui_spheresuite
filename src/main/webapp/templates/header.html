@@ -1,0 +1,65 @@
+<div class="row headerheight" ng-controller="headerController as headerControllerScope">
+    <div class="headerContainer row">
+        <div class="leftImg_logo col-lg-2 col-md-2 col-sm-3 col-xs-2 padd0 responsive_width60">
+        	<div class="responsive_imgHide"><img src="images/i_logo.png" class="logo_responsive"/></div>
+            <!-- <div class="header_iconBorder display_inlineFlex"><img ng-src="{{companyIcon !='' ? companyIcon : 'images/logo_icon.png'}}" class="medium_width100 width100 logo_icon"> </div>
+            <div class="display_inlineFlex"><img ng-src="{{companyLogo !='' ? companyLogo : 'images/logo.png'}}" class="medium_width100 logo_class"> </div> -->
+            <!-- <div class="header_iconBorder display_inlineFlex"><img ng-src="{{companyIcon !='' ? companyIcon : 'images/i_logo.png'}}" class="medium_width100 width100 logo_icon"> </div>
+            <div class="display_inlineFlex logo_dimensions"><img ng-src="{{companyLogo !='' ? companyLogo : 'images/logo.png'}}" class="medium_width100 logo_class"> </div> -->
+        </div>
+        <div class="headerRight col-lg-10 col-md-10 col-sm-9 col-xs-12">
+            <div class="toggleMenuContainer" ng-click="headerControllerScope.closeMenu()">
+                <span><i class="fa fa-bars menuIcons" aria-hidden="true"></i></span>
+            </div>
+            <div class="headerLeftContainer deskTopView col-lg-6 col-md-6 col-sm-6 col-sm-6 padd0">
+                <span class="headerHeading capitalizeText">{{headerControllerScope.headerMenu}}</span>
+            </div>
+            <div class="width100 col-lg-6 col-md-6 col-sm-6 col-sm-6 padd0 header_open">
+                <ul class="config_fld deskTopView header_rightMargin25 position_fixed">
+                    <li class="login_textColor">{{headerControllerScope.userName}}</li>
+                    <li class="padd0">
+                        <img ng-src="{{headerControllerScope.photo}}" class="imgspc profile-pic-header" ng-if="headerControllerScope.photo">
+                        <i class="fa fa-user-circle-o profile-pic-header img-40x40" aria-hidden="true" ng-if="headerControllerScope.isPhotoAvailable"></i>
+                    </li>
+                    <li class="pad0">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="menu1">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </button>
+                            <ul class="dropdown-menu  menu_list marginTop21px">
+                                <li>
+                                    <a href="#!/myinfo"><i class="fa fa-cog PADDRIHT15 PADDLEFT9 img-53x26" aria-hidden="true"></i> User Profile</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-cog PADDRIHT15 PADDLEFT9 img-53x26" aria-hidden="true"></i> Settings</a>
+                                </li>
+                                <li ng-click="headerControllerScope.logout()">
+                                    <a><i class="fa fa-cog PADDRIHT15 PADDLEFT9 img-53x26" aria-hidden="true"></i> Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="config_fld resp_menus">
+                    <li>
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button">
+                                <span class="glyphicon glyphicon-th" style="font-size: 21.42px;"></span></button>
+                            <ul class="dropdown-menu dropdown-user  menu_list">
+                                <li>
+                                    <a href="#"><i class="fa fa-cog PADDRIHT15 PADDLEFT9 img-53x26" aria-hidden="true"></i>  User Profile</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-cog PADDRIHT15 PADDLEFT9 img-53x26" aria-hidden="true"></i>  Settings</a>
+                                </li>
+                                <li ng-click="headerControllerScope.logout(user)">
+                                    <a href="#"><i class="fa fa-cog PADDRIHT15 PADDLEFT9 img-53x26" aria-hidden="true"></i>  Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

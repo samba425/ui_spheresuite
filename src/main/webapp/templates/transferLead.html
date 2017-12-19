@@ -1,0 +1,187 @@
+<div class="loader_backdrop" ng-if="leadControllerScope.spinner || leadControllerScope.transferSpinner ||  leadControllerScope.getTransferLeadSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Transfer {{  $rootScope.headerMenu}} List</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                            <form class="" name="leadControllerScope.transferForm" >
+                                <div class="input_section resp_css">
+                                    <div class="form-group row ">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6 padd0">{{leadControllerScope.subMenu}} From<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 padd0">
+                                            <div class="customDropDown transfer_laedSelect100">
+	                                            <select class="select1 dropdown inputClass" name="transferFrom" ng-model="leadControllerScope.transfer.transferFrom" ng-change="leadControllerScope.getLeadByEmp(leadControllerScope.transfer.transferFrom)" required>
+	                                                <option value="" ng-if="!leadControllerScope.transfer.transferFrom || leadControllerScope.transfer.transferFrom == ''">Select {{leadControllerScope.subMenu}} From</option>
+	                                                <option value="{{emp.id}}" ng-repeat="emp in leadControllerScope.activeUserList | orderBy:'name'">{{emp.name}}</option>
+	                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6 padd0"> {{leadControllerScope.subMenu}} To<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 padd0">
+                                            <div class="customDropDown transfer_laedSelect100">
+	                                            <select class="select1 dropdown inputClass" name="transferTo" ng-model="leadControllerScope.transfer.transferTo" ng-change="leadControllerScope.checkTransferLeadFromAndTo()" required>
+	                                                <option value="" ng-if="!leadControllerScope.transfer.transferTo || leadControllerScope.transfer.transferTo == ''">Select {{leadControllerScope.subMenu}} To</option>
+	                                                <option value="{{emp.id}}" ng-repeat="emp in leadControllerScope.activeUserList | orderBy:'name'">{{emp.name}}</option>
+	                                            </select>
+                                            </div>
+                                            <p class="reqStar" ng-if="leadControllerScope.isErrMsg">{{leadControllerScope.subMenu}} From And To Cannot Be Same</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6 padd0">{{leadControllerScope.subMenu}}<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 padd0">
+                                            <div class="customDropDown transfer_laedSelect100">
+	                                            <select class="select1 dropdown inputClass" name="id" ng-model="leadControllerScope.transfer.id" required>
+	                                                <option value="" ng-if="!leadControllerScope.transfer.id || leadControllerScope.transfer.id == ''">Select {{leadControllerScope.subMenu}}</option>
+	                                                <option value="{{lead.id}}" ng-repeat="lead in leadControllerScope.leadListByEmp | orderBy:'name'">{{lead.name}}</option>
+	                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6 padd0"> Transfer Type<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 switch-field pad-right-0 mob-pad-right-15 padd0">
+                                            <input type="radio" id="switch_left" name="transferType" value="P" ng-model="leadControllerScope.transfer.transferType" required/>
+                                            <label for="switch_left" class="linheight2pt7">Permanent</label>
+                                            <input type="radio" id="switch_right" name="transferType" value="T" ng-model="leadControllerScope.transfer.transferType" required/>
+                                            <label for="switch_right" class="linheight2pt7">Temporary</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row position_relative" ng-if="leadControllerScope.transfer.transferType == 'T'">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6 padd0"> From Date<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7  pad-right-0 mob-pad-right-15 lead_calenderPositon padd0">
+                                            <input type="text" name="fromDate" class="inputClass cursor_pointer" datepicker-popup="yyyy-MM-dd" ng-click="leadControllerScope.openTransferFromDate($event)" ng-model="leadControllerScope.transfer.fromDate" is-open="leadControllerScope.isLeadTranformFromDate" placeholder="From Date" show-button-bar="false" required readonly/>
+                                        </div>
+                                        <span class="mob-pos-abs mob-right-18 tranfer_leadCalendar">
+                                         <button type="button" class="btn btn-default mrgTop5 addIcon" ng-click="leadControllerScope.openTransferFromDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                     </span>
+                                    </div>
+                                    
+                                    <div class="form-group row position_relative" ng-if="leadControllerScope.transfer.transferType == 'T'">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6 padd0"> To Date<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7  pad-right-0 mob-pad-right-15 lead_calenderPositon padd0">
+                                            <input type="text" name="toDate" class="inputClass cursor_pointer" datepicker-popup="yyyy-MM-dd" ng-click="leadControllerScope.openTransferToDate($event)" ng-model="leadControllerScope.transfer.toDate" is-open="leadControllerScope.isLeadTranformToDate" placeholder="To Date" show-button-bar="false" required readonly/>
+                                        </div>
+                                        <span class="mob-pos-abs mob-right-18 tranfer_leadCalendar">
+                                         <button type="button" class="btn btn-default mrgTop5 addIcon" ng-click="leadControllerScope.openTransferToDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                     </span>
+                                    </div>
+                                    <span class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 responsive_textCenter text-center margin_top5">
+                                        <button type="button" class="defaultBtn btn" ng-click="leadControllerScope.declineTransferLead()">Decline</button>
+                                        <button type="button" class="activeBtn btn " ng-click="leadControllerScope.transferLead()" ng-disabled="leadControllerScope.transferForm.$invalid">
+                                            <!-- <i class="fa fa-plus" aria-hidden="true"></i> --><span class="paddLeft5">Transfer {{leadControllerScope.subMenu}}</span>
+                                        </button>
+                                    </span>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="list-wrapper" class="pageTitleParent margin_top">
+                    	<div class="innerdivContainer">
+	                        <div class="width100">
+	                            <input type="text" name="" placeholder="Search By : Name, Company, City, Country" class="margin_top20 width100" ng-model="leadControllerScope.search">
+	                        </div>                  
+		                    <div class="text-center width100">
+		                        <h3 class="resp_font15">List Of {{leadControllerScope.subMenu}}s Transferred</h3>
+		                    </div>
+	                    </div>
+                        <div ng-if="leadControllerScope.dataMsg && leadControllerScope.dataMsg != ''">
+                            <p class="text-center grey_text padding15 padding_top0">{{leadControllerScope.dataMsg}}</p>
+                        </div>
+	                    <div infinite-scroll="leadControllerScope.addMoreItems()" infinite-scroll-container="'#list-wrapper'" infinite-scroll-parent="true">
+		                    <div class="innerdivContainer red-icon create-employee border_bottom1" ng-repeat="lead in leadControllerScope.transferLeadList | orderBy:'-id' | filter :  {name :leadControllerScope.search} | limitTo : leadControllerScope.limitToShow ">
+		                        <div class="row">
+		                            <div class="input_section">
+		                                <!-- <div class="col-lg-1 padd0 responsive_textCenter responsivemargin_top10">
+		                                    <img src="images/profile.png">
+		                                </div> -->
+		                                <div class="col-lg-1 padd0 responsive_textCenter responsive_textCenter responsivemargin_top10">
+		                                    <i class="fa fa-building-o img-60x60 img-views margin0 text-center" aria-hidden="true"></i>
+		                                </div>
+		                                <div class="responsive_textCenter">
+		                                    <span class="anchor_text cursor_pointer break-word capitalizeText" ng-click="leadControllerScope.leadDetail(lead.id)">{{lead.name}}</span>
+		                                    <span class="pipe_text" ng-if="lead.statusName != ''">|</span>
+		                                   	<span class="span_text capitalizeText label_gray" ng-class="{'label_warning white' : lead.statusName == 'Warm' || lead.statusName == 'warm','label_danger white' : lead.statusName == 'Hot' || lead.statusName == 'hot','label_blue white': lead.statusName == 'Cold' || lead.statusName == 'cold'}" ng-if="lead.statusName!=''">{{lead.statusName}}</span>
+		                                </div>
+		                                <div class="col-lg-5 padd0">
+		                                    <div class="row">
+		                                        <div class="">
+		                                            <ul class="padd0 left_text">
+		                                                <li class="row">
+		                                                    <label class="col-xs-6 padd0">Source</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{lead.source}}</span></li>
+		                                                <li class="row">
+		                                                    <label class="col-xs-6 padd0">Industry</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{lead.industryName}}</span></li>
+		                                                <li class="row">
+		                                                    <label class="col-xs-6 padd0">Mobile</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{lead.mobile}}</span></li>
+		                                                <li class="row">
+		                                                    <label class="col-xs-6 padd0">Phone</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{lead.phone}}</span></li>
+		                                                <li class="row">
+		                                                    <label class="col-xs-6 padd0">Email</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{lead.email}}</span></li>
+		                                                <li class="row">
+		                                                    <label class="col-xs-6 padd0">Address</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{lead.address}}</span></li>
+		                                            </ul>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                <div class="col-lg-6" ng-if="lead.isRevoke">
+		                                    <div class="row text-center">
+		                                        <button class="activeBtn" type="button" ng-click="leadControllerScope.revokeLeadTransfer(lead.id)">Revoke</button>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                   <!--  <div class="innerdivContainer red-icon create-employee border_bottom1">
+		                        <div class="row">
+		                            <div class="input_section">
+		                                <div class="col-lg-1 padd0 responsive_textCenter responsivemargin_top10">
+		                                    <img src="images/profile.png">
+		                                </div>
+		                                <div class="col-lg-1 padd0 responsive_textCenter responsive_textCenter responsivemargin_top10">
+		                                    <i class="fa fa-building-o img-60x60 img-views margin0 text-center" aria-hidden="true"></i>
+		                                </div>
+		                                <div class="responsive_textCenter">
+		                                    <span class="anchor_text cursor_pointer break-word capitalizeText" ng-click="leadControllerScope.leadDetail(lead.id)">Lokesh</span>
+		                                    <span class="pipe_text" ng-if="lead.statusName != ''">|</span>
+		                                   	<span class="span_text capitalizeText label_gray" ng-class="{'label_warning white' : lead.statusName == 'Warm' || lead.statusName == 'warm','label_danger white' : lead.statusName == 'Hot' || lead.statusName == 'hot','label_blue white': lead.statusName == 'Cold' || lead.statusName == 'cold'}" ng-if="lead.statusName!=''">{{lead.statusName}}</span>
+		                                </div>
+		                                <div class="col-lg-5 padd0">
+		                                    <div class="row">
+		                                        <div class="">
+		                                            <ul class="padd0 left_text">
+		                                                <li class="row">
+		                                                    <label class="col-xs-6 padd0">Source</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{lead.source}}</span></li>
+		                                                <li class="row">
+		                                                    <label class="col-xs-6 padd0">Industry</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{lead.industryName}}</span></li>
+		                                                <li class="row">
+		                                                    <label class="col-xs-6 padd0">Mobile</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{lead.mobile}}</span></li>
+		                                                <li class="row">
+		                                                    <label class="col-xs-6 padd0">Phone</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{lead.phone}}</span></li>
+		                                                <li class="row">
+		                                                    <label class="col-xs-6 padd0">Email</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{lead.email}}</span></li>
+		                                                <li class="row">
+		                                                    <label class="col-xs-6 padd0">Address</label> <span class="font_weight600 col-xs-6 padd0 wordBreak_all">{{lead.address}}</span></li>
+		                                            </ul>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                <div class="col-lg-6">
+		                                    <div class="row text-center">
+		                                        <a href="../templates/dashboard.html">
+		                                            <button class="activeBtn" type="button">Revoke</button>
+		                                        </a>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div> -->
+	                    </div>
+                    </div>
+                </div>
+           

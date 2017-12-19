@@ -1,0 +1,101 @@
+<div class="loader_backdrop" ng-if="warehouseControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer paddLft15">
+                        	<span ng-if="!warehouseControllerScope.isUpdate">New</span>
+                        	<span ng-if="warehouseControllerScope.isUpdate">Update</span> Warehouse
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0 employee_placeholder">
+                            <form class="form-horizontal formContainer" name="warehouseControllerScope.warehouseForm">
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Name<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                         <input type="text" name="name" ng-model="warehouseControllerScope.warehouse.name" class="inputClass" placeholder="Name" required />
+                                         <p ng-if="warehouseControllerScope.warehouseForm.name.$invalid && warehouseControllerScope.warehouseForm.name.$touched" class="reqStar">Kindly Enter Valid Name</p>
+                                    </div>
+                                </div>
+                                <div class="create-employee-inner">   
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Warehouse Id</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="wareHouseId" ng-model="warehouseControllerScope.warehouse.wareHouseId" ng-pattern="/^[0-9]*$/" class="inputClass" placeholder="Warehouse Id" />
+                                         	<p ng-if="(warehouseControllerScope.warehouseForm.wareHouseId.$error.pattern || warehouseControllerScope.warehouseForm.wareHouseId.$invalid) && warehouseControllerScope.warehouseForm.wareHouseId.$touched" class="reqStar">Kindly Enter Valid Warehouse Id</p>
+                                        </div>
+                                    </div>                                 
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Property Type</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 ">
+                                            <div class="customDropDown">
+                                                <select class="select1 dropdown inputClass" name="propertyTypeId" ng-model="warehouseControllerScope.warehouse.propertyTypeId">
+                                                   	<option value="" ng-if="!warehouseControllerScope.warehouse.propertyTypeId || warehouseControllerScope.warehouse.propertyTypeId == ''">Select Property Type</option>
+                                                	<option value="{{property.id}}" ng-repeat="property in warehouseControllerScope.propertyList | orderBy:'name'" ng-if="property.status == 'a'">{{property.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>                                 
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Storage Type</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 ">
+                                            <div class="customDropDown">
+                                                <select class="select1 dropdown inputClass" name="storageTypeId" ng-model="warehouseControllerScope.warehouse.storageTypeId">
+                                                   	<option value="" ng-if="!warehouseControllerScope.warehouse.storageTypeId || warehouseControllerScope.warehouse.storageTypeId == ''">Select Storage Type</option>
+                                                	<option value="{{storage.id}}" ng-repeat="storage in warehouseControllerScope.storageList | orderBy:'name'" ng-if="storage.status == 'a'">{{storage.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>                                 
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Country</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 ">
+                                            <div class="customDropDown">
+                                                <select class="select1 dropdown inputClass" name="country" ng-model="warehouseControllerScope.warehouse.country" ng-change="warehouseControllerScope.getState(warehouseControllerScope.warehouse.country)">
+                                                   <option value="" ng-if="!warehouseControllerScope.warehouse.country || warehouseControllerScope.warehouse.country == ''">Select Country</option>
+                                                	<option value="{{country.id}}" ng-repeat="country in warehouseControllerScope.countryList | orderBy:'name'" ng-if="country.status == 'a'">{{country.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>                                
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">State</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 ">
+                                            <div class="customDropDown">
+                                                <select class="select1 dropdown inputClass" name="state" ng-model="warehouseControllerScope.warehouse.state">
+                                                    <option value="" ng-if="!warehouseControllerScope.warehouse.state || warehouseControllerScope.warehouse.state == ''">Select Storage Type</option>
+                                                	<option value="{{state.id}}" ng-repeat="state in warehouseControllerScope.stateList | orderBy:'name'" ng-if="state.status == 'a'">{{state.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">City</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="city" ng-model="warehouseControllerScope.warehouse.city" class="inputClass"  placeholder="City" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Pincode</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="zip" ng-model="warehouseControllerScope.warehouse.zip" ng-pattern="/^[0-9]*$/" class="inputClass" placeholder="Pincode" />
+                                            <p ng-if="(warehouseControllerScope.warehouseForm.zip.$error.pattern || warehouseControllerScope.warehouseForm.zip.$invalid) && warehouseControllerScope.warehouseForm.wareHouseId.$touched" class="reqStar">Kindly Enter Valid Pincode</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Address</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <textarea name="address" ng-model="warehouseControllerScope.warehouse.address" class="inputClass" placeholder="Address"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns">
+                                        <button class="defaultBtn btn" type="button" ng-click="warehouseControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn btn" type="button" ng-click="warehouseControllerScope.addWarehouse()" ng-disabled="warehouseControllerScope.warehouseForm.$invalid" ng-if="!warehouseControllerScope.isUpdate">Save</button>
+                                        <button class="activeBtn btn" type="button" ng-click="warehouseControllerScope.editWarehouse()" ng-disabled="warehouseControllerScope.warehouseForm.$invalid" ng-if="warehouseControllerScope.isUpdate">Update</button>
+                                    </div>
+                                 </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           

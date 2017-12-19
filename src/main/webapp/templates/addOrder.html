@@ -1,0 +1,120 @@
+
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer"><span>Add Order</span></div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0">
+                            <form class="form-horizontal formContainer" name="leadControllerScope.leadForm">
+                                <div class="create-employee-inner">
+                                    <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31"> Customer<span class="reqStar">*</span>
+                                    </label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="customerId"
+                                               >
+                                                <option value=""
+                                                   >Select Name</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mob-pos-rel">
+                                    <label
+                                        class="control-label col-sm-12 col-md-4  lineheight31 margin_top5">Opportunity
+                                        Name<span class="reqStar">*</span>
+                                    </label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown margin_top10">
+                                            <select class="select1 dropdown inputClass" name="projectId"
+                                               >
+                                                <option value=""
+                                                    >Select Opportunity Name</option>
+                                               
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mob-pos-rel">
+                                    <label
+                                        class="control-label col-sm-12 col-md-4  lineheight31 margin_top5">Opportunity
+                                        Type<span class="reqStar">*</span>
+                                    </label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown margin_top10">
+                                            <select class="select1 dropdown inputClass"
+                                                name="projectType"
+                                               >
+                                                <option value=""
+                                                   >Select Opportunity Type</option>
+                                               
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                        <div class="col-xs-12 padd0">
+                                            <div class="panel panel-default margin_TB200">
+                                                <div class="panel-body">
+                                                    <form>
+                                                        <table class="table table-striped table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th><input type="checkbox" ng-model="selectedAll" ng-click="proposalControllerScope.checkAll()" /></th>
+                                                                    <th>Id</th>
+                                                                    <th>Name</th>
+                                                                    <th>Type</th>
+                                                                     <th>Category</th>
+                                                                      <th>Units</th>
+                                                                       <th>Quantity</th>
+                                                                        <th>Price</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="orderDetail in orderDetails">
+                                                                    <td>
+                                                                        <input type="checkbox" ng-model="orderDetail.selected"/></td>
+                                                                    <td>
+                                                                        <input type="text" class="form-control" placeholder="Id" ng-model="orderDetail.Id" required/></td>
+                                                                    <td>
+                                                                        <input type="text" class="form-control" placeholder="Name" ng-model="orderDetail.name" required/></td>
+                                                                    <td>
+                                                                        <input type="text" class="form-control" placeholder="Type" ng-model="orderDetail.Type" required/></td>
+                                                                         <td>
+                                                                        <input type="text" class="form-control" placeholder="Category" ng-model="orderDetail.Category" required/></td>
+                                                                         <td>
+                                                                        <input type="text" class="form-control" placeholder="Units" ng-model="orderDetail.Units" required/></td>
+                                                                         <td>
+                                                                        <input type="text" class="form-control" placeholder="Quantity" ng-model="orderDetail.Quantity" required/></td>
+                                                                         <td>
+                                                                        <input type="text" class="form-control" placeholder="Price" ng-model="orderDetail.Price" required/></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                        <div class="form-group margin_right0">
+                                                            
+                                                            <button class="activeBtn btn pull-right" type="button" ng-click=" proposalControllerScope.addNew()" >Add New</button>
+                                                             <button ng-show="orderDetails.length > 0" class="defaultBtn btn pull-right margin_right5" type="button" ng-click="proposalControllerScope.remove()">Remove</button>
+
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="formfooterbtns">
+                                       
+                                        <button class="defaultBtn btn" type="button" ng-click="leadControllerScope.declineContact()">Decline</button>
+                                        
+                                        <button class="activeBtn btn" type="button" ng-click="leadControllerScope.createLead()" ng-disabled="leadControllerScope.contactForm.$invalid">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           

@@ -1,0 +1,24 @@
+<div class="loader_backdrop" ng-show="hrPolicyControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">HR Policies</div>
+                        <div ng-if="hrPolicyControllerScope.dataMsg != ''">
+                              <p class="text-center grey_text padding15 margin0"> {{hrPolicyControllerScope.dataMsg }}</p>
+                        </div>
+                        <div id="list-wrapper" ng-if="hrPolicyControllerScope.hrPolicyList.length > 0">
+                            <div class="innerdivContainer red-icon create-employee border_bottom1" ng-repeat="hrPolicy in hrPolicyControllerScope.hrPolicyList | filter : hrPolicyControllerScope.searchName | orderBy : '-id' ">
+                                <div class="row">
+                                    <div class="input_section col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">
+                                        <div class="responsive_textCenter">
+                                            <span class="policy_text cursor_default break-word"><span class="padd_right15">-</span>{{hrPolicy.name}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

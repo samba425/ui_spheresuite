@@ -1,0 +1,189 @@
+<div class="loader_backdrop" ng-if="projectControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+
+<div class="rightContainer">
+	<div class="pageTitleParent">
+		<div class="row pageTitletextContainer">
+			<span class="col-lg-6 col-md-6 col-sm-6 col-xs-7 padd0">
+		   		<div class="line_height30">Projects List</div>
+		   	</span>
+   			<span class="col-lg-6 col-md-6 col-sm-6 col-xs-5 text-right padd0">
+                   <!-- <button class="glyphicon glyphicon-export action_btn" ng-click="projectControllerScope.exportData()"></button> -->
+                   <button class="activeBtn btn margin_left0 margin_right0" ng-click="projectControllerScope.goToImportPage()">Import</button>
+			</span>
+   		</div>
+   		<div class="innerdivContainer red-icon create-employee">
+       		<div class="row margin_minus10">
+           		<div class="input_section">
+               		<div class="width100 mobile_viewShow">
+                   		<div class="customDropDown col-lg-6 col-md-6 col-sm-6 col-xs-12 padd0 responsive_select margin_top5">
+	                       	<select name="leadType" id="select4" class="dropdown selectClass col-lg-4 col-md-4 col-sm-4 col-xs-12 text-left " ng-model="projectControllerScope.projectType">
+                               <option value="" selected="selected">Select Project Type</option>
+                               <option value="" >All</option>
+                               <option value="{{projectType.name}}" ng-repeat="projectType in projectControllerScope.projectTypeList | orderBy : 'name'">{{projectType.name}}</option>
+                           </select>
+	                   	</div>
+               		</div>
+	               	<div class="width100 mobile_viewShow">
+	                   	<input type="text" ng-model="projectControllerScope.searchName" ng-keyup="projectControllerScope.searchMe(true)" placeholder="Search Here" class="margin_top20 width100 resp_fontSize">
+	               	</div> 
+			      	<div ng-if="!projectControllerScope.isDataAvailable">
+			          	<p class="text-center grey_text margin0">{{projectControllerScope.dataMsg}}</p>
+			      	</div>
+               		<div class="table_data" ng-if="projectControllerScope.isDataAvailable">
+			      		<table wt-responsive-table class="custom-responsive-table">
+			       			<thead>
+					           	<tr>
+						           	<!-- <th class="">
+						           		<i class="fa fa-trash-o cursor_pointer" aria-hidden="true" ng-click="projectControllerScope.deleteProject()"></i>
+			           				</th> -->
+					               	<th>Project Name</th>
+					               	<th>Opportunity Name</th>
+					               	<th>Display Name</th> 
+					                <th>Project Duration</th> 
+					               	<th>Start Date</th>
+					               	<th>End Date</th>
+				           		</tr>
+				           		<tr>
+						           	<!-- <th class="width5Percent">
+						           		<span class="table_mobile table_borderNone">
+						           			<input type="checkbox" ng-model="projectControllerScope.isSelect" ng-change="projectControllerScope.toggleSelect(projectControllerScope.isSelect)"/><label></label>
+						           		</span>
+						           	</th> -->
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="projectControllerScope.search.projectName" ng-keyup="projectControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="projectControllerScope.search.opportunityName" ng-keyup="projectControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="projectControllerScope.search.source" ng-keyup="projectControllerScope.searchMe()" /></th> 
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="projectControllerScope.search.projectDuration" ng-keyup="projectControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="projectControllerScope.search.startDate" ng-keyup="projectControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="projectControllerScope.search.enddate" ng-keyup="projectControllerScope.searchMe()" /></th>
+					           	</tr>
+					       	</thead>
+					       	<tbody >
+					           	<tr ng-repeat="project in projectControllerScope.projectListlogEventFilter = (projectControllerScope.projectList | orderBy : '-id' |  
+					                                filter : projectControllerScope.searchName | 
+					                                filter: { projectName : projectControllerScope.search.projectName, opportunityName : projectControllerScope.search.opportunityName, displayName : projectControllerScope.search.displayName, industryName : projectControllerScope.search.industryName, projectDuration : projectControllerScope.search.projectDuration, startDate : projectControllerScope.search.startDate, enddate : projectControllerScope.search.enddate }|  
+					                               limitTo : limitToShow : beginFrom)" class="backGreyColor">
+					               	<!-- <td class="text-center padd_left0"><span class="table_mobile table_borderNone">
+					               		<input type="checkbox" ng-model="project.isSelect"/><label></label></span>
+					               	</td> -->              
+					               	<td ng-click="projectControllerScope.gotoView(project.id)" class="cursor_pointer">{{project.projectName}}</td>
+					               	<td>{{project.opportunityName}}</td>
+					               	<td>{{project.displayName}}</td> 
+					               	<td class="text-center">{{project.projectDuration}}</td>
+					               	<td class="text-center">{{project.startDate}}</td>
+					               	<td class="text-center">{{project.enddate}}</td>
+					           	</tr>
+					       	</tbody>
+						</table>
+        				<p ng-if="projectControllerScope.projectList.length == 0" class="text-center grey_text margin0">Lead Details Not Available</p>
+                	</div>
+                	<div class="table_btn">
+			             <button ng-click="projectControllerScope.showPrevNav()" 
+			             	ng-if="projectControllerScope.isDataAvailable && projectControllerScope.projectList.length > 0" 
+			             	ng-disabled="projectControllerScope.buttonBeginFrom == 0"
+			             	ng-class="{'cursor_notAllowed':projectControllerScope.buttonBeginFrom == 0}" class="">Prev</button>
+             	
+             			<span ng-repeat="i in projectControllerScope.projectList | limitTo : projectControllerScope.buttonLimitToShow : projectControllerScope.buttonBeginFrom">
+             	 
+			             	<button ng-class="{ 'active' : i.isActiveClass }" 
+			             		ng-if="projectControllerScope.buttonBeginFrom + $index < projectControllerScope.projectList.length / projectControllerScope.buttonLimitToShow" 
+			             		ng-click="projectControllerScope.gotoPage($index * projectControllerScope.buttonLimitToShow + projectControllerScope.buttonBeginFrom * projectControllerScope.buttonLimitToShow, projectControllerScope.buttonBeginFrom + $index)">
+			             		{{projectControllerScope.buttonBeginFrom + $index + 1}}
+			             	</button>
+			            </span>
+			            <button ng-click="projectControllerScope.showNextNav()" 
+			             	ng-if="projectControllerScope.isDataAvailable && projectControllerScope.projectList.length > 0" 
+			             	ng-disabled="projectControllerScope.isNextDisabled"
+			             	ng-class="{'cursor_notAllowed':projectControllerScope.isNextDisabled}">Next</button>
+             		</div>
+             	</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+                <!-- <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Projects List</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8 padd0 responsive_select">
+                                            <select name="contacttype" id="select4" class="dropdown selectClass col-lg-3 col-md-3 col-sm-8 col-xs-12" ng-model="projectControllerScope.projectType">
+                                                <option value="" ng-if="!projectControllerScope.projectType && projectControllerScope.projectType != ''" selected="selected">Select Project Type</option>
+                                                <option value="" >All</option>
+                                                <option value="{{projectType.name}}" ng-repeat="projectType in projectControllerScope.projectTypeList | orderBy : 'name'">{{projectType.name}}</option>
+                                            </select>
+                                        </div>
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-4 padd0 text-right">
+											<button class="glyphicon glyphicon-export action_btn"
+												ng-click="projectControllerScope.exportData()"></button>
+
+											<button
+												class="glyphicon glyphicon-import action_btn margin_left0"></button>
+										</span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" name="" placeholder="Search Here" ng-model="projectControllerScope.searchName" class="margin_top20 width100">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="projectControllerScope.dataMsg && projectControllerScope.dataMsg != ''">
+                            <p class="text-center grey_text padding15 padding_top0">{{projectControllerScope.dataMsg }}</p>
+                        </div>
+                        <div id="list-wrapper">
+                            <div infinite-scroll="projectControllerScope.addMoreItems()" infinite-scroll-container="'#list-wrapper'" infinite-scroll-parent="true">
+                                <div class="innerdivContainer red-icon create-employee border_bottom1" ng-repeat="project in projectFilter = (projectControllerScope.projectList | orderBy : '-id' | filter:projectControllerScope.searchName | filter:  { projectTypeName : projectControllerScope.projectType} |  limitTo : projectControllerScope.limitToShow)">
+                                    <div class="row">
+                                        <div class="input_section">
+                                            <div class="col-lg-1 padd0 responsive_textCenter  responsive_textCenter responsivemargin_top10">
+                                                <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="responsive_textCenter">
+                                                <span class="anchor_text break-word capitalizeText" ng-click="projectControllerScope.gotoView(project.id)">{{project.projectName}}
+												</span>
+                                            </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 col-sm-4 padd0">Opportunity Name</label><span class="font_weight600 col-xs-6  wordBreak_all capitalizeText">{{project.opportunityName}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 col-sm-4 padd0">Display Name</label><span class="font_weight600 col-xs-6  wordBreak_all capitalizeText">{{project.displayName}}</span></li>
+                                                            <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 col-sm-4 padd0 margin-bottom0">Projecty Duration</label><span class="font_weight600 col-xs-6 wordBreak_all">{{project.projectDuration}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                              <li class="row">
+                                                                <label class="col-xs-6 col-sm-4 padd0">Start Date</label><span class="font_weight600 col-xs-6  wordBreak_all">{{project.startDate}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 col-sm-4 padd0">End Date</label><span class="font_weight600 col-xs-6  wordBreak_all">{{project.enddate}}</span></li>
+                                                            <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 col-sm-4 padd0 margin-bottom0">Comments</label><span class="font_weight600 col-xs-6  wordBreak_all">{{project.comment}}</span></li>
+                                                            </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+           

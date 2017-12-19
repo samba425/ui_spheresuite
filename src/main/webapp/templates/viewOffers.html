@@ -1,0 +1,205 @@
+<div class="loader_backdrop" ng-show="offerControllerScope.spinner || offerControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+<div class="rightContainer">
+	<div class="pageTitleParent">
+		<div class="row pageTitletextContainer">
+			<span class="col-lg-6 col-md-6 col-sm-6 col-xs-7 padd0">
+		   		<div class="line_height30">Requirements List</div>
+		   	</span>
+   			<span class="col-lg-6 col-md-6 col-sm-6 col-xs-5 text-right padd0">
+                   <button class="glyphicon glyphicon-export action_btn" ng-click="offerControllerScope.exportData()"></button>
+                   <button class="glyphicon glyphicon-import action_btn margin_left0 margin_right0" ng-click="offerControllerScope.openImportPage()"></button>
+			</span>
+   		</div>
+   		<div class="innerdivContainer red-icon create-employee">
+       		<div class="row margin_minus10">
+           		<div class="input_section">
+               		<div class="width100 mobile_viewShow">
+                   		<div class="customDropDown col-lg-6 col-md-6 col-sm-6 col-xs-12 padd0 responsive_select margin_top5">
+	                       	<select name="customer" class="dropdown selectClass col-lg-4 col-md-4 col-sm-4 col-xs-12 text-left select1" ng-model="offerControllerScope.customer">
+                                <option value="" selected="selected">Select Status</option>
+                                <option value="" >All</option>
+                                <option value="O">Open</option>
+                                <option value="C">Closed</option>
+                           </select>
+	                   	</div>
+               		</div>
+	               	<div class="width100 mobile_viewShow">
+	                   	<input type="text" ng-model="offerControllerScope.searchName" ng-keyup="offerControllerScope.searchMe(true)" placeholder="Search Here" class="margin_top20 width100 resp_fontSize">
+	               	</div> 
+			      	<div ng-if="!offerControllerScope.isDataAvailable">
+			          	<p class="text-center grey_text margin0">{{offerControllerScope.msg}}</p>
+			      	</div>
+               		<div class="table_data" ng-if="offerControllerScope.isDataAvailable">
+			      		<table wt-responsive-table class="custom-responsive-table">
+			       			<thead>
+					           	<tr>
+						           	<!-- <th class="">
+											<i class="fa fa-trash-o cursor_pointer" aria-hidden="true"></i> ng-click="offerControllerScope.deleteRe()"
+			           				</th> -->
+					               	<th>Name</th>
+					               	<th>Requirement</th>
+					               	<th>Offer Date</th>
+					               	<th>Approver</th>
+					                <th>Project Name</th>
+					               	<th>Joining Date</th> 
+					               	<th>Cost</th>
+				           		</tr>
+				           		<tr>
+						           	<!-- <th class="width5Percent">
+						           		<span class="table_mobile table_borderNone">
+						           			<input type="checkbox" ng-model="offerControllerScope.isSelect" ng-change="offerControllerScope.toggleSelect(offerControllerScope.isSelect)"/><label></label>
+						           		</span>
+						           	</th> -->
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="offerControllerScope.search.name" ng-keyup="offerControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="offerControllerScope.search.requirement" ng-keyup="offerControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="offerControllerScope.search.offerDate" ng-keyup="offerControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="offerControllerScope.search.approver" ng-keyup="offerControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="offerControllerScope.search.projectName" ng-keyup="offerControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="offerControllerScope.search.joiningDate" ng-keyup="offerControllerScope.searchMe()" /></th>
+					               	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="offerControllerScope.search.cost" ng-keyup="offerControllerScope.searchMe()" /></th>
+					           	</tr>
+					       	</thead>
+					       	<tbody >
+					           	<tr ng-repeat="offer in offerControllerScope.offerListlogEventFilter = (offerControllerScope.offerList | orderBy : '-id' |  
+					                                filter : offerControllerScope.searchName | 
+					                                filter: { name : offerControllerScope.search.name, 
+					                                requirement : offerControllerScope.search.requirement, 
+					                                offerDate : offerControllerScope.search.offerDate,  
+					                                approver : offerControllerScope.search.approver,
+					                                projectName : offerControllerScope.search.projectName,
+					                                joiningDate : offerControllerScope.search.joiningDate,
+					                                cost : offerControllerScope.search.cost  }|  
+					                               limitTo : limitToShow : beginFrom)" class="backGreyColor">
+					               	<!-- <td class="text-center padd_left0"><span class="table_mobile table_borderNone">
+					               		<input type="checkbox" ng-model="requirement.isSelect"/><label></label></span>
+					               	</td> -->              
+					               	<td ng-click="offerControllerScope.gotoView(offer.id)" class="cursor_pointer">{{offer.name}}</td>
+					               	<td>{{offer.requirement}}</td>
+					               	<td class="text-center">{{offer.offerDate}}</td>
+					               	<td>{{offer.approver}}</td>
+					               	<td>{{offer.projectName}}</td>
+					               	<td class="text-center">{{offer.joiningDate}}</td>
+					               	<td class="text-right">{{offer.cost | number:2}}</td>
+					           	</tr>
+					       	</tbody>
+						</table>
+        				<p ng-if="offerControllerScope.offerList.length == 0" class="text-center grey_text margin0">Offer Details Not Available</p>
+                	</div>
+                	<div class="table_btn">
+			             <button ng-click="offerControllerScope.showPrevNav()" 
+			             	ng-if="offerControllerScope.isDataAvailable && offerControllerScope.offerList.length > 0" 
+			             	ng-disabled="offerControllerScope.buttonBeginFrom == 0"
+			             	ng-class="{'cursor_notAllowed':offerControllerScope.buttonBeginFrom == 0}" class="">Prev</button>
+             	
+             			<span ng-repeat="i in offerControllerScope.offerList | limitTo : offerControllerScope.buttonLimitToShow : offerControllerScope.buttonBeginFrom">
+             	 
+			             	<button ng-class="{ 'active' : i.isActiveClass }" 
+			             		ng-if="offerControllerScope.buttonBeginFrom + $index < offerControllerScope.offerList.length / offerControllerScope.buttonLimitToShow" 
+			             		ng-click="offerControllerScope.gotoPage($index * offerControllerScope.buttonLimitToShow + offerControllerScope.buttonBeginFrom * offerControllerScope.buttonLimitToShow, offerControllerScope.buttonBeginFrom + $index)">
+			             		{{offerControllerScope.buttonBeginFrom + $index + 1}}
+			             	</button>
+			            </span>
+			            <button ng-click="offerControllerScope.showNextNav()" 
+			             	ng-if="offerControllerScope.isDataAvailable && offerControllerScope.offerList.length > 0" 
+			             	ng-disabled="offerControllerScope.isNextDisabled"
+			             	ng-class="{'cursor_notAllowed':offerControllerScope.isNextDisabled}">Next</button>
+             		</div>
+             	</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+   <!--              <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Offers</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <div class="customDropDown col-lg-6 col-md-6 col-sm-6 col-xs-8 padd0 responsive_select">
+                                            <select name="status" class="select1 dropdown selectClass col-lg-4 col-md-4 col-sm-4 col-xs-12 text-left" ng-model="offerControllerScope.status">
+                                                <option value="" selected="selected">Select Status</option>
+                                                <option value="" >All</option>
+                                                <option value="A" >Approved</option>
+                                                <option value="P" >Pending</option>
+                                                <option value="R" >Rejected</option>
+                                                
+                                            </select>
+                                        </div>    
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-4 padd0 text-right">
+                                        <button class="glyphicon glyphicon-export action_btn" ng-click="offerControllerScope.exportData()"></button>
+                                        <button class="glyphicon glyphicon-import action_btn margin_left0 margin_right0" ng-click="offerControllerScope.openImportPage()"></button></span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="offerControllerScope.searchName" placeholder="Search Here" class="margin_top20 width100 resp_fontSize">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="offerControllerScope.msg != ''">
+                            <p class="text-center grey_text padding15 padding_top0">{{offerControllerScope.msg}}</p>
+                        </div>
+                        <div id="list-wrapper">
+                            <div infinite-scroll="offerControllerScope.addMoreItems()" infinite-scroll-container="'#list-wrapper'" infinite-scroll-parent="true">
+                                <div class="innerdivContainer red-icon create-employee border_bottom1" ng-repeat="offer in logEventFilter = (offerControllerScope.offerList | orderBy : '-id' |  
+                                 filter : offerControllerScope.searchName | filter: { status : offerControllerScope.status } |  
+                                limitTo : offerControllerScope.limitToShow)">
+                                    <div class="row">
+                                        <div class="input_section">
+                                            <div class="col-lg-1 padd0 responsive_textCenter  responsive_textCenter responsivemargin_top10">
+                                                <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true"></i>
+                                            </div> 
+                                             <div class="responsive_textCenter display_webkit">
+                                                <span ng-click="offerControllerScope.gotoView(offer.id)" class="anchor_text break-word capitalizeText">{{offer.name}}</span>
+                                                <span class="pipe_text" ng-if="offer.status != ''">|</span>
+                                                <span class="span_text capitalizeText">
+                                                	<span ng-if="offer.status == 'P'" class="label_warning">Pending Approval</span>
+                                                	<span ng-if="offer.status == 'A'" class="label_success">Approved</span>
+                                                	<span ng-if="offer.status == 'R'" class="label_danger">Rejected</span>
+                                                </span>  <span class="pipe_text" ng-if="offer.status == 'A'">|</span>  <button ng-if="offer.status == 'A'" class="defaultBtn" type="button" ng-click="offerControllerScope.pdf(offer)">Generate PDF</button>
+                                             <span class="pipe_text" ng-if="offer.status == 'A'">|</span> <i ng-if="offer.status == 'A'" class="fa fa-print cursor_pointer" aria-hidden="true" ng-click="offerControllerScope.pdfPrint(offer)"></i>
+                                            </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Requirement</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{offer.requirement}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Offering Date</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{offer.offerDate}}</span></li>
+                                                           <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">Approver</label> <span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{offer.approver}}</span></li>
+                                                           <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">Designation</label> <span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{offer.requirement}}</span></li>
+                                                       	</ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Project</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{offer.projectName}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Joining Date</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{offer.joiningDate}}</span></li>
+                                                        	<li class="row">
+                                                                <label class="col-xs-6 padd0">CTC</label><span class="font_weight600 col-xs-6 wordBreak_all">{{offer.cost}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Contact Number</label><span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{offer.phone}}</span></li>
+                                                           </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            

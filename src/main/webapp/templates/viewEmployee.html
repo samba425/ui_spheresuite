@@ -1,0 +1,104 @@
+<div class="loader_backdrop" ng-show="employeeControllerScope.viewempspinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                    	<div class="row pageTitletextContainer">
+                    	<div class="col-xs-12 padd0">
+                        	<span class="cursor_pointer back_iconPosition" ng-click="employeeControllerScope.goBackToEmpoyee()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+                        	<span class="page_titlePosition">Employee Details</span>
+                        </div>
+                    	
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="text-right col-lg-12 col-xs-12 col-md-12 col-sm-12 padd10">
+                                        <!-- <button class="defaultBtn pull-left" type="button" ng-click="employeeControllerScope.goBackToEmpoyee()">Back To Employees</button> -->
+                                        <button class="activeBtn" type="button" ng-click="employeeControllerScope.goToEditEmployee(employeeControllerScope.employee.id)">Edit</button>
+                                        <span ng-if="employeeControllerScope.ifEdit"><button class="defaultBtn mob-width-48 decline_hide" ng-click="employeeControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn mob-width-48 decline_hide" ng-click="employeeControllerScope.editEmployee()">Update</button></span>
+                                    </div>
+                                    <div>
+                                        <div class="col-lg-1 col-xs-12 col-md-12 col-sm-12 padd0 responsive_textCenter resMargin12 ">
+                                            <img ng-src="{{employeeControllerScope.employee.photo}}" class="responsivemargin_top10 img-60x60" ng-if="employeeControllerScope.employee.photo">
+                                            <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true" ng-if="!employeeControllerScope.employee.photo"></i>
+                                        </div>
+                                        
+                                        <div class="col-lg-11 col-xs-12 padd0">
+                                        <div class="responsive_textCenter ">
+                                            <span class="anchor_text cursor_default break-word capitalizeText">{{employeeControllerScope.employee.firstName}} {{employeeControllerScope.employee.middleName}} {{employeeControllerScope.employee.lastName}}<span>
+                                            <span class="pipe_text" ng-if="employeeControllerScope.employee.title!=''">|</span>
+                                            <span class="span_text capitalizeText">{{employeeControllerScope.employee.title}}</span>
+                                             <span class="pipe_text" ng-if="employeeControllerScope.employee.status!=''">|</span>
+                                            <span ng-if="employeeControllerScope.employee.status =='a'" class="label_success">Active</span>
+                                              <span ng-if="employeeControllerScope.employee.status =='i'" class="label_danger">In-Active</span>
+                                        </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                           <li class="row" ng-if="employeeControllerScope.employee.workLocationCity !== ''">
+                                                            <label class="col-xs-6 padd0">Work Location</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.workLocationCity}}</span></li>
+                                                        <li class="row" ng-if="employeeControllerScope.employee.empId !== ''">
+                                                            <label class="col-xs-6 padd0">Employee Id</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.empId}}</span></li>
+                                                        <li class="row" ng-if="employeeControllerScope.employee.firstName !== ''">
+                                                            <label class="col-xs-6 padd0">First Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.firstName}}</span></li>
+                                                        <li class="row" ng-if="employeeControllerScope.employee.middleName !== ''">
+                                                            <label class="col-xs-6 padd0">Middle Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.middleName}}</span></li>
+                                                        <li class="row" ng-if="employeeControllerScope.employee.lastName !== ''">
+                                                            <label class="col-xs-6 padd0">Last Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.lastName}}</span></li>
+                                                        <li class="row" ng-if="employeeControllerScope.employee.emptypeName !== ''">
+                                                            <label class="col-xs-6 padd0">Employee Type</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.emptypeName}}</span></li>
+                                                        <li class="row" ng-if="employeeControllerScope.employee.jobDesc !== ''">
+                                                            <label class="col-xs-6 padd0">Job Description</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.jobDesc}}</span></li>
+                                                        <li class="row" ng-if="employeeControllerScope.employee.deptName !== ''">
+                                                            <label class="col-xs-6 padd0">Department</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.deptName}}</span></li>
+                                                        <li class="row" ng-if="employeeControllerScope.employee.reportToName !== ''">
+                                                            <label class="col-xs-6 padd0">Reporting Employee Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.reportToName}}</span></li>
+                                                        <li class="row" >
+                                                            <label class="col-xs-6 padd0">Gender</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all"><span ng-if="employeeControllerScope.employee.gender == 'F'">Female</span><span ng-if="employeeControllerScope.employee.gender == 'M'">Male</span></li>
+                                                       
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                            <li class="row" ng-if="employeeControllerScope.employee.personalContact !== ''">
+                                                            	<label class="col-xs-6 padd0">Personal Contact</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.personalContact}}</span></li>
+	                                                        <li class="row" ng-if="employeeControllerScope.employee.primaryContact !== ''">
+	                                                            <label class="col-xs-6 padd0">Primary Contact</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.primaryContact}}</span></li>
+	                                                        <li class="row" ng-if="employeeControllerScope.employee.companyEmail !== ''">
+	                                                            <label class="col-xs-6 padd0">Company Email</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.companyEmail}}</span></li>
+	                                                        <li class="row" ng-if="employeeControllerScope.employee.personalEmail !== ''">
+	                                                            <label class="col-xs-6 padd0">Personal Email</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.personalEmail}}</span></li>
+	                                                        <li class="row" ng-if="employeeControllerScope.employee.panno !== ''">
+	                                                            <label class="col-xs-6 padd0">PAN No</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.panno}}</span></li>
+	                                                        <li class="row" ng-if="employeeControllerScope.employee.aadhar !== ''">
+	                                                            <label class="col-xs-6 padd0">Aadhar Id</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.aadhar}}</span></li>
+	                                                        <li class="row" ng-if="employeeControllerScope.employee.dateOfBirth !== ''">
+	                                                            <label class="col-xs-6 padd0">Birth Date</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.dateOfBirth | date:'MMM dd,yyyy'}}</span></li>
+	                                                        <li class="row" ng-if="employeeControllerScope.employee.startDate !== ''">
+	                                                            <label class="col-xs-6 padd0">Start Date</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.startDate | date:'MMM dd,yyyy'}}</span></li>
+	                                                        <li class="row" ng-if="employeeControllerScope.employee.updatedBy !== ''">
+	                                                            <label class="col-xs-6 padd0">Updated By</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.employee.updatedBy}}</li>
+	                                                    	<li class="row" ng-if="employeeControllerScope.employee.updatedon !== ''">
+	                                                    		<label class="col-xs-6 padd0">Updated On</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.employee.updatedon }}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            

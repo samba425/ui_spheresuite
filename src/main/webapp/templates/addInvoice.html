@@ -1,0 +1,29 @@
+<div class="loader_backdrop" ng-if="mailBoxControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                    	<div class="pageTitletextContainer paddLft15"><span>New Invoice</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <!-- <div>
+                                        <i class="fa fa-envelope-open-o img-responsive margin_auto" style="width: 100px;height: 100px;color: #00254d;font-size: 100px;margin-bottom: 15px;" aria-hidden="true"></i>
+                                        <span class="anchor_text line_height18">Integrate Your Email Inboxes With Your SphereSuite</span>
+                                        <p class="grey_text mail_p">Connect an Email Account To Get From Your SphereSuite. Send Emails, Track Opens and Clicks, and Use the HubSpot Extension in Your Gmail ot Outlook.</p>
+                                        <button class="activeBtn btn" type="button">Connect An Inbox</button>
+                                    </div> -->
+                                    <div class="col-lg-6 col-md-6 col-xs-6 col-xs-6 text-center">
+                                    	<button type="button" class="mail_btn" ng-click="invoiceControllerScope.selectProvider('gmail')">Project Invoice</button>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-6 col-xs-6 text-center">
+                                    	<button type="button" class="mail_btn" ng-click="mailBoxControllerScope.selectProvider('yahoo')">Resource Deployement Invoice</button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            

@@ -1,0 +1,202 @@
+<div class="loader_backdrop" ng-if="contactControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer"><span ng-if="!contactControllerScope.isUpdate">New</span><span ng-if="contactControllerScope.isUpdate">Update</span> Contact</div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0">
+                            <form class="form-horizontal formContainer contact_selectBox" name="contactControllerScope.contactForm">
+                                <div class="create-employee-inner">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Lead&nbsp;/&nbsp;Customer&nbsp;/&nbsp;Vendor<span class="reqStar">*</span>
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <div class="customDropDown">
+                                                <select name="leadType" id="select3" class="dropdown inputClass" ng-model="contactControllerScope.contact.leadType" required>
+                                                    <option value="" ng-if="!contactControllerScope.contact.leadType || contactControllerScope.contact.leadType == ''">Select Type</option>
+                                                    <option value="{{type.id}}" ng-repeat="type in contactControllerScope.leadTypeList | orderBy:'name'">{{type.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Salutation<span class="reqStar">*</span>
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <div class="customDropDown">
+                                                <select name="salutation" id="select1" class="dropdown inputClass" ng-model="contactControllerScope.contact.salutation" required>
+                                                    <option value="" ng-if="!contactControllerScope.contact.salutation || contactControllerScope.contact.salutation == ''">Select Salutation Type</option>
+                                                    <option value="{{salutation.id}}" ng-repeat="salutation in contactControllerScope.salutationList | orderBy:'name'" ng-if="salutation.status == 'a' ">{{salutation.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">First Name<span class="reqStar">*</span>
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="firstName" class="inputClass" ng-pattern="/^[a-zA-Z\ ]*$/" ng-model="contactControllerScope.contact.firstName" placeholder="First Name" required>
+                                            <p ng-show="contactControllerScope.contactForm.firstName.$error.pattern && contactControllerScope.contactForm.firstName.$invalid && contactControllerScope.contactForm.firstName.$touched" class="reqStar">Kindly Enter Valid Name</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Middle Name
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="middleName" class="inputClass" ng-pattern="/^[a-zA-Z\ ]*$/" ng-model="contactControllerScope.contact.middleName" placeholder="Middle Name">
+                                            <p ng-show="contactControllerScope.contactForm.middleName.$error.pattern && contactControllerScope.contactForm.middleName.$invalid && contactControllerScope.contactForm.middleName.$touched" class="reqStar">Kindly Enter Valid Name</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Last Name<span class="reqStar">*</span>
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="lastName" class="inputClass" ng-pattern="/^[a-zA-Z\ ]*$/" ng-model="contactControllerScope.contact.lastName" placeholder="Last Name" required>
+                                            <p ng-show="contactControllerScope.contactForm.lastName.$error.pattern && contactControllerScope.contactForm.lastName.$invalid && contactControllerScope.contactForm.lastName.$touched" class="reqStar">Kindly Enter Last Name</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Designation
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="designation" class="inputClass" ng-model="contactControllerScope.contact.designation" placeholder="Designation">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Contact Type
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <div class="customDropDown">
+                                                <select name="contacttype" id="select2" class="dropdown inputClass" ng-model="contactControllerScope.contact.contacttype">
+                                                    <option value="" ng-if="!contactControllerScope.contact.contacttype || contactControllerScope.contact.contacttype == ''">Select Contact Type</option>
+                                                    <option value="{{contactType.id}}" ng-repeat="contactType in contactControllerScope.contactListType | orderBy:'name'" ng-if="contactType.status == 'a'">{{contactType.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Primary Email
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="email" name="primaryEmail" class="inputClass" ng-pattern='/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i' ng-model="contactControllerScope.contact.primaryEmail" placeholder="Primary Email" />
+                                            <p ng-if="contactControllerScope.contactForm.primaryEmail.$error.pattern && contactControllerScope.contactForm.primaryEmail.$invalid && contactControllerScope.contactForm.primaryEmail.$touched" class="reqStar">Kindly Enter Valid Email</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Secondary Email
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="email" name="secondaryEmail" class="inputClass" ng-pattern='/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i' ng-model="contactControllerScope.contact.secondaryEmail" placeholder="Secondary Email" />
+                                            <p ng-if="contactControllerScope.contactForm.secondaryEmail.$error.pattern && contactControllerScope.contactForm.secondaryEmail.$invalid && contactControllerScope.contactForm.secondaryEmail.$touched" class="reqStar">Kindly Enter Valid Email</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Primary Mailing Address
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="address1" class="inputClass" ng-model="contactControllerScope.contact.address1" placeholder="Primary Mailing Address" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Secondary Mailing Address
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="address2" class="inputClass" ng-model="contactControllerScope.contact.address2" placeholder="Secondary Mailing Address" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Mobile 1
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="mobile" class="inputClass lineHeight16" ng-pattern="/^[0-9]*$/" ng-model="contactControllerScope.contact.mobile" placeholder="Mobile 1" />
+                                            <p ng-show="contactControllerScope.contactForm.mobile.$error.pattern && contactControllerScope.contactForm.mobile.$touched" class="reqStar">Kindly Enter Valid Number. Ex XXXXXXXXXX</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Mobile 2
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="mobile2" class="inputClass lineHeight16" ng-pattern="/^[0-9]*$/" ng-model="contactControllerScope.contact.mobile2" placeholder="Mobile 2" />
+                                            <p ng-show="contactControllerScope.contactForm.mobile2.$error.pattern && contactControllerScope.contactForm.mobile2.$touched" class="reqStar">Kindly Enter Valid Number. Ex XXXXXXXXXX</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Phone 1
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="phone" class="inputClass lineHeight16" ng-pattern="/^[0-9]*$/" ng-model="contactControllerScope.contact.phone" placeholder="Phone 1" />
+                                            <p ng-show="contactControllerScope.contactForm.phone.$error.pattern && contactControllerScope.contactForm.phone.$touched" class="reqStar">Kindly Enter Valid Number</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Phone 2
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="phone1" class="inputClass lineHeight16" ng-pattern="/^[0-9]*$/" ng-model="contactControllerScope.contact.phone1" placeholder="Phone 2" />
+                                            <p ng-show="contactControllerScope.contactForm.phone1.$error.pattern && contactControllerScope.contactForm.phone1.$touched" class="reqStar">Kindly Enter Valid Number</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Phone 3
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="phone2" class="inputClass lineHeight16" ng-pattern="/^[0-9]*$/" ng-model="contactControllerScope.contact.phone2" placeholder="Phone 3" />
+                                            <p ng-show="contactControllerScope.contactForm.phone2.$error.pattern && contactControllerScope.contactForm.phone2.$touched" class="reqStar">Kindly Enter Valid Number</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Phone 4
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="phone3" class="inputClass lineHeight16" ng-pattern="/^[0-9]*$/" ng-model="contactControllerScope.contact.phone3" placeholder="Phone 4" />
+                                            <p ng-show="contactControllerScope.contactForm.phone3.$error.pattern && contactControllerScope.contactForm.phone3.$touched" class="reqStar">Kindly Enter Valid Number</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Fax Number
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="fax" class="inputClass lineHeight16" ng-pattern="/^[0-9]*$/" ng-model="contactControllerScope.contact.fax" placeholder="Fax Number" />
+                                            <p ng-show="contactControllerScope.contactForm.fax.$error.pattern && contactControllerScope.contactForm.fax.$touched" class="reqStar">Kindly Enter Valid Number</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Website
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="website" class="inputClass"   ng-model="contactControllerScope.contact.website" placeholder="Website" /> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Requirements
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <textarea type="text" name="requirement" class="inputClass" ng-model="contactControllerScope.contact.requirement" placeholder="Requirements"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Notes
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <textarea type="text" name="note" class="inputClass" ng-model="contactControllerScope.contact.note" placeholder="Notes"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Comments
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <textarea type="text" name="comment" class="inputClass" ng-model="contactControllerScope.contact.comment" placeholder="Comments"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns">
+                                        <button class="defaultBtn btn" type="button" ng-click="contactControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn btn" type="button" ng-click="contactControllerScope.addContact()" ng-disabled="contactControllerScope.contactForm.$invalid" ng-if="!contactControllerScope.isUpdate">Save</button>
+                                        <button class="activeBtn btn" ng-click="contactControllerScope.editContact()" ng-disabled="contactControllerScope.contactForm.$invalid" ng-if="contactControllerScope.isUpdate">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            

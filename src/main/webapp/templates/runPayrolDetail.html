@@ -1,0 +1,61 @@
+<div class="loader_backdrop" ng-if="myCompensationControllerScope.spinner">
+	<div class="loader loader_position"></div>
+</div>
+<div class="rightContainer">
+	<div class="pageTitleParent">
+		<div class="row pageTitletextContainer">
+			<span class="col-lg-6 col-md-6 col-sm-6 col-xs-7 padd0">
+				<div class="line_height30">Payroll Details</div>
+			</span>
+		</div>
+					<div class="innerdivContainer red-icon create-employee responsive_padding0 employee_placeholder">
+					
+                            <div class="row">
+					<span class="cursor_pointer back_iconPosition"  ng-click="payrollControllerScope.goToPayroll()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+				</div>
+						<div class="table_data" ng-if="payrollControllerScope.runPayrollDetailList.length > 0">
+							<table wt-responsive-table class="custom-responsive-table padding_table10">
+								<thead>
+									<tr>
+										<th>Employee Id</th>
+										<th>Employee Name</th>
+										<th>Month</th>
+										<th>Gross</th>
+										<th>Earnings</th>
+										<th>Deduction</th>
+										<th>Net</th>
+										<th>Status</th>
+										<th ng-if="payrollControllerScope.runPayrollDetailList[0].status =='p'">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="employee in payrollControllerScope.runPayrollDetailList track by $index" class="backGreyColor">
+										<td class="">{{employee.empId}}</td>
+										<td class="">{{employee.name}}</td>
+										<td class="text-center">{{employee.payrollMonth}}</td>
+										<td class="text-right">{{employee.basicGrossPay | number:0}}.00</td>
+										<td class="text-right">{{employee.earningMonth | number:0}}.00</td>
+										<td class="text-right">{{employee.deductionMonth | number:0}}.00</td>
+										<td class="text-right">{{employee.netMonth | number:0}}.00</td>
+										<td class="text-center">
+											<span ng-if="employee.status =='d'" class="label_gray">Draft</span>
+											<span ng-if="employee.status =='p'" class="label_success">Processed</span>
+										</td>
+										<td class="text-center" ng-if="employee.status =='p'"><i class="fa fa-envelope" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Send Mail"></i><i class="fa fa-download padd_LR10" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Download"></i><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="View"></i></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div ng-if="!payrollControllerScope.runPayrollDetailList.length > 0">
+                            <p class="text-center grey_text padding15 padding_top0">Payroll processed already for this month</p>
+                        </div>
+						<div class="form-group row mob-pos-rel text-center margin_top10" ng-if="payrollControllerScope.runPayrollDetailList.length > 0">
+						<button class="defaultBtn btn" type="button" ng-click="payrollControllerScope.goToPayroll()" ng-if="payrollControllerScope.runPayrollDetailList[0].status != 'p'">Decline</button>
+							<button class="activeBtn btn" type="button" ng-click="payrollControllerScope.submitPayroll()" ng-if="payrollControllerScope.runPayrollDetailList[0].status != 'p'">Submit For Process</button>
+							<button class="activeBtn btn" type="button" ng-click="payrollControllerScope.gotoRunPayroll('r')" ng-if="payrollControllerScope.runPayrollDetailList[0].status == 'p'">Release Payslips</button>
+						</div>
+					</div>
+				</div>
+			</div>

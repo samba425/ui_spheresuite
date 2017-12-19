@@ -1,0 +1,109 @@
+
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer"><span>Add Supplier</span></div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0">
+                            <form class="form-horizontal formContainer" name="leadControllerScope.leadForm">
+                                <div class="create-employee-inner">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Name<span class="reqStar">*</span>
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="name" class="inputClass" placeholder="Name" >
+                                           
+                                        </div>
+                                    </div>
+                                     <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Type</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 ">
+                                            <div class="customDropDown">
+                                                <select class="select1 dropdown inputClass" name="empType" ng-model="employeeControllerScope.employee.empType">
+                                                    <option value="" >Select Type</option>
+                                                   
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Status</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 ">
+                                            <div class="customDropDown">
+                                                <select class="select1 dropdown inputClass" name="empType" ng-model="employeeControllerScope.employee.empType">
+                                                    <option value="" >Select Status</option>
+                                                   
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Source
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="name" class="inputClass" placeholder="Source" >
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Industry</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 ">
+                                            <div class="customDropDown">
+                                                <select class="select1 dropdown inputClass" name="empType" >
+                                                    <option value="" >Select Industry</option>
+                                                   
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Mobile
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="name" class="inputClass" placeholder="Mobile" >
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Phone
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="name" class="inputClass" placeholder="Phone" >
+                                           
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Email
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="name" class="inputClass" placeholder="Email" >
+                                           
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Address
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="name" class="inputClass" placeholder="Address" >
+                                           
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Comment
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                           <textarea type="text" name="comment" class="inputClass" placeholder="Comment"></textarea>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns">
+                                       
+                                        <button class="defaultBtn btn" type="button" ng-click="leadControllerScope.declineContact()">Decline</button>
+                                        
+                                        <button class="activeBtn btn" type="button" ng-click="leadControllerScope.createLead()" ng-disabled="leadControllerScope.contactForm.$invalid">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           

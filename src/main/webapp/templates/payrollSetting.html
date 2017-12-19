@@ -1,0 +1,317 @@
+<div class="loader_backdrop" ng-show="payrollControllerScope.spinner || payrollControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Earning Type</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <span class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">                                        	                                        
+											<span class="outline0" data-toggle="modal"
+											data-target="#allowance" data-backdrop="static"
+											data-keyboard="false">
+	                                        	<button class="activeBtn btn">Add Earning</button>
+	                                        </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="payrollControllerScope.allowanceMsg != ''">
+                            <p class="text-center grey_text padding15 padding_top0">{{payrollControllerScope.allowanceMsg}}</p>
+                        </div>
+                        <div id="list-wrapper">
+                            <div infinite-scroll="payrollControllerScope.addMoreAllowance()" infinite-scroll-container="'#list-wrapper'" infinite-scroll-parent="true">
+                                <div class="innerdivContainer red-icon create-employee border_bottom1" ng-repeat="allowance in logEventFilter = (payrollControllerScope.allowanceList | orderBy : '-id' | 
+                                limitTo : payrollControllerScope.limitToShowAllowance)">
+                                    <div class="row">
+                                        <div class="input_section">
+                                            <div class="responsive_textCenter display_webkit">
+												<span class="outline0" data-toggle="modal"
+													data-target="#allowance" data-backdrop="static"
+													data-keyboard="false">
+													<span ng-click="payrollControllerScope.openAllowanceModal(allowance)" class="anchor_text break-word capitalizeText">{{allowance.displayName}}</span>
+												</span>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Section</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{allowance.section}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Taxable</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{allowance.taxable=='Y'?'Yes':'No'}}</span></li>
+                                                            <li class="row" ng-if="allowance.type == 'F'">
+                                                                <label class="col-xs-6 padd0">Fixed Amount</label><span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{allowance.fixedAmount | number: 2 }}</span></li>
+                                                            <li class="row" ng-if="allowance.type == 'P'">
+                                                                <label class="col-xs-6 padd0">Percentage</label><span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{allowance.percentageAmount}} % (<span ng-if="allowance.basicGrossPay == 'G'">Gross</span><span ng-if="allowance.basicGrossPay == 'B'">Basic</span>)</span></li>
+                                                           	<li class="row">
+                                                                <label class="col-xs-6 padd0">Notes</label><span class="font_weight600 col-xs-6 wordBreak_all">{{allowance.notes}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                           <li class="row">
+                                                                <label class="col-xs-6 padd0">Type</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{allowance.allowanceTypeName}}</span></li>
+                                                           <li class="row">
+                                                                <label class="col-xs-6 padd0">Name</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{allowance.name}}</span></li>
+                                                           <li class="row">
+                                                                <label class="col-xs-6 padd0">Updated By</label><span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{allowance.updatedBy}}</span></li>
+                                                        	<li class="row">
+                                                                <label class="col-xs-6 padd0">Updated On</label><span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{allowance.updatedon}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Deduction Type</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <span class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0">	                                        
+											<span class="outline0" data-toggle="modal"
+											data-target="#deduction" data-backdrop="static"
+											data-keyboard="false">
+												<button class="activeBtn btn" ng-click="payrollControllerScope.addDeduction()">Add Deduction</button>
+											</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="payrollControllerScope.deductionMsg && payrollControllerScope.deductionMsg != ''">
+                            <p class="text-center grey_text padding15 padding_top0">{{payrollControllerScope.deductionMsg}}</p>
+                        </div>
+                        <div id="list-wrapper">
+                            <div infinite-scroll="payrollControllerScope.addMoreDeduction()" infinite-scroll-container="'#list-wrapper'" infinite-scroll-parent="true">
+                                <div class="innerdivContainer red-icon create-employee border_bottom1" ng-repeat="deduction in logEventFilter = (payrollControllerScope.deductionList | orderBy : '-id' |
+                                limitTo : payrollControllerScope.limitToShowDeduction)">
+                                    <div class="row">
+                                        <div class="input_section">
+                                            <div class="responsive_textCenter display_webkit">
+												<span class="outline0" data-toggle="modal"
+													data-target="#deduction" data-backdrop="static"
+													data-keyboard="false">
+													<span ng-click="payrollControllerScope.openDeductionModal(deduction)" class="anchor_text break-word capitalizeText">{{deduction.name}}</span>
+												</span>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Type</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{deduction.deductionTypeName}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Deduction Code</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{deduction.section}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Deduct</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{deduction.prepostTax}}</span></li>
+                                                           <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">Deduction Type</label> 
+                                                                	<span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">
+                                                                		<span ng-if="deduction.type == 'F'">Fixed Amount</span>
+                                                                		<span ng-if="deduction.type == 'P'">Percentage</span>
+                                                                	</span>
+                                                            	</li>
+                                                           <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">Notes</label><span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{deduction.notes}}</span></li>
+                                                           </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                           <li class="row">
+                                                                <label class="col-xs-6 padd0">Display Name</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{deduction.displayName}}</span></li>
+                                                            <li class="row" ng-if="deduction.type == 'F'">
+                                                                <label class="col-xs-6 padd0">Fixed Amount</label><span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{deduction.fixedAmount | number:2}}</span></li>
+                                                        	<li class="row" ng-if="deduction.type == 'P'">
+                                                                <label class="col-xs-6 padd0">Percentage</label><span class="font_weight600 col-xs-6 wordBreak_all">{{deduction.percentageAmount}} %</span></li>
+                                                            <li class="row" ng-if="deduction.type == 'P'">
+                                                                <label class="col-xs-6 padd0">Pay Type</label><span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">
+                                                                	<span ng-if="deduction.basicGrossPay == 'G'">Gross Pay</span>
+                                                                	<span ng-if="deduction.basicGrossPay == 'B'">Basic Pay</span>
+                                                                </span></li>
+                                                            <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">Updated By</label><span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{deduction.updatedBy}}</span></li>
+                                                            <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">Updated On</label><span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{deduction.updatedon}}</span></li>
+                                                           </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          
+
+
+<div id="allowance" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<button type="button" class="close white opacity1px" data-dismiss="modal" ng-click="payrollControllerScope.declineAllowance()"><i class="fa fa-times close_button" aria-hidden="true" ></i></button>
+                <h4 class="modal-title">Earning</h4>
+            </div>
+            <form name="payrollControllerScope.allowanceForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="customDropDown user_select100 margin_top5">
+                            <select class="select1 dropdown inputClass width100" name="allowanceTypeId" ng-model="payrollControllerScope.allowance.allowanceTypeId"> 
+                                <option value="" ng-if="!payrollControllerScope.allowance.allowanceTypeId || payrollControllerScope.allowance.allowanceTypeId == ''">Select Earning type</option>
+                        		<option value="{{allowance.id}}" ng-repeat="allowance in payrollControllerScope.allowanceTypeList" ng-if="allowance.status == 'a'">{{allowance.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="text" name="name" class="inputClass width100" ng-model="payrollControllerScope.allowance.name" placeholder="Earning Name*" required/>
+                    <p class="reqStar" ng-if="payrollControllerScope.allowanceForm.name.$invalid && payrollControllerScope.allowanceForm.name.$touched">Kindly Enter Valid Name</p>
+                    <input type="text" name="displayName" class="inputClass width100" ng-model="payrollControllerScope.allowance.displayName" placeholder="Display Name*" required/>
+                    <p class="reqStar" ng-if="payrollControllerScope.allowanceForm.displayName.$invalid && payrollControllerScope.allowanceForm.displayName.$touched">Kindly Enter Valid Display Name</p>
+                    <input type="text" name="section" class="inputClass width100" ng-model="payrollControllerScope.allowance.section" placeholder="Sections Codes Ex: Section 16 (ii), etc" />
+                    <div class="switch-field pad-right-0 emp_margin5">
+                        <input type="radio" id="switch_left" name="taxable" value="Y" class="margin0 width50p" ng-model="payrollControllerScope.allowance.taxable"/>
+                        <label for="switch_left" class="linheight2pt7 margin0 width50p">Taxable</label>
+                        <input type="radio" id="switch_right" name="taxable" value="N" class="margin0 width50p" ng-model="payrollControllerScope.allowance.taxable"/>
+                        <label for="switch_right" class="linheight2pt7 margin0 width50p">Non Taxable</label>
+                    </div>
+                 <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="customDropDown user_select100 margin_top5">
+                            <select class="select1 dropdown inputClass width100" name="type" ng-model="payrollControllerScope.allowance.type" ng-change="payrollControllerScope.resetAllowanceAmount()" required> 
+                                <option value="" ng-if="!payrollControllerScope.allowance.type || payrollControllerScope.allowance.type == ''">Select Cost Type*</option>
+                                <option value="F">Fixed Amount</option>
+                                <option value="P">Percentage</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <input type="text" name="fixedAmount" class="inputClass width100" ng-model="payrollControllerScope.allowance.fixedAmount" ng-show="payrollControllerScope.allowance.type == 'F'" ng-pattern="/^[0-9]*$/" placeholder="Amount / Year*" required/>
+                    <p class="reqStar" ng-if="(payrollControllerScope.allowanceForm.fixedAmount.$error.pattern || payrollControllerScope.allowanceForm.fixedAmount.$invalid) && payrollControllerScope.allowanceForm.fixedAmount.$touched">Kindly Enter Valid Amount</p>
+                    <div class="form-group col-md-6 padd0 margin_top5" ng-show="payrollControllerScope.allowance.type == 'P'">
+                    	<input type="text" name="percentageAmount" class="col-md-6 inputClass width100" ng-model="payrollControllerScope.allowance.percentageAmount" ng-show="payrollControllerScope.allowance.type == 'P'" ng-pattern="/^[0-9]*$/" placeholder="Percentage*" required/>
+                    	<p class="reqStar" ng-if="(payrollControllerScope.allowanceForm.percentageAmount.$error.pattern || payrollControllerScope.allowanceForm.percentageAmount.$invalid) && payrollControllerScope.allowanceForm.percentageAmount.$touched">Kindly Enter Valid Percentage</p>
+                    </div>
+                    <div class="form-group col-md-6 padd0 margin_top5" ng-show="payrollControllerScope.allowance.type == 'P'">
+                        <div class="customDropDown user_select100 margin_top5">
+                            <select class="select1 dropdown inputClass width100" name="basicGrossPay" ng-model="payrollControllerScope.allowance.basicGrossPay" required> 
+                                <option value="" ng-if="!payrollControllerScope.allowance.basicGrossPay || payrollControllerScope.allowance.basicGrossPay == ''">Select Pay*</option>
+                                <option value="G">Gross Pay</option>
+                                <option value="B">Basic Pay</option>
+                            </select>
+                        </div>
+                    </div><textarea name="notes" class="inputClass width100" ng-model="payrollControllerScope.allowance.notes" placeholder="Comments"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="defaultBtn" data-dismiss="modal" ng-click="payrollControllerScope.declineAllowance()">Decline</button>
+                    <button type="button" 
+                    	class="activeBtn btn" 
+                    	ng-click="payrollControllerScope.addAllowance()"
+                    	ng-disabled="payrollControllerScope.allowanceForm.$invalid"
+                    	ng-if="!payrollControllerScope.isEdit">Save</button>
+                    <button type="button" 
+                    	class="activeBtn btn" 
+                    	ng-click="payrollControllerScope.editAllowance()"
+                    	ng-disabled="payrollControllerScope.allowanceForm.$invalid"
+                    	ng-if="payrollControllerScope.isEdit">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="deduction" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<button type="button" class="close white opacity1px" data-dismiss="modal" ng-click="payrollControllerScope.declineDeduction()"><i class="fa fa-times close_button" aria-hidden="true" ></i></button>
+                <h4 class="modal-title">Deduction</h4>
+            </div>
+            <form name="payrollControllerScope.deductionForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="customDropDown user_select100 margin_top5">
+                            <select class="select1 dropdown inputClass width100" name="deductionTypeId" ng-model="payrollControllerScope.deduction.deductionTypeId"> 
+                                <option value="" ng-if="!payrollControllerScope.deduction.deductionTypeId || payrollControllerScope.deduction.deductionTypeId == ''">Select Deduction Type</option>
+                        		<option value="{{deduction.id}}" ng-repeat="deduction in payrollControllerScope.deductionTypeList" ng-if="deduction.status == 'a'">{{deduction.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="text" name="name" class="inputClass width100" ng-model="payrollControllerScope.deduction.name" placeholder="Deduction Name*" required />
+                    <p class="reqStar" ng-if="payrollControllerScope.deductionForm.name.$invalid && payrollControllerScope.deductionForm.name.$touched">Kindly Enter Valid Deduction Name</p>
+                    <input type="text" name="displayName" class="inputClass width100" ng-model="payrollControllerScope.deduction.displayName" placeholder="Display Name*" required/>
+                    <p class="reqStar" ng-if="payrollControllerScope.deductionForm.displayName.$invalid && payrollControllerScope.deductionForm.displayName.$touched">Kindly Enter Valid Display Name</p>
+                    <input type="text" name="section" class="inputClass width100" ng-model="payrollControllerScope.deduction.section" placeholder="Deduction Code Ex: Section 125, etc"/>
+                    <div class="switch-field pad-right-0 emp_margin5">
+                        <input type="radio" id="switch_left1" name="prepostTax" value="Pre Tax Deduction" class="margin0 width50p" ng-model="payrollControllerScope.deduction.prepostTax" />
+                        <label for="switch_left1" class="linheight2pt7 margin0 width50p">Pre Tax Deduction</label>
+                        <input type="radio" id="switch_right2" name="prepostTax" value="Post Tax Deduction" class="margin0 width50p" ng-model="payrollControllerScope.deduction.prepostTax" />
+                        <label for="switch_right2" class="linheight2pt7 margin0 width50p">Post Tax Deduction</label>
+                    </div>
+                 <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="customDropDown user_select100 margin_top5">
+                            <select class="select1 dropdown inputClass width100" name="type" ng-model="payrollControllerScope.deduction.type" ng-change="payrollControllerScope.resetDeductionAmount()" required> 
+                                <option value="" ng-if="!payrollControllerScope.deduction.type || payrollControllerScope.deduction.type == ''">Select Type*</option>
+                                <option value="F">Fixed Amount</option>
+                                <option value="P">Percentage</option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="text" name="fixedAmount" class="inputClass width100" ng-model="payrollControllerScope.deduction.fixedAmount" ng-show="payrollControllerScope.deduction.type == 'F'" ng-pattern="/^[0-9]*$/" placeholder="Amount / Year*" required/>
+                    <p class="reqStar" ng-if="(payrollControllerScope.deductionForm.fixedAmount.$error.pattern || payrollControllerScope.deductionForm.fixedAmount.$invalid) && payrollControllerScope.deductionForm.fixedAmount.$touched">Kindly Enter Valid Amount</p>
+                    <div class="form-group col-md-6 padd0 margin_top5" ng-show="payrollControllerScope.deduction.type == 'P'">
+                    	<input type="text" name="percentageAmount" class="col-md-6 inputClass width100" ng-model="payrollControllerScope.deduction.percentageAmount" ng-show="payrollControllerScope.deduction.type == 'P'" ng-pattern="/^[0-9]*$/" placeholder="Percentage*" required/>
+                    	<p class="reqStar" ng-if="(payrollControllerScope.deductionForm.percentageAmount.$error.pattern || payrollControllerScope.deductionForm.percentageAmount.$invalid) && payrollControllerScope.deductionForm.percentageAmount.$touched">Kindly Enter Valid Percentage</p>
+                    </div>
+                    <div class="form-group col-md-6 padd0 margin_top5" ng-show="payrollControllerScope.deduction.type == 'P'">
+                        <div class="customDropDown user_select100 margin_top5">
+                            <select class="select1 dropdown inputClass width100" name="basicGrossPay" ng-model="payrollControllerScope.deduction.basicGrossPay" required> 
+                                <option value="" ng-if="!payrollControllerScope.deduction.basicGrossPay || payrollControllerScope.deduction.basicGrossPay == ''">Select Pay*</option>
+                                <option value="G">Gross Pay</option>
+                                <option value="B">Basic Pay</option>
+                            </select>
+                        </div>
+                    </div>
+                 	<textarea name="notes" class="inputClass width100" ng-model="payrollControllerScope.deduction.notes" placeholder="Comments"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="defaultBtn" data-dismiss="modal" ng-click="payrollControllerScope.declineDeduction()">Decline</button>
+                    <button type="button" 
+                    	class="activeBtn btn" 
+                    	ng-click="payrollControllerScope.addDeduction()"
+                    	ng-disabled="payrollControllerScope.deductionForm.$invalid"
+                    	ng-if="!payrollControllerScope.isEdit">Save</button>
+                    	<button type="button" 
+                    	class="activeBtn btn" 
+                    	ng-click="payrollControllerScope.editDeduction()"
+                    	ng-disabled="payrollControllerScope.deductionForm.$invalid"
+                    	ng-if="payrollControllerScope.isEdit">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

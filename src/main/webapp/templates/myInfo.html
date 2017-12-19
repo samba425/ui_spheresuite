@@ -1,0 +1,119 @@
+<div class="loader_backdrop" ng-if="employeeControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">My Details</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div ng-if="employeeControllerScope.dataMsg && employeeControllerScope.dataMsg != ''">
+                                <p class="text-center grey_text padding15">{{employeeControllerScope.dataMsg}}</p>
+                            </div>
+                            <div class="row" class="" ng-show="employeeControllerScope.noEmployeeDetail">
+                                <div class="input_section col-md-12 padd0">
+                                    <div class="col-lg-12 col-md-12 col-xs-12 padd0">
+                                        <div class="text-center margin_bottom15">
+                                            <img alt="Profile Picture" class="myinfo-profile-pic cursor_default" ng-src="{{employeeControllerScope.photo}}" ng-if="employeeControllerScope.photo" />
+                                            <i class="fa fa-user-circle-o img-views  img-100x100 myinfo-profile-pic margin0 font-size100" aria-hidden="true" ng-if="employeeControllerScope.icon"" ></i>
+                                            <br>
+                                            <button data-backdrop="static" data-keyboard="false" type="button" class="activeBtn btn margin_top5 " data-target="#modal" data-toggle="modal">
+                                                Update Photo </button>
+                                            <div class="modal fade" id="modal" role="dialog" aria-labelledby="modalLabel" tabindex="-1">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close white opacity1px" data-dismiss="modal" ng-click="employeeControllerScope.clearimage()">
+                                                                <i class="fa fa-times close_button" aria-hidden="true"></i>
+                                                            </button>
+                                                            <h5 class="modal-title text-left">Upload Photo</h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="text-left">Select an Photo file:
+                                                            	<label class="btn btn-default btn-file">
+                                                                	<input type="file" id="fileInput" /> Upload Photo
+                                                                </label>
+                                                            </div>
+                                                            <div ng-if="employeeControllerScope.myImage">
+                                                                <div class="cropArea">
+                                                                    <img-crop image="employeeControllerScope.myImage" result-image="employeeControllerScope.myCroppedImage" result-image-size="100" result-image-quality="0.6" area-type="circle" change-on-fly="true"></img-crop>
+                                                                </div> &nbsp;
+                                                                <div class="text-center"><img ng-src="{{employeeControllerScope.myCroppedImage}}" /></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="activeBtn btn margin_top5" ng-click="employeeControllerScope.updatePic(employeeControllerScope.myCroppedImage)">Save</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5 padd0">
+                                             <div class="row">
+                                                 <div class="">
+                                                     <ul class="padd0 left_text">
+                                                      <div class="responsive_textCenter">
+                                                     <span class="anchor_text cursor_default capitalizeText">{{employeeControllerScope.userEmployeeList.firstName}} {{employeeControllerScope.userEmployeeList.middleName}} {{employeeControllerScope.userEmployeeList.lastName}}</span>
+                                                     <span class="pipe_text" ng-if="employeeControllerScope.userEmployeeList.emptypeName != ''">|</span>
+                                                     <span class="span_text capitalizeText">{{employeeControllerScope.userEmployeeList.emptypeName}}</span>
+                                                 </div>
+                                                 <li class="row">
+                                                 <label class="col-xs-6 padd0 ">Work Location</label><span class="font_weight600 col-xs-5 wordBreak_all padd0 text-left capitalizeText">{{employeeControllerScope.userEmployeeList.workLocationCity}}</span></li>
+                                                 <li class="row">
+                                                     <label class="col-xs-6 padd0">Employee Id</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.userEmployeeList.empId}}</span></li>
+                                                 <li class="row">
+                                                     <label class="col-xs-6 padd0">First Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.userEmployeeList.firstName}}</span></li>
+                                                 <li class="row">
+                                                     <label class="col-xs-6 padd0">Middle Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.userEmployeeList.middleName}}</span></li>
+                                                 <li class="row">
+                                                     <label class="col-xs-6 padd0">Last Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.userEmployeeList.lastName}}</span></li>
+                                                 <li class="row">
+                                                     <label class="col-xs-6 padd0">Title</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.userEmployeeList.title}}</span></li>
+                                                 <li class="row">
+                                                     <label class="col-xs-6 padd0">Job Description</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.userEmployeeList.jobDesc}}</span></li>
+                                                 <li class="row">
+                                                     <label class="col-xs-6 padd0">Employee Type</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.userEmployeeList.emptypeName}}</span></li>
+                                                 <li class="row">
+                                                     <label class="col-xs-6 padd0">Department</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.userEmployeeList.deptName}}</span></li>
+                                                 <li class="row">
+                                                     <label class="col-xs-6 padd0">Reporting Employee Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.userEmployeeList.reportToName}}</span></li>
+                                                 <li class="row">
+                                                     <label class="col-xs-6 padd0">Gender</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all"><span ng-if="employeeControllerScope.userEmployeeList.gender == 'F'">Female</span><span ng-if="employeeControllerScope.userEmployeeList.gender == 'M'">Male</span></span>
+                                                     </ul>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="col-lg-6 myinfoPadd10">
+                                             <div class="row">
+                                                 <div class="">
+                                                     <ul class="myinfoPadd15 left_text">
+                                                          <li class="row">
+		                                                     <label class="col-xs-6  padd0">Personal Contact</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.userEmployeeList.personalContact}}</span></li>
+		                                                 <li class="row">
+		                                                     <label class="col-xs-6  padd0">Primary Contact</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.userEmployeeList.primaryContact}}</span></li>
+		                                                 <li class="row">
+		                                                     <label class="col-xs-6  padd0">Company Email</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.userEmployeeList.companyEmail}}</span></li>
+		                                                 <li class="row">
+		                                                     <label class="col-xs-6  padd0">Personal Email</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.userEmployeeList.personalEmail}}</span></li>
+		                                                 <li class="row">
+		                                                     <label class="col-xs-6  padd0">PAN No</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.userEmployeeList.panno}}</span></li>
+		                                                 <li class="row">
+		                                                     <label class="col-xs-6  padd0">Aadhar Id</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.userEmployeeList.aadhar}}</span></li>
+		                                                 <li class="row">
+		                                                     <label class="col-xs-6  padd0">Birth Date</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.userEmployeeList.dateOfBirth | date:"MMM d, y"}}</span></li>
+		                                                 <li class="row">
+		                                                     <label class="col-xs-6  padd0">Start Date</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.userEmployeeList.startDate | date:"MMM d, y"}}</span></li>
+		                                                 <li class="row">
+		                                                     <label class="col-xs-6  padd0">Updated By</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{employeeControllerScope.userEmployeeList.updatedBy }}</span></li>
+		                                                 <li class="row">
+		                                                     <label class="col-xs-6  padd0">Updated On</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{employeeControllerScope.userEmployeeList.updatedon  | date:"medium"}}</span></li>
+                                                     </ul>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            

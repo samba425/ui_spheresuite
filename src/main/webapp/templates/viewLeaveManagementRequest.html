@@ -1,0 +1,77 @@
+<div class="loader_backdrop" ng-show="leaveManagementControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                         <div class="row pageTitletextContainer">
+                    	<div class="col-xs-12 padd0">
+                        	<span class="cursor_pointer back_iconPosition" ng-click="leaveManagementControllerScope.goToRequest()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+                        	<span class="page_titlePosition">Leave Request</span>
+                        </div>
+                    	
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row" class="">
+                                <div class="input_section">
+                                    <div class="text-right col-lg-12 col-xs-12 col-md-12 col-sm-12 padd10">
+                                        <button class="activeBtn" type="button" 
+                                        	ng-click="leaveManagementControllerScope.goToEditLeaveRequest(leaveManagementControllerScope.leaveManagement.id)" 
+                                        	ng-if="leaveManagementControllerScope.isHideEdit">Edit</button>
+                                    </div>
+                                    <div>
+                                        <div class="col-lg-1 col-xs-12 col-md-12 col-sm-12 padd0 responsive_textCenter resMargin12 margin_bottom15">
+                                            <img ng-src="{{employee.photo}}" class="responsivemargin_top10 img-60x60" ng-if="employee.photo">
+                                            <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true" ng-if="!employee.photo"></i>
+                                        </div>
+                                 
+                                        <div class="col-lg-11 col-xs-12 padd0">
+                                        <div class="responsive_textCenter">
+                                            <span class="anchor_text cursor_default break-word capitalizeText">{{leaveManagementControllerScope.leaveManagement.createdBy}}<span>
+                                            <span class="pipe_text " ng-if="leaveManagementControllerScope.leaveManagement && leaveManagementControllerScope.leaveManagement.status !=''">|</span>
+                                                <span class="span_text capitalizeText color_white" ng-if="leaveManagementControllerScope.leaveManagement.status !=''">
+                                                	<span ng-if="leaveManagementControllerScope.leaveManagement.status == 'p'" class="label_warning">Pending</span>
+                                                	<span ng-if="leaveManagementControllerScope.leaveManagement.status == 'a'" class="label_success">Approved</span>
+                                                	<span ng-if="leaveManagementControllerScope.leaveManagement.status == 'o'" class="label_blue">Re-Open</span>
+                                                	<span ng-if="leaveManagementControllerScope.leaveManagement.status == 'r'" class="label_danger">Rejected</span>
+                                                </span>
+                                        </div>
+                                             <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                        	<li class="row">
+                                                            	<label class="col-xs-6 padd0">Type</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leaveManagementControllerScope.leaveManagement.typeName}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Request On</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leaveManagementControllerScope.leaveManagement.createdon}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Leave Day</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leaveManagementControllerScope.leaveManagement.leaveday}}</span></li>
+                                                            <li class="row" ng-if="leaveManagementControllerScope.leaveManagement.fromDate != '' && leaveManagementControllerScope.leaveManagement.leaveday == 'Multiple'">
+                                                                <label class="col-xs-6 padd0">From Date</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leaveManagementControllerScope.leaveManagement.fromDate}}</span></li>
+                                                            <li class="row" ng-if="leaveManagementControllerScope.leaveManagement.toDate != '' && leaveManagementControllerScope.leaveManagement.leaveday == 'Multiple'">
+                                                                <label class="col-xs-6 padd0">To Date</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leaveManagementControllerScope.leaveManagement.toDate}}</span></li>
+                                                            <li class="row" ng-if="leaveManagementControllerScope.leaveManagement.date != '' && leaveManagementControllerScope.leaveManagement.leaveday == 'Single'">
+                                                                <label class="col-xs-6 padd0">Date</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leaveManagementControllerScope.leaveManagement.date}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Request Details</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leaveManagementControllerScope.leaveManagement.desc}}</span></li>
+                                                            <li class="row" ng-if="leaveManagementControllerScope.leaveManagement.comment != ''">
+                                                                <label class="col-xs-6 padd0">Comment</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leaveManagementControllerScope.leaveManagement.comment}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Updated By</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leaveManagementControllerScope.leaveManagement.updatedBy}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Updated On</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{leaveManagementControllerScope.leaveManagement.updatedon}}</span></li>
+                                                           </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

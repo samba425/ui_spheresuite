@@ -1,0 +1,23 @@
+<div id="dash_board_menu" class="transition_class" ng-controller="menuController as menuControllerScope">
+    <div class="dropdown" ng-repeat="menus in menuControllerScope.menuItems" ng-if="menus.isChecked" ng-class="menus.isOpen?'open':''">
+        <div class="anchor_tag leftMenus leftmenuimg dropbtn">
+            <div class="dropdown-toggle menu_padd" ng-class="headerMenu == menus.name ? 'active_color':''" ng-click="menuControllerScope.goToUri(menus,'menu')">
+                <i ng-class="menus.icon" aria-hidden="true" class="click_showMenu"></i>
+                <span class="menuText">{{menus.name}}</span>
+                <i class="fa fa-angle-right" aria-hidden="true" ng-class="menus.isOpen?'icon-rotate':''" ng-if="menus.submenu.length > 0"></i>
+                <ul class="border_transperent" ng-if="menus.isOpen">
+                    <li ng-repeat="submenu in menus.submenu" ng-if="submenu.isChecked " ng-click="menuControllerScope.goToUri(submenu,'submenu',$event)">
+                    	<span class="leftSubMenus">{{submenu.name}}</span>
+                		<i class="fa fa-angle-right" aria-hidden="true" ng-class="submenu.isOpen?'icon-rotate':''" ng-if="submenu.subSubMenu.length > 0"></i>
+                    	 <ul class="border_transperent" ng-if="submenu.isOpen">
+                    		<li ng-repeat="sub_menu in submenu.subSubMenu" ng-if="sub_menu.isChecked " ng-click="menuControllerScope.goToUri(sub_menu,'subSubmenu',$event)">
+                    			<span class="leftSubMenus">{{sub_menu.name}}</span>
+                    		</li>
+                    	</ul> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="loader" ng-show="menuControllerScope.spinner"></div>
+</div>

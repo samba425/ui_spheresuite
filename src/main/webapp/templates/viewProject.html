@@ -1,0 +1,63 @@
+<div class="loader_backdrop" ng-if="projectControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="row pageTitletextContainer">
+                    	<div class="col-xs-12 padd0">
+                        	<span class="cursor_pointer back_iconPosition" ng-click="projectControllerScope.goToProjects()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+                        	<span class="page_titlePosition">Project Details</span>
+                        </div>
+                    	
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="text-right row padd10">
+                                        <button class="activeBtn marginTop5" ng-click="projectControllerScope.goToEditProject(projectControllerScope.project.id)">Edit</button>
+                                    </div>
+                                    <div class="col-lg-1 padd0 responsive_textCenter responsivemargin_top10">
+                                        <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="responsive_textCenter">
+                                        <span class="anchor_text cursor_default break-word capitalizeText">{{projectControllerScope.project.projectName}}</span>
+                                    </div>
+                                    <div class="col-lg-11 col-xs-12 padd0">
+                                        <div class="row">
+                                            <div class="">
+                                                <ul class="padd0 left_text">
+                                                     <li class="row" ng-if="projectControllerScope.project.contactName !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Contact Name</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default capitalizeText">{{projectControllerScope.project.contactName}}</span></li>
+                                                    <li class="row" ng-if="projectControllerScope.project.opportunityName !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Opportunity Name</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default capitalizeText">{{projectControllerScope.project.opportunityName}}</span></li>
+                                                   <li class="row" ng-if="projectControllerScope.project.displayName !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Display Name</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default capitalizeText">{{projectControllerScope.project.displayName}}</span></li>
+                                                    <li class="row" ng-if="projectControllerScope.project.startDate !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Start Date</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{projectControllerScope.project.startDate |  date:"MMM d, y"}}</span></li>
+                                                    <li class="row" ng-if="projectControllerScope.project.enddate  !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">End Date</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{projectControllerScope.project.enddate  |  date:"MMM d, y"}}</span></li>
+                                                    <li class="row" ng-if="projectControllerScope.project.projectDuration !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Project Duration</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{projectControllerScope.project.projectDuration}}</span></li>
+                                                    <li class="row" ng-if="projectControllerScope.project.probability !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Probability</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{projectControllerScope.project.probability}} </span></li>
+                                                    <li class="row" ng-if="projectControllerScope.project.gstPercentage !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">GST Tax</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{projectControllerScope.project.gstPercentage}} %</span></li>
+                                                    <li class="row" ng-if="projectControllerScope.project.comment !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Comments</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{projectControllerScope.project.comment}}</span></li>
+                                                    <li class="row" ng-if="projectControllerScope.project.updatedByName !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Updated By</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default capitalizeText">{{projectControllerScope.project.updatedByName}}</span></li>
+                                                    <li class="row" ng-if="projectControllerScope.project.updatedon !== ''">
+                                                        <label class="col-xs-6 col-sm-4 padd0">Updated On</label><span class="font_weight600 col-xs-6 padd0 wordBreak_all cursor_default">{{projectControllerScope.project.updatedon  | date:"MMM d, y"}}</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

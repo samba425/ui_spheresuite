@@ -1,0 +1,68 @@
+<div  class="menu-container" ng-controller="menuController as menuControllerScope">
+	<div class="menu-container-inner">
+		<div class="main_menus" 
+			ng-class="{'active_menu' : menu.isOpen || headerMenu == menu.name}" 
+			ng-repeat="menu in menuControllerScope.menuItems" 
+			ng-click="menuControllerScope.goToUri(menu.id,'', menu, 'menu')" 
+			ng-if="menu.isChecked">
+	        <span class="menus_inline">
+	        	<img ng-src="{{menu.icon}}" class="show-menu hide_img" />
+	        	<img ng-src="{{menu.activeicon}}" class="show-menu show_activeImg display_none" />
+	        	<span class="menu_names">{{menu.name}}</span> 
+	        	<i class="fa fa-angle-right" ng-class="menu.isOpen?'icon-rotate':''" aria-hidden="true" ng-if="menu.submenu.length > 0"></i>
+	        </span>
+	        <div ng-class="menu.isOpen?'margin_top13':''" class="">
+		        <div class="sub_menu" 
+		        	ng-repeat="submenu in menu.submenu" 
+		        	ng-click="menuControllerScope.goToUri(menu.id, submenu.id , submenu, 'submenu', $event)" 
+		        	ng-if="menu.isOpen && submenu.isChecked"
+		        	ng-class="{'background_e2e2e2' : submenu.isOpen || submenu.isSelected}" >
+					<span class="submenu_namePadd">{{submenu.name}}
+						<i class="fa fa-angle-right" aria-hidden="true" ng-class="submenu.isOpen?'icon-rotate':''" ng-if="submenu.subSubMenu.length > 0"></i>
+					</span>
+				    <div class="subSub_menu" 
+				    	ng-repeat="subSubMenu in submenu.subSubMenu" 
+				    	ng-click="menuControllerScope.goToUri(menu.id, submenu.id, subSubMenu, 'subSubmenu', $event)"
+				    	ng-if="submenu.isOpen && subSubMenu.isChecked"
+		        		ng-class="{'background_cac9c9' : subSubMenu.isSelected}" >
+							<span>{{subSubMenu.name}}</span>
+				   </div>
+		    	</div>
+	    	</div>		
+		</div>
+	</div>
+	<div class="loader" ng-show="menuControllerScope.spinner"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div  class="menu-container" ng-controller="menuController as menuControllerScope">
+	<div class="menu-container-inner">
+		<div class="main_menus" ng-class="{'active_menu' : menu.isOpen || headerMenu == menu.name}"  ng-repeat="menu in menuControllerScope.menuItems" ng-click="menuControllerScope.goToUri(menu,'menu')" ng-if="menu.isChecked">
+	        <i  class="show-menu" ng-class="menu.icon" aria-hidden="true"></i>
+	        <span class="menus_inline"><img ng-src="{{menu.icon}}" class="show-menu hide_img" /><img ng-src="{{menu.activeicon}}" class="show-menu show_activeImg display_none" /><span class="menu_names">{{menu.name}}</span> <i class="fa fa-angle-right" ng-class="menu.isOpen?'icon-rotate':''" aria-hidden="true" ng-if="menu.submenu.length > 0"></i></span>
+	        <div ng-class="menu.isOpen?'margin_top13':''" class="">
+	        <div class="sub_menu" ng-repeat="submenu in menu.submenu" ng-class="submenu.isOpen?'background_e2e2e2':''" ng-click="menuControllerScope.goToUri(submenu,'submenu',$event)" ng-if="menu.isOpen && submenu.isChecked">
+				<span class="submenu_namePadd">{{submenu.name}}  <i class="fa fa-angle-right" aria-hidden="true" ng-class="submenu.isOpen?'icon-rotate':''" ng-if="submenu.subSubMenu.length > 0"></i></span>
+			        <div class="subSub_menu" ng-repeat="subSubMenu in submenu.subSubMenu" ng-if="submenu.isOpen && subSubMenu.isChecked" ng-click="menuControllerScope.goToUri(subSubMenu,'subSubmenu',$event)">
+						<span>{{subSubMenu.name}}</span>
+			        </div>
+	        </div>
+	        </div>		
+		</div>
+	</div>
+	<div class="loader" ng-show="menuControllerScope.spinner"></div>
+</div> -->

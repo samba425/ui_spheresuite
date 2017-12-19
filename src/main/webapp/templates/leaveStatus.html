@@ -1,0 +1,61 @@
+<div class="loader_backdrop" ng-show="leaveManagementControllerScope.spinner || leaveManagementControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Leave Status</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section"> 
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="leaveManagementControllerScope.search" ng-keyup="leaveManagementControllerScope.checkEmptyListLeaveStatus()" placeholder="Search Here" class="margin_top20 width100 resp_fontSize">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="leaveManagementControllerScope.msg != ''">
+                            <p class="text-center grey_text padding15 padding_top0">{{leaveManagementControllerScope.msg}}</p>
+                        </div>
+                       <div id="list-wrapper">
+                            <div infinite-scroll="hrRequestControllerScope.addMoreItems()" infinite-scroll-container="'#list-wrapper'" infinite-scroll-parent="true">
+                                <div class="innerdivContainer red-icon create-employee border_bottom1" ng-repeat="leave in leaveManagementControllerScope.leaveStatusList | orderBy:'-id' | filter :  leaveManagementControllerScope.search | filter: {status : leaveManagementControllerScope.status}">
+                                    <div class="row">
+                                        <div class="input_section">
+                                            <div class="col-lg-1 padd0 responsive_textCenter responsive_textCenter responsivemargin_top10 margin_bottom15">
+                                                <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="responsive_textCenter display_webkit">
+                                                <span class="anchor_text break-word capitalizeText cursor_default">{{leave.name}}</span>
+                                                <span class="pipe_text" ng-if="leave.designation != ''">|</span>
+                                                <span class="span_text capitalizeText">{{leave.designation}}</span>
+                                            </div>
+                                            <div class="col-lg-10 padd0">
+	                                            <div class="row" ng-repeat="type in leave.types">
+		                                            <div class="col-lg-6 padd0">
+		                                                    <div class="">
+		                                                        <ul class="padd0 left_text margin-bottom0">
+		                                                            <li class="row">
+		                                                                <label class="col-xs-6 padd0">{{type.typeName}} ( Total )</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{type.days}}</span></li>
+		                                                        </ul>
+		                                                    </div>
+		                                            </div>
+		                                            <div class="col-lg-6 padd0">
+		                                                    <div class="">
+		                                                        <ul class="padd0 left_text margin-bottom0">
+		                                                            <li class="row">
+		                                                                <label class="col-xs-6 padd0">{{type.typeName}} ( Used )</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{type.usedLeaves}}</span></li>
+		                                                        </ul>
+		                                                    </div>
+		                                            </div>
+		                                 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    

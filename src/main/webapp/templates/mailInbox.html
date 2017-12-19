@@ -1,0 +1,129 @@
+<div class="loader_backdrop" ng-if="mailBoxControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="background_white" ng-if="configuremail">
+                   <!--  <div class="card-heading">
+                        <div class="row">
+                            <div class="text-muted col-xs-6">{{mailBoxControllerScope.divValue}}</div>
+                            <span class="text-right col-xs-6"><span data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="fa fa-sign-out signOut_icon cursor_pointer" aria-hidden="true" ng-click="mailBoxControllerScope.logout()"></i></span></span>
+                        </div>
+                    </div> -->
+                    <div class="row configmenurow card height490px">
+                        <div class="col-sm-1 col-xs-4 configmenu1 border_right">
+                            <li ng-class="{'active':mailBoxControllerScope.divValue === 'Inbox'}" ng-click="mailBoxControllerScope.changeDiv('Inbox')">Inbox</li>
+                            <li ng-class="{'active':mailBoxControllerScope.divValue === 'Sent Mail'}" ng-click="mailBoxControllerScope.changeDiv('Sent Mail')">Sent Mail</li>
+                            <li ng-click="mailBoxControllerScope.logout()">Log Out</li>
+                        </div>
+                        <div class="col-sm-11 col-xs-8 padd0 height100 overflow_yScroll">
+                            <div class="" ng-if="!mailBoxControllerScope.isShowMail">
+                                <div class="">
+                                    <div class="red-icon create-employee">
+                                        <div class="row">
+                                            <div class="input_section text-center">
+                                                <div class="inbox_background">
+                                                    <div class="row inbox_padd5 padding_top5">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-left display_inlineFlex">
+                                                            <div class="inbox_check cursor_pointer"  ng-if="!mailBoxControllerScope.msg || mailBoxControllerScope.msg ==''">
+                                                                <input type="checkbox" class="parentCheckBox" ng-model="mailBoxControllerScope.checkbox" ng-click="mailBoxControllerScope.toggleCheck()">
+                                                                <label class="cursor_defaualt">All</label>
+                                                            </div>
+                                                            <span ng-click="mailBoxControllerScope.getMails()" data-toggle="tooltip" data-placement="bottom" title="Refresh {{mailBoxControllerScope.divValue}}"><i class="fa fa-refresh inbox_refreshIcon cursor_pointer" aria-hidden="true"></i></span>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-right">
+                                                            <div ng-if="!mailBoxControllerScope.msg || mailBoxControllerScope.msg ==''">
+                                                                <span class="line_height24">
+                                                    			<span ng-if="mailBoxControllerScope.mailList.length > 0">{{mailBoxControllerScope.currentMailIndex + 1}}</span>
+                                                                <span ng-if="mailBoxControllerScope.mailList.length == 0">0</span> - {{mailBoxControllerScope.mailOfCount}} of {{mailBoxControllerScope.mailList.length}}
+                                                                </span>
+                                                                <span ng-click="mailBoxControllerScope.getPrevMailSet()" data-toggle="tooltip" data-placement="bottom" title="Previous {{mailBoxControllerScope.mailToShowCount}} Mails"><i class="fa fa-angle-left inbox_pageIcon border_right1 cursor_pointer" aria-hidden="true"></i></span>
+                                                                <span ng-click="mailBoxControllerScope.getNextMailSet()" data-toggle="tooltip" data-placement="bottom" title="Next {{mailBoxControllerScope.mailToShowCount}} Mails"><i class="fa fa-angle-right inbox_pageIcon margin_leftminus3 cursor_pointer" aria-hidden="true"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row text-left inbox_padd5 inbox_border1 cursor_pointer" ng-repeat="mail in mailBoxControllerScope.mailList | limitTo : mailBoxControllerScope.mailToShowCount : mailBoxControllerScope.currentMailIndex">
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                            <div class="inbox_check inbox_wordWrap">
+                                                                <input type="checkbox" class="parentCheckBox" ng-model="mail.isChecked">
+                                                                <label class="cursor_defaualt" ng-click="mailBoxControllerScope.showMail(mail.uId, $index + 1)">
+                                                                	<span data-toggle="tooltip" data-placement="bottom" title="{{mail.address}}" ng-if="mailBoxControllerScope.divValue=='Inbox'">
+                                                               			<span ng-if="mail.name && mail.name !=''">{{mail.name}}</span>
+                                                               			<span ng-if="!mail.name ||  mail.name ==''">{{mail.address}}</span>
+                                                               		</span>
+                                                               		<span data-toggle="tooltip" data-placement="bottom" title="{{mail.to}}" ng-if="mailBoxControllerScope.divValue=='Sent Mail'">
+                                                               			<span ng-if="mail.name && mail.name !=''">{{mail.name}}</span>
+                                                               			<span ng-if="!mail.name ||  mail.name ==''">{{mail.address}}</span>
+                                                               		</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12" ng-click="mailBoxControllerScope.showMail(mail.uId, $index + 1)">
+                                                            <p class="line_height24 inbox_wordWrap margin0">{{mail.subject}}</p>
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 inbox_paddLeft0 text-right" ng-click="mailBoxControllerScope.showMail(mail.uId, $index + 1)">
+                                                            <span class="inbox_padd15" ng-if="mail.attachedFile && mail.attachedFile != ''"><i class="fa fa-paperclip" aria-hidden="true"></i></span>
+                                                            <span class="line_height24 text-right">{{mail.date | date :'MMM DD'}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rightContainer" ng-if="mailBoxControllerScope.isShowMail">
+                                <div class="">
+                                    <div class="red-icon create-employee">
+                                        <div class="row">
+                                            <div class="input_section text-center">
+                                                <div class="inbox_background">
+                                                    <div class="row inbox_padd5 inbox_border1">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-left display_inlineFlex">
+                                                            <div class="">
+                                                                <span ng-click="mailBoxControllerScope.showMailList()"><i class="fa fa-reply inbox_refreshIcon margin0 cursor_pointer" aria-hidden="true"></i></span>
+                                                                <span><i class="fa fa-trash inbox_refreshIcon cursor_pointer" aria-hidden="true"></i></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-right">
+                                                            <div>{{mailBoxControllerScope.mailIndex + 1}} of {{mailBoxControllerScope.mailList.length}}
+                                                                <span ng-click="mailBoxControllerScope.getPrevMail()"><i class="fa fa-angle-left inbox_pageIcon border_right1 cursor_pointer" aria-hidden="true"></i></span>
+                                                                <span ng-click="mailBoxControllerScope.getNextMail()"><i class="fa fa-angle-right inbox_pageIcon margin_leftminus3 cursor_pointer" aria-hidden="true"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row text-left">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 inbox_border1">
+                                                            <p class="line_height24 font_weight600 margin0 inbox_padd10">{{mailBoxControllerScope.mail.subject}}</p>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 inbox_mailPadd10">
+                                                                <span><i class="fa fa-user-circle inbox_userIcon" aria-hidden="true"></i></span>
+                                                                <span class="font_weight600 mail_padd break-word">{{mailBoxControllerScope.mail.address}}</span>
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-right inbox_mailPadd10">
+                                                                <span class="line_height24">{{mailBoxControllerScope.mail.time}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="inbox_textBack">
+                                                        <p ng-bind-html="mailBoxControllerScope.mail.content | trustAsHtml" class="emailTemplate break-word"></p>
+                                                    </div>
+                                                    <div>
+                                                        <div class="text-center">
+                                                            <a download="{{mailBoxControllerScope.mail.attachFile}}" ng-href="{{mailBoxControllerScope.mail.attachedFile}}"><img ng-src="{{mailBoxControllerScope.mail.attachedFile}}" ng-if="mailBoxControllerScope.mail.ext == 'IMAGE' && mailBoxControllerScope.mail.attachFile !=''" style="display:block;border:1px solid #000;width:100px;height:100px;margin: auto;" ng-click="mailBoxControllerScope.downloadImage(mailBoxControllerScope.mail.attachedFile)"></a>
+                                                            <a ng-href="{{mailBoxControllerScope.mail.attachedFile}}" class="cursor_pointer" ng-if="mailBoxControllerScope.mail.ext != 'IMAGE' && mailBoxControllerScope.mail.attachFile !=''" style="display:block;border:1px solid #000;width:100px;height:100px;;margin: auto;" target="_blank">{{mailBoxControllerScope.mail.attachFile}}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            
+	                        <div ng-if="mailBoxControllerScope.msg && mailBoxControllerScope.msg !=''">
+	                            <p class="text-center grey_text innerdivContainer">{{mailBoxControllerScope.msg}}</p>
+	                        </div>
+                        </div>
+                    </div>
+                </div>
+           

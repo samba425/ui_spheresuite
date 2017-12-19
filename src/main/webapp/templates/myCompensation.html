@@ -1,0 +1,162 @@
+<div class="loader_backdrop" ng-if="myCompensationControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+<div class="rightContainer">
+	<div class="pageTitleParent">
+		<div class="row pageTitletextContainer">
+			<span class="col-lg-6 col-md-6 col-sm-6 col-xs-7 padd0">
+		   		<div class="line_height30">My Compensation</div>
+		   	</span>
+   			<span class="col-lg-6 col-md-6 col-sm-6 col-xs-5 text-right padd0">
+                   <button class="glyphicon glyphicon-export action_btn" ng-click="myCompensationControllerScope.exportData()"></button>
+                   <button class="glyphicon glyphicon-import action_btn margin_left0 margin_right0" ng-click="myCompensationControllerScope.goToImportPage()"></button>
+			</span>
+   		</div>
+   		<div class="innerdivContainer red-icon create-employee">
+       		<div class="row margin_minus10">
+           		<div class="input_section">
+           		<div class="text-center">
+           		          <p>{{ myCompensationControllerScope.ctcMsg}}</p>
+           		</div>
+               		<div class="col-lg-12 col-xs-12 padd0"  ng-show="myCompensationControllerScope.CtcShow">
+                                         <div class=" table_data">
+			                        	<table wt-responsive-table class="compensation_table">
+									        <thead>
+									            <tr>
+									            	<!-- <th class="">
+									            		<i class="fa fa-trash-o cursor_pointer" aria-hidden="true" ng-click="myCompensationControllerScope.deleteEmployee()"></i>
+									            	</th> -->
+									                <th>Employee Name</th>
+									                <th>CTC</th>
+									                <th>Start Date</th>
+									                <th>End Date</th>
+									                <th>Status</th>
+									            </tr>
+									           
+									        </thead>
+									        <tbody >
+									        	
+									            <tr class="backGreyColor">
+									               <!--  <td class="text-center padd_left0"><span class="table_mobile table_borderNone">
+									                	<input type="checkbox" ng-model="employee.isSelect"/><label></label></span>
+									                </td>  -->             
+									                <td ng-click="myCompensationControllerScope.viewEmployee(employee.id)" class="cursor_pointer">{{myCompensationControllerScope.userEmployeeList.firstName}} {{myCompensationControllerScope.userEmployeeList.middleName}} {{myCompensationControllerScope.userEmployeeList.lastName}}</td>
+									                <td>{{ myCompensationControllerScope.leadListByEmp.empctc }}</td>
+									                <td class="text-center">{{ myCompensationControllerScope.leadListByEmp.startDate }}</td>
+									                <td>{{ myCompensationControllerScope.leadListByEmp.endDate }}</td>
+									                <td> <span  class="label_success">Active</span>
+                                                            <!-- <span class="label_danger">In-Active</span></td> -->
+									            </tr>
+									        </tbody>
+										</table>
+						            	
+		                        </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                           <li class="row">
+                                                            <label class="col-xs-6 padd0">Code</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{myCompensationControllerScope.userEmployeeList.empId}}</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{myCompensationControllerScope.userEmployeeList.firstName}} {{myCompensationControllerScope.userEmployeeList.middleName}} {{myCompensationControllerScope.userEmployeeList.lastName}}</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Father Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">sapta</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Department</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{myCompensationControllerScope.userEmployeeList.deptName}}</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Designation</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{myCompensationControllerScope.userEmployeeList.title}}</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Bank Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText"> </span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Account No</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText"> </span></li>
+                                                       
+                                                       
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                            <li class="row">
+                                                            	<label class="col-xs-6 padd0">Birth Date</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{myCompensationControllerScope.userEmployeeList.dateOfBirth | date:"MMM d, y"}}</span></li>
+	                                                        <li class="row">
+	                                                            <label class="col-xs-6 padd0">Joining Date</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{myCompensationControllerScope.userEmployeeList.startDate | date:"MMM d, y"}}</span></li>
+	                                                        <li class="row">
+	                                                            <label class="col-xs-6 padd0">Pan No</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{myCompensationControllerScope.userEmployeeList.panno}}</span></li>
+	                                                        <li class="row">
+	                                                            <label class="col-xs-6 padd0">Adhar Card No</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{myCompensationControllerScope.userEmployeeList.aadhar}}</span></li>
+	                                                        <li class="row">
+	                                                            <label class="col-xs-6 padd0">Pf No</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all"> </span></li>
+	                                                        <li class="row">
+	                                                            <label class="col-xs-6 padd0">Joining Location</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{myCompensationControllerScope.userEmployeeList.workLocationCity }}</span></li>
+	                                                        <li class="row">
+	                                                            <label class="col-xs-6 padd0">Days Payable</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">30</span></li> 
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row padd0">
+                                            <div class="col-lg-6 col-xs-12 padd0">
+                                            <table class="table table-bordered">
+                                            <caption class="text-center"><span class=" text-center font_weight600">EARNINGS(Rs.)</span></caption>
+											    <thead>
+											      <tr>
+											        <th>Description</th>
+											        <th>Monthly</th>
+											        <th>YTD</th>
+											      </tr>
+											    </thead>
+											    <tbody>
+											      <tr  ng-repeat="earning in myCompensationControllerScope.leadListByEmp.employeeCompensationEarningList">
+											        <td>{{earning.earningName}}</td>
+											        <td class="text-right">{{earning.monthly | number:0}}.00</td>
+											        <td class="text-right">{{earning.ytd | number:0}}.00</td>
+											      </tr> 
+											      <tr>
+											      	<td class="font_weight600">Total Earnings</td>
+											      	<td class="font_weight600 text-right">{{myCompensationControllerScope.leadListByEmp.earningMonth | number:0}}.00</td>
+											      	<td class="font_weight600 text-right">{{myCompensationControllerScope.leadListByEmp.earningYear | number:0}}.00</td>
+											      </tr>
+											       <tr>
+											      	<td class="font_weight600 tableborder_none">Net Payable Amount</td>
+											      	<td class="font_weight600 text-right tableborder_none">{{myCompensationControllerScope.leadListByEmp.earningMonth | number:0}}.00</td>
+											      	<td class="font_weight600 text-right tableborder_none">{{myCompensationControllerScope.leadListByEmp.earningYear -  myCompensationControllerScope.leadListByEmp.deductionYear| number:0}}.00</td>
+											      </tr>
+											    </tbody>
+											  </table>
+											  </div>
+											  <div class="col-lg-6 col-xs-12 padd0">
+                                            <table class="table table-bordered">
+                                            <caption class="text-center"><span class="text-center font_weight600">DEDUCTION(Rs.)</span></caption>
+											    <thead>
+											      <tr>
+											        <th>Description</th>
+											        <th>Monthly</th>
+											        <th>YTD</th>
+											      </tr>
+											    </thead>
+											    <tbody>
+											      <tr ng-repeat="deduction in myCompensationControllerScope.leadListByEmp.employeeCompensationDeductionList">
+											         <td>{{deduction.deductionName}}</td>
+											          <td class="text-right">{{deduction.monthly| number:0}}.00</td>
+											           <td class="text-right">{{deduction.ytd| number:0}}.00</td>
+											      </tr> 
+											      <tr> 
+											      	<td class="font_weight600">Total Deduction</td>
+											      	<td class="font_weight600 text-right">{{myCompensationControllerScope.leadListByEmp.deductionMonth| number:0}}.00</td>
+											      	<td class="font_weight600 text-right">{{myCompensationControllerScope.leadListByEmp.deductionYear| number:0}}.00</td>
+											      </tr>
+											    </tbody>
+											  </table>
+											  </div>
+											  </div>
+                                        </div>
+             	</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

@@ -1,0 +1,87 @@
+<div class="loader_backdrop" ng-show="employeeControllerScope.viewempspinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="row pageTitletextContainer">
+                    	<div class="col-xs-12 padd0">
+                        	<span class="cursor_pointer back_iconPosition" ng-click="employeeControllerScope.goBackToEmpoyee()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+                        	<span class="page_titlePosition">Assignment Details</span>
+                        </div>
+                    	
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="text-right col-lg-12 col-xs-12 col-md-12 col-sm-12 padd10">
+                                        <button class="activeBtn" type="button" ng-click="employeeControllerScope.goToEditEmployee(employeeControllerScope.employee.id)">Edit</button>
+                                        <span ng-if="employeeControllerScope.ifEdit"><button class="defaultBtn mob-width-48 decline_hide" ng-click="employeeControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn mob-width-48 decline_hide" ng-click="employeeControllerScope.editEmployee()">Update</button></span>
+                                    </div>
+                                    <div>
+                                        <div class="col-lg-1 col-xs-12 col-md-12 col-sm-12 padd0 responsive_textCenter resMargin12 ">
+                                            <img ng-src="{{employeeControllerScope.employee.photo}}" class="responsivemargin_top10 img-60x60" ng-if="employeeControllerScope.employee.photo">
+                                            <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true" ng-if="!employeeControllerScope.employee.photo"></i>
+                                        </div>
+                                        
+                                        <div class="col-lg-11 col-xs-12 padd0">
+                                        <div class="responsive_textCenter ">
+                                            <span class="anchor_text cursor_default break-word capitalizeText">sapta<span>
+                                            <span class="pipe_text" ng-if="employeeControllerScope.employee.title!=''">|</span>
+                                            <span class="span_text capitalizeText">{{employeeControllerScope.employee.title}}</span>
+                                        </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                           <li class="row">
+                                                            <label class="col-xs-6 padd0">Employee Id</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">125</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Project Type</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">Internal</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Customers</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">sapta</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Opportunities</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">sapta</span></li>
+                                                             <li class="row">
+                                                            <label class="col-xs-6 padd0">Project Name</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">sapta</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Start Date</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">12/07/2017</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">End Date</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">12/07/2017</span></li>
+                                                        
+                                                       
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                            <li class="row">
+                                                            <label class="col-xs-6 padd0">Po / Wo</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">sapta</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Amount Type</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">INR</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Amount</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">150</span></li>
+                                                        <li class="row">
+                                                            <label class="col-xs-6 padd0">Payment Terms</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">sapta</li>
+                                                            <li class="row">
+                                                            <label class="col-xs-6 padd0">Status</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">Active</li>
+                                                            <li class="row">
+                                                            <label class="col-xs-6 padd0">Comments</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">sapta</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            

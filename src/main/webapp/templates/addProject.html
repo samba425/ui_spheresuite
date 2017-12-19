@@ -1,0 +1,112 @@
+<div class="loader_backdrop" ng-if="projectControllerScope.spinner || projectControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer"><span ng-if="!projectControllerScope.isUpdate">New</span><span ng-if="projectControllerScope.isUpdate">Update</span> Project</div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0">
+                            <form class="form-horizontal formContainer opportunoty_selectBox" name="projectControllerScope.projectForm">
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Oppertunity<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown">
+                                            <select name="opportunityId" id="select1" class="dropdown inputClass" ng-model="projectControllerScope.project.opportunityId"  required>
+                                                <option value="" ng-if="!projectControllerScope.project.opportunityId || projectControllerScope.project.opportunityId == ''">Select Type</option>
+                                                <option value="{{opportunity.id}}" ng-repeat="opportunity in projectControllerScope.opportunityTypeList | orderBy:'name'">{{opportunity.projectName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Assigned To<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                        <div class="customDropDown">
+                                            <select name="updatedBy" id="select4" class="dropdown inputClass" ng-model="projectControllerScope.project.updatedBy" required>
+                                                <option value="" ng-if="!projectControllerScope.project.updatedBy || projectControllerScope.project.updatedBy == ''">Select Assigned To</option>
+                                                <option value="{{employee.id}}" ng-repeat="employee in projectControllerScope.employeeList | orderBy:'firstName'"> {{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create-employee-inner">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Project Name<span class="reqStar">*</span>
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="projectName" class="inputClass" ng-model="projectControllerScope.project.projectName" placeholder="Project Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Display Name
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="displayName" class="inputClass" ng-model="projectControllerScope.project.displayName" placeholder="Display Name">
+                                        </div>
+                                    </div> 
+                                    <div class="form-group row mob-pos-rel last-child-button">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Start Date<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="startDate" class="inputClass cursor_pointer" datepicker-popup="{{format}}" ng-click="projectControllerScope.openstartCalender($event)" ng-model="projectControllerScope.project.startDate" ng-change="projectControllerScope.calculateDuration(projectControllerScope.project.startDate, projectControllerScope.project.enddate)" is-open="projectControllerScope.startCalender" placeholder="Start Date" show-button-bar="false" required />
+                                        </div>
+                                        <span class="calen mob-right-18 mob-pos-abs select-button">
+                                         <button type="button" ng-click="projectControllerScope.openstartCalender($event)" class="btn btn-default mrgTop5 addIcon"><i class="glyphicon glyphicon-calendar"></i></button>
+                                     </span>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel last-child-button">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">End Date<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="enddate" class="inputClass cursor_pointer" datepicker-popup="{{format}}" ng-click="projectControllerScope.openendCalender($event)" ng-model="projectControllerScope.project.enddate" ng-change="projectControllerScope.calculateDuration(projectControllerScope.project.startDate, projectControllerScope.project.enddate)" is-open="projectControllerScope.endCalender" placeholder="End Date" show-button-bar="false" required />
+                                        </div>
+                                        <span class="calen mob-right-18 mob-pos-abs select-button">
+                                         <button type="button" ng-click="projectControllerScope.openendCalender($event)" class="btn btn-default mrgTop5 addIcon"><i class="glyphicon glyphicon-calendar"></i></button>
+                                     </span>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Project Duration</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="projectDuration" class="inputClass" ng-model="projectControllerScope.project.projectDuration" placeholder="Project Duration in Days" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Project Probability</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="probability" class="inputClass" ng-model="opportunityControllerScope.opportunity.probability" ng-pattern="/^[0-9]*$/" placeholder="Project Probability" />
+                                            <p ng-show="projectControllerScope.projectForm.probability.$error.pattern && projectControllerScope.projectForm.probability.$touched" class="reqStar">Enter Project Probability</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Amount</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="cost" class="inputClass" ng-model="projectControllerScope.project.cost" ng-pattern="/^[0-9]*$/" placeholder="Amount" />
+                                            <p ng-show="projectControllerScope.projectForm.cost.$error.pattern && projectControllerScope.projectForm.cost.$touched" class="reqStar">Enter Amount</p>
+                                        </div>
+                                    </div>
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight2pt6">GST Tax<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                        <div class="customDropDown">
+                                            <select name="gst" id="select5" class="dropdown inputClass" ng-model="projectControllerScope.project.gst" required>
+                                                <option value="" ng-if="!projectControllerScope.project.gst || projectControllerScope.project.gst == ''">Select GST Tax</option>
+                                                <option value="{{gst.id}}" ng-repeat="gst in projectControllerScope.gstList | orderBy:'name'" ng-if="gst.status == 'a'"> {{gst.name}} </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Comments</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <textarea type="text" name="comment" class="inputClass" ng-model="projectControllerScope.project.comment" placeholder="Comments"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns">
+                                        <button class="defaultBtn btn" type="button" ng-click="projectControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn btn" type="button" ng-click="projectControllerScope.addProject()" ng-disabled="projectControllerScope.projectForm.$invalid || projectControllerScope.isFormInValid" ng-if="!projectControllerScope.isUpdate">Save</button>
+                                        <button class="activeBtn btn" ng-click="projectControllerScope.editProject()" ng-disabled="projectControllerScopee.projectForm.$invalid || projectControllerScope.isFormInValid" ng-if="projectControllerScope.isUpdate">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           

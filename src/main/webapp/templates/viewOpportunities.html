@@ -1,0 +1,183 @@
+<div class="loader_backdrop" ng-if="opportunityControllerScope.spinner || opportunityControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="row pageTitletextContainer">
+                        	<span class="col-lg-6 col-md-6 col-sm-6 col-xs-7 padd0">
+                        		<div class="line_height30">Opportunities List</div>
+                        	</span>
+                        	<span class="col-lg-6 col-md-6 col-sm-6 col-xs-5 padd0 text-right">
+											<!-- <button class="glyphicon glyphicon-export action_btn"
+												ng-click="opportunityControllerScope.exportData()"></button> -->
+
+											<button
+												class="activeBtn btn margin_left0">Import</button>
+										</span>
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row margin_minus10">
+                                <div class="input_section">
+                                    <div class="width100 mobile_viewShow">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd0 responsive_select margin_top5">
+                                            <select name="contacttype" id="select4" class="dropdown selectClass col-lg-3 col-md-3 col-sm-8 col-xs-12" ng-model="opportunityControllerScope.projectType">
+                                                <option value="" ng-if="!opportunityControllerScope.projectType && opportunityControllerScope.projectType != ''" selected="selected">Select Opportunity Type</option>
+                                                <option value="" >All</option>
+                                                <option value="{{projectType.name}}" ng-repeat="projectType in opportunityControllerScope.projectTypeList | orderBy : 'name'">{{projectType.name}}</option>
+                                            </select>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="width100 mobile_viewShow">
+                                        <input type="text" name="" placeholder="Search Here" ng-model="opportunityControllerScope.searchName" class="margin_top20 width100">
+                                    </div>
+                                
+                                 <div ng-if="opportunityControllerScope.dataMsg && opportunityControllerScope.dataMsg != ''">
+		                            <p class="text-center grey_text padding15 padding_top0">{{ opportunityControllerScope.dataMsg }}</p>
+		                        </div>
+		                        
+		                        <div class=" table_data" ng-if="opportunityControllerScope.isDataAvailable">
+		                        	<table wt-responsive-table class="custom-responsive-table">
+								        <thead>
+								            <tr>
+								            	<!-- <th class="">
+								            		<i class="fa fa-trash-o cursor_pointer" aria-hidden="true" ng-click="opportunityControllerScope.deleteOpportunity()"></i>
+								            	</th> -->
+								                <th>Customer Name</th>
+								                <th>Opportunity Type</th>
+								                <th>Opportunity Name</th>
+								                <th>Amount</th>
+								                <th>Sales Stage</th>  
+								                 <th>Contact</th> 
+								                <!-- <th>Start Date</th>
+								                <th>End Date</th> -->
+								               <!--  <th>Comments</th> -->
+								            </tr>
+								            <tr>
+								            	<!--<th class="width5Percent"><span class="table_mobile table_borderNone">
+								            		<input type="checkbox" ng-model="opportunityControllerScope.isSelect" ng-change="opportunityControllerScope.toggleSelect(opportunityControllerScope.isSelect)"/><label></label>
+								            	</span></th> -->
+								                <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="opportunityControllerScope.search.cutomerName" ng-keyup="opportunityControllerScope.searchMe()" /></th>
+
+								                <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="opportunityControllerScope.search.projectTypeName" ng-keyup="opportunityControllerScope.searchMe()" /></th>
+
+								                <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="opportunityControllerScope.search.projectName" ng-keyup="opportunityControllerScope.searchMe()" /></th>
+
+								                <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="opportunityControllerScope.search.cost" ng-keyup="opportunityControllerScope.searchMe()" /></th>
+
+								                 <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="opportunityControllerScope.search.salesStageName" ng-keyup="opportunityControllerScope.searchMe()" /></th>
+
+								                <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="opportunityControllerScope.search.contactName" ng-keyup="opportunityControllerScope.searchMe()" /></th>
+
+								                <!-- <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="opportunityControllerScope.search.startDate" ng-keyup="opportunityControllerScope.searchMe()" /></th>
+								                <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="opportunityControllerScope.search.endDate" ng-keyup="opportunityControllerScope.searchMe()" /></th> -->
+								               <!--  <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="opportunityControllerScope.search.comment" ng-keyup="opportunityControllerScope.searchMe()" /></th> -->
+								            </tr>
+								        </thead>
+								        <tbody>
+								            <tr ng-repeat="opportunity in projectFilter = (opportunityControllerScope.opportunityList | orderBy : '-id' |
+								            	 filter : opportunityControllerScope.searchName | 
+								            	 filter : { cutomerName : opportunityControllerScope.search.cutomerName, 
+								            	 projectTypeName : opportunityControllerScope.search.projectTypeName, 
+								            	 projectName : opportunityControllerScope.search.projectName, 
+								            	 cost : opportunityControllerScope.search.cost,
+								            	 salesStageName : opportunityControllerScope.search.salesStageName ,
+								            	 contactName : opportunityControllerScope.search.contactName, 
+								            	  
+								            	 comment : opportunityControllerScope.comment } | 
+								            	 filter : { projectTypeName : opportunityControllerScope.projectType } |
+								            	 limitTo :  limitToShow : beginFrom)" class="backGreyColor">
+								               	<!--  <td class="text-center padd_left0"><span class="table_mobile table_borderNone">
+								                	<input type="checkbox" ng-model="opportunity.isSelect"/><label></label></span>
+								                </td>  -->
+								                <td ng-click="opportunityControllerScope.gotoView(opportunity.id)" class="cursor_pointer">{{opportunity.cutomerName}}</td>
+								                <td>{{opportunity.projectTypeName}}</td>
+								                <td>{{opportunity.projectName}}</td>
+								                <td class="text-center">{{opportunity.cost}}</td>
+								                <td>{{opportunity.salesStageName}}</td>
+								                <td>{{opportunity.contactName}}</td>
+								                <!-- <td class="text-center">{{opportunity.startDate | date: 'MMM dd, yyyy'}}</td>
+								                <td class="text-center">{{opportunity.enddate | date: 'MMM dd, yyyy'}}</td> -->
+								               <!--  <td>{{opportunity.comment}}</td>  -->
+								            </tr>
+							        	</tbody>
+									</table>
+					            	<p ng-if="opportunityControllerScope.opportunityList.length == 0" class="text-center grey_text margin0">Opportunity Details Not Available</p>
+		                        </div>
+		                        <div class="table_btn">
+		                        <!-- <spheresuitenavigation list-item="opportunityControllerScope.opportunityList" restrict-to="{{limitToShow}}"></spheresuitenavigation> -->
+		                        <button ng-click="opportunityControllerScope.showPrevNav()" 
+		                        	ng-if="opportunityControllerScope.isDataAvailable && opportunityControllerScope.opportunityList.length > 0" 
+		                        	ng-disabled="opportunityControllerScope.buttonBeginFrom == 0"
+		                        	ng-class="{'cursor_notAllowed':opportunityControllerScope.buttonBeginFrom == 0}" class="">Prev</button>
+		                        	
+		                        <span ng-repeat="i in opportunityControllerScope.opportunityList | limitTo : opportunityControllerScope.buttonLimitToShow : opportunityControllerScope.buttonBeginFrom">
+		                        	 
+		                        	<button ng-class="{ 'active' : i.isActiveClass }" 
+		                        		ng-if="opportunityControllerScope.buttonBeginFrom + $index < opportunityControllerScope.opportunityList.length / opportunityControllerScope.buttonLimitToShow" 
+		                        		ng-click="opportunityControllerScope.gotoPage($index * opportunityControllerScope.buttonLimitToShow + opportunityControllerScope.buttonBeginFrom * opportunityControllerScope.buttonLimitToShow, opportunityControllerScope.buttonBeginFrom + $index)">
+		                        		{{opportunityControllerScope.buttonBeginFrom + $index + 1}}
+		                        	</button>
+		                        </span>
+		                        <button ng-click="opportunityControllerScope.showNextNav()" 
+		                        	ng-if="opportunityControllerScope.isDataAvailable && opportunityControllerScope.opportunityList.length > 0" 
+		                        	ng-disabled="opportunityControllerScope.isNextDisabled"
+		                        	ng-class="{'cursor_notAllowed':opportunityControllerScope.isNextDisabled}">Next</button>
+		                        	</div>
+		                        </div>
+                            </div>
+                        </div>
+                       
+                        <!-- <div id="list-wrapper">
+                            <div infinite-scroll="opportunityControllerScope.addMoreItems()" infinite-scroll-container="'#list-wrapper'" infinite-scroll-parent="true">
+                                <div class="innerdivContainer red-icon create-employee border_bottom1" ng-repeat="opportunity in projectFilter = (opportunityControllerScope.opportunityList | orderBy : '-id' | filter: opportunityControllerScope.searchName | filter:  { projectTypeName : opportunityControllerScope.projectType} |  limitTo : opportunityControllerScope.limitToShow)">
+                                    <div class="row">
+                                        <div class="input_section">
+                                            <div class="col-lg-1 padd0 responsive_textCenter  responsive_textCenter responsivemargin_top10">
+                                                <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="responsive_textCenter">
+                                                <span class="anchor_text break-word capitalizeText" ng-click="opportunityControllerScope.gotoView(opportunity.id)">{{opportunity.projectName}}
+												</span>
+                                            </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 col-sm-4 padd0">Name</label><span class="font_weight600 col-xs-6  wordBreak_all capitalizeText">{{opportunity.cutomerName}}</span></li>
+                                                             <li class="row">
+                                                                <label class="col-xs-6 col-sm-4 padd0">Opportunity Type</label><span class="font_weight600 col-xs-6  wordBreak_all capitalizeText">{{opportunity.projectTypeName}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 col-sm-4 padd0">Display Name</label><span class="font_weight600 col-xs-6  wordBreak_all capitalizeText">{{opportunity.displayName}}</span></li>
+                                                            <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 col-sm-4 padd0 margin-bottom0">Opportunity Duration</label><span class="font_weight600 col-xs-6 wordBreak_all">{{opportunity.projectDuration}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 col-sm-4 padd0">Contact </label><span class="font_weight600 col-xs-6  wordBreak_all">{{opportunity.contactName}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 col-sm-4 padd0">Start Date</label><span class="font_weight600 col-xs-6  wordBreak_all">{{opportunity.startDate}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 col-sm-4 padd0">End Date</label><span class="font_weight600 col-xs-6  wordBreak_all">{{opportunity.enddate}}</span></li>
+                                                            <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 col-sm-4 padd0 margin-bottom0">Comments</label><span class="font_weight600 col-xs-6  wordBreak_all">{{opportunity.comment}}</span></li>
+                                                            </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+           

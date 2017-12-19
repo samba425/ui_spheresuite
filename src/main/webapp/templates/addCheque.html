@@ -1,0 +1,92 @@
+<div class="loader_backdrop" ng-if="chequeControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer"><span ng-if="!chequeControllerScope.isUpdate">New</span><span ng-if="chequeControllerScope.isUpdate">Update</span> Cheque</div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0">
+                            <form class="form-horizontal formContainer bill_selectBox" name="chequeControllerScope.chequeForm">
+                               
+                                <div class="create-employee-inner">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Cheque Number<span class="reqStar">*</span>
+                                             </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="number" 
+                                            ng-model="chequeControllerScope.cheque.number" 
+                                            class="inputClass"
+                                            ng-pattern="/^[0-9]+([,.][0-9]+)?$/"
+                                            placeholder="Chque Number" required>
+                                   <p ng-show="chequeControllerScope.chequeForm.number.$error.pattern || chequeControllerScope.chequeForm.number.$invalid && chequeControllerScope.chequeForm.number.$touched" class="reqStar">Kindly Enter Valid Cheque Number</p>
+                                          </div>
+                                    </div>
+                                    <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Cheque Date<span class="reqStar">*</span></label>
+                                         <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <input type="text" name="date" class="inputClass"
+                                                datepicker-popup="{{format}}"
+                                                ng-click="chequeControllerScope.openstartCalender($event)"
+                                                ng-model="chequeControllerScope.cheque.date"
+                                                is-open="chequeControllerScope.startCalender"
+                                                placeholder="Cheque Date" show-button-bar="false" required/>
+                                            </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18">
+                                         <button type="button" ng-click="chequeControllerScope.openstartCalender($event)" class="btn btn-default mrgTop5 addIcon"><i class="glyphicon glyphicon-calendar"></i></button>
+                                     </span>
+                                    </div>  
+                                      <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Cheque Amount<span class="reqStar">*</span> </label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="amount" class="inputClass" 
+                                            ng-pattern="/^[0-9]+([,.][0-9]+)?$/"
+                                            ng-model="chequeControllerScope.cheque.amount" placeholder="Cheque Amount" required/>
+                                 <p ng-show="chequeControllerScope.chequeForm.amount.$error.pattern || chequeControllerScope.chequeForm.amount.$invalid && chequeControllerScope.chequeForm.amount.$touched" class="reqStar">Kindly Enter Valid Amount</p>
+                                        </div>
+                                    </div>  
+                                       <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Bank Name<span class="reqStar">*</span> </label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="name" class="inputClass" 
+                                            ng-pattern="/^[a-zA-Z\ ]*$/" 
+                                            ng-model="chequeControllerScope.cheque.name" placeholder="Bank Name" required/>
+                                 <p ng-show="chequeControllerScope.chequeForm.name.$error.pattern || chequeControllerScope.chequeForm.name.$invalid && chequeControllerScope.chequeForm.name.$touched" class="reqStar">Kindly Enter Valid Bank Name</p>
+                                        </div>
+                                    </div>  
+                                        <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4 lineheight2pt6">Payable Name<span class="reqStar">*</span> </label>
+                                            <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <input type="text" name="payto" class="inputClass" 
+                                            ng-pattern="/^[a-zA-Z\ ]*$/" 
+                                            ng-model="chequeControllerScope.cheque.payto"" placeholder="payable Name" required/>
+                                 <p ng-show="chequeControllerScope.chequeForm.payto.$error.pattern || chequeControllerScope.chequeForm.payto.$invalid && chequeControllerScope.chequeForm.payto.$touched" class="reqStar">Kindly Enter Valid  Name</p>
+                                        </div>
+                                    </div> 
+                                       <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4 lineheight31">Status<span class="reqStar">*</span>
+                                    </label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top10">
+                                        <div class="customDropDown">
+                                         <select name="status" id="select3" 
+                                         class="select1 dropdown inputClass" 
+                                         ng-model="chequeControllerScope.cheque.status" required>
+                                        <option value="" ng-if="!chequeControllerScope.cheque.status || chequeControllerScope.cheque.status==''">Select Status</option>
+                                        <option value="clear">Cleared</option>
+                                         <option value="noclear">Not Cleared</option>
+                                                </select>
+                                        
+                                        </div>
+                                    </div>
+                                </div>  
+                                    <div class="formfooterbtns"> 
+                                      <button class="defaultBtn btn" type="button" ng-click="chequeControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn btn" type="button" ng-click="chequeControllerScope.addCheque()" ng-disabled="chequeControllerScope.chequeForm.$invalid" ng-if="!chequeControllerScope.isUpdate">Save</button>
+                                        <button class="activeBtn btn" ng-click="chequeControllerScope.editCheque()" ng-disabled="chequeControllerScope.chequeForm.$invalid" ng-if="chequeControllerScope.isUpdate">Update</button>
+                                    
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           

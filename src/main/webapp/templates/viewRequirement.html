@@ -1,0 +1,85 @@
+<div class="loader_backdrop" ng-show="requirementControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="row pageTitletextContainer">
+                    	<div class="col-xs-12 padd0">
+                        	<span class="cursor_pointer back_iconPosition" ng-click="requirementControllerScope.gotoView()">
+                        	<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        	<i class="fa fa-angle-left margin_leftMinus5" aria-hidden="true"></i></span>
+                        	<span class="page_titlePosition">Requirement Details</span>
+                        </div>
+                    	
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="text-right col-lg-12 col-xs-12 col-md-12 col-sm-12 padd10">
+                                        <button class="activeBtn" type="button" ng-click="requirementControllerScope.gotoEdit()">Edit</button>
+                                    </div>
+                                    <div>
+                                        <div class="col-lg-1 col-xs-12 col-md-12 col-sm-12 padd0 responsive_textCenter resMargin12 ">
+                                            <img ng-src="{{requirementControllerScope.requirement.photo}}" class="responsivemargin_top10 img-60x60" ng-if="requirementControllerScope.employee.photo">
+                                            <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true" ng-if="!requirementControllerScope.employee.photo"></i>
+                                        </div>
+                                        
+                                        <div class="col-lg-11 col-xs-12 padd0">
+                                        <div class="responsive_textCenter ">
+                                            <span class="anchor_text cursor_default break-word capitalizeText">{{requirementControllerScope.requirement.cutomerName}}<span>
+                                            <span class="pipe_text" ng-if="requirementControllerScope.requirement.projectName !=''">|</span>
+                                            <span class="span_text capitalizeText">{{requirementControllerScope.requirement.projectName}}</span>
+                                        </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                        	<li class="row" ng-if="requirementControllerScope.requirement.name !== ''">
+                                                                <label class="col-xs-6 padd0">Name</label><span class="font_weight600 col-xs-6 wordBreak_all padd0">{{requirementControllerScope.requirement.name}}</span></li>
+	                                                        <li class="row" ng-if="requirementControllerScope.requirement.minExp !== ''">
+	                                                            <label class="col-xs-6 padd0">Minimum Experience</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{requirementControllerScope.requirement.minExp}}</span></li>
+	                                                        <li class="row" ng-if="requirementControllerScope.requirement.maxExp !== ''">
+	                                                            <label class="col-xs-6 padd0">Maximum Experience</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{requirementControllerScope.requirement.maxExp}}</span></li>
+	                                                        <li class="row" ng-if="requirementControllerScope.requirement.cost !== ''">
+	                                                            <label class="col-xs-6 padd0">Cost</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{requirementControllerScope.requirement.cost | number:2}}</span></li>
+	                                                        <li class="row" ng-if="requirementControllerScope.requirement.updatedBy !== ''">
+	                                                            	<label class="col-xs-6 padd0">Updated By</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{requirementControllerScope.requirement.updatedBy}}</li>
+	                                                        <li class="row" ng-if="requirementControllerScope.requirement.jobDesc !== ''">
+	                                                            <label class="col-xs-6 padd0">Job Description</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all capitalizeText">{{requirementControllerScope.requirement.jobDesc}}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text">
+                                                          	<li class="row" >
+                                                                <label class="col-xs-6 padd0">Status</label><span class="font_weight600 col-xs-6 wordBreak_all padd0">
+                                                                	<span ng-if="requirementControllerScope.requirement.status=='C'">Open</span>
+                                                    				<span ng-if="requirementControllerScope.requirement.status=='O'">Close</span>
+                                                    			</span></li>
+	                                                        <li class="row" ng-if="requirementControllerScope.requirement.joiningDate !== ''">
+                                                            	<label class="col-xs-6 padd0">Joining Date</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{requirementControllerScope.requirement.joiningDate}}</span></li>
+                                                        	<li class="row" ng-if="requirementControllerScope.requirement.noticePeriod !== ''">
+                                                            	<label class="col-xs-6 padd0">Notice Period</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{requirementControllerScope.requirement.noticePeriod}}<span ng-if="requirementControllerScope.requirement.noticePeriod != ''"> / Days</span></span></li>
+                                                        	<li class="row" ng-if="requirementControllerScope.requirement.noofPosititon !== ''">
+                                                            	<label class="col-xs-6 padd0">No Of Position</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{requirementControllerScope.requirement.noofPosititon}}</span></li>
+                                                        	<li class="row" ng-if="requirementControllerScope.requirement.updatedon !== ''">
+                                                            	<label class="col-xs-6 padd0">Updated On</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{requirementControllerScope.requirement.updatedon }}</span></li>
+                                                            <li class="row" ng-if="requirementControllerScope.requirement.comment !== ''">
+                                                            	<label class="col-xs-6 padd0">Comments</label><span class="font_weight600 col-xs-5 padd0 wordBreak_all">{{requirementControllerScope.requirement.comment}}</span></li>
+                                                       
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           

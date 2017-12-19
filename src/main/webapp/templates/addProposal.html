@@ -1,0 +1,243 @@
+<div class="loader_backdrop" ng-if="proposalControllerScope.spinner || proposalControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer paddLft15">
+                            <span ng-if="!proposalControllerScope.isUpdate">New</span><span ng-if="proposalControllerScope.isUpdate">Update</span> Proposal
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0">
+                            <form class="form-horizontal formContainer proposal_selectBox" name="proposalControllerScope.proposalForm">
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Lead / Vendor / Customer<span class="reqStar">*</span>
+                                    </label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="customerId" ng-model="proposalControllerScope.proposal.customerId" required>
+                                                <option value="" ng-if="!proposalControllerScope.proposal.customerId || proposalControllerScope.proposal.customerId== ''">Select Name</option>
+                                                <option value="{{customer.id}}" ng-repeat="customer in proposalControllerScope.CustomerTypeList | orderBy:'name'">{{customer.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31 margin_top5">Opportunity Name<span class="reqStar">*</span>
+                                    </label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown margin_top10">
+                                            <select class="select1 dropdown inputClass" name="projectId" ng-model="proposalControllerScope.proposal.projectId" required>
+                                                <option value="" ng-if="!proposalControllerScope.proposal.projectId || proposalControllerScope.proposal.projectId == ''">Select Opportunity Name</option>
+                                                <option value="{{projectName.id}}" ng-repeat="projectName in proposalControllerScope.projectList | orderBy:'projectName'">{{projectName.projectName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div> 
+                              <!--  <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31 margin_top5">Opportunity Type
+                                        <span class="reqStar">*</span>
+                                    </label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown margin_top10">
+                                            <select class="select1 dropdown inputClass" name="projectType" ng-model="proposalControllerScope.proposal.projectType" required>
+                                                <option value="" ng-if="!proposalControllerScope.proposal.projectType || proposalControllerScope.proposal.projectType == ''">Select Opportunity Type</option>
+                                                <option value="{{projectType.id}}" ng-repeat="projectType in proposalControllerScope.projectType | orderBy:'name'" ng-if="projectType.status == 'a'">{{projectType.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>   -->
+                                      <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31 margin_top5">Currency Type<span class="reqStar">*</span>
+                                    </label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown margin_top10">
+                                             <select name="currencyType" ng-model="proposalControllerScope.proposal.currencyType" class="dropdown inputClass select1 proposal_width50" required>
+                                                <option value="" ng-if="!proposalControllerScope.proposal.currencyType|| proposalControllerScope.proposal.currencyType == ''">Select Currency</option>
+                                                <option value="{{country.id}}" ng-repeat="country in proposalControllerScope.countryList | orderBy:'currencyType'" ng-if="country.status == 'a'">{{country.currencyType}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>  
+                                    <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Payment Terms<span class="reqStar">*</span>
+                                    </label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown margin_top10">
+                                            <select class="select1 dropdown inputClass" name="paymentTerm" ng-model="proposalControllerScope.proposal.paymentTerm" required>
+                                                <option value="" ng-if="!proposalControllerScope.proposal.paymentTerm|| proposalControllerScope.proposal.paymentTerm == ''">Select Payment Terms</option>
+                                                <option value="{{payment.id}}" ng-repeat="payment in proposalControllerScope.paymentList | orderBy:'name'" ng-if="payment.status == 'a'">{{payment.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31 margin_top5">Rate<span class="reqStar">*</span>
+                                    </label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5"">
+                                       
+                                        <input type="text" name="rate" class="inputClass" ng-pattern="/^[0-9]+\.?[0-9]*$/" ng-model="proposalControllerScope.proposal.rate" placeholder="Rate" required />
+                                    <p ng-if="proposalControllerScope.proposalForm.rate.$error.pattern && proposalControllerScope.proposalForm.rate.$invalid && proposalControllerScope.proposalForm.rate.$touched" class="reqStar">Kindly Enter Valid Rate</p>
+                                        
+                                    </div>
+                                </div> 
+                                
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31 margin_top5">Quantity<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <input type="text" name="quantity" ng-pattern="/^[0-9]*$/" class="inputClass" ng-model="proposalControllerScope.proposal.quantity" placeholder="Quantity" required />
+                                        <p ng-if="proposalControllerScope.proposalForm.quantity.$error.pattern && proposalControllerScope.proposalForm.quantity.$invalid && proposalControllerScope.proposalForm.quantity.$touched" class="reqStar">Kindly Enter Valid Quantity</p>
+                                        
+                                    </div>
+                                     
+                                           
+                                </div>
+                                    <div class="form-group row mob-pos-rel" ng-repeat="field in proposalControllerScope.proposal.defaultList">
+                                    <label class="control-label col-xs-12 col-md-4  lineheight31">{{ field.key}}</label>
+                                    <div class="col-sm-12 col-xs-12 col-md-7 col-lg-7 pad-right-0 mob-pad-right-15">
+                                        <input type="text" class="inputClass proposal_inputWidth"  ng-model="field.value" placeholder="{{field.key}}" />
+                                        <p ng-show="proposalControllerScope.proposalForm.fieldValue{{$index}}.$invalid && proposalControllerScope.proposalForm.fieldValue{{$index}}.$touched || proposalControllerScope.proposalForm.fieldKey{{$index}}.$invalid && proposalControllerScope.proposalForm.fieldKey{{$index}}.$touched" class="reqStar">Kindly Enter Valid Label And Value</p>
+                                        <span class="remove_iconPosition cursorPointer" ng-click="proposalControllerScope.removeDefaultField($index)">
+											<i class="fa fa-times" aria-hidden="true"></i>
+										</span>
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-xs-12 col-md-4  lineheight31">Invoicing Terms<span class="reqStar">*</span>
+                                    </label>
+                                    <div class="col-xs-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="proposal_checkbox col-xs-4 padd0">
+                                            <input type="checkbox" name="invoiceTerm" class="parentCheckBox" ng-model="ShowFixedData" ng-click="proposalControllerScope.ShowFixed()">
+                                            <label class="font_size11 Invoicing Terms cursor_defaualt">Fixed</label>
+                                        </div>
+                                        <div class="proposal_checkbox1 col-xs-4 padd0">
+                                            <input type="checkbox" name="invoiceTerm" class="parentCheckBox" ng-model="ShowPercentageData" ng-click="proposalControllerScope.ShowPercentege()">
+                                            <label class="font_size11 Invoicing Terms cursor_defaualt">Percentage</label>
+                                        </div>
+                                        <p ng-show="proposalControllerScope.isIncovicingValid">Kindly Select Invoicing Terms</p>
+                                    </div>
+                                    <div ng-show="IsVisibleFixed" class="col-sm-12 col-md-7 col-xs-12 pad-right-0 mob-pad-right-15">
+                                        <div style="display: flex;" ng-repeat="percentage in proposalControllerScope.proposal.invoiceTermListGet">
+                                            <span class="proposal_width33 padd_right0">
+												<input type="text" placeholder="Comments"
+												ng-model="percentage.comment" class="width100"
+												ng-disabled="proposalControllerScope.isUpdate" required />
+												<p ng-show="proposalControllerScope.proposalForm.comment{{$index}}.$error.pattern && proposalControllerScope.proposalForm.comment{{$index}}.$invalid && proposalControllerScope.proposalForm.comment{{$index}}.$touched">Kindly
+													Enter Valid Comment</p>
+											</span> <span class="proposal_width31"> <input
+												type="text" placeholder="100%" ng-pattern="/^[0-9]*$/"
+												name="percentage{{$index}}"
+												ng-model="percentage.percentage"
+												ng-disabled="proposalControllerScope.isUpdate"
+												class="width100 proposal_hideInput" />
+												<p ng-show="proposalControllerScope.proposalForm.percentage{{$index}}.$error.pattern && proposalControllerScope.proposalForm.percentage{{$index}}.$invalid && proposalControllerScope.proposalForm.percentage{{$index}}.$touched">Kindly
+													Enter Valid Percentage</p>
+											</span>
+                                        </div>
+                                        <div style="display: flex;" ng-repeat="percentage in proposalControllerScope.proposal.invoiceTermList">
+                                            <span class="proposal_width33 padd_right0">
+												<input type="text" placeholder="Comments"
+												ng-model="percentage.comment"
+												name="comment{{$index}}"  class="width100" required />
+												<p
+													ng-show="proposalControllerScope.proposalForm.comment{{$index}}.$error.pattern && proposalControllerScope.proposalForm.comment{{$index}}.$invalid && proposalControllerScope.proposalForm.comment{{$index}}.$touched" class="reqStar">Kindly
+													Enter Valid Comment</p>
+											</span> <span class="proposal_width31"> <input
+												type="text" placeholder="100" ng-pattern="/^[0-9]*$/"
+												ng-model="percentage.percentage"
+												name="percentage{{$index}}"
+												class="width100 proposal_hideInput" />
+												<p ng-show="proposalControllerScope.proposalForm.percentage{{$index}}.$error.pattern && proposalControllerScope.proposalForm.percentage{{$index}}.$invalid && proposalControllerScope.proposalForm.percentage{{$index}}.$touched" class="reqStar">Kindly
+													Enter Valid Percentage</p>
+											</span>
+                                        </div>
+                                    </div>
+                                    <div ng-show="IsVisiblePercentage" class="col-sm-12 col-md-7 col-xs-12 pad-right-0 mob-pad-right-15">
+                                        <div style="display: flex;" ng-repeat="percentage in proposalControllerScope.proposal.invoiceTermListGet">
+                                            <span class="proposal_width33 padd_right0">
+												<input type="text" placeholder="Comments"
+												ng-model="percentage.comment"
+												name="comment{{$index}}" 
+												class="width100"
+												ng-disabled="proposalControllerScope.isUpdate" required />
+												<p
+													ng-show="proposalControllerScope.proposalForm.comment{{$index}}.$invalid && proposalControllerScope.proposalForm.comment{{$index}}.$touched" class="reqStar">Kindly
+													Enter Valid Comment</p>
+											</span> <span class="proposal_width31"> <input
+												type="text" placeholder="100" ng-pattern="/^[0-9]{1,3}$/"
+												ng-model="percentage.percentage"
+												name="percentage{{$index}}"
+												ng-disabled="proposalControllerScope.isUpdate"
+												class="width100 proposal_hideInput" />
+												<p ng-show="proposalControllerScope.proposalForm.percentage{{$index}}.$error.pattern || proposalControllerScope.proposalForm.percentage{{$index}}.$invalid && proposalControllerScope.proposalForm.percentage{{$index}}.$touched" class="reqStar">Kindly
+													Enter Valid Percentage</p>
+											</span> <span class="remove_iconPosition cursorPointer" ng-click="proposalControllerScope.removeChoiceGet($index)" ng-if="proposalControllerScope.isUpdate"> <i
+												class="fa fa-times" aria-hidden="true"></i>
+											</span> <span class="remove_iconPosition cursorPointer" ng-click="proposalControllerScope.addNewInput()" ng-if="$index == 0 && proposalControllerScope.isUpdate">
+												<i class="fa fa-plus" aria-hidden="true"></i>
+											</span>
+                                        </div>
+                                        <div style="display: flex;" ng-repeat="percentage in proposalControllerScope.proposal.invoiceTermList">
+                                            <span class="proposal_width33 padd_right0">
+												<input type="text" placeholder="Comments"
+												name="comment{{$index}}"
+												ng-model="percentage.comment" class="width100" required />
+												<p ng-show="proposalControllerScope.proposalForm.comment{{$index}}.$invalid && proposalControllerScope.proposalForm.comment{{$index}}.$touched"
+													class="reqStar">Kindly Enter Valid Comment</p>
+											</span> <span class="proposal_width31"> <input
+												type="text" placeholder="100" ng-pattern="/^[0-9]*$/"
+												ng-model="percentage.percentage"
+												name="percentage{{$index}}"
+												class="width100 proposal_hideInput" required />
+												<p
+													ng-show="proposalControllerScope.proposalForm.percentage{{$index}}.$error.pattern || proposalControllerScope.proposalForm.percentage{{$index}}.$invalid && proposalControllerScope.proposalForm.percentage{{$index}}.$touched"
+													class="reqStar">Kindly Enter Valid Percentage</p>
+											</span> <span class="remove_iconPosition cursorPointer" ng-click="proposalControllerScope.addNewInput()" ng-if="$index == 0 && !proposalControllerScope.isUpdate">
+												<i class="fa fa-plus" aria-hidden="true"></i>
+											</span> <span class="remove_iconPosition cursorPointer" ng-click="proposalControllerScope.removeChoice($index)" ng-if="($index > 0 && !proposalControllerScope.isUpdate) || (proposalControllerScope.isUpdate)">
+												<i class="fa fa-times" aria-hidden="true"></i>
+											</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                  <div class="form-group row mob-pos-rel" ng-repeat="field in proposalControllerScope.proposal.fieldList">
+                                    <label class="control-label col-sm-4 col-xs-4 col-md-4 col-lg-4 lineheight31"><input class="inputClass" placeholder="Enter Label Name*" ng-model="field.key" required></label>
+                                    <div class="col-sm-7 col-xs-7 col-md-7 col-lg-7 pad-right-0 mob-pad-right-15">
+                                        <input type="text" class="inputClass proposal_inputWidth" ng-model="field.value" placeholder="{{field.key}}" required />
+                                        <p ng-show="proposalControllerScope.proposalForm.fieldValue{{$index}}.$invalid && proposalControllerScope.proposalForm.fieldValue{{$index}}.$touched || proposalControllerScope.proposalForm.fieldKey{{$index}}.$invalid && proposalControllerScope.proposalForm.fieldKey{{$index}}.$touched" class="reqStar">Kindly Enter Valid Label And Value</p>
+                                        <span class="remove_iconPosition cursorPointer" ng-click="proposalControllerScope.removeField($index)">
+											<i class="fa fa-times" aria-hidden="true"></i>
+										</span>
+                                    </div>
+                                </div>
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31 margin_top5">Upload Files
+                                    </label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                        <button class="activeBtn btn" type="button" ngf-select ng-model="proposalControllerScope.proposal.files" multiple>Upload Files
+                                        </button>                                      
+                                            
+                                            <span class="remove_iconPosition cursorPointer" ng-click="proposalControllerScope.addNewField()"> <i
+											class="fa fa-plus" aria-hidden="true"></i>
+											</span>
+                                        <ul ng-if="proposalControllerScope.proposal.files && proposalControllerScope.proposal.files.length > 0">
+                                            <li ng-repeat="f in proposalControllerScope.proposal.files" style="font: smaller">{{f.name}} {{f.$errorParam}} <span class="progress" ng-show="f.progress >= 0">
+													<div style="width: {{f.progress}}" ng-bind="f.progress + '%'"></div>
+											</span>
+                                            </li>
+                                            <li ng-repeat="f in errFiles" style="font: smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                              
+                                <div class="formfooterbtns">
+                                    <button class="defaultBtn btn" type="button" ng-click="proposalControllerScope.decline()">Decline</button>
+                                    <button class="activeBtn btn" type="button" ng-click="proposalControllerScope.addProposal()" ng-disabled="proposalControllerScope.proposalForm.$invalid" ng-if="!proposalControllerScope.isUpdate">Save</button>
+                                    <button class="activeBtn btn" type="button" ng-click="proposalControllerScope.editProposal()" ng-disabled="proposalControllerScope.proposalForm.$invalid" ng-if="proposalControllerScope.isUpdate">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           

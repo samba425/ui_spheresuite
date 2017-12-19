@@ -1,0 +1,238 @@
+<div class="loader_backdrop" ng-if="companyInformationControllerScope.spinner || companyInformationControllerScope.Companyspinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer card">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Company Details</div>
+                        <div class="innerdivContainer">
+                            <div class="row configmenurow">
+                                <div class="col-md-12 padd0">
+                                    <div class="form-horizontal">
+                                        <div class="row">
+                                            <span class="col-md-12 padd0 operationRightDiv width100p">
+	                                           	<button class="defaultBtn btn decline_hide" ng-if="!companyInformationControllerScope.isEdit && !companyInformationControllerScope.isAdd" ng-click="companyInformationControllerScope.decline()">Decline</button>
+	                                           	<button class="defaultBtn btn " ng-if="companyInformationControllerScope.isAdd" ng-click="companyInformationControllerScope.declineAdd()">Decline</button>
+	                                        	<button class="activeBtn btn click_editable" ng-click="companyInformationControllerScope.addCompanyInformation()" ng-if="companyInformationControllerScope.isAdd" ng-disabled="companyInformationControllerScope.companyInfoForm.$invalid">Add</button>
+	                                            <button class="activeBtn btn click_editable" ng-if="companyInformationControllerScope.isEdit" ng-click="companyInformationControllerScope.showEditField()">Edit</button>
+	                                            <button class="activeBtn btn decline_hide" ng-if="!companyInformationControllerScope.isEdit && !companyInformationControllerScope.isAdd" ng-disabled="companyInformationControllerScope.companyInfoForm.$invalid" ng-click="companyInformationControllerScope.editCompanyInformation()">Update</button>
+	                                            
+                                            </span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-3 col-md-push-9 text-center margin_top5 col-xs-12 responsive_displayInline">
+                                                <div class="responsive_textCenter margin-auto company_imgHeight220">
+                                                    <!--  <img alt="Profile Picture" class="myinfo-profile-pic img_margin30" ng-src="{{companyInformationControllerScope.companyInfo.photo }}" ng-if="companyInformationControllerScope.companyInfo.photo || companyInformationControllerScope.companyPic" />-->
+                                                     <img alt="Profile Picture" class="myinfo-profile-pic img_margin30" ng-src="{{ companyInformationControllerScope.companyInfo.photo }}" ng-if="companyInformationControllerScope.companyInfo.photo || companyInformationControllerScope.companyPic" />
+                                                 <i class="fa fa-building-o img-100x100 img-views myinfo-profile-pic margin0" aria-hidden="true" ng-if="companyInformationControllerScope.companyInfo.photo == ''  || companyInformationControllerScope.companyPic == '' "></i>
+                                                    <br>
+                                                    <button data-backdrop="static" data-keyboard="false" ng-if="companyInformationControllerScope.isAdd || (!companyInformationControllerScope.isEdit && !companyInformationControllerScope.isAdd)" type="button" class="activeBtn btn margin_top5 " data-target="#modal" data-toggle="modal">Update Logo </button>
+                                                  
+                                                  <!--  <div class="dropzone" ng-hide="progress" ngf-drop ngf-select ng-model="gFiles" ngf-pattern="'image/*'" ngf-multiple="true" ngf-drag-over-class="'dragover'">Upload</div>-->
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="modal" role="dialog" aria-labelledby="modalLabel" tabindex="-1">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close white opacity1px" data-dismiss="modal" ng-click="companyInformationControllerScope.dismiss()">
+                                                                        <i class="fa fa-times close_button" aria-hidden="true"></i>
+                                                                    </button>
+                                                                    <h5 class="modal-title text-left">Upload Logo</h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="text-left">Select an image file:
+		                                                            	<label class="btn btn-default btn-file">
+		                                                                	<input type="file" id="fileInput" /> Upload Logo
+		                                                                </label>
+                                                                    </div>
+                                                                     <div ng-if="companyInformationControllerScope.myImage">
+                                                                        <div class="cropArea">
+                                                                        <div class="text-center"><img ng-src="{{companyInformationControllerScope.myImage}}" width="100%"/></div>
+                                                                               </div> 
+                                                                      </div> 
+                                                            <!--         <div ng-if="companyInformationControllerScope.myImage">
+                                                                        <div class="cropArea">
+                                                                            <img-crop image="companyInformationControllerScope.myImage" result-image="companyInformationControllerScope.myCroppedImage"  area-max-size="80" result-image-size="{w : 151, h : 30}" result-image-quality="0.6" area-type="rectangle" change-on-fly="true"></img-crop>
+                                                                        </div> &nbsp;
+                                                                        <div class="text-center"><img ng-src="{{companyInformationControllerScope.myCroppedImage}}" /></div>
+                                                                    </div> -->
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="activeBtn btn margin_top5" ng-click="companyInformationControllerScope.clearimage()" data-dismiss="modal">Done</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                               
+                                                  <div class="responsive_textCenter margin-auto">
+                                                <!--     <img alt="Profile Picture" class="myinfo-profile-pic img_margin30" ng-src="{{companyInformationControllerScope.companyInfo.icon || companyInformationControllerScope.companyicon}}" ng-if="companyInformationControllerScope.companyInfo.icon || companyInformationControllerScope.companyicon" />
+                                                    <i class="fa fa-building-o img-100x100 img-views myinfo-profile-pic margin0" aria-hidden="true" ng-if="companyInformationControllerScope.companyInfo.icon == '' || companyInformationControllerScope.companyicon == ''"></i>
+                                                    <br>
+                                                  <button data-backdrop="static" data-keyboard="false" ng-if="companyInformationControllerScope.isAdd || (!companyInformationControllerScope.isEdit && !companyInformationControllerScope.isAdd)" type="button" class="activeBtn btn margin_top5  margin_left10" data-target="#modal1" data-toggle="modal">Update Icon </button>
+                                                     -->  <!-- Modal -->
+                                                    <div class="modal fade" id="modal1" role="dialog" aria-labelledby="modalLabel" tabindex="-1">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close white opacity1px" data-dismiss="modal" ng-click="companyInformationControllerScope.dismiss()">
+                                                                        <i class="fa fa-times close_button" aria-hidden="true"></i>
+                                                                    </button>
+                                                                    <h5 class="modal-title text-left">Upload Icon</h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="text-left">Select an image file:
+		                                                            	<label class="btn btn-default btn-file">
+		                                                                	<input type="file" id="fileInput1" /> Upload Icon
+		                                                                </label>
+                                                                    </div>
+                                                                    
+                                                                      <div ng-if="companyInformationControllerScope.myIcon">
+                                                                        <div class="cropArea">
+                                                                        <div class="text-center"><img ng-src="{{companyInformationControllerScope.myIcon}}" width="100%"/></div>
+                                                                               </div> 
+                                                                      </div>
+                                                                      
+                                                                  <!--   <div ng-if="companyInformationControllerScope.myIcon">
+                                                                        <div class="cropArea">
+                                                                            <img-crop image="companyInformationControllerScope.myIcon" result-image="companyInformationControllerScope.myCroppedIcon" result-image-size="100" result-image-quality="0.6" area-type="square" change-on-fly="true"></img-crop>
+                                                                        </div> &nbsp;
+                                                                        <div class="text-center"><img ng-src="{{companyInformationControllerScope.myCroppedIcon}}" /></div>
+                                                                    </div> -->
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="activeBtn btn margin_top5" ng-click="companyInformationControllerScope.clearicon()" data-dismiss="modal">Done</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                            </div>
+                                            <form id="inputanble" name="companyInformationControllerScope.companyInfoForm" class="col-lg-9 col-md-9 col-md-pull-3 col-xs-12 responsive_padding0">
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-12 col-md-3 col-lg-3 lineheight4 companyResponsive_padding0">Company Name<span class="reqStar">*</span></label>
+                                                    <div class="col-sm-12 col-md-6 col-xs-12 responsive_padding0">
+                                                        <input type="text" name="name" class="backgroundNone width100p inputClass" ng-class="companyInformationControllerScope.isDisabled?'':'noBorder'" ng-model="companyInformationControllerScope.companyInfo.name" ng-disabled="companyInformationControllerScope.isDisabled" placeholder="Company Name" required/>
+                                                        <p ng-if="companyInformationControllerScope.companyInfoForm.name.$invalid && companyInformationControllerScope.companyInfoForm.name.$touched" class="reqStar">Kindly Enter Valid Name</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-12 col-md-3 col-lg-3  reslineheight2pt6 lineheight4 companyResponsive_padding0">TAN No</label>
+                                                    <div class="col-sm-12 col-md-6 col-xs-12 reslineheight0 responsive_padding0">
+                                                        <input type="text" name="tanno" class="backgroundNone width100p inputClass" ng-class="companyInformationControllerScope.isDisabled?'':'noBorder'" ng-model="companyInformationControllerScope.companyInfo.tanno" ng-disabled="companyInformationControllerScope.isDisabled" placeholder="TAN No" ng-pattern="/^[a-zA-Z]{4}[0-9]{5}[a-zA-Z]{1}$/" ng-change="companyInformationControllerScope.companyInfo.tanno = (companyInformationControllerScope.companyInfo.tanno | uppercase)" />
+                                                        <p ng-if="companyInformationControllerScope.companyInfoForm.tanno.$error.pattern || companyInformationControllerScope.companyInfoForm.tanno.$invalid && companyInformationControllerScope.companyInfoForm.tanno.$touched" class="reqStar">Kindly Enter Valid TAN No (AAAA99999A)</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-12 col-md-3 col-lg-3  reslineheight2pt6 lineheight4 companyResponsive_padding0">PAN No</label>
+                                                    <div class="col-sm-12 col-md-6 col-xs-12 reslineheight0 responsive_padding0">
+                                                        <input type="text" name="panno" class="backgroundNone width100p inputClass" ng-class="companyInformationControllerScope.isDisabled?'':'noBorder'" ng-model="companyInformationControllerScope.companyInfo.panno" ng-disabled="companyInformationControllerScope.isDisabled" ng-pattern="/^[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}$/" ng-change="companyInformationControllerScope.companyInfo.panno = (companyInformationControllerScope.companyInfo.panno | uppercase)" placeholder="PAN No" />
+                                                        <p ng-if="companyInformationControllerScope.companyInfoForm.panno.$error.pattern || companyInformationControllerScope.companyInfoForm.panno.$invalid && companyInformationControllerScope.companyInfoForm.panno.$touched" class="reqStar">Kindly Enter Valid PAN No (AAAAA9999A)</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-12 col-md-3 col-lg-3  reslineheight2pt6 lineheight4 companyResponsive_padding0">Address Line 1</label>
+                                                    <div class="col-sm-12 col-md-6 col-xs-12 reslineheight0 responsive_padding0">
+                                                        <input type="text" name="address1" class="backgroundNone width100p inputClass" ng-class="companyInformationControllerScope.isDisabled?'':'noBorder'" ng-model="companyInformationControllerScope.companyInfo.address1" ng-disabled="companyInformationControllerScope.isDisabled" placeholder="Address Line 1" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-12 col-md-3 col-lg-3 reslineheight2pt6 lineheight4 companyResponsive_padding0">Address Line 2</label>
+                                                    <div class="col-sm-12 col-md-6 col-xs-12 reslineheight0 responsive_padding0">
+                                                        <input type="text" name="address2" class="backgroundNone width100p inputClass" ng-class="companyInformationControllerScope.isDisabled?'':'noBorder'" ng-model="companyInformationControllerScope.companyInfo.address2" ng-disabled="companyInformationControllerScope.isDisabled" placeholder="Address Line 2 (If any)" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-12 col-md-3 col-lg-3  reslineheight2pt6 lineheight4 companyResponsive_padding0">City</label>
+                                                    <div class="col-sm-12 col-md-6 col-xs-12 reslineheight0 responsive_padding0">
+                                                        <input type="text" name="city" class="backgroundNone width100p inputClass" ng-class="companyInformationControllerScope.isDisabled?'':'noBorder'" ng-model="companyInformationControllerScope.companyInfo.city" ng-disabled="companyInformationControllerScope.isDisabled" ng-pattern="/^[a-zA-Z\ ]*$/" placeholder="City" />
+                                                        <p ng-if="companyInformationControllerScope.companyInfoForm.city.$error.pattern || companyInformationControllerScope.companyInfoForm.city.$invalid && companyInformationControllerScope.companyInfoForm.city.$touched" class="reqStar">Kindly Enter Valid City</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-12 col-md-3 col-lg-3  reslineheight2pt6 lineheight4 companyResponsive_padding0">Country</label>
+                                                    <div class="col-sm-12 col-md-6 col-xs-12 reslineheight0 marginTB5 responsive_padding0">
+                                                        <!-- ng-click="companyInformationControllerScope.hideOption(this)" -->
+                                                        <div class="customDropDown company_dropdown">
+                                                            <select id="select1" name="country" class="dropdown inputClass col-sm-12 col-md-12 col-lg-12 col-xs-12" ng-class="companyInformationControllerScope.isDisabled?'':'noBorder'" ng-model="companyInformationControllerScope.companyInfo.country" ng-disabled="companyInformationControllerScope.isDisabled" ng-change="companyInformationControllerScope.getState(companyInformationControllerScope.companyInfo.country)">
+                                                                <option value="" selected="selected" disabled ng-if="!companyInformationControllerScope.companyInfo.country || companyInformationControllerScope.companyInfo.country == ''">Select Country</option>
+                                                                <option value="{{country.id}}" ng-repeat="country in companyInformationControllerScope.countryList | orderBy: 'name' " ng-if="country.status='a'">{{country.name}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-12 col-md-3 col-lg-3  reslineheight2pt6 lineheight4 companyResponsive_padding0">State</label>
+                                                    <div class="col-sm-12 col-md-6 col-xs-12 reslineheight0 marginTB5 responsive_padding0">
+                                                        <div class="customDropDown company_dropdown">
+                                                            <select id="select2" name="state" class="dropdown inputClass col-sm-12 col-md-12 col-lg-12 col-xs-12" ng-class="companyInformationControllerScope.isDisabled?'':'noBorder'" ng-model="companyInformationControllerScope.companyInfo.state" ng-disabled="companyInformationControllerScope.isDisabled">
+                                                              <option value="" selected="selected" disabled ng-if="!companyInformationControllerScope.companyInfo.state || companyInformationControllerScope.companyInfo.state == ''"> Select State</option>
+                                                           <option value="{{state.id}}" ng-repeat="state in companyInformationControllerScope.stateList" ng-if="state.status='a'">{{state.name}}</option>
+                                                                   </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-12 col-md-3 col-lg-3  reslineheight2pt6 lineheight4 companyResponsive_padding0">ZIP</label>
+                                                    <div class="col-sm-12 col-md-6 col-xs-12 reslineheight0 responsive_padding0">
+                                                        <input type="text" name="zip" class="backgroundNone width100p inputClass" ng-class="companyInformationControllerScope.isDisabled?'':'noBorder'" ng-model="companyInformationControllerScope.companyInfo.zip" ng-disabled="companyInformationControllerScope.isDisabled" ng-pattern="/^[0-9]*$/" placeholder="ZIP" />
+                                                        <p ng-if="companyInformationControllerScope.companyInfoForm.zip.$error.pattern || companyInformationControllerScope.companyInfoForm.zip.$invalid && companyInformationControllerScope.companyInfoForm.zip.$touched" class="reqStar">Kindly Enter Valid ZIP</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-12 col-md-3 col-lg-3  reslineheight2pt6 lineheight4 companyResponsive_padding0">Mobile
+                                                    </label>
+                                                    <div class="col-sm-12 col-md-6 col-xs-12 reslineheight0 marginTB5 responsive_padding0 comapny_countryCode">
+                                                        <div class="width100 customDropDown mobile_drop100">
+                                                            <select id="select3" name="callingCode" class="dropdown inputClass" ng-class="companyInformationControllerScope.isDisabled?'':'noBorder'" ng-model="companyInformationControllerScope.companyInfo.callingCode" ng-disabled="companyInformationControllerScope.isDisabled" ng-change="companyInformationControllerScope.getState(companyInformationControllerScope.companyInfo.callingCode)">
+                                                                <option value="" selected="selected" disabled ng-if="!companyInformationControllerScope.companyInfo.callingCode || companyInformationControllerScope.companyInfo.callingCode == ''">Select Country Code</option>
+                                                                <option ng-repeat="country in companyInformationControllerScope.countryList" ng-if="country.status == 'a'">{{country.callingCode}} ({{country.name}})</option>
+                                                            </select>
+                                                        </div>
+                                                        <input type="text" name="mobile" class="backgroundNone inputClass countryCode_width100 margin0" ng-model="companyInformationControllerScope.companyInfo.mobile" ng-disabled="companyInformationControllerScope.isDisabled" ng-pattern="/^[0-9]*$/" placeholder="Mobile" />
+                                                    <p ng-show="companyInformationControllerScope.companyInfoForm.mobile.$error.pattern && companyInformationControllerScope.companyInfoForm.mobile.$touched" class="reqStar">Kindly Enter Valid Number. Ex XXXXXXXXXX</p>
+                                        </div>
+                                                </div>
+                                                <div class="form-group row" ng-if="companyInformationControllerScope.companyInfo.mobile !== '' && companyInformationControllerScope.companyInfo.callingCode == ''">
+                                                    <label class="control-label col-sm-12 col-md-3 col-lg-3  reslineheight2pt6 lineheight4"></label>
+                                                    <div class="col-sm-12 col-md-6 col-xs-12 reslineheight0 responsive_padding0">
+                                                        <p class="reqStar">Kindly Enter Country Code</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-12 col-md-3 col-lg-3  reslineheight2pt6 lineheight4 companyResponsive_padding0">Industry</label>
+                                                    <div class="col-sm-12 col-md-6 col-xs-12 reslineheight0 marginTB5 responsive_padding0">
+                                                        <div class="customDropDown company_dropdown">
+                                                            <select id="select4" name="industry" class="dropdown inputClass col-sm-12 col-md-12 col-lg-12 col-xs-12" ng-class="companyInformationControllerScope.isDisabled?'':'noBorder'" ng-model="companyInformationControllerScope.companyInfo.industry" ng-disabled="companyInformationControllerScope.isDisabled">
+                                                                <option value="" selected="selected" disabled ng-if="!companyInformationControllerScope.companyInfo.industry || companyInformationControllerScope.companyInfo.industry == ''">Select Industry</option>
+                                                                <option value="{{industry.id}}" ng-repeat="industry in companyInformationControllerScope.industryList" ng-if="industry.status == 'a'">{{industry.name}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-12 col-md-3 col-lg-3  reslineheight2pt6 lineheight4 companyResponsive_padding0">Website</label>
+                                                    <div class="col-sm-12 col-md-6 col-xs-12 reslineheight0 responsive_padding0">
+                                                        <input type="text" name="website" class="backgroundNone width100p inputClass" ng-model="companyInformationControllerScope.companyInfo.website" ng-disabled="companyInformationControllerScope.isDisabled" placeholder="Website" />
+                                                        <p ng-if="companyInformationControllerScope.companyInfoForm.website.$invalid && companyInformationControllerScope.companyInfoForm.website.$touched" class="reqStar">Kindly Enter Website</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-6 col-md-3 col-lg-3 col-xs-6  reslineheight2pt6 lineheight4 companyResponsive_padding0">Updated By </label>
+                                                    <div class="col-sm-6 col-md-6 col-xs-6 padding14">{{companyInformationControllerScope.companyInfo.updatedBy}}</div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-6 col-md-3 col-lg-3 col-xs-6  reslineheight2pt6 lineheight4 companyResponsive_padding0">Updated On </label>
+                                                    <div class="col-sm-6 col-md-6 col-xs-6 padding14">{{companyInformationControllerScope.companyInfo.updatedon}}</div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            

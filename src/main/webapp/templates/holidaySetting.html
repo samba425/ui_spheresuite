@@ -1,0 +1,112 @@
+<div class="loader_backdrop" ng-if="holidayControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer">Holidays</div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row">
+                                <div class="input_section">
+                                    <div class="width100">
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0">
+											<span  class="outline0"
+												data-toggle="modal" data-target="#holiday"
+												data-backdrop="static" data-keyboard="false">
+												<button type="button" class="add_btn"
+													ng-click="holidayControllerScope.openAddHoliday()">
+													<i class="fa fa-plus" aria-hidden="true"></i> 
+													<span class="paddLeft5">Add New</span>
+                                        		</button>
+                                        	</span>
+                                        </span>
+                                        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd0 text-right">
+                                        <button class="glyphicon glyphicon-export action_btn" ng-click="holidayControllerScope.exportData()"></button>
+                                        <button class="glyphicon glyphicon-import action_btn margin_left0 margin_right0" ng-click="holidayControllerScope.openImportPage()"></button></span>
+                                    </div>
+                                    <div class="width100 ">
+                                        <input type="text" ng-model="holidayControllerScope.searchName" placeholder="Search Here" class="margin_top20 width100 resp_fontSize"> 
+                                    </div>
+                               
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="holidayControllerScope.dataMsg != ''">
+                               <p class="text-center grey_text padding15 padding_top0">{{holidayControllerScope.dataMsg}}</p>
+                        </div>
+                        <div id="list-wrapper" ng-if="holidayControllerScope.holidayList.length > 0">
+                            <div class="padding_LR25 red-icon create-employee">
+                                <div class="row backGreyColor" ng-repeat="holiday in holidayControllerScope.holidayList | filter:holidayControllerScope.searchName | orderBy: '-year'">
+                                    <div class="input_section padd0">
+                                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 lineHeight25 padd0">
+                                            <span class="outline0" data-toggle="modal" data-target="#holiday" data-backdrop="static" data-keyboard="false">
+													<span ng-click="holidayControllerScope.gotoEditHoliday(holiday)" class="policy_text cursor_pointer break-word">{{holiday.desc}} | {{holiday.date}},{{holiday.year}} </span>
+                                            </span>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 padd0 text-center">
+                                            <ul class="padd0 margin0">
+                                                <li class="line_height24 padd0">
+                                                    <span ng-if="holiday.status=='a'" class="label_success">Active</span>
+                                                    <span ng-if="holiday.status=='i'" class="label_danger">In-Active</span>
+                                                    <span class="pipe_text15">|</span>
+                                                    <span class="cursorPointer" ng-click="holidayControllerScope.changeStatus(holiday)">Make
+																<span ng-if="holiday.status=='i'">Active</span>
+                                                    <span ng-if="holiday.status=='a'">In-Active</span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          
+    <div id="holiday" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close white opacity1px" data-dismiss="modal" ng-click="holidayControllerScope.decline()"><i class="fa fa-times close_button" aria-hidden="true" ></i></button>
+                  <h4 class="modal-title">Holiday</h4>
+                </div>
+                <div class="modal-body">
+                <div class="red-icon create-employee">
+                    <form class="form-horizontal formContainer" name="holidayControllerScope.holidayForm">
+                    <div class="form-group row mob-pos-rel">
+                       <div class="col-sm-6 col-md-6 col-xs-12 pad-right-0 mob-pad-right-15 responsive_paddingLft0">
+                                <div format="{{holidayControllerScope.format}}"  moment-picker="holidayControllerScope.holiday.year" format="YYYY" class="margin_leftMinus9">
+                                   <input name="year"  ng-model="holidayControllerScope.holiday.year" autoclose="true" keyboard="true" set-on-select="true" class="padding-8 cursor_pointer width100 " placeholder="Year* " required readonly>
+                                    <i class="fa fa-calendar from_calender sales-calen respMargin cursor_pointer marginTop4 padding-8 iconAlign responsive_dashboardRight6"
+										aria-hidden="true"></i> 
+                                </div>
+                            </div> <div class="col-xs-12 col-sm-6 responsive_paddingLft0 pos-rel padd_right0 mob-pad-right-15 position_relative responsive_marginTop5">
+								<div moment-picker="holidayControllerScope.holiday.date"
+									format="{{holidayControllerScope.formatDate}}" start-view="day"
+									class=" margin_leftMinus9">
+									 <input name="date" 
+										ng-model="holidayControllerScope.holiday.date"
+										autoclose="true" keyboard="true" set-on-select="true"
+										class="padding-8 cursor_pointer width100 shadow"
+										placeholder="Date*" required>
+										<i
+										class="fa fa-calendar sales-calen cursor_pointer holiday_icon"
+										aria-hidden="true"></i>
+								</div>
+							</div> 
+                       		
+                            <textarea type="text" name="value" class="inputClass width100" placeholder="Description&#42;" ng-model="holidayControllerScope.holiday.desc" required></textarea>
+                            <p ng-show="holidayControllerScope.holidayForm.value.$invalid && holidayControllerScope.holidayForm.value.$touched" class="reqStar">Kindly Enter Description</p>
+                        
+                        <div class="modal-footer padd0">
+                            <button type="button" class="defaultBtn btn" data-dismiss="modal" ng-click="holidayControllerScope.decline()">Decline</button>
+                            <button type="button" ng-show="!holidayControllerScope.isUpdate" ng-disabled="holidayControllerScope.holidayForm.$invalid" class="activeBtn btn" ng-click="holidayControllerScope.addHoliday()">Save</button>
+                            <button type="button" ng-disabled="holidayControllerScope.holidayForm.$invalid" class="activeBtn btn" ng-show="holidayControllerScope.isUpdate" ng-click="holidayControllerScope.editHoliday()">Update</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

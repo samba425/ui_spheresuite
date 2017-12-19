@@ -1,0 +1,167 @@
+<div class="loader_backdrop" ng-if="leaveManagementControllerScope.spinner || leaveManagementControllerScope.getSpinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer paddLft15">
+                        	<span ng-if="!leaveManagementControllerScope.isUpdate">New</span>
+                        	<span ng-if="leaveManagementControllerScope.isUpdate">Update</span> 
+                        	Leave Request
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0 employee_placeholder">
+                    		<form class="form-horizontal formContainer employee_selectBox" name="leaveManagementControllerScope.leaveManagementForm" ng-show="!leaveManagementControllerScope.isCompanyEdit">
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Leave Type<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" 
+                                            	name="type" 
+                                            	ng-model="leaveManagementControllerScope.leaveManagement.type" 
+                                            	ng-change="leaveManagementControllerScope.checkLeaveAvailability(leaveManagementControllerScope.leaveManagement.type)" required>
+                                                <option value="" ng-if="!leaveManagementControllerScope.leaveManagement.type || leaveManagementControllerScope.leaveManagement.type == ''">Select Leave Type</option>
+                                                <option value="{{leaveType.id}}" ng-repeat="leaveType in leaveManagementControllerScope.leaveRequestTypeList | orderBy:'type'" ng-if="leaveType.status == 'a'">{{leaveType.type}}</option>
+                                            </select>
+                                        </div>
+                                        <p ngif="leaveManagementControllerScope.msg && leaveManagementControllerScope.msg != ''" class="margin0">{{leaveManagementControllerScope.msg}}</p>
+                                        <p ngif="leaveManagementControllerScope.errMsg && leaveManagementControllerScope.errMsg != ''" class="reqStar margin0">{{leaveManagementControllerScope.errMsg}}</p>
+                                    </div>
+                                </div>
+                                <div class="create-employee-inner">
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Leave Day<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5">
+                                            <div class="leave_checkbox inputClass">
+                                            	<!-- <input type="radio" name="leaveday" id="Partial" value="Partial" class="parentCheckBox" ng-model="leaveManagementControllerScope.leaveManagement.leaveday" required> <label for="Partial">Partial</label> -->
+                                            	<input type="radio" name="leaveday" id="Single" value="Single" ng-model="leaveManagementControllerScope.leaveManagement.leaveday" required> <label for="Single">Single</label>
+                                            	<input type="radio" name="leaveday" id="Multiple" value="Multiple" ng-model="leaveManagementControllerScope.leaveManagement.leaveday" required> <label for="Multiple">Multiple</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row mob-pos-rel" ng-if="leaveManagementControllerScope.leaveManagement.leaveday != 'Multiple'">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Date<span class="reqStar">*</span>
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" 
+                                            	name="date" 
+                                            	class="inputClass" 
+                                            	datepicker-popup="{{format}}" 
+                                            	ng-click="leaveManagementControllerScope.openFromCalender($event)" 
+                                            	ng-model="leaveManagementControllerScope.leaveManagement.date" 
+                                            	is-open="leaveManagementControllerScope.isOpenFromDate" 
+                                            	placeholder="Date" 
+                                            	show-button-bar="false" readonly required/>
+                                            <p ng-if="leaveManagementControllerScope.leaveManagementForm.from.$invalid && leaveManagementControllerScope.leaveManagementForm.from.$touched" class="reqStar">Kindly Select Valid Date</p>
+                                        </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18">
+											<button type="button" class="btn btn-default mrgTop5 addIcon"
+												ng-click="leaveManagementControllerScope.openFromCalender($event)">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+                                    </div>
+                                     <div class="form-group row mob-pos-rel" ng-if="leaveManagementControllerScope.leaveManagement.leaveday == 'Multiple'">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">From Date<span class="reqStar">*</span>
+                                        </label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" 
+                                            	name="fromDate" 
+                                            	class="inputClass" 
+                                            	datepicker-popup="{{format}}" 
+                                            	ng-click="leaveManagementControllerScope.openFromCalender($event)" 
+                                            	ng-change="leaveManagementControllerScope.getDateDifference(leaveManagementControllerScope.leaveManagement.fromDate,leaveManagementControllerScope.leaveManagement.toDate)" 
+                                            	ng-model="leaveManagementControllerScope.leaveManagement.fromDate" 
+                                            	is-open="leaveManagementControllerScope.isOpenFromDate" 
+                                            	placeholder="From Date" 
+                                            	show-button-bar="false" readonly required/>
+                                            <p ng-if="leaveManagementControllerScope.leaveManagementForm.fromDate.$invalid && leaveManagementControllerScope.leaveManagementForm.fromDate.$touched" class="reqStar">Kindly Select Valid Date</p>
+                                        </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18">
+											<button type="button" class="btn btn-default mrgTop5 addIcon"
+												ng-click="leaveManagementControllerScope.openFromCalender($event)">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+                                    </div>
+                                     <div class="form-group row mob-pos-rel" ng-if="leaveManagementControllerScope.leaveManagement.leaveday == 'Multiple'">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">To Date<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" 
+                                            	name="toDate" 
+                                            	class="inputClass" 
+                                            	datepicker-popup="{{format}}" 
+                                            	ng-click="leaveManagementControllerScope.openToCalender($event)" 
+                                            	ng-change="leaveManagementControllerScope.getDateDifference(leaveManagementControllerScope.leaveManagement.fromDate,leaveManagementControllerScope.leaveManagement.toDate)" 
+                                            	ng-model="leaveManagementControllerScope.leaveManagement.toDate" 
+                                            	is-open="leaveManagementControllerScope.isOpenToDate" 
+                                            	placeholder="To Date" 
+                                            	show-button-bar="false" readonly required/>
+                                            <p ng-if="leaveManagementControllerScope.leaveManagementForm.toDate.$invalid && leaveManagementControllerScope.leaveManagementForm.toDate.$touched" class="reqStar">Kindly Select Valid Date</p>
+                                        </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18">
+											<button type="button" class="btn btn-default mrgTop5 addIcon"
+												ng-click="leaveManagementControllerScope.openToCalender($event)">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+                                    </div> 
+                                    <!-- <div class="form-group row" ng-if="leaveManagementControllerScope.leaveManagement.leaveday == 'Partial'">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">No. Of Hours<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <input type="text" name="hours" class="inputClass" ng-pattern="/^[0-9]{1,2}$/" ng-model="leaveManagementControllerScope.leaveManagement.hours" placeholder="No. Of Hours" />
+                                            <p ng-show="leaveManagementControllerScope.leaveManagementForm.hours.$error.pattern && leaveManagementControllerScope.leaveManagementForm.hours.$touched" class="reqStar">Kindly Enter Valid No. Of Hours</p>
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Description<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <textarea name="desc" class="inputClass" ng-model="leaveManagementControllerScope.leaveManagement.desc" placeholder="Description" required></textarea>
+                                            <p ng-show="leaveManagementControllerScope.leaveManagementForm.desc.$error.pattern && leaveManagementControllerScope.leaveManagementForm.desc.$touched" class="reqStar">Kindly Enter Valid Description</p>
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns">
+                                        <button class="defaultBtn btn" type="button" ng-click="leaveManagementControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn btn" 
+                                        	type="button" 
+                                        	ng-click="leaveManagementControllerScope.createLeaveRequest()" 
+                                        	ng-disabled="leaveManagementControllerScope.leaveManagementForm.$invalid || !leaveManagementControllerScope.isFormValid " 
+                                        	ng-if="!leaveManagementControllerScope.isUpdate">Save</button>
+                                        <button class="activeBtn btn" type="button" ng-click="leaveManagementControllerScope.editLeaveRequest()" ng-disabled="leaveManagementControllerScope.leaveManagementForm.$invalid" ng-if="leaveManagementControllerScope.isUpdate">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            
+                    		<form class="form-horizontal formContainer employee_selectBox" name="leaveManagementControllerScope.acceptForm" ng-show="leaveManagementControllerScope.isCompanyEdit">
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Leave Status<span class="reqStar">*</span></label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="type" ng-model="leaveManagementControllerScope.leaveManagement.status" required>
+                                                <option value="" ng-if="!leaveManagementControllerScope.leaveManagement.status || leaveManagementControllerScope.leaveManagement.status == ''">Select Leave Status</option>
+                                                <option value="a" >Approved</option>
+                                                <option value="p" >Pending</option>
+                                                <option value="o" >Re-Open</option>
+                                                <option value="r" >Rejected</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="create-employee-inner">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Comment<span class="reqStar">*</span></label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <textarea name="comment" class="inputClass" ng-model="leaveManagementControllerScope.leaveManagement.comment" placeholder="Comment" required></textarea>
+                                            <p ng-show="leaveManagementControllerScope.acceptForm.comment.$error.pattern && leaveManagementControllerScope.acceptForm.comment.$touched" class="reqStar">Kindly Enter Valid Comment</p>
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns">
+                                        <button class="defaultBtn btn" type="button" ng-click="leaveManagementControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn btn" type="button" ng-click="leaveManagementControllerScope.editLeaveRequest()" ng-disabled="leaveManagementControllerScope.acceptForm.$invalid">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           

@@ -1,0 +1,238 @@
+<div class="loader_backdrop" ng-show="payrollControllerScope.spinner || payrollControllerScope.getSpinner || payrollControllerScope.getActiveUserSpinner">
+    <div class="loader loader_position"></div>
+</div>
+<div class="rightContainer">
+    <div class="pageTitleParent">
+        <div class="pageTitletextContainer">Employee Compensation</div>
+        <div class="innerdivContainer red-icon create-employee">
+		    <div ng-if="payrollController.compensationMsg != ''">
+		         <p class="text-center grey_text padding15 padding_top0">{{payrollControllerScope.compensationMsg}}</p>
+		    </div>
+		    <form class="form-horizontal formContainer lead_selectBox" name="payrollControllerScope.employeeCompensationForm">
+		    	
+		    	<div class="form-group row mob-pos-rel">
+	                <label class="control-label col-sm-12 col-md-4  lineheight31">Employee<span class="reqStar">*</span></label>
+	                <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+	                    <div class="customDropDown">
+	                     <select class="select1 dropdown inputClass" name="empId" ng-model="payrollControllerScope.allowance.empId" ng-change="payrollControllerScope.getEmpId(payrollControllerScope.allowance.empId)" required>
+	                      <option value="" ng-if="!payrollControllerScope.allowance.empId || payrollControllerScope.allowance.empId == ''">Select Employee  Type</option>
+	                      <option value="{{emp.id}}" ng-repeat="emp in payrollControllerScope.activeUserList | orderBy:'name'">{{emp.name}}</option>
+	                      </select> 
+	                    </div>
+	                </div>
+	            </div> 
+	            
+		         <p ng-if = "payrollControllerScope.leadListByEmp.length  == 0" class="text-center grey_text padding15 padding_top0">{{payrollControllerScope.ctcMsg}}</p> 
+		         <div ng-if = "payrollControllerScope.leadListByEmp.length  !== 0" ng-show="payrollControllerScope.earning">
+				     <div class="form-group row ">
+		                 <label class="control-label col-sm-12 col-md-4  lineheight2pt6">CTC</label>
+		                 <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+		                 	<label class="inputClass no_border">{{payrollControllerScope.leadListByEmp.empctc | number:2}}</label>
+		                     <!-- <input type="text" name="empId" class="inputClass no_border" ng-model="payrollControllerScope.leadListByEmp.empctc" placeholder="CTC" /> -->
+		                 </div>
+		             </div>
+				     <div class="form-group row">
+		                 <label class="control-label col-sm-12 col-md-4  lineheight2pt6">From</label>
+		                 <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+		                     <input type="text" name="empId" class="inputClass no_border" ng-model="payrollControllerScope.leadListByEmp.startDate" placeholder="From" />
+		                 </div>
+		             </div>
+				     <div class="form-group row">
+		                 <label class="control-label col-sm-12 col-md-4  lineheight2pt6">To</label>
+		                 <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+		                     <input type="text" name="empId" class="inputClass no_border" ng-model="payrollControllerScope.leadListByEmp.enddate" placeholder="To" />
+		                 </div>
+		             </div>
+		             
+                     <div class="form-group row mob-pos-rel" ng-show = "payrollControllerScope.leadListByEmp.length  !== 0">
+                         <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Effective From<span class="reqStar">*</span></label>
+                         <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                             <input type="text" name="effectiveFrom" class="inputClass cursor_pointer" datepicker-popup="{{format}}" ng-click="payrollControllerScope.openEffectiveFromCalender($event)" ng-model="payrollControllerScope.leadListByEmp.effectiveFrom" is-open="payrollControllerScope.isEffectiveFrom" placeholder="Effective From" show-button-bar="false" required/>
+                         </div>
+                         <span class="mob-pos-abs select-button calen mob-right-18">
+							<button type="button" class="btn btn-default mrgTop5 addIcon"
+								ng-click="payrollControllerScope.openEffectiveFromCalender($event)">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button>
+						</span>
+                     </div>
+                     <div class="form-group row mob-pos-rel" ng-show = "payrollControllerScope.leadListByEmp.length  !== 0">
+                         <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Effective To</label>
+                         <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                             <input type="text" name="effectiveTo" class="inputClass cursor_pointer" datepicker-popup="{{format}}" ng-click="payrollControllerScope.openEffectiveToCalender($event)" ng-model="payrollControllerScope.leadListByEmp.effectiveTo" is-open="payrollControllerScope.isEffectiveTo" placeholder="Effective To" show-button-bar="false"/>
+                         </div>
+                         <span class="mob-pos-abs select-button calen mob-right-18">
+							<button type="button" class="btn btn-default mrgTop5 addIcon"
+								ng-click="payrollControllerScope.openEffectiveToCalender($event)">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button>
+						</span>
+                     </div>
+             	</div>
+		    </form>
+		    <!-- Section earning -->
+		    <div class=" table_data" ng-if = "payrollControllerScope.leadListByEmp.length  !== 0" ng-show="payrollControllerScope.earning">
+		    		<button type="button" class="activeBtn btn add_new margin_top" ng-click="payrollControllerScope.addNewEarningsField()">Add New +</button>
+			                        	<table wt-responsive-table class="custom-responsive-table-employee margin0">
+									        <thead>
+									            <tr>
+									            	<!-- <th class="">
+									            		<i class="fa fa-trash-o cursor_pointer" aria-hidden="true" ng-click="payrollControllerScope.deleteEmployee()"></i>
+									            	</th> -->
+									                <th class="text-center">Earning Type</th>
+									                <th class="text-center">Month</th>
+									                <th class="text-center">YTD</th>
+									                
+									            </tr>
+									            
+									        </thead>
+									        <tbody >
+									        	
+									            <tr class="backGreyColor" ng-repeat="earning in payrollControllerScope.employeeCompensationEarningList">
+									               <!--  <td class="text-center padd_left0"><span class="table_mobile table_borderNone">
+									                	<input type="checkbox" ng-model="employee.isSelect"/><label></label></span>
+									                </td>  -->             
+									                
+									                <td>
+									                	<div class="col-sm-12 col-md-12 pad-right-0 mob-pad-right-15 margin_top5">
+				                                        	<div class="customDropDown">
+				                                          		<select class="select1 dropdown inputClass width100" name="allowanceId" ng-model="earning.allowanceId" ng-change="payrollControllerScope.getAllowanceById(earning,payrollControllerScope.leadListByEmp.empctc)" required>
+											                      	<option value="" ng-if="!earning.transferFrom || earning.transferFrom == ''">Select Earning Type</option>
+											                      	<option value="{{allowance.id}}" ng-repeat="allowance in payrollControllerScope.allowanceList | orderBy:'name'">{{allowance.name}}</option>
+											                     </select>  
+						                                    </div>
+				                                    	</div>
+				                                    </td>
+									                <td class="text-right">{{ earning.monthly | number:2}}</td>
+									                <td class="text-right">{{ earning.ytd | number:2}}</td>
+									            </tr>
+									        </tbody>
+										</table>
+									    <p class="reqStar text-center" ng-if="payrollControllerScope.hasAllowanceSelectedAlreadyMsg != ''">{{payrollControllerScope.hasAllowanceSelectedAlreadyMsg}}</p>
+						            	<table wt-responsive-table class="custom-responsive-table-employee margin0">
+									        <thead>
+									            <tr>
+									            	<!-- <th class="">
+									            		<i class="fa fa-trash-o cursor_pointer" aria-hidden="true" ng-click="payrollControllerScope.deleteEmployee()"></i>
+									            	</th> -->
+									               
+									                
+									            </tr>
+									            
+									        </thead>
+									        <tbody>
+									        	<tr >
+									        		<td class="text-right responsive_width550">Total ( A )</td>
+									        		<td class="responsive_width255 text-right">{{payrollControllerScope.earningMonth | number:2}}</td>
+									        		<td class="text-right">{{payrollControllerScope.earningYear | number:2}}</td>
+									        	</tr>
+									        </tbody>
+										</table>
+		                        </div>
+		        <div class=" table_data" ng-if ="payrollControllerScope.leadListByEmp.length  !== 0 " ng-show="payrollControllerScope.earning">
+		    <button type="button" class="activeBtn btn add_new margin_top" ng-click="payrollControllerScope.addNewDeductionField()">Add New +</button>
+			                        	<table wt-responsive-table class="custom-responsive-table-employee margin0">
+									        <thead>
+									            <tr>
+									            	<!-- <th class="">
+									            		<i class="fa fa-trash-o cursor_pointer" aria-hidden="true" ng-click="payrollControllerScope.deleteEmployee()"></i>
+									            	</th> -->
+									                <th class="text-center">Deduction Type</th>
+									                <th class="text-center">Month</th>
+									                <th class="text-center">YTD</th>
+									                
+									            </tr>
+									            
+									        </thead>
+									        <tbody >
+									        	
+									            <tr class="backGreyColor" ng-repeat="deduction in payrollControllerScope.employeeCompensationDeductionList">
+									               <!--  <td class="text-center padd_left0"><span class="table_mobile table_borderNone">
+									                	<input type="checkbox" ng-model="employee.isSelect"/><label></label></span>
+									                </td>  -->             
+									                
+									                <td><div class="col-sm-12 col-md-12 pad-right-0 mob-pad-right-15 margin_top5">
+				                                        <div class="customDropDown">
+												             <select class="select1 dropdown inputClass width100" name="deductionId" ng-model="deduction.deductionId " ng-change="payrollControllerScope.getDeductionById(deduction,payrollControllerScope.leadListByEmp.empctc)" required>
+									                      		<option value="" ng-if="!deduction.deductionId || deduction.deductionId == ''">Select Deduction  Type</option>
+									                      		<option value="{{deduction.id}}" ng-repeat="deduction in payrollControllerScope.deductionList | orderBy:'name'">{{deduction.name}}</option>
+									                      </select>  
+				                                        </div>
+				                                    </div></td>
+									                <td class="text-right">{{ deduction.monthly | number:2 }}</td>
+									                <td class="text-right">{{ deduction.ytd | number:2 }}</td>
+									            </tr>
+									        </tbody>
+										</table>
+										<p class="reqStar text-center" ng-if="payrollControllerScope.hasDeductionSelectedAlreadyMsg != ''">{{payrollControllerScope.hasDeductionSelectedAlreadyMsg}}</p>
+						            	
+						            	<table wt-responsive-table class="custom-responsive-table-employee margin0">
+									        <thead>
+									            <tr>
+									            	<!-- <th class="">
+									            		<i class="fa fa-trash-o cursor_pointer" aria-hidden="true" ng-click="payrollControllerScope.deleteEmployee()"></i>
+									            	</th> -->
+									               
+									                
+									            </tr>
+									            
+									        </thead>
+									        <tbody>
+									        	<tr >
+									        		<td class="text-right responsive_width550">Total ( B )</td>
+									        		<td class="responsive_width255 text-right">{{payrollControllerScope.deductionMonth | number:2}}</td>
+									        		<td class="text-right">{{payrollControllerScope.deductionYear | number:2}}</td>
+									        	</tr>
+									        </tbody>
+										</table>
+		                        </div> 
+		                        <div class="table_data margin0" ng-show="payrollControllerScope.earning">
+		    
+						            	<table wt-responsive-table class="custom-responsive-table-employee back_grey margin0">
+									        <thead>
+									            <tr>
+									            	<!-- <th class="">
+									            		<i class="fa fa-trash-o cursor_pointer" aria-hidden="true" ng-click="payrollControllerScope.deleteEmployee()"></i>
+									            	</th> -->
+									               
+									                
+									            </tr>
+									            
+									        </thead>
+									        <tbody>
+									        	<tr >
+									        		<td class="text-right responsive_width550">Net Pay ( A - B )</td>
+									        		<td class="responsive_width255 text-right">{{payrollControllerScope.earningMonth - payrollControllerScope.deductionMonth | number:2 }}</td>
+									        		<td class="text-right">{{payrollControllerScope.earningYear - payrollControllerScope.deductionYear | number:2 }}</td>
+									        	</tr>
+									        </tbody>
+										</table>
+		                        </div>
+		                        
+		                        
+                                    <div class="text-right margin_top"  ng-show="payrollControllerScope.earning">
+                                        <button class="activeBtn btn" type="button" ng-click="payrollControllerScope.updateEmployeeCompensation()" ng-disabled="payrollControllerScope.employeeCompensationForm.$invalid">Update</button>
+                                    </div>
+		</div>
+	</div>
+</div>
+<div id="confirmation" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close white opacity1px" data-dismiss="modal"><i class="fa fa-times close_button" aria-hidden="true"></i></button>
+                <h4 class="modal-title">Employee Compensation</h4>
+            </div>
+            <div class="modal-body">
+                <form name="payrollControllerScope.gstTaxForm">
+                    <div class="modal-body">
+                    	<p class="text-center">{{payrollControllerScope.modalMsg}}</p>
+                      </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="activeBtn btn" data-dismiss="modal">Decline</button> 
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

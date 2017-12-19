@@ -1,0 +1,156 @@
+<div class="loader_backdrop" ng-if="offerControllerScope.spinner">
+    <div class="loader loader_position"></div>
+</div>
+   <div class="rightContainer">
+                    <div class="pageTitleParent">
+                        <div class="pageTitletextContainer paddLft15"><span ng-if="!offerControllerScope.isUpdate">New</span><span ng-if="offerControllerScope.isUpdate">Update</span> Offer</div>
+                        <div class="innerdivContainer red-icon create-employee responsive_padding0 employee_placeholder">
+                            <form class="form-horizontal formContainer employee_selectBox" name="offerControllerScope.offerForm">
+                               
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Choose Customer<span class="reqStar">*</span></label>
+                                    <label class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 break-word lineheight31 font_weight500" ng-if="offerControllerScope.isDisabled">{{offerControllerScope.offer.cutomerName}}</label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15" ng-show="!offerControllerScope.isDisabled">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="customerId" ng-model="offerControllerScope.offer.customerId" ng-change="offerControllerScope.getOpportunity(offerControllerScope.offer.customerId)" required>
+                                                <option value="" ng-if="!offerControllerScope.offer.customerId || offerControllerScope.offer.customerId == ''">Select Customer</option>
+                                                <option value="{{customer.id}}" ng-repeat="customer in offerControllerScope.customerList | orderBy:'name'">{{customer.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Choose Project<span class="reqStar">*</span></label>
+                                    <label class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 break-word lineheight31 font_weight500" ng-if="offerControllerScope.isDisabled">{{offerControllerScope.offer.projectName}}</label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15" ng-show="!offerControllerScope.isDisabled">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="projectId" ng-model="offerControllerScope.offer.projectId" ng-change="offerControllerScope.getRequirement(offerControllerScope.offer.projectId)" required>
+                                                <option value="" ng-if="!offerControllerScope.offer.projectId || offerControllerScope.offer.projectId == ''">Select Project</option>
+                                                 <option value="{{project.id}}" ng-repeat="project in offerControllerScope.projectList | orderBy:'city'">{{project.projectName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Choose Requirement<span class="reqStar">*</span></label>
+                                    <label class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 break-word lineheight31 font_weight500" ng-if="offerControllerScope.isDisabled">{{offerControllerScope.offer.requirement}}</label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15" ng-show="!offerControllerScope.isDisabled">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="requirementId" ng-model="offerControllerScope.offer.requirementId" required>
+                                                <option value="" ng-if="!offerControllerScope.offer.requirementId || offerControllerScope.offer.requirementId == ''">Select Requirement</option>
+                                                <option value="{{requirement.id}}" ng-repeat="requirement in offerControllerScope.requirementList | orderBy:'name'" >{{requirement.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Offering Date<span class="reqStar">*</span></label>
+                                    <label class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 break-word lineheight31 font_weight500" ng-if="offerControllerScope.isDisabled">{{offerControllerScope.offer.offerDate}}</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15" ng-if="!offerControllerScope.isDisabled">
+                                            <input type="text" name="offerDate" class="inputClass cursor_pointer" ng-model="offerControllerScope.offer.offerDate" ng-click="offerControllerScope.openOfferDateCalender($event)" is-open="offerControllerScope.isOpenOfferDate" datepicker-popup="{{format}}" placeholder="Offering Date" show-button-bar="false" required/>
+                                            <p ng-if="offerControllerScope.offerForm.offerDate.$invalid && offerControllerScope.offerForm.offerDate.$touched" class="reqStar">Kindly Enter Valid Date</p>
+                                        </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18" ng-if="!offerControllerScope.isDisabled">
+											<button type="button" class="btn btn-default mrgTop5 addIcon"
+												ng-click="offerControllerScope.openOfferDateCalender($event)">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+                                    </div>
+                                 <div class="form-group row mob-pos-rel">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Expected Joining Date<span class="reqStar">*</span></label>
+                                    <label class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 break-word lineheight31 font_weight500" ng-if="offerControllerScope.isDisabled">{{offerControllerScope.offer.joiningDate}}</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15" ng-if="!offerControllerScope.isDisabled">
+                                            <input type="text" name="joiningDate" class="inputClass cursor_pointer" ng-model="offerControllerScope.offer.joiningDate" ng-click="offerControllerScope.openJoiningDateCalender($event)" is-open="offerControllerScope.isOpenJoiningDate" datepicker-popup="{{format}}" placeholder="Expected Joining Date" show-button-bar="false" required/>
+                                            <p ng-if="offerControllerScope.offerForm.offerDate.$invalid && offerControllerScope.offerForm.joiningDate.$touched" class="reqStar">Kindly Enter Valid Date</p>
+                                        </div>
+                                        <span class="mob-pos-abs select-button calen mob-right-18" ng-if="!offerControllerScope.isDisabled">
+											<button type="button" class="btn btn-default mrgTop5 addIcon"
+												ng-click="offerControllerScope.openJoiningDateCalender($event)">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+                                    </div>
+                                <div class="create-employee-inner">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Candidate Name<span class="reqStar">*</span></label>
+                                    <label class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 break-word lineheight31 font_weight500" ng-if="offerControllerScope.isDisabled">{{offerControllerScope.offer.name}}</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5" ng-if="!offerControllerScope.isDisabled">
+                                            <input type="text" name="name" class="inputClass" ng-model="offerControllerScope.offer.name" ng-pattern="/^[a-zA-Z\ ]*$/" placeholder="Candidate Name" required />
+                                            <p ng-if="(offerControllerScope.offerForm.name.$error.pattern || offerControllerScope.offerForm.name.$invalid) && offerControllerScope.offerForm.name.$touched" class="reqStar">Kindly Enter Valid Name</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Designation<span class="reqStar">*</span></label>
+                                    <label class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 break-word lineheight31 font_weight500" ng-if="offerControllerScope.isDisabled">{{offerControllerScope.offer.designation}}</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5" ng-if="!offerControllerScope.isDisabled">
+                                            <input type="text" name="designation" class="inputClass" ng-model="offerControllerScope.offer.designation" placeholder="Designation" />
+                                            <p ng-if="offerControllerScope.offerForm.designation.$invalid && offerControllerScope.offerForm.designation.$touched" class="reqStar">Kindly Enter Valid Designation</p>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Contact Number<span class="reqStar">*</span></label>
+                                    <label class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 break-word lineheight31 font_weight500" ng-if="offerControllerScope.isDisabled">{{offerControllerScope.offer.phone}}</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5" ng-if="!offerControllerScope.isDisabled">
+                                            <input type="text" name="phone" class="inputClass" ng-model="offerControllerScope.offer.phone" ng-pattern="/^[0-9]*$/" placeholder="Contact Number"  required/>
+                                            <p ng-if="(offerControllerScope.offerForm.phone.$error.pattern || offerControllerScope.offerForm.phone.$invalid) && offerControllerScope.offerForm.phone.$touched" class="reqStar">Kindly Enter Valid Contact</p>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">CTC<span class="reqStar">*</span></label>
+                                    <label class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 break-word lineheight31 font_weight500" ng-if="offerControllerScope.isDisabled">{{offerControllerScope.offer.cost}}</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 margin_top5" ng-if="!offerControllerScope.isDisabled">
+                                            <input type="text" name="cost" class="inputClass" ng-model="offerControllerScope.offer.cost" ng-pattern="/^[0-9]*$/" placeholder="CTC" required/>
+                                            <p ng-if="(offerControllerScope.offerForm.cost.$error.pattern || offerControllerScope.offerForm.cost.$invalid) && offerControllerScope.offerForm.cost.$touched" class="reqStar">Kindly Enter Valid CTC</p>
+                                        </div>
+                                    </div>
+                                
+                                <div class="form-group row mob-pos-rel">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Choose Approver<span class="reqStar">*</span></label>
+                                    <label class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 break-word lineheight31 font_weight500" ng-if="offerControllerScope.isDisabled">{{offerControllerScope.offer.approver}}</label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15" ng-if="!offerControllerScope.isDisabled">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="approverId" ng-model="offerControllerScope.offer.approverId" required>
+                                                <option value="" ng-if="!offerControllerScope.offer.approverId || offerControllerScope.offer.approverId == ''">Select Approver</option>
+                                                <option value="{{approver.empId}}" ng-repeat="approver in offerControllerScope.approverList | orderBy:'empName'" ng-if="approver.status == 'a'">{{approver.empName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mob-pos-rel" ng-if="offerControllerScope.isUpdate">
+                                    <label class="control-label col-sm-12 col-md-4  lineheight31">Status</label>
+                                    <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                        <div class="customDropDown">
+                                            <select class="select1 dropdown inputClass" name="status" ng-model="offerControllerScope.offer.status" required>
+                                                <option value="A">Approved</option>
+                                                <option value="P" disabled>Pending</option>
+                                                <option value="R">Rejected</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Address<span class="reqStar">*</span></label>
+                                    <label class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15 break-word lineheight31 font_weight500" ng-if="offerControllerScope.isDisabled">{{offerControllerScope.offer.address}}</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15" ng-if="!offerControllerScope.isDisabled">
+                                            <textarea name="address" class="inputClass" ng-model="offerControllerScope.offer.address" placeholder="Address" required></textarea>
+                                            <p ng-if="offerControllerScope.offerForm.address.$invalid && offerControllerScope.offerForm.address.$touched" class="reqStar">Kindly Enter Valid Address</p>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="control-label col-sm-12 col-md-4  lineheight2pt6">Comments</label>
+                                        <div class="col-sm-12 col-md-7 pad-right-0 mob-pad-right-15">
+                                            <textarea name="comment" class="inputClass" ng-model="offerControllerScope.offer.comment" placeholder="Comments"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="formfooterbtns">
+                                        <button class="defaultBtn btn" type="button" ng-click="offerControllerScope.decline()">Decline</button>
+                                        <button class="activeBtn btn" type="button" ng-click="offerControllerScope.addOffer()" ng-disabled="offerControllerScope.offerForm.$invalid" ng-if="!offerControllerScope.isUpdate">Save</button>
+                                        <button class="activeBtn btn" type="button" ng-click="offerControllerScope.editOffer()" ng-disabled="offerControllerScope.offerForm.$invalid" ng-if="offerControllerScope.isUpdate">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            

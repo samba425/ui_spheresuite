@@ -1,0 +1,171 @@
+<div class="loader_backdrop" ng-show="employeeControllerScope.spinner || employeeControllerScope.viewempspinner">
+    <div class="loader loader_position"></div>
+</div>
+
+                <div class="rightContainer">
+                    <div class="pageTitleParent">
+                    	<div class="row pageTitletextContainer">
+                    		<span class="col-lg-6 col-md-6 col-sm-6 col-xs-7 padd0">
+                        		<div class="line_height30">Employees List</div>
+                        	</span>
+                        	<span class="col-lg-6 col-md-6 col-sm-6 col-xs-5 text-right padd0">
+                                        <!-- <button class="glyphicon glyphicon-export action_btn" ng-click="employeeControllerScope.exportData()"></button> -->
+                                         <button class="activeBtn btn margin_left0 margin_right0" ng-click="employeeControllerScope.exportData()">Export</button>
+                                        <button class="activeBtn btn margin_left0 margin_right0" ng-click="employeeControllerScope.openImportPage()">Import</button></span>
+                        </div>
+                        <div class="innerdivContainer red-icon create-employee">
+                            <div class="row margin_minus10">
+                                <div class="input_section">
+                                    <div class="width100 mobile_viewShow">
+                                        <div class="customDropDown col-lg-6 col-md-6 col-sm-6 col-xs-12 padd0 responsive_select margin_top5">
+                                            <select id="select4" name="employee" class="dropdown selectClass col-lg-4 col-md-4 col-sm-4 col-xs-12 text-left" ng-model="employeeControllerScope.empType">
+                                                <option value="" selected="selected">Select Employee Type</option>
+                                                <option value="" >All</option>
+                                                <option value="{{employee.id}}" ng-repeat="employee in employeeControllerScope.EmployeeTypeList | orderBy : 'name' ">{{employee.name}}</option>
+                                            </select>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="width100 mobile_viewShow">
+                                        <input type="text" ng-model="employeeControllerScope.searchName" ng-keyup="employeeControllerScope.searchMe('emp',true)" placeholder="Search Here" class="margin_top20 width100 resp_fontSize">
+                                    </div> 
+                                    
+			                        <div ng-if="!employeeControllerScope.isDataAvailable">
+			                            <p class="text-center grey_text margin0">{{employeeControllerScope.dataMsg}}</p>
+			                        </div>
+                                    <div class=" table_data" ng-if="employeeControllerScope.isDataAvailable">
+			                        	<table wt-responsive-table class="custom-responsive-table">
+									        <thead>
+									            <tr>
+									            	<!-- <th class="">
+									            		<i class="fa fa-trash-o cursor_pointer" aria-hidden="true" ng-click="employeeControllerScope.deleteEmployee()"></i>
+									            	</th> --> 
+									                <th>Employee Id</th>
+									                <th>Employee Name</th>
+									                <th>Designation</th>
+									                <th>Company Email</th>
+									                 <th>Personal Contact</th> 
+									                <th>Employee Type</th> 
+									                <th>Status</th>
+									            </tr>
+									            <tr>
+									            	<!-- <th class="width5Percent"><span class="table_mobile table_borderNone">
+									            		<input type="checkbox" ng-model="employeeControllerScope.isSelect" ng-change="employeeControllerScope.toggleSelect(employeeControllerScope.isSelect)"/><label></label>
+									            	</span></th> --> 
+									            	<th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="employeeControllerScope.search.empId" ng-keyup="employeeControllerScope.searchMe('emp')" /></th>
+									                  <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="employeeControllerScope.search.name" ng-keyup="employeeControllerScope.searchMe('emp')" /></th>
+									                <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="employeeControllerScope.search.title" ng-keyup="employeeControllerScope.searchMe('emp')" /></th>
+									               <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="employeeControllerScope.search.compEmail" ng-keyup="employeeControllerScope.searchMe('emp')" /></th>
+									                <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="employeeControllerScope.search.personalContact" ng-keyup="employeeControllerScope.searchMe('emp')" /></th>
+									                <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="employeeControllerScope.search.emptypeName" ng-keyup="employeeControllerScope.searchMe('emp')" /></th>
+									                <th><input type="search" placeholder="Search Here" class="inputClass width90" ng-model="employeeControllerScope.search.status" ng-keyup="employeeControllerScope.searchMe('emp')" /></th>
+									            </tr>
+									        </thead>
+									        <tbody >
+									        	
+									            <tr ng-repeat="employee in employeeControllerScope.employeeListlogEventFilter = (employeeControllerScope.employeeList | orderBy : '-id' |  
+									                                 filter : employeeControllerScope.searchName | 
+									                                 filter: { emptypeName : employeeControllerScope.search.emptypeName, status : employeeControllerScope.search.status, personalContact : employeeControllerScope.search.personalContact, companyEmail : employeeControllerScope.search.compEmail, empId : employeeControllerScope.search.empId, name : employeeControllerScope.search.name, title : employeeControllerScope.search.title }|  
+									                                limitTo : limitToShow : beginFrom) track by $index" class="backGreyColor">
+									               <!--  <td class="text-center padd_left0"><span class="table_mobile table_borderNone">
+									                	<input type="checkbox" ng-model="employee.isSelect"/><label></label></span>
+									                </td>  -->    
+									                 <td ng-click="employeeControllerScope.viewEmployee(employee.id)" class="cursor_pointer text-center">{{employee.empId}}</td>         
+									                <td ng-click="employeeControllerScope.viewEmployee(employee.id)" class="cursor_pointer">{{employee.name}}</td>
+									                <td>{{employee.title}}</td>
+									                 <td>{{employee.companyEmail}}</td>
+									                <td class="text-center">{{employee.personalContact}}</td>
+									                <td>{{employee.emptypeName}}</td>
+									                <td> <span ng-if="employee.status =='a'" class="label_success">Active</span>
+                                                            <span ng-if="employee.status =='i'" class="label_danger">In-Active</span></td>
+									            </tr>
+									        </tbody>
+										</table>
+						            	<p ng-if="(employeeControllerScope.employeeList |  
+                                                                     filter : employeeControllerScope.searchName | 
+                                                                     filter: { emptypeName : employeeControllerScope.search.emptypeName, status : employeeControllerScope.search.status, personalContact : employeeControllerScope.search.personalContact, companyEmail : employeeControllerScope.search.compEmail, empId : employeeControllerScope.search.empId, name : employeeControllerScope.search.name, title : employeeControllerScope.search.title }).length == 0" class="text-center grey_text margin0">Employee Details Not Available</p>
+		                        </div>
+		                        <div class="table_btn" ng-if="(employeeControllerScope.employeeList |  
+                                                                     filter : employeeControllerScope.searchName | 
+                                                                     filter: { emptypeName : employeeControllerScope.search.emptypeName, status : employeeControllerScope.search.status, personalContact : employeeControllerScope.search.personalContact, companyEmail : employeeControllerScope.search.compEmail, empId : employeeControllerScope.search.empId, name : employeeControllerScope.search.name, title : employeeControllerScope.search.title }).length > 0">
+		                        <!-- <spheresuitenavigation list-item="employeeControllerScope.employeeList" restrict-to="{{limitToShow}}"></spheresuitenavigation> -->
+		                        <button ng-click="employeeControllerScope.showPrevNav()" 
+		                        	ng-if="employeeControllerScope.isDataAvailable && employeeControllerScope.employeeList.length > 0" 
+		                        	ng-disabled="employeeControllerScope.buttonBeginFrom == 0"
+		                        	ng-class="{'cursor_notAllowed':employeeControllerScope.buttonBeginFrom == 0}" class="">Prev</button>
+		                        	
+		                        <span ng-repeat="i in employeeControllerScope.employeeList | limitTo : employeeControllerScope.buttonLimitToShow : employeeControllerScope.buttonBeginFrom">
+		                        	 
+		                        	<button ng-class="{ 'active' : i.isActiveClass }" 
+		                        		ng-if="employeeControllerScope.buttonBeginFrom + $index < employeeControllerScope.employeeList.length / employeeControllerScope.buttonLimitToShow" 
+		                        		ng-click="employeeControllerScope.gotoPage('emp',$index * employeeControllerScope.buttonLimitToShow + employeeControllerScope.buttonBeginFrom * employeeControllerScope.buttonLimitToShow, employeeControllerScope.buttonBeginFrom + $index)">
+		                        		{{employeeControllerScope.buttonBeginFrom + $index + 1}}
+		                        	</button>
+		                        </span>
+		                        <button ng-click="employeeControllerScope.showNextNav('emp')" 
+		                        	ng-if="employeeControllerScope.isDataAvailable && employeeControllerScope.employeeList.length > 0" 
+		                        	ng-disabled="employeeControllerScope.isNextDisabled"
+		                        	ng-class="{'cursor_notAllowed':employeeControllerScope.isNextDisabled}">Next</button>
+		                        	</div>
+		                        </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div id="list-wrapper">
+                            <div infinite-scroll="employeeControllerScope.addMoreItems()" infinite-scroll-container="'#list-wrapper'" infinite-scroll-parent="true">
+                                <div class="innerdivContainer red-icon create-employee border_bottom1" ng-repeat="employee in logEventFilter = (employeeControllerScope.employeeList | orderBy : '-id' |  
+                                 filter : employeeControllerScope.searchName | filter: { empType : employeeControllerScope.empType} |  
+                                limitTo : employeeControllerScope.limitToShow)" on-finish-render>
+                                    <div class="row">
+                                        <div class="input_section">
+                                            <div class="col-lg-1 padd0 responsive_textCenter  responsive_textCenter responsivemargin_top10">
+                                                <img ng-src="{{employee.photo}}" class="img-60x60" ng-if="employee.photo">
+                                                <i class="fa fa-user-circle-o img-60x60 img-views" aria-hidden="true" ng-if="!employee.photo"></i>
+                                            </div>
+                                            <div class="responsive_textCenter display_webkit">
+                                                <span ng-click="employeeControllerScope.viewEmployee(employee.id)" class="anchor_text break-word capitalizeText">{{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</span>
+                                                <span class="pipe_text" ng-if="employee.title!=''">|</span><span class="span_text capitalizeText">{{employee.title}}</span>
+                                            </div>
+                                            <div class="col-lg-5 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Employee Id</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{employee.empId}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Company Email</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{employee.companyEmail}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Personal Contact</label> <span class="font_weight600 col-xs-6 wordBreak_all">{{employee.personalEmail }}</span></li>
+                                                           <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">Employee Type</label> <span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{employee.emptypeName}}</span></li>
+                                                           </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 padd0">
+                                                <div class="row">
+                                                    <div class="">
+                                                        <ul class="padd0 left_text margin-bottom0">
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Department</label><span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{employee.deptName}}</span></li>
+                                                        	<li class="row">
+                                                                <label class="col-xs-6 padd0">Start Date</label><span class="font_weight600 col-xs-6 wordBreak_all">{{employee.startDate  | date:"MMM d, y"}}</span></li>
+                                                            <li class="row">
+                                                                <label class="col-xs-6 padd0">Reporting To</label><span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{employee.reportToName}}</span></li>
+                                                            <li class="row padding-bottom0">
+                                                                <label class="col-xs-6 padd0 margin-bottom0">Work Location</label><span class="font_weight600 col-xs-6 wordBreak_all capitalizeText">{{employee.workLocationCity}}</span></li>
+                                                           </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        
+                         
+                    </div>
+                </div>
+          
